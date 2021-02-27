@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "bh",
+  "version": "0.0.1",
+
+  "name": "beach house",
+  "description": "beach house is a latest version fabric client.",
+  "authors": [
+    "SrgantMooMoo"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "GNU General Public License v3.0",
+  "icon": "assets/bh/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.srgantmoomoo.beachhouse.Main"
+    ]
+  },
+  "mixins": [
+    "bh.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
