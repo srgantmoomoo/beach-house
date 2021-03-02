@@ -1,12 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.fabricmc.example.mixin",
+  "package": "me.srgantmoomoo.beachhouse.api.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
   "client": [
-
+	"MixinGameRenderer",
+	"MixinIngameHud"
   ],
   "injectors": {
     "defaultRequire": 1
