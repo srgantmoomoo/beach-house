@@ -29,7 +29,8 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	compiled "com.github.ZeroMemes:Alpine:1.9"
+	compile 'com.github.ZeroMemes:Alpine:1.5'
+	compile group: 'net.jodah', name: 'typetools', version: '0.5.0'
 }
 
 processResources {
