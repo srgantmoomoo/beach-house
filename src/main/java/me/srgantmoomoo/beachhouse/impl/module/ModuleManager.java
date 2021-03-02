@@ -9,6 +9,7 @@ import com.google.common.eventbus.Subscribe;
 
 import me.srgantmoomoo.beachhouse.api.event.events.EventKeyPress;
 import me.srgantmoomoo.beachhouse.impl.module.Module.Category;
+import me.srgantmoomoo.beachhouse.impl.ui.UI;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 
@@ -18,6 +19,8 @@ public class ModuleManager {
 	
 	public ModuleManager() {
 		modules = new ArrayList<>();
+		
+		ModuleManager.modules.add(new UI());
 		
 	}
 	

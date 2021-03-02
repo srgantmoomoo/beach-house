@@ -29,9 +29,7 @@ public class Main implements ModInitializer {
 	public static SaveLoad saveLoad;
 	
 	@Override
-	public void onInitialize() {
-		ui = new UI();
-		
+	public void onInitialize() {	
 		moduleManager = new ModuleManager();
 		
 		settingManager = new SettingManager();

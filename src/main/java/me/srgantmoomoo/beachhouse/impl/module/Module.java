@@ -13,6 +13,7 @@ import net.minecraft.client.MinecraftClient;
 public class Module {
 	
 	private MinecraftClient mc = MinecraftClient.getInstance();
+	public static ArrayList<Module> modules;
 	
 	public String name, description;
 	public KeybindSetting keyCode = new KeybindSetting(0);
@@ -77,9 +78,12 @@ public class Module {
 	
 	public void toggle() {
 		this.toggled = !this.toggled;
-		if(this.toggled) this.onEnable();
-		else this.onDisable();
 		
+		if(this.toggled) {
+			this.onEnable();
+		}else {
+			this.onDisable();
+		}
 		if(Main.saveLoad != null) {
 			Main.saveLoad.save();
 		}
@@ -102,11 +106,11 @@ public class Module {
 	}
 	
 	public void onEnable() {
-		Main.EVENTBUS.register(this);
+
 	}
 	
 	public void onDisable() {
-		Main.EVENTBUS.unregister(this);
+		
 	}
 
 }
