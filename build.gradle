@@ -1,7 +1,6 @@
 plugins {
 	id 'fabric-loom' version '0.6-SNAPSHOT'
 	id 'maven-publish'
-	id 'com.github.johnrengelman.shadow' version '6.0.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -20,10 +19,6 @@ repositories {
 }
 
 dependencies {
-	def dependency = { id ->
-		implementation id
-		shadow id
-	}
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
@@ -34,10 +29,7 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-}
-
-shadowJar {
-	configurations = [ project.configurations.shadow ]
+	modImplementation "com.github.ZeroMemes:Alpine:1.9"
 }
 
 processResources {
@@ -75,11 +67,6 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
-}
-
-remapJar {
-	dependsOn shadowJar
-	input.set(shadowJar.archiveFile)
 }
 
 // configure the maven publication
