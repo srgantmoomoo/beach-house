@@ -19,10 +19,6 @@ repositories {
 }
 
 dependencies {
-	def dependency = { id ->
-		implementation id
-		shadow id
-	}
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
@@ -33,7 +29,6 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	dependency 'com.github.ZeroMemes:Alpine:1.9'
 }
 
 shadowJar {
