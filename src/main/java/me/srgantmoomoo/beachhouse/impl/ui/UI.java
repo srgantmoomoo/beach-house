@@ -9,19 +9,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class UI extends Module {
-	
-	public UI() {
-		super("ui", "uiiii.", 70, Category.RENDER);
-	}
+public class UI {
 	private MinecraftClient mc = MinecraftClient.getInstance();
 	public static MatrixStack matrix;
-	
-	public void onEnable() {
-		super.onEnable();
-		System.out.print("hi?");
-		Main.EVENTBUS.register(this);
-	}
 	
 	@Subscribe
 	public void onDrawOverlay(EventDrawOverlay event) {

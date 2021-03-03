@@ -1,13 +1,20 @@
 package me.srgantmoomoo.beachhouse.api.event;
 
-public class Event {
-	private boolean cancelled = false;
+import me.srgantmoomoo.beachhouse.Main;
 
-	public boolean isCancelled() {
-		return cancelled;
-	}
+public class Event
+{
+  private boolean isCancelled;
 
-	public void setCancelled(boolean cancelled) {
-		this.cancelled = cancelled;
-	}
+  public boolean
+  isCancelled()
+  {
+    return isCancelled;
+  }
+
+  public void
+  setCancelled(boolean cancelled)
+  {
+    isCancelled = cancelled;
+  }
 }

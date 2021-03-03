@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.EventBus;
 
 import me.srgantmoomoo.beachhouse.api.config.SaveLoad;
+import me.srgantmoomoo.beachhouse.api.event.Event;
 import me.srgantmoomoo.beachhouse.impl.module.ModuleManager;
 import me.srgantmoomoo.beachhouse.impl.setting.SettingManager;
 import me.srgantmoomoo.beachhouse.impl.ui.UI;
@@ -27,9 +28,11 @@ public class Main implements ModInitializer {
 	public static ModuleManager moduleManager;
 	public static SettingManager settingManager;
 	public static SaveLoad saveLoad;
+	public static Event event;
 	
 	@Override
-	public void onInitialize() {	
+	public void onInitialize() {
+		
 		moduleManager = new ModuleManager();
 		
 		settingManager = new SettingManager();

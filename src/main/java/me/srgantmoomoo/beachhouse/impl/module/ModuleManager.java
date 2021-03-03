@@ -20,8 +20,6 @@ public class ModuleManager {
 	public ModuleManager() {
 		modules = new ArrayList<>();
 		
-		ModuleManager.modules.add(new UI());
-		
 	}
 	
 	public static boolean isModuleEnabled(String name){
