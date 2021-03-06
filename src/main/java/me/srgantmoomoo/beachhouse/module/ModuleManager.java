@@ -1,4 +1,4 @@
-package me.srgantmoomoo.beachhouse.impl.module;
+package me.srgantmoomoo.beachhouse.module;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +7,15 @@ import org.lwjgl.glfw.GLFW;
 
 import com.google.common.eventbus.Subscribe;
 
+import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.beachhouse.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.beachhouse.api.event.events.EventKeyPress;
-import me.srgantmoomoo.beachhouse.impl.module.Module.Category;
-import me.srgantmoomoo.beachhouse.impl.ui.UI;
+import me.srgantmoomoo.beachhouse.module.Module.Category;
+import me.srgantmoomoo.beachhouse.module.modules.movement.*;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.util.InputUtil;
 
 public class ModuleManager {
@@ -18,13 +23,14 @@ public class ModuleManager {
 	public static ArrayList<Module> modules;
 	
 	public ModuleManager() {
+		Main.EVENTBUS.subscribe(listener);
 		modules = new ArrayList<>();
-		
+		ModuleManager.modules.add(new Sprint());
 	}
 	
 	public static boolean isModuleEnabled(String name){
 		Module m = modules.stream().filter(mm->mm.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
-		return m.isToggled();
+		return m.isEnabled();
 	}
 	
 	public Module getModule (String name) {
@@ -57,12 +63,12 @@ public class ModuleManager {
 		return m;
 	}
 	
-	@Subscribe
-	public static void handleKeyPress(EventKeyPress eventKeyPress) {
+	@EventHandler
+	private final Listener<EventKeyPress> listener = new Listener<>(e -> {
 		if (InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_F3))
 			return;
 
-		modules.stream().filter(m -> m.getKey() == eventKeyPress.getKey()).forEach(Module::toggle);
-	}
+		modules.stream().filter(m -> m.getKey() == e.getKey()).forEach(Module::toggle);
+	});
 	
 }

@@ -1,4 +1,4 @@
-package me.srgantmoomoo.beachhouse.impl.module;
+package me.srgantmoomoo.beachhouse.module;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,19 +6,19 @@ import java.util.Comparator;
 import java.util.List;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.impl.setting.Setting;
-import me.srgantmoomoo.beachhouse.impl.setting.settings.KeybindSetting;
+import me.srgantmoomoo.beachhouse.setting.Setting;
+import me.srgantmoomoo.beachhouse.setting.settings.KeybindSetting;
 import net.minecraft.client.MinecraftClient;
 
 public class Module {
 	
-	private MinecraftClient mc = MinecraftClient.getInstance();
+	protected static final MinecraftClient mc = MinecraftClient.getInstance();
 	public static ArrayList<Module> modules;
 	
 	public String name, description;
 	public KeybindSetting keyCode = new KeybindSetting(0);
 	public Category category;
-	public boolean toggled;
+	public boolean enabled;
 	public int index;
 	public List<Setting> settings = new ArrayList<Setting>();
 	
@@ -29,7 +29,7 @@ public class Module {
 		keyCode.code = key;
 		this.addSettings(keyCode);
 		this.category = category;
-		this.toggled = false;
+		this.enabled = false;
 	}
 	
 	public void addSettings(Setting... settings) {
@@ -38,7 +38,7 @@ public class Module {
 	}
 	
 	public enum Category {
-		Player("player"), RENDER("render");
+		PLAYER("player"), RENDER("render");
 		
 		public String name;
 		public int moduleIndex;
@@ -77,40 +77,46 @@ public class Module {
 	} 
 	
 	public void toggle() {
-		this.toggled = !this.toggled;
+		if(isEnabled()) {
+			disable();
+		}
+		else if(!isEnabled()) {
+			enable();
+		}
 		
-		if(this.toggled) {
-			this.onEnable();
-		}else {
-			this.onDisable();
-		}
 		if(Main.saveLoad != null) {
 			Main.saveLoad.save();
 		}
 	}
 	
-	public boolean isToggled() {
-		return toggled;
+	public boolean isEnabled() {
+		return enabled;
 	}
 	
-	public void setToggled(boolean toggled) {
-		this.toggled = toggled;
-		if(this.toggled) {
-			this.onEnable();
-		}else {
-			this.onDisable();
-		}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+		
 		if(Main.saveLoad != null) {
 			Main.saveLoad.save();
 		}
+	}
+	
+	public void enable() {
+		setEnabled(true);
+		onEnable();
+	}
+
+	public void disable() {
+		setEnabled(false);
+		onDisable();
 	}
 	
 	public void onEnable() {
-		setToggled(true);
+
 	}
 	
 	public void onDisable() {
-		setToggled(false);
+
 	}
 
 }

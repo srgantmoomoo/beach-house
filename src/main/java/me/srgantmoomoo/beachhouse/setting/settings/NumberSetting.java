@@ -1,8 +1,8 @@
-package me.srgantmoomoo.beachhouse.impl.setting.settings;
+package me.srgantmoomoo.beachhouse.setting.settings;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.impl.module.Module;
-import me.srgantmoomoo.beachhouse.impl.setting.Setting;
+import me.srgantmoomoo.beachhouse.module.Module;
+import me.srgantmoomoo.beachhouse.setting.Setting;
 
 public class NumberSetting extends Setting {
 	public double value;

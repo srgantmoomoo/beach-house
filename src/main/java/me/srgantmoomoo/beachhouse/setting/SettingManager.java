@@ -1,9 +1,9 @@
-package me.srgantmoomoo.beachhouse.impl.setting;
+package me.srgantmoomoo.beachhouse.setting;
 
 import java.util.ArrayList;
 
-import me.srgantmoomoo.beachhouse.impl.module.Module;
-import me.srgantmoomoo.beachhouse.impl.module.ModuleManager;
+import me.srgantmoomoo.beachhouse.module.Module;
+import me.srgantmoomoo.beachhouse.module.ModuleManager;
 
 public class SettingManager {
 	

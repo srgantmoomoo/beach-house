@@ -1,11 +1,11 @@
-package me.srgantmoomoo.beachhouse.impl.setting.settings;
+package me.srgantmoomoo.beachhouse.setting.settings;
 
 import java.util.Arrays;
 import java.util.List;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.impl.module.Module;
-import me.srgantmoomoo.beachhouse.impl.setting.Setting;
+import me.srgantmoomoo.beachhouse.module.Module;
+import me.srgantmoomoo.beachhouse.setting.Setting;
 
 public class ModeSetting extends Setting {
 	public int index;

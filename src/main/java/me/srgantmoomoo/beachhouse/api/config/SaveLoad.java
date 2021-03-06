@@ -9,12 +9,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.impl.module.Module;
-import me.srgantmoomoo.beachhouse.impl.module.ModuleManager;
-import me.srgantmoomoo.beachhouse.impl.setting.Setting;
-import me.srgantmoomoo.beachhouse.impl.setting.settings.BooleanSetting;
-import me.srgantmoomoo.beachhouse.impl.setting.settings.ModeSetting;
-import me.srgantmoomoo.beachhouse.impl.setting.settings.NumberSetting;
+import me.srgantmoomoo.beachhouse.module.Module;
+import me.srgantmoomoo.beachhouse.module.ModuleManager;
+import me.srgantmoomoo.beachhouse.setting.Setting;
+import me.srgantmoomoo.beachhouse.setting.settings.BooleanSetting;
+import me.srgantmoomoo.beachhouse.setting.settings.ModeSetting;
+import me.srgantmoomoo.beachhouse.setting.settings.NumberSetting;
 import net.minecraft.client.MinecraftClient;
 
 /*
@@ -46,7 +46,7 @@ public class SaveLoad {
 		
 		for(Module mod : ModuleManager.modules) {
 			if(!mod.getName().equals("tabGui"))
-			toSave.add("MOD:" + mod.getName() + ":" + mod.isToggled() + ":" + mod.getKey());
+			toSave.add("MOD:" + mod.getName() + ":" + mod.isEnabled() + ":" + mod.getKey());
 		}
 		
 		for(Module mod : ModuleManager.modules) {
@@ -101,10 +101,10 @@ public class SaveLoad {
 				Module m = Main.moduleManager.getModule(args[1]);
 				if(m != null) {
 					if(m.getName().equals("clickGuiModule") && m.getName().equals("hudEditor"))
-						m.setToggled(!Boolean.parseBoolean(args[2]));
+						m.setEnabled(!Boolean.parseBoolean(args[2]));
 					
 					if(!m.getName().equals("clickGuiModule") && !m.getName().equals("hudEditor"))
-					m.setToggled(Boolean.parseBoolean(args[2]));
+					m.setEnabled(Boolean.parseBoolean(args[2]));
 					m.setKey(Integer.parseInt(args[3]));
 				}
 			}else if(s.toLowerCase().startsWith("set:")) {

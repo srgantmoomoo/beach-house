@@ -1,6 +1,6 @@
-package me.srgantmoomoo.beachhouse.impl.setting;
+package me.srgantmoomoo.beachhouse.setting;
 
-import me.srgantmoomoo.beachhouse.impl.module.Module;
+import me.srgantmoomoo.beachhouse.module.Module;
 
 public abstract class Setting {
 
