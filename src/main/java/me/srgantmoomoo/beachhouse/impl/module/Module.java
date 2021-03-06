@@ -106,11 +106,11 @@ public class Module {
 	}
 	
 	public void onEnable() {
-
+		setToggled(true);
 	}
 	
 	public void onDisable() {
-		
+		setToggled(false);
 	}
 
 }

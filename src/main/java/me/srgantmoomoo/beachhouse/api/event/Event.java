@@ -1,20 +1,16 @@
 package me.srgantmoomoo.beachhouse.api.event;
 
-import me.srgantmoomoo.beachhouse.Main;
+import me.zero.alpine.event.type.Cancellable;
+import net.minecraft.client.MinecraftClient;
 
-public class Event
-{
-  private boolean isCancelled;
+public class Event extends Cancellable {
+	
+	public static Era era = Era.PRE;
 
-  public boolean
-  isCancelled()
-  {
-    return isCancelled;
-  }
+    public static Float partialTicks = MinecraftClient.getInstance().getTickDelta();
 
-  public void
-  setCancelled(boolean cancelled)
-  {
-    isCancelled = cancelled;
-  }
+    public enum Era {
+        PRE, POST
+    }
+
 }

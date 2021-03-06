@@ -3,13 +3,14 @@ package me.srgantmoomoo.beachhouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.common.eventbus.EventBus;
-
 import me.srgantmoomoo.beachhouse.api.config.SaveLoad;
 import me.srgantmoomoo.beachhouse.api.event.Event;
+import me.srgantmoomoo.beachhouse.api.event.EventProcessor;
 import me.srgantmoomoo.beachhouse.impl.module.ModuleManager;
 import me.srgantmoomoo.beachhouse.impl.setting.SettingManager;
 import me.srgantmoomoo.beachhouse.impl.ui.UI;
+import me.zero.alpine.bus.EventBus;
+import me.zero.alpine.bus.EventManager;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 
@@ -22,16 +23,20 @@ public class Main implements ModInitializer {
 	
 	public static final Logger LOGGER = LogManager.getLogger("beach-house");
 	private MinecraftClient mc = MinecraftClient.getInstance();
-	public static EventBus EVENTBUS = new EventBus();
+	public static EventBus EVENTBUS = new EventManager();
 	
 	public static UI ui;
 	public static ModuleManager moduleManager;
 	public static SettingManager settingManager;
 	public static SaveLoad saveLoad;
-	public static Event event;
+	public static EventProcessor eventProcessor;
 	
 	@Override
 	public void onInitialize() {
+		eventProcessor = new EventProcessor();
+		Main.EVENTBUS.subscribe(eventProcessor);
+		
+		ui = new UI();
 		
 		moduleManager = new ModuleManager();
 		
