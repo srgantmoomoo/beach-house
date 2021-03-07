@@ -3,26 +3,24 @@ package me.srgantmoomoo.beachhouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import me.srgantmoomoo.beachhouse.api.config.SaveLoad;
-import me.srgantmoomoo.beachhouse.api.event.Event;
-import me.srgantmoomoo.beachhouse.api.event.EventProcessor;
-import me.srgantmoomoo.beachhouse.module.ModuleManager;
-import me.srgantmoomoo.beachhouse.setting.SettingManager;
-import me.srgantmoomoo.beachhouse.ui.UI;
+import me.srgantmoomoo.bedroom.api.config.SaveLoad;
+import me.srgantmoomoo.bedroom.api.event.EventProcessor;
+import me.srgantmoomoo.bedroom.command.CommandManager;
+import me.srgantmoomoo.bedroom.module.ModuleManager;
+import me.srgantmoomoo.bedroom.setting.SettingManager;
+import me.srgantmoomoo.bedroom.ui.UI;
 import me.zero.alpine.bus.EventBus;
 import me.zero.alpine.bus.EventManager;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.MinecraftClient;
 
 public class Main implements ModInitializer {
 	
 	public static final String modid = "bh";
 	public static final String name = "beach house";
-	public static final String nameCondensed = "beach-house";
-	public static final String version = "0.0.1";
+	public static final String nameCondensed = "beach-house"; // this is for if there are spaces in ur mod name... "mod name" -> "mod-name".
+	public static final String version = "0.01";
 	
-	public static final Logger LOGGER = LogManager.getLogger("beach-house");
-	private MinecraftClient mc = MinecraftClient.getInstance();
+	public static final Logger LOGGER = LogManager.getLogger("bedroom");
 	public static EventBus EVENTBUS = new EventManager();
 	
 	public static UI ui;
@@ -30,40 +28,50 @@ public class Main implements ModInitializer {
 	public static SettingManager settingManager;
 	public static SaveLoad saveLoad;
 	public static EventProcessor eventProcessor;
+	public static CommandManager commandManager;
+	
+	public Object syncronize = new Object();
+	public void printLog(String text) {
+		synchronized (syncronize) {
+			LOGGER.info(text);
+		}
+	}
 	
 	@Override
 	public void onInitialize() {
+		printLog("welcome to bedroom!");
+		
+		printLog("\n" +
+                " __                     __                                       \n" +
+                "[  |                   |  ]                                      \n" +
+                " | |.--.   .---.   .--.| |  _ .--.   .--.    .--.   _ .--..--.   \n" +
+                " | '/'`\\ \\/ /__\\\\/ /'`\\' | [ `/'`\\]/ .'`\\ \\/ .'`\\ \\[ `.-. .-. |  \n" +
+                " |  \\__/ || \\__.,| \\__/  |  | |    | \\__. || \\__. | | | | | | |  \n" +
+                "[__;.__.'  '.__.' '.__.;__][___]    '.__.'  '.__.' [___||__||__] \n");
+		
+		// inits
+		
 		eventProcessor = new EventProcessor();
 		Main.EVENTBUS.subscribe(eventProcessor);
+		printLog("event system initialized.");
 		
 		ui = new UI();
 		
+		commandManager = new CommandManager();
+		printLog("command system initialized.");
+		
 		moduleManager = new ModuleManager();
+		printLog("module system initialized.");
 		
 		settingManager = new SettingManager();
+		printLog("setting system initialized.");
 		
 		saveLoad = new SaveLoad();
-		
-		LOGGER.info("\n" +
-                " __                             __        __                                    \n" +
-                "[  |                           [  |      [  |                                   \n" +
-                " | |.--.   .---.  ,--.   .---.  | |--.    | |--.   .--.   __   _   .--.  .---.  \n" +
-                " | '/'`\\ \\/ /__\\\\`'_\\ : / /'`\\] | .-. |   | .-. |/ .'`\\ \\[  | | | ( (`\\]/ /__\\\\ \n" +
-                " |  \\__/ || \\__.,// | |,| \\__.  | | | |   | | | || \\__. | | \\_/ |, `'.'.| \\__., \n" +
-                "[__;.__.'  '.__.'\\'-;__/'.___.'[___]|__] [___]|__]'.__.'  '.__.'_/[\\__) )'.__.' \n" +
-                "                                                                                \n");
-		
-		
-		/*
-		" __                             __        __                                    \n" +
-		"[  |                           [  |      [  |                                   \n" +
-		" | |.--.   .---.  ,--.   .---.  | |--.    | |--.   .--.   __   _   .--.  .---.  \n" +
-		" | '/'`\ \/ /__\\`'_\ : / /'`\] | .-. |   | .-. |/ .'`\ \[  | | | ( (`\]/ /__\\ \n" +
-		" |  \__/ || \__.,// | |,| \__.  | | | |   | | | || \__. | | \_/ |, `'.'.| \__., \n" +
-		"[__;.__.'  '.__.'\'-;__/'.___.'[___]|__] [___]|__]'.__.'  '.__.'_/[\__) )'.__.' \n");
-		*/                                                                
+		printLog("config initialized.");
 
-        LOGGER.info("loading beach house...");
+		//
+		
+		printLog(Main.name + " has finished initialization :)");
 	}
 
 }

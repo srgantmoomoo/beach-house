@@ -1,14 +1,15 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.srgantmoomoo.beachhouse.api.mixin",
+  "package": "me.srgantmoomoo.bedroom.api.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
   "client": [
 	"MixinGameRenderer",
 	"MixinIngameHud",
-	"MixinKeyboard"
+	"MixinKeyboard",
+	"MixinClientConnection"
   ],
   "injectors": {
     "defaultRequire": 1
