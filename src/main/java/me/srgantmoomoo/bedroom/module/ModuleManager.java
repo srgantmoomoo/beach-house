@@ -7,6 +7,7 @@ import org.lwjgl.glfw.GLFW;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.modules.movement.*;
+import me.srgantmoomoo.beachhouse.modules.render.*;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import me.srgantmoomoo.bedroom.module.Module.Category;
@@ -26,9 +27,10 @@ public class ModuleManager {
 		
 		modules = new ArrayList<>();
 		ModuleManager.modules.add(new Sprint());
+		ModuleManager.modules.add(new FullBright());
 	}
 	
-	public static boolean isModuleEnabled(String name){
+	public static boolean isModuleEnabled(String name) {
 		Module m = modules.stream().filter(mm->mm.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
 		return m.isEnabled();
 	}
@@ -58,7 +60,7 @@ public class ModuleManager {
 		return modules;
 	}
 	
-	public static Module getModuleByName(String name){
+	public static Module getModuleByName(String name) {
 		Module m = modules.stream().filter(mm->mm.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
 		return m;
 	}
@@ -66,7 +68,7 @@ public class ModuleManager {
 	public static void addChatMessage(String message) {
 		Text textComponentString = new LiteralText(message);
 		message = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Main.name + TextFormatting.GRAY + ": " + message;
-		MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText("hi").append(textComponentString));
+		MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText("" + TextFormatting.AQUA + TextFormatting.ITALIC + "@" + TextFormatting.RESET + TextFormatting.ITALIC + Main.name + " " + TextFormatting.GRAY).append(textComponentString));
 		
 		
 	}

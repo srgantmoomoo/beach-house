@@ -4,8 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
+import me.srgantmoomoo.bedroom.command.commands.*;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.util.InputUtil;
 
 public class CommandManager {
 	
@@ -14,12 +22,15 @@ public class CommandManager {
 	public boolean commandFound = false;
 	
 	public CommandManager() {
-		//Main.EVENTBUS.subscribe(listener);
+		Main.EVENTBUS.subscribe(listener);
 		register();
 	}
 	
 	public void register() {
 		commands.add(new Toggle());
+		commands.add(new Help());
+		commands.add(new Prefix());
+		commands.add(new ModuleList());
 	}
 	
 	public static void callCommandReturn(String input) {
@@ -34,9 +45,9 @@ public class CommandManager {
         	String commandName = message.split(" ")[0];
         	for(Command c : commands) {
         		if(c.aliases.contains(commandName) || c.name.equalsIgnoreCase(commandName)) {
-        		c.onCommand(Arrays.copyOfRange(message.split(" "), 1, message.split(" ").length), message);
-        		commandFound = true;
-        		break;
+	        		c.onCommand(Arrays.copyOfRange(message.split(" "), 1, message.split(" ").length), message);
+	        		commandFound = true;
+	        		break;
         		}
         	}
         	if(!commandFound) {
@@ -45,19 +56,20 @@ public class CommandManager {
         }
     }
 	
-	/* @EventHandler
+	@EventHandler
 	private final Listener<EventKeyPress> listener = new Listener<>(e -> {
+		if(InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), prefix.charAt(0)))
 		if (prefix.length() == 1) {
-            final char key = Keyboard.getEventCharacter();
-            if (prefix.charAt(0) == key) {
                 MinecraftClient.getInstance().openScreen(new ChatScreen(""));
-                ((ChatScreen) MinecraftClient.getInstance().currentScreen).inputeField.setText(prefix);
             }
-        }
-	}); */
+	});
 
 	public static void setCommandPrefix(String pre) {
         prefix = pre;
+        
+        if(Main.saveLoad != null) {
+			Main.saveLoad.save();
+		}
     }
 	
 }

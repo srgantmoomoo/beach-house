@@ -1,5 +1,13 @@
 package me.srgantmoomoo.beachhouse.modules.render;
 
-public class FullBright {
+import org.lwjgl.glfw.GLFW;
+
+import me.srgantmoomoo.bedroom.module.Module;
+
+public class FullBright extends Module {
+	
+	public FullBright() {
+		super("full bright", "fullbright", GLFW.GLFW_KEY_G, Category.RENDER);
+	}
 
 }
