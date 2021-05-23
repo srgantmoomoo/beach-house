@@ -10,6 +10,11 @@ import me.srgantmoomoo.bedroom.setting.Setting;
 import me.srgantmoomoo.bedroom.setting.settings.KeybindSetting;
 import net.minecraft.client.MinecraftClient;
 
+/** 
+ * @author SrgantMooMoo
+ * @since 5/16/2021
+ */
+
 public class Module {
 	
 	protected static final MinecraftClient mc = MinecraftClient.getInstance();
@@ -38,7 +43,7 @@ public class Module {
 	}
 	
 	public enum Category {
-		PLAYER("player"), RENDER("render");
+		PLAYER("player"), RENDER("render"), COMBAT("combat"), MOVEMENT("movement"), MISCELLANEOUS("miscellaneous"), BEACHHOUSE("beachhouse");
 		
 		public String name;
 		public int moduleIndex;

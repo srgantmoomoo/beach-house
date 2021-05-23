@@ -1,5 +1,8 @@
 package me.srgantmoomoo.beachhouse;
 
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,15 +12,23 @@ import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import me.srgantmoomoo.bedroom.setting.SettingManager;
 import me.srgantmoomoo.bedroom.ui.UI;
+import me.srgantmoomoo.external.renderer.FontRenderer;
+import me.srgantmoomoo.external.renderer.GlyphPage;
 import me.zero.alpine.bus.EventBus;
 import me.zero.alpine.bus.EventManager;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.MinecraftClient;
+
+/** 
+ * @author SrgantMooMoo
+ * @since 5/16/2021
+ */
 
 public class Main implements ModInitializer {
 	
 	public static final String modid = "bh";
 	public static final String name = "beach house";
-	public static final String nameCondensed = "beach-house"; // this is for if there are spaces in ur mod name... "mod name" -> "mod-name".
+	public static final String nameCondensed = "beach-house"; 
 	public static final String version = "0.01";
 	
 	public static final Logger LOGGER = LogManager.getLogger("bedroom");
@@ -29,6 +40,7 @@ public class Main implements ModInitializer {
 	public static SaveLoad saveLoad;
 	public static EventProcessor eventProcessor;
 	public static CommandManager commandManager;
+	public static FontRenderer fontRenderer;
 	
 	public Object syncronize = new Object();
 	public void printLog(String text) {
@@ -49,13 +61,19 @@ public class Main implements ModInitializer {
                 " |  \\__/ || \\__.,| \\__/  |  | |    | \\__. || \\__. | | | | | | |  \n" +
                 "[__;.__.'  '.__.' '.__.;__][___]    '.__.'  '.__.' [___||__||__] \n");
 		
-		// inits
+		// bedroom inits
 		
-		eventProcessor = new EventProcessor();
-		Main.EVENTBUS.subscribe(eventProcessor);
-		printLog("event system initialized.");
+		Font[] fonts;
+		fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
+		for (int i = 0; i < fonts.length; i++) {
+		      System.out.print(fonts[i].getFontName( ) + " : ");
+		      System.out.print(fonts[i].getFamily( ) + " : ");
+		      System.out.print(fonts[i].getName( ));
+		      System.out.println( );
+		}
 		
-		ui = new UI();
+		MinecraftClient.getInstance().execute(() -> Main.fontRenderer = new FontRenderer(new GlyphPage(new Font("Trebuchet MS", Font.PLAIN, 20), 20)));
+		printLog("fontRenderer attempt 1.");
 		
 		commandManager = new CommandManager();
 		printLog("command system initialized.");
@@ -65,13 +83,21 @@ public class Main implements ModInitializer {
 		
 		settingManager = new SettingManager();
 		printLog("setting system initialized.");
+
+		ui = new UI();
+		printLog("ui initialized.");
 		
 		saveLoad = new SaveLoad();
 		printLog("config initialized.");
-
+		
+		eventProcessor = new EventProcessor();
+		printLog("event system initialized.");
+		
+		printLog("bedroom" + " has finished initialization :)");
+		// (your clients name)'s inits... if u need any.
+		
 		//
 		
-		printLog(Main.name + " has finished initialization :)");
+		printLog(Main.name + " has finished initialization.");
 	}
-
 }
