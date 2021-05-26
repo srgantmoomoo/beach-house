@@ -94,6 +94,7 @@ public class Main implements ModInitializer {
 		printLog("event system initialized.");
 		
 		printLog("bedroom" + " has finished initialization :)");
+		
 		// (your clients name)'s inits... if u need any.
 		
 		//

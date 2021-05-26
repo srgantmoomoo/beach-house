@@ -8,7 +8,7 @@ import me.srgantmoomoo.bedroom.module.ModuleManager;
 public class ModuleList extends Command {
 	
 	public ModuleList() {
-		super("modulelist", "gets a list of the modules.", "module", "ml");
+		super("modulelist", "gets a list of all the modules.", "moduleList", "ml");
 	}
 
 	@Override
