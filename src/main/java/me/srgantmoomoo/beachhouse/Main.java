@@ -12,8 +12,6 @@ import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import me.srgantmoomoo.bedroom.setting.SettingManager;
 import me.srgantmoomoo.bedroom.ui.UI;
-import me.srgantmoomoo.external.renderer.FontRenderer;
-import me.srgantmoomoo.external.renderer.GlyphPage;
 import me.zero.alpine.bus.EventBus;
 import me.zero.alpine.bus.EventManager;
 import net.fabricmc.api.ModInitializer;
@@ -40,7 +38,6 @@ public class Main implements ModInitializer {
 	public static SaveLoad saveLoad;
 	public static EventProcessor eventProcessor;
 	public static CommandManager commandManager;
-	public static FontRenderer fontRenderer;
 	
 	public Object syncronize = new Object();
 	public void printLog(String text) {
@@ -72,8 +69,6 @@ public class Main implements ModInitializer {
 		      System.out.println( );
 		}
 		
-		MinecraftClient.getInstance().execute(() -> Main.fontRenderer = new FontRenderer(new GlyphPage(new Font("Trebuchet MS", Font.PLAIN, 20), 20)));
-		printLog("fontRenderer attempt 1.");
 		
 		commandManager = new CommandManager();
 		printLog("command system initialized.");

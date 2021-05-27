@@ -7,13 +7,15 @@ import me.srgantmoomoo.bedroom.module.Module;
 public class Sprint extends Module {
 	
 	public Sprint() {
-		super("sprint", "sprinttt.", GLFW.GLFW_KEY_G, Category.PLAYER);
+		super("sprint", "sprinttt.", GLFW.GLFW_KEY_G, Category.MOVEMENT);
 	}
 	
-	public void onEnable() {
+	@Override
+	public void onUpdate() {
 		mc.player.setSprinting(true);
 	}
 	
+	@Override
 	public void onDisable() {
 		mc.player.setSprinting(false);
 	}
