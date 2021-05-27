@@ -1,8 +1,8 @@
-package me.srgantmoomoo.bedroom.setting.settings;
+package me.srgantmoomoo.bedroom.module.setting.settings;
 
 import me.srgantmoomoo.bedroom.api.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
-import me.srgantmoomoo.bedroom.setting.Setting;
+import me.srgantmoomoo.bedroom.module.setting.Setting;
 
 public class ColorSetting extends Setting {
 
