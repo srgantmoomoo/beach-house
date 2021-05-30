@@ -47,7 +47,6 @@ public class SaveLoad {
 		ArrayList<String> toSave = new ArrayList<String>();
 		
 		for(Module mod : ModuleManager.modules) {
-			if(!mod.getName().equals("tabGui"))
 			toSave.add("MOD:" + mod.getName() + ":" + mod.isEnabled() + ":" + mod.getKey());
 		}
 		
@@ -69,9 +68,8 @@ public class SaveLoad {
 					toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + mode.getMode());
 				}
 			}
-		} 
+		}
 		
-		// command prefix
 		toSave.add("COMMANDPREFIX:" + CommandManager.prefix);
 		
 		try {
@@ -105,10 +103,6 @@ public class SaveLoad {
 			if(s.toLowerCase().startsWith("mod:")) {
 				Module m = Main.moduleManager.getModule(args[1]);
 				if(m != null) {
-					if(m.getName().equals("clickGuiModule") && m.getName().equals("hudEditor"))
-						m.setEnabled(!Boolean.parseBoolean(args[2]));
-					
-					if(!m.getName().equals("clickGuiModule") && !m.getName().equals("hudEditor"))
 					m.setEnabled(Boolean.parseBoolean(args[2]));
 					m.setKey(Integer.parseInt(args[3]));
 				}

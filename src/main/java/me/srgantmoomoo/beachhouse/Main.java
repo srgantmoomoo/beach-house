@@ -15,7 +15,6 @@ import me.srgantmoomoo.bedroom.ui.UI;
 import me.zero.alpine.bus.EventBus;
 import me.zero.alpine.bus.EventManager;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.MinecraftClient;
 
 /** 
  * @author SrgantMooMoo
@@ -48,8 +47,12 @@ public class Main implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
+		bedroomInit();
+		beachhouseInit();
+	}
+	
+	public void bedroomInit() {
 		printLog("welcome to bedroom!");
-		
 		printLog("\n" +
                 " __                     __                                       \n" +
                 "[  |                   |  ]                                      \n" +
@@ -58,17 +61,8 @@ public class Main implements ModInitializer {
                 " |  \\__/ || \\__.,| \\__/  |  | |    | \\__. || \\__. | | | | | | |  \n" +
                 "[__;.__.'  '.__.' '.__.;__][___]    '.__.'  '.__.' [___||__||__] \n");
 		
-		// bedroom inits
-		
-		Font[] fonts;
-		fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
-		for (int i = 0; i < fonts.length; i++) {
-		      System.out.print(fonts[i].getFontName( ) + " : ");
-		      System.out.print(fonts[i].getFamily( ) + " : ");
-		      System.out.print(fonts[i].getName( ));
-		      System.out.println( );
-		}
-		
+		eventProcessor = new EventProcessor();
+		printLog("event system initialized.");
 		
 		commandManager = new CommandManager();
 		printLog("command system initialized.");
@@ -85,14 +79,18 @@ public class Main implements ModInitializer {
 		saveLoad = new SaveLoad();
 		printLog("config initialized.");
 		
-		eventProcessor = new EventProcessor();
-		printLog("event system initialized.");
-		
 		printLog("bedroom" + " has finished initialization :)");
-		
-		// (your clients name)'s inits... if u need any.
-		
-		//
+	}
+	
+	public void beachhouseInit() {
+		Font[] fonts;
+		fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
+		for (int i = 0; i < fonts.length; i++) {
+		      System.out.print(fonts[i].getFontName() + " : ");
+		      System.out.print(fonts[i].getFamily() + " : ");
+		      System.out.print(fonts[i].getName());
+		      System.out.println();
+		}
 		
 		printLog(Main.name + " has finished initialization.");
 	}

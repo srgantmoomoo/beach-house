@@ -2,7 +2,6 @@ package me.srgantmoomoo.beachhouse.modules.beachhouse;
 
 import java.util.Comparator;
 
-import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
@@ -24,13 +23,12 @@ public class ModuleList extends Module {
 	    
 	@Override
 	public void onEnable() {
-		Main.EVENTBUS.subscribe(listener);
 		//color.setValue(true, new JColor(255,255,255));    SETS RAINBOW TRUE ON ENABLE.
 	}
 	
 	@Override
 	public void onDisable() {
-		Main.EVENTBUS.unsubscribe(listener);
+		
 	}
 	
 	@EventHandler
