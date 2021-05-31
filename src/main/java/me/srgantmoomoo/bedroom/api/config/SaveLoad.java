@@ -28,6 +28,7 @@ public class SaveLoad {
 	private File dir;
 	private File dataFile;
 	   
+	@SuppressWarnings("resource")
 	public SaveLoad() {
 		dir = new File(MinecraftClient.getInstance().runDirectory, Main.name);
 		if(!dir.exists()) {

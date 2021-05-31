@@ -17,7 +17,7 @@ public class ModuleList extends Module {
 	public ModeSetting mode = new ModeSetting("mode", this, "category", "category", "static");
 	
 	public ModuleList() {
-		super("module list", "module list.", 0, Category.BEACHHOUSE);
+		super("module list", "module list.", 0, Category.BEACHHOUSE, SubCategory.HUD);
 		this.addSettings(color);
 	}
 	    
@@ -45,6 +45,9 @@ public class ModuleList extends Module {
 					if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(113, 229, 175);
 					if(module.getCategory().equals(Category.MOVEMENT)) colorTr = new JColor(113, 152, 229);
 					if(module.getCategory().equals(Category.RENDER)) colorTr = new JColor(229, 106, 113);
+					if(module.getCategory().equals(Category.PLAYER)) colorTr = new JColor(227, 229, 103);
+					if(module.getCategory().equals(Category.COMBAT)) colorTr = new JColor(122, 103, 229);
+					if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
 				}
 				
 				tr.drawWithShadow(e.matrix, module.getName(), 2, 12 + y, colorTr.getRGB());

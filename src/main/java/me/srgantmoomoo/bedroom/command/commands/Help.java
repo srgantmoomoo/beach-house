@@ -7,6 +7,8 @@ import me.srgantmoomoo.bedroom.command.CommandManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+
+@SuppressWarnings("resource")
 public class Help extends Command {
 	
 	public Help() {
@@ -33,10 +35,8 @@ public class Help extends Command {
 	private void helpMessage(String commandName, String commandDesc, String commandSyntax) {
 		String starter = TextFormatting.LIGHT_PURPLE + commandName + TextFormatting.GRAY + " - " + commandDesc;
 		String syntaxMessage = " [" + CommandManager.prefix + commandSyntax + "]";
-		
-		String message = starter;
-		
-		Text textComponentString = new LiteralText(message);
+		 
+		Text textComponentString = new LiteralText(starter);
 		MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(textComponentString);
 		Text syntaxTextComponentString = new LiteralText(syntaxMessage);
 		MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(syntaxTextComponentString);

@@ -24,6 +24,7 @@ public class Module implements Listenable {
 	public String name, description;
 	public KeybindSetting keyCode = new KeybindSetting(0);
 	public Category category;
+	public SubCategory subCategory;
 	public boolean enabled;
 	public int index;
 	public List<Setting> settings = new ArrayList<Setting>();
@@ -38,12 +39,31 @@ public class Module implements Listenable {
 		enabled = false;
 	}
 	
+	public Module(String name, String description, int key, Category category, SubCategory subCategory) {
+		super();
+		this.name = name;
+		this.description = description;
+		keyCode.code = key;
+		addSettings(keyCode);
+		this.category = category;
+		this.subCategory = subCategory;
+		enabled = false;
+	}
+	
 	public enum Category {
 		PLAYER("player"), RENDER("render"), COMBAT("combat"), MOVEMENT("movement"), MISCELLANEOUS("miscellaneous"), BEACHHOUSE("beachhouse");
 		public String name;
-		public int moduleIndex;
 		
 		Category(String name) {
+			this.name = name;
+		}
+	}
+	
+	public enum SubCategory {
+		UTILITY("utility"), DEPENDANT("dependant"), HUD("hud"), FEATURE("feature");
+		public String name;
+		
+		SubCategory(String name) {
 			this.name = name;
 		}
 	}

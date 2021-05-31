@@ -78,12 +78,14 @@ public class CommandManager {
 		}
     }
 	
+	@SuppressWarnings("resource")
 	public static void addChatMessage(String message) {
 		String messageWithPre = TextFormatting.GOLD + "@" + TextFormatting.ITALIC + Main.name + TextFormatting.GRAY + ": " + message;
 		Text textComponentString = new LiteralText(messageWithPre);
 		MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(textComponentString);
 	}
 	
+	@SuppressWarnings("resource")
 	public static void correctUsageMsg(String name, String syntax) {
 		String usage = TextFormatting.RED + "correct usage of " + name + " command -> " + TextFormatting.GRAY + prefix + syntax;
 		String message = TextFormatting.GOLD + "@" + TextFormatting.ITALIC + Main.name + TextFormatting.GRAY + ": " + usage;

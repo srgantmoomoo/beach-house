@@ -6,9 +6,12 @@ import java.util.List;
 import org.lwjgl.glfw.GLFW;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.modules.beachhouse.ModuleList;
-import me.srgantmoomoo.beachhouse.modules.movement.Sprint;
-import me.srgantmoomoo.beachhouse.modules.render.FullBright;
+import me.srgantmoomoo.beachhouse.modules.beachhouse.*;
+import me.srgantmoomoo.beachhouse.modules.combat.*;
+import me.srgantmoomoo.beachhouse.modules.miscellaneous.*;
+import me.srgantmoomoo.beachhouse.modules.movement.*;
+import me.srgantmoomoo.beachhouse.modules.player.*;
+import me.srgantmoomoo.beachhouse.modules.render.*;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module.Category;
 import me.zero.alpine.listener.EventHandler;
@@ -29,9 +32,30 @@ public class ModuleManager {
 		Main.EVENTBUS.subscribe(listener);
 		
 		modules = new ArrayList<>();
-		ModuleManager.modules.add(new Sprint());
-		ModuleManager.modules.add(new FullBright());
-		ModuleManager.modules.add(new ModuleList());
+		// combat
+		modules.add(new SwingAura());
+		modules.add(new Criticals());
+		modules.add(new AutoCrystal());
+		
+		// player
+		modules.add(new Jesus());
+		
+		// misc
+		modules.add(new AntiNick());
+		
+		// movement
+		modules.add(new Sprint());
+		modules.add(new Speed());
+		modules.add(new Strafe());
+		
+		// render
+		modules.add(new FullBright());
+		modules.add(new Xray());
+		
+		// beachhouse
+		modules.add(new ModuleList());
+		modules.add(new TabGUI());
+		modules.add(new ClickGUI());
 	}
 	
 	public static void onUpdate() {
