@@ -2,7 +2,7 @@ package me.srgantmoomoo.beachhouse.modules.beachhouse;
 
 import java.util.Comparator;
 
-import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
+import me.srgantmoomoo.beachhouse.events.DrawOverlayEvent;
 import me.srgantmoomoo.bedroom.api.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
@@ -10,6 +10,7 @@ import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 
 public class ModuleList extends Module {
@@ -17,7 +18,7 @@ public class ModuleList extends Module {
 	public ModeSetting mode = new ModeSetting("mode", this, "category", "category", "static");
 	
 	public ModuleList() {
-		super("module list", "module list.", 0, Category.BEACHHOUSE, SubCategory.HUD);
+		super("module list", "module list.", 0, Category.COMBAT);
 		this.addSettings(color);
 	}
 	    
@@ -32,8 +33,8 @@ public class ModuleList extends Module {
 	}
 	
 	@EventHandler
-	private final Listener<EventDrawOverlay> listener = new Listener<>(e -> {
-		TextRenderer tr = mc.textRenderer;
+	private final Listener<DrawOverlayEvent> listener = new Listener<>(e -> {
+		TextRenderer tr = MinecraftClient.getInstance().textRenderer;
 		
 		int y = 1;
 		final int[] counter = { 1 };
@@ -42,7 +43,7 @@ public class ModuleList extends Module {
 				
 				JColor colorTr = new JColor(255, 255, 255);
 				if(this.mode.is("category")) {
-					if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(113, 229, 175);
+					if(module.getCategory().equals(Category.COMBAT)) colorTr = new JColor(113, 229, 175); //BEACHHOUSE
 					if(module.getCategory().equals(Category.MOVEMENT)) colorTr = new JColor(113, 152, 229);
 					if(module.getCategory().equals(Category.RENDER)) colorTr = new JColor(229, 106, 113);
 					if(module.getCategory().equals(Category.PLAYER)) colorTr = new JColor(227, 229, 103);
@@ -55,7 +56,7 @@ public class ModuleList extends Module {
 				counter[0]++;
 			}
 		}
-		ModuleManager.modules.sort(Comparator.comparing(module -> -mc.textRenderer.getWidth(module.getName())));
+		ModuleManager.modules.sort(Comparator.comparing(module -> -MinecraftClient.getInstance().textRenderer.getWidth(module.getName())));
 	});
 
 }

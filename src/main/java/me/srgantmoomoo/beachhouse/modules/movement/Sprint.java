@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse.modules.movement;
 import org.lwjgl.glfw.GLFW;
 
 import me.srgantmoomoo.bedroom.module.Module;
+import net.minecraft.client.MinecraftClient;
 
 public class Sprint extends Module {
 	
@@ -12,11 +13,11 @@ public class Sprint extends Module {
 	
 	@Override
 	public void onUpdate() {
-		mc.player.setSprinting(true);
+		MinecraftClient.getInstance().player.setSprinting(true);
 	}
 	
 	@Override
 	public void onDisable() {
-		mc.player.setSprinting(false);
+		MinecraftClient.getInstance().player.setSprinting(false);
 	}
 }
