@@ -16,10 +16,6 @@ repositories {
 		url = "https://jitpack.io"
 	}
 	maven {
-		name = "impactdevelopment-repo"
-		url = "https://impactdevelopment.github.io/maven/"
-	}
-	maven {
 		name = "lukflug"
 		url = "https://lukflug.github.io/maven"
 	}
@@ -35,7 +31,6 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	compile "com.github.ZeroMemes:Alpine:1.9"
-	compile "com.github.cabaletta:baritone:1.2.14"
 	compile "com.lukflug:panelstudio:0.1.8"
 	compile "com.lukflug:panelstudio-mc16:0.1.8"
 	implementation "com.github.beach-house-development:bedroom:4-pre4"
