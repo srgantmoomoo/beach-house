@@ -6,7 +6,6 @@ import java.awt.GraphicsEnvironment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.config.SaveLoad;
 import me.srgantmoomoo.bedroom.api.event.EventProcessor;
 import me.srgantmoomoo.bedroom.command.CommandManager;
@@ -53,14 +52,34 @@ public class Main implements ModInitializer {
 	}
 	
 	public void bedroomInit() {
-		Bedroom.variables.modid = "bh";
-	    Bedroom.variables.modname = "beach house";
-	    Bedroom.variables.modversion = "0.01";
+		printLog("welcome to bedroom!");
+		printLog("\n" +
+                " __                     __                                       \n" +
+                "[  |                   |  ]                                      \n" +
+                " | |.--.   .---.   .--.| |  _ .--.   .--.    .--.   _ .--..--.   \n" +
+                " | '/'`\\ \\/ /__\\\\/ /'`\\' | [ `/'`\\]/ .'`\\ \\/ .'`\\ \\[ `.-. .-. |  \n" +
+                " |  \\__/ || \\__.,| \\__/  |  | |    | \\__. || \\__. | | | | | | |  \n" +
+                "[__;.__.'  '.__.' '.__.;__][___]    '.__.'  '.__.' [___||__||__] \n");
+		
+		eventProcessor = new EventProcessor();
+		printLog("event system initialized.");
+		
+		commandManager = new CommandManager();
+		printLog("command system initialized.");
+		
+		moduleManager = new ModuleManager();
+		printLog("module system initialized.");
+		
+		settingManager = new SettingManager();
+		printLog("setting system initialized.");
 
-	    Bedroom.includes.includeDefaultCommands = true;
-	    Bedroom.includes.includeUI = true;
-
-	    Bedroom.init();
+		ui = new UI();
+		printLog("ui initialized.");
+		
+		saveLoad = new SaveLoad();
+		printLog("config initialized.");
+		
+		printLog("bedroom" + " has finished initialization :)");
 	}
 	
 	public void beachhouseInit() {

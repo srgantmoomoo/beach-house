@@ -1,11 +1,11 @@
-package me.srgantmoomoo.beachhouse.mixins;
+package me.srgantmoomoo.bedroom.api.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import me.srgantmoomoo.bedroom.Bedroom;
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import net.minecraft.client.Keyboard;
 
@@ -15,7 +15,7 @@ public class MixinKeyboard {
 	private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
 
 		EventKeyPress event = new EventKeyPress(key, scanCode);
-		Bedroom.EVENTBUS.post(event);
+		Main.EVENTBUS.post(event);
 		if (event.isCancelled())
 			callbackInfo.cancel();
 	}

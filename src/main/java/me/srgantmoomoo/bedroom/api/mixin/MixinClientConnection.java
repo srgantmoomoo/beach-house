@@ -1,4 +1,4 @@
-package me.srgantmoomoo.beachhouse.mixins;
+package me.srgantmoomoo.bedroom.api.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
