@@ -64,7 +64,7 @@ public class TabGUI extends Module {
 			if(c.name.equals("render")) catLength = 14;
 			if(c.name.equals("combat")) catLength = 14;
 			if(c.name.equals("movement")) catLength = 9;
-			if(c.name.equals("miscellaneous")) catLength = 22;
+			if(c.name.equals("miscellaneous")) catLength = 21;
 			if(c.name.equals("beach house")) catLength = 16;
 
 			tr.drawWithShadow(e.matrix, catName, catLength, 15 + count * 12, 0xffffffff);
@@ -84,6 +84,9 @@ public class TabGUI extends Module {
 			count = 0;
 			for (Module m : modules) {
 				tr.drawWithShadow(e.matrix, m.name, 64, 15 + count * 12, -1);
+				if(m.isEnabled()) {
+					InGameHud.fill(e.matrix, 127, 14 + count * 12, 128, 23 + count * 12, 0xffffffff);
+				}
 				count++;
 			}
 		}
