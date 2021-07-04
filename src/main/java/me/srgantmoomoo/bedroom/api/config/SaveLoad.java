@@ -46,11 +46,11 @@ public class SaveLoad {
 	public void save() {
 		ArrayList<String> toSave = new ArrayList<String>();
 		
-		for(Module mod : ModuleManager.modules) {
+		for(Module mod : Main.moduleManager.getModules()) {
 			toSave.add("MOD:" + mod.getName() + ":" + mod.isEnabled() + ":" + mod.getKey());
 		}
 		
-		for(Module mod : ModuleManager.modules) {
+		for(Module mod : Main.moduleManager.getModules()) {
 			for(Setting setting : mod.settings) {
 				
 				if(setting instanceof BooleanSetting) {

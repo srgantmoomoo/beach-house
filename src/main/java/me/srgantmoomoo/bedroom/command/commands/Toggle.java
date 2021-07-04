@@ -1,5 +1,6 @@
 package me.srgantmoomoo.bedroom.command.commands;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
@@ -17,7 +18,7 @@ public class Toggle extends Command {
 		if(args.length > 0) {
 			String moduleName = args[0]; 
 			boolean moduleFound = false;
-			for(Module module : ModuleManager.modules) {
+			for(Module module : Main.moduleManager.getModules()) {
 				String moduleIn = module.name;
 				moduleIn = moduleIn.replaceAll("\\s", "");
 				if(moduleIn.equalsIgnoreCase(moduleName)) {

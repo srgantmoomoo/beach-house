@@ -2,6 +2,7 @@ package me.srgantmoomoo.bedroom.module.setting;
 
 import java.util.ArrayList;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 
@@ -40,7 +41,7 @@ public class SettingManager {
 	}
 	
 	public Setting getSettingByName(Module mod, String name) {
-		for (Module m : ModuleManager.modules) {
+		for (Module m : Main.moduleManager.getModules()) {
 		for (Setting set : m.settings) {
 			if (set.name.equalsIgnoreCase(name) && set.parent == mod) {
 				return set;

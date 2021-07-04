@@ -44,6 +44,7 @@ public class TabGUI extends Module {
 	@EventHandler
 	private final Listener<EventDrawOverlay> overlayListener = new Listener<>(e -> {
 		TextRenderer tr = MinecraftClient.getInstance().textRenderer;
+
 		int backgroundColor = 0x80000000;
 		int tabColor = 0xff000000;
 		if(theme.is("beach")) backgroundColor = 0x80E6AB17;
@@ -73,13 +74,13 @@ public class TabGUI extends Module {
 
 		if (expanded) {
 			Category category = Module.Category.values()[currentTab];
-			List<Module> modules = ModuleManager.getModulesByCategory(category);
+			List<Module> modules = Main.moduleManager.getModulesByCategory(category);
 
 			if (modules.size() == 0)
 				return;
 
-			InGameHud.fill(e.matrix, 61, 12, 130, 14 + modules.size() * 12, 0x80000000);
-			InGameHud.fill(e.matrix, 62, 14 + category.moduleIndex * 12 - 1, 129, 14 + category.moduleIndex * 12 + 11, 0xff000000);
+			InGameHud.fill(e.matrix, 61, 12, 130, 14 + modules.size() * 12, backgroundColor);
+			InGameHud.fill(e.matrix, 62, 14 + category.moduleIndex * 12 - 1, 129, 14 + category.moduleIndex * 12 + 11, tabColor);
 
 			count = 0;
 			for (Module m : modules) {
@@ -98,7 +99,7 @@ public class TabGUI extends Module {
 		int code = ((EventKeyPress)e).getKey();
 
 		Category category = Module.Category.values()[currentTab];
-		List<Module> modules = ModuleManager.getModulesByCategory(category);
+		List<Module> modules = Main.moduleManager.getModulesByCategory(category);
 
 		if(code == GLFW.GLFW_KEY_UP) {
 			if(expanded) {

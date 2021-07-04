@@ -2,6 +2,7 @@ package me.srgantmoomoo.beachhouse.modules.beachhouse;
 
 import java.util.Comparator;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
@@ -38,7 +39,7 @@ public class ModuleList extends Module {
 		
 		int y = 1;
 		final int[] counter = { 1 };
-		for (Module module : ModuleManager.getModules()) {
+		for (Module module : Main.moduleManager.getModules()) {
 			if (module.isEnabled()) {				
 				
 				JColor colorTr = new JColor(255, 255, 255);
@@ -56,7 +57,7 @@ public class ModuleList extends Module {
 				counter[0]++;
 			}
 		}
-		ModuleManager.modules.sort(Comparator.comparing(module -> -MinecraftClient.getInstance().textRenderer.getWidth(module.getName())));
+		Main.moduleManager.getModules().sort(Comparator.comparing(module -> -MinecraftClient.getInstance().textRenderer.getWidth(module.getName())));
 	});
 
 }

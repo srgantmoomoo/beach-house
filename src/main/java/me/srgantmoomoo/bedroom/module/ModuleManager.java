@@ -33,25 +33,25 @@ import net.minecraft.client.util.InputUtil;
 
 public class ModuleManager {
 	
-	public static ArrayList<Module> modules;
+	private static ArrayList<Module> modules;
 	
 	public ModuleManager() {
 		Main.EVENTBUS.subscribe(listener);
 		
 		modules = new ArrayList<>();
-		ModuleManager.modules.add(new ClickGUI());
-		ModuleManager.modules.add(new ModuleList());
-		ModuleManager.modules.add(new TabGUI());
-		ModuleManager.modules.add(new AutoCrystal());
-		ModuleManager.modules.add(new Criticals());
-		ModuleManager.modules.add(new SwingAura());
-		ModuleManager.modules.add(new AntiNick());
-		ModuleManager.modules.add(new Speed());
-		ModuleManager.modules.add(new Sprint());
-		ModuleManager.modules.add(new Strafe());
-		ModuleManager.modules.add(new Jesus());
-		ModuleManager.modules.add(new FullBright());
-		ModuleManager.modules.add(new Xray());
+		modules.add(new ClickGUI());
+		modules.add(new ModuleList());
+		modules.add(new TabGUI());
+		modules.add(new AutoCrystal());
+		modules.add(new Criticals());
+		modules.add(new SwingAura());
+		modules.add(new AntiNick());
+		modules.add(new Speed());
+		modules.add(new Sprint());
+		modules.add(new Strafe());
+		modules.add(new Jesus());
+		modules.add(new FullBright());
+		modules.add(new Xray());
 
 	}
 	
@@ -59,7 +59,7 @@ public class ModuleManager {
 		modules.stream().filter(Module::isEnabled).forEach(Module::onUpdate);
 	}
 	
-	public static boolean isModuleEnabled(String name) {
+	public boolean isModuleEnabled(String name) {
 		Module m = modules.stream().filter(mm->mm.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
 		return m.isEnabled();
 	}
@@ -73,11 +73,11 @@ public class ModuleManager {
 		return null;
 	}
 	
-	public static ArrayList<Module> getModules() {
+	public ArrayList<Module> getModules() {
 		return modules;
 	}
 	
-	public static List<Module> getModulesByCategory(Category c) {
+	public List<Module> getModulesByCategory(Category c) {
 		List<Module> modules = new ArrayList<Module>();
 		
 		for(Module m : ModuleManager.modules) {
@@ -89,7 +89,7 @@ public class ModuleManager {
 		return modules;
 	}
 	
-	public static Module getModuleByName(String name) {
+	public Module getModuleByName(String name) {
 		Module m = modules.stream().filter(mm->mm.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
 		return m;
 	}
