@@ -16,7 +16,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import org.lwjgl.glfw.GLFW;
-
+// TODO tab gets all jumpy when disabled than enabled.
 public class TabGUI extends Module {
 	public ModeSetting theme = new ModeSetting("theme", this, "beach", "beach", "stealth");
 	
@@ -44,13 +44,30 @@ public class TabGUI extends Module {
 	@EventHandler
 	private final Listener<EventDrawOverlay> overlayListener = new Listener<>(e -> {
 		TextRenderer tr = MinecraftClient.getInstance().textRenderer;
+		int backgroundColor = 0x80000000;
+		int tabColor = 0xff000000;
+		if(theme.is("beach")) backgroundColor = 0x80E6AB17;
+		if(theme.is("beach")) tabColor = 0xffF730FB;
 
-		InGameHud.fill(e.matrix, 2, 12, 53, 71, 0x80000000);
-		InGameHud.fill(e.matrix, 3, 14 + currentTab * 15 - 1, 52, 14 + currentTab * 15 + 11, 0xff000000); //0x9993d3d3
+		InGameHud.fill(e.matrix, 2, 12, 60, 86, backgroundColor);
+		InGameHud.fill(e.matrix, 3, 14 + currentTab * 12 - 1, 59, 14 + currentTab * 12 + 11, tabColor); //0x9993d3d3
 
 		int count = 0;
 		for (Category c : Module.Category.values()) {
-			tr.drawWithShadow(e.matrix, c.name, 4, 4 + count * 14, 0xffffffff);
+
+			String catName = c.name;
+			if(c.name.equals("miscellaneous")) catName = "misc";
+			if(c.name.equals("beach house")) catName = "beach";
+
+			int catLength = 1;
+			if(c.name.equals("player")) catLength = 15;
+			if(c.name.equals("render")) catLength = 14;
+			if(c.name.equals("combat")) catLength = 14;
+			if(c.name.equals("movement")) catLength = 9;
+			if(c.name.equals("miscellaneous")) catLength = 22;
+			if(c.name.equals("beach house")) catLength = 16;
+
+			tr.drawWithShadow(e.matrix, catName, catLength, 15 + count * 12, 0xffffffff);
 			count++;
 		}
 
@@ -61,12 +78,12 @@ public class TabGUI extends Module {
 			if (modules.size() == 0)
 				return;
 
-			InGameHud.fill(e.matrix, 55, 12, 130, 11 + modules.size() * 15, 0x80000000);
-			InGameHud.fill(e.matrix, 56, 14 + category.moduleIndex * 15 - 1, 129, 14 + category.moduleIndex * 15 + 11, 0xff000000);
+			InGameHud.fill(e.matrix, 61, 12, 130, 14 + modules.size() * 12, 0x80000000);
+			InGameHud.fill(e.matrix, 62, 14 + category.moduleIndex * 12 - 1, 129, 14 + category.moduleIndex * 12 + 11, 0xff000000);
 
 			count = 0;
 			for (Module m : modules) {
-				tr.drawWithShadow(e.matrix, m.name, 4 + 53, 18 + count * 14, -1);
+				tr.drawWithShadow(e.matrix, m.name, 64, 15 + count * 12, -1);
 				count++;
 			}
 		}
