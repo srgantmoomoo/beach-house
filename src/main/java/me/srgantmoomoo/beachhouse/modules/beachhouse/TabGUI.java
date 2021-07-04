@@ -18,7 +18,7 @@ import net.minecraft.client.gui.hud.InGameHud;
 import org.lwjgl.glfw.GLFW;
 
 public class TabGUI extends Module {
-	public ModeSetting theme = new ModeSetting("theme", this, "stealth", "beach", "stealth");
+	public ModeSetting theme = new ModeSetting("theme", this, "beach", "beach", "stealth");
 	
 	public TabGUI() {
 		super("tab gui", "tabguiiiii.", 0, Category.BEACHHOUSE);
@@ -41,7 +41,7 @@ public class TabGUI extends Module {
 	int categoryIndex = 0;
 	int moduleIndex = 0;
 	boolean expanded;
-	List<Module> currentModules;
+	List<Module> currentModules = ModuleManager.getModulesByCategory(Category.values()[categoryIndex]);;
 	
 	TextRenderer tr = MinecraftClient.getInstance().textRenderer;
 
@@ -76,7 +76,6 @@ public class TabGUI extends Module {
 
 		// modules
 		if (expanded) {
-			currentModules = ModuleManager.getModulesByCategory(Category.values()[categoryIndex]);
 			InGameHud.fill(e.matrix, 70, 12, 140, (currentModules.size() * 14) + 12, 0x90000000);
 			InGameHud.fill(e.matrix, 70, (moduleIndex * 14) + 12, 140, (moduleIndex * 14) + 26, 0xFF00A9A9);
 			int _yOffset = 14;
