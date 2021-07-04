@@ -5,43 +5,56 @@ import java.util.List;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
+import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import me.srgantmoomoo.bedroom.module.Module;
+import me.srgantmoomoo.bedroom.module.ModuleManager;
+import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
+import org.lwjgl.glfw.GLFW;
 
 public class TabGUI extends Module {
+	public ModeSetting theme = new ModeSetting("theme", this, "stealth", "beach", "stealth");
 	
 	public TabGUI() {
 		super("tab gui", "tabguiiiii.", 0, Category.BEACHHOUSE);
+		this.addSettings(theme);
 	}
 	
 	@Override
 	public void onEnable() {
-		Main.EVENTBUS.subscribe(listener);
+		Main.EVENTBUS.subscribe(overlayListener);
+		Main.EVENTBUS.subscribe(keyListener);
 		expanded = true;
 	}
 	
 	@Override
 	public void onDisable() {
-		Main.EVENTBUS.unsubscribe(listener);
+		Main.EVENTBUS.unsubscribe(overlayListener);
+		Main.EVENTBUS.unsubscribe(keyListener);
 	}
 	
 	int categoryIndex = 0;
 	int moduleIndex = 0;
 	boolean expanded;
-	List<Module> currentModules = new ArrayList<>();
+	List<Module> currentModules;
 	
 	TextRenderer tr = MinecraftClient.getInstance().textRenderer;
 
 	@EventHandler
-	private final Listener<EventDrawOverlay> listener = new Listener<>(e -> {
+	private final Listener<EventDrawOverlay> overlayListener = new Listener<>(e -> {
 		// categories
-		InGameHud.fill(e.matrix, 1, 12, 66, 86, 0x80E6AB17);
-		InGameHud.fill(e.matrix, 2, (categoryIndex * 14) + 13, 65, (categoryIndex * 14) + 24, 0xffF730FB);
+		int boxColor = 0x80E6AB17;
+		if(theme.is("stealth")) boxColor = 0x80000000;
+		int selectorColor = 0xffF730FB;
+		if(theme.is("stealth")) selectorColor = 0xffffffff;
+
+		InGameHud.fill(e.matrix, 1, 12, 66, 85, boxColor);
+		InGameHud.fill(e.matrix, 2, (categoryIndex * 12) + 13, 65, (categoryIndex * 12) + 24, selectorColor);
 
 		int count = 0;
 		for(Category c : Category.values()) {
@@ -61,27 +74,75 @@ public class TabGUI extends Module {
 			count++;
 		}
 
-	});
-
-		/*// modules
+		// modules
 		if (expanded) {
-
+			currentModules = ModuleManager.getModulesByCategory(Category.values()[categoryIndex]);
 			InGameHud.fill(e.matrix, 70, 12, 140, (currentModules.size() * 14) + 12, 0x90000000);
 			InGameHud.fill(e.matrix, 70, (moduleIndex * 14) + 12, 140, (moduleIndex * 14) + 26, 0xFF00A9A9);
 			int _yOffset = 14;
-			for (Module h : currentModules) {
+			for (Module m : currentModules) {
 				TextFormatting color;
 
-				if (h.isEnabled())
+				if (m.isEnabled())
 					color = TextFormatting.WHITE;
 				else
 					color = TextFormatting.GRAY;
 
-				tr.drawWithShadow(e.matrix, color + h.getName(), 70 + 2, _yOffset + 1, 0xffffffff);
+				tr.drawWithShadow(e.matrix, color + m.getName(), 70 + 2, _yOffset + 1, 0xffffffff);
 				_yOffset += 14;
 			}
 		}
 
-	});*/
+	});
+
+	@EventHandler
+	private final Listener<EventKeyPress> keyListener = new Listener<>(e -> {
+		if (e.getKey() == GLFW.GLFW_KEY_UP) {
+			if (!expanded) {
+				if (categoryIndex == 0)
+					categoryIndex = Category.values().length - 1;
+				else
+					categoryIndex--;
+			} else {
+				if (moduleIndex == 0)
+					moduleIndex = currentModules.size() - 1;
+				else
+					moduleIndex--;
+			}
+		}
+
+		if (e.getKey() == GLFW.GLFW_KEY_DOWN) {
+			if (!expanded) {
+				if (categoryIndex == Category.values().length - 1)
+					categoryIndex = 0;
+				else
+					categoryIndex++;
+			} else {
+				if (moduleIndex == currentModules.size() - 1)
+					moduleIndex = 0;
+				else
+					moduleIndex++;
+			}
+		}
+
+		if (e.getKey() == GLFW.GLFW_KEY_RIGHT) {
+			if (!expanded) {
+				expanded = true;
+				moduleIndex = 0;
+			} else {
+				currentModules.get(moduleIndex).toggle();
+			}
+		}
+
+		if (e.getKey() == GLFW.GLFW_KEY_LEFT) {
+			expanded = false;
+		}
+
+		if (e.getKey() == GLFW.GLFW_KEY_ENTER) {
+			if (expanded) {
+				currentModules.get(moduleIndex).toggle();
+			}
+		}
+	});
 
 }
