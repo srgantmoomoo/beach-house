@@ -15,25 +15,25 @@ public class Toggle extends Command {
 
 	@Override
 	public void onCommand(String[] args, String command) {
-		if(args.length > 0) {
-			String moduleName = args[0]; 
-			boolean moduleFound = false;
-			for(Module module : Main.moduleManager.getModules()) {
-				String moduleIn = module.name;
-				moduleIn = moduleIn.replaceAll("\\s", "");
-				if(moduleIn.equalsIgnoreCase(moduleName)) {
-					module.toggle();
-					CommandManager.addChatMessage(module.name + " " + (module.isEnabled() ? TextFormatting.GREEN + "enabled" + TextFormatting.GRAY + "." : TextFormatting.DARK_RED + "disabled" + TextFormatting.GRAY + "."));
-					moduleFound = true;
-					break;
-				}
-			}
-			if(!moduleFound) {
-				CommandManager.addChatMessage(TextFormatting.DARK_RED + "module not found.");
-			}
-		}else {
+		if(args.length != 1) {
 			CommandManager.correctUsageMsg(name, syntax);
+			return;
+		}
+
+		String moduleName = args[0];
+		boolean moduleFound = false;
+		for(Module module : Main.moduleManager.getModules()) {
+			String moduleIn = module.name;
+			moduleIn = moduleIn.replaceAll("\\s", "");
+			if(moduleIn.equalsIgnoreCase(moduleName)) {
+				module.toggle();
+				CommandManager.addChatMessage(module.name + " " + (module.isEnabled() ? TextFormatting.GREEN + "enabled" + TextFormatting.GRAY + "." : TextFormatting.DARK_RED + "disabled" + TextFormatting.GRAY + "."));
+				moduleFound = true;
+				break;
+			}
+		}
+		if(!moduleFound) {
+			CommandManager.addChatMessage("the module, " + TextFormatting.RED + moduleName + TextFormatting.GRAY + ", was not found.");
 		}
 	}
-
 }

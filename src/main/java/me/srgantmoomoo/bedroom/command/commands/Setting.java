@@ -8,19 +8,22 @@ import me.srgantmoomoo.bedroom.module.Module;
 public class Setting extends Command {
 
     public Setting() {
-        super("setting", "allows you to change settings of modules.", "setting", "s");
+        super("setting", "allows you to change settings of modules.", "setting <module> <setting> <value>", "s");
     }
 
     @Override
     public void onCommand(String[] args, String command) {
-        if(args.length > 0) {
-            String moduleName = args[0];
-            Module module = Main.moduleManager.getModule(moduleName);
+        if(args.length != 3) {
+            CommandManager.correctUsageMsg(name, syntax);
+            return;
+        }
 
-            if(module == null) {
-                CommandManager.addChatMessage("the module " + moduleName + " does not exist dumfuck.");
-                return;
-            }
-        }else CommandManager.correctUsageMsg(name, syntax);
+        String moduleName = args[0];
+        Module module = Main.moduleManager.getModule(moduleName);
+
+        if(module == null) {
+            CommandManager.addChatMessage("the module " + moduleName + " does not exist dumfuck.");
+            return;
+        }
     }
 }

@@ -21,6 +21,11 @@ public class Help extends Command {
 
 	@Override
 	public void onCommand(String[] args, String command) {
+		if(args.length != 0) {
+			CommandManager.correctUsageMsg(name, syntax);
+			return;
+		}
+
 		prefix = new Prefix();
 		toggle = new Toggle();
 		moduleList = new ModuleList();

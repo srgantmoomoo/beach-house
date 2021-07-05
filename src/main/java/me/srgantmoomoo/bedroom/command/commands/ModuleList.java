@@ -15,10 +15,13 @@ public class ModuleList extends Command {
 
 	@Override
 	public void onCommand(String[] args, String command) {
-		if(args.length == 0) {
-			for(Module module : Main.moduleManager.getModules()) {
-				CommandManager.addChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName());
-			}
-		} if(args.length > 0) CommandManager.correctUsageMsg(name, syntax);
+		if(args.length != 0) {
+			CommandManager.correctUsageMsg(name, syntax);
+			return;
+		}
+
+		for(Module module : Main.moduleManager.getModules()) {
+			CommandManager.addChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName());
+		}
 	}
 }

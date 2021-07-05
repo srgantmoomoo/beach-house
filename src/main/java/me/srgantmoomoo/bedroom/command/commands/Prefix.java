@@ -12,10 +12,13 @@ public class Prefix extends Command {
 
 	@Override
 	public void onCommand(String[] args, String command) {
-		if(args.length == 1) {
-			String key = args[0];
-			CommandManager.setCommandPrefix(key);
-			CommandManager.addChatMessage(String.format(TextFormatting.GREEN + "prefix " + TextFormatting.GRAY + "was set to " + TextFormatting.GREEN + CommandManager.prefix));
-		} if(args.length == 0) CommandManager.correctUsageMsg(name, syntax);
+		if(args.length != 1) {
+			CommandManager.correctUsageMsg(name, syntax);
+			return;
+		}
+
+		String key = args[0];
+		CommandManager.setCommandPrefix(key);
+		CommandManager.addChatMessage(String.format(TextFormatting.GREEN + "prefix " + TextFormatting.GRAY + "was set to " + TextFormatting.GREEN + CommandManager.prefix));
 	}
 }
