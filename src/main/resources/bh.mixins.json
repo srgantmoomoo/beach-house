@@ -10,7 +10,8 @@
 	"MixinIngameHud",
 	"MixinKeyboard",
 	"MixinClientConnection",
-	"MixinClientWorld"
+	"MixinClientWorld",
+    "MixinMinecraftClient"
   ],
   "injectors": {
     "defaultRequire": 1

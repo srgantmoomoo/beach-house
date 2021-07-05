@@ -20,7 +20,6 @@ import net.fabricmc.api.ModInitializer;
  * @author SrgantMooMoo
  * @since 5/16/2021
  */
-
 public class Main implements ModInitializer {
 	
 	public static final String modid = "bh";
@@ -38,7 +37,7 @@ public class Main implements ModInitializer {
 	public static EventProcessor eventProcessor;
 	public static CommandManager commandManager;
 	
-	public Object syncronize = new Object();
+	public final Object syncronize = new Object();
 	public void printLog(String text) {
 		synchronized (syncronize) {
 			LOGGER.info(text);
