@@ -9,6 +9,7 @@ import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
+import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
@@ -19,6 +20,7 @@ import org.lwjgl.glfw.GLFW;
 // TODO tab gets all jumpy when disabled than enabled.
 public class TabGUI extends Module {
 	public ModeSetting theme = new ModeSetting("theme", this, "beach", "beach", "stealth");
+	public BooleanSetting arrow = new BooleanSetting("arrow", this, true);
 	
 	public TabGUI() {
 		super("tab gui", "tabguiiiii.", 0, Category.BEACHHOUSE);
@@ -51,7 +53,8 @@ public class TabGUI extends Module {
 		if(theme.is("beach")) tabColor = 0xffF730FB;
 
 		InGameHud.fill(e.matrix, 2, 12, 60, 86, backgroundColor);
-		InGameHud.fill(e.matrix, 3, 14 + currentTab * 12 - 1, 59, 14 + currentTab * 12 + 11, tabColor); //0x9993d3d3
+		InGameHud.fill(e.matrix, 3, 13 + currentTab * 12, 59, 14 + currentTab * 12 + 11, tabColor);
+		tr.drawWithShadow(e.matrix, ">", currentTab == 3 ? 54 : 52, 15 + currentTab * 12, 0xffffffff);
 
 		int count = 0;
 		for (Category c : Module.Category.values()) {
@@ -64,7 +67,7 @@ public class TabGUI extends Module {
 			if(c.name.equals("player")) catLength = 15;
 			if(c.name.equals("render")) catLength = 14;
 			if(c.name.equals("combat")) catLength = 14;
-			if(c.name.equals("movement")) catLength = 9;
+			if(c.name.equals("movement")) catLength = 8;
 			if(c.name.equals("miscellaneous")) catLength = 21;
 			if(c.name.equals("beach house")) catLength = 16;
 
