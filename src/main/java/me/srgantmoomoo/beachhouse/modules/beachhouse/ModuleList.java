@@ -41,7 +41,8 @@ public class ModuleList extends Module {
 		final int[] counter = { 1 };
 		for (Module module : Main.moduleManager.getModules()) {
 			if (module.isEnabled()) {				
-				
+				int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
+
 				JColor colorTr = new JColor(255, 255, 255);
 				if(this.mode.is("category")) {
 					if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(113, 229, 175);
@@ -52,7 +53,7 @@ public class ModuleList extends Module {
 					if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
 				}
 				
-				tr.drawWithShadow(e.matrix, module.getName(), 2, 12 + y, colorTr.getRGB());
+				tr.drawWithShadow(e.matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, colorTr.getRGB());
 				y += tr.fontHeight;
 				counter[0]++;
 			}

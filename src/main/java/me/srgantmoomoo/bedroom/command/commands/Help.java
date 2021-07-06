@@ -17,6 +17,7 @@ public class Help extends Command {
 	
 	public static Prefix prefix;
 	public static Toggle toggle;
+	public static Setting setting;
 	public static ModuleList moduleList;
 
 	@Override
@@ -28,12 +29,15 @@ public class Help extends Command {
 
 		prefix = new Prefix();
 		toggle = new Toggle();
+		setting = new Setting();
 		moduleList = new ModuleList();
 		
 		welcomeMessage();
 		helpMessage(prefix.getName(), prefix.getDescription(), prefix.getSyntax());
+		helpMessage(moduleList.getName(), moduleList.getDescription(), moduleList.getSyntax());
 		helpMessage(toggle.getName(), toggle.getDescription(), toggle.getSyntax());
 		helpMessage(moduleList.getName(), moduleList.getDescription(), moduleList.getSyntax());
+		helpMessage(setting.getName(), setting.getDescription(), setting.getSyntax());
 		goodbyeMessage();
 	}
 	
