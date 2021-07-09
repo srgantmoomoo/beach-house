@@ -26,6 +26,7 @@ public class Setting extends Command {
         }
 
         String moduleName = args[0];
+        moduleName = moduleName.replaceAll("\\s", "");
         String settingName = args[1];
         Module module = Main.moduleManager.getModule(moduleName);
         me.srgantmoomoo.bedroom.module.setting.Setting setting = Main.settingManager.getSettingsByMod(module).stream().filter(setting1 -> setting1.name.equalsIgnoreCase(settingName)).findFirst().orElse(null);

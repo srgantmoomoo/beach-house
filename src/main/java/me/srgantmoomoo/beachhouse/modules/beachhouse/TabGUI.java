@@ -20,11 +20,12 @@ import org.lwjgl.glfw.GLFW;
 // TODO tab gets all jumpy when disabled than enabled.
 public class TabGUI extends Module {
 	public ModeSetting theme = new ModeSetting("theme", this, "beach", "beach", "stealth");
+	public ModeSetting tab = new ModeSetting("tab", this, "bar", "bar", "line");
 	public BooleanSetting arrow = new BooleanSetting("arrow", this, true);
 	
 	public TabGUI() {
 		super("tab gui", "tabguiiiii.", 0, Category.BEACHHOUSE);
-		this.addSettings(theme);
+		this.addSettings(theme, tab, arrow);
 	}
 	
 	@Override

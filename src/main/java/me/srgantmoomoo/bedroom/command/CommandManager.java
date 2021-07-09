@@ -38,6 +38,7 @@ public class CommandManager {
 		commands.add(new Prefix());
 		commands.add(new ModuleList());
 		commands.add(new Setting());
+		commands.add(new SettingList());
 	}
 	
 	public static void callCommandReturn(String input) {
