@@ -48,7 +48,7 @@ public class SettingManager {
 			}
 			}
 		}
-		System.err.println("[postman] Error Setting NOT found: '" + name +"'!");
+		System.err.println("[bedroom] Error Setting NOT found: '" + name +"'!");
 		return null;
 	}
 }

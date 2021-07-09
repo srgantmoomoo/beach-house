@@ -24,7 +24,7 @@ public class TabGUI extends Module {
 	public BooleanSetting arrow = new BooleanSetting("arrow", this, true);
 	
 	public TabGUI() {
-		super("tab gui", "tabguiiiii.", 0, Category.BEACHHOUSE);
+		super("tab gui", "tabgui", "tabguiiiii.", 0, Category.BEACHHOUSE);
 		this.addSettings(theme, tab, arrow);
 	}
 	

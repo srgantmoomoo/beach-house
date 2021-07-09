@@ -8,7 +8,7 @@ import net.minecraft.client.MinecraftClient;
 public class Sprint extends Module {
 	
 	public Sprint() {
-		super("sprint", "sprinttt.", GLFW.GLFW_KEY_G, Category.MOVEMENT);
+		super("sprint", "sprint", "sprinttt.", GLFW.GLFW_KEY_G, Category.MOVEMENT);
 	}
 	
 	@Override

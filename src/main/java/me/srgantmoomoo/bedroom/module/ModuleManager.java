@@ -67,9 +67,18 @@ public class ModuleManager {
 		return m.isEnabled();
 	}
 	
-	public Module getModule (String name) {
+	public Module getModule(String name) {
 		for (Module m : ModuleManager.modules) {
 			if(m.getName().equalsIgnoreCase(name)) {
+				return m;
+			}
+		}
+		return null;
+	}
+
+	public Module getModuleByID(String moduleID) {
+		for(Module m : ModuleManager.modules) {
+			if(m.getID().equalsIgnoreCase(moduleID)) {
 				return m;
 			}
 		}

@@ -10,7 +10,7 @@ import net.minecraft.client.gui.hud.InGameHud;
 public class PlayerInfo extends Module {
 
     public PlayerInfo() {
-        super("player info", "sucks ur pp for u.", 0, Category.BEACHHOUSE);
+        super("player info", "playerinfo", "sucks ur pp for u.", 0, Category.BEACHHOUSE);
     }
 
     @EventHandler

@@ -5,7 +5,7 @@ import me.srgantmoomoo.bedroom.module.Module;
 public class Speed extends Module {
 	
 	public Speed() {
-		super("speed", "speeded.", 0, Category.MOVEMENT);
+		super("speed", "speed", "speeded.", 0, Category.MOVEMENT);
 	}
 
 }

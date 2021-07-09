@@ -19,7 +19,7 @@ public class ModuleList extends Module {
 	public ModeSetting mode = new ModeSetting("mode", this, "category", "category", "static");
 	
 	public ModuleList() {
-		super("module list", "module list.", 0, Category.BEACHHOUSE);
+		super("module list", "modulelist", "module list.", 0, Category.BEACHHOUSE);
 		this.addSettings(color);
 	}
 	    

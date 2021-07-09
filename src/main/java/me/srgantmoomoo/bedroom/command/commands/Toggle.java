@@ -23,8 +23,7 @@ public class Toggle extends Command {
 		String moduleName = args[0];
 		boolean moduleFound = false;
 		for(Module module : Main.moduleManager.getModules()) {
-			String moduleIn = module.name;
-			moduleIn = moduleIn.replaceAll("\\s", "");
+			String moduleIn = module.name.replaceAll("\\s", "");
 			if(moduleIn.equalsIgnoreCase(moduleName)) {
 				module.toggle();
 				CommandManager.addChatMessage(module.name + " " + (module.isEnabled() ? TextFormatting.GREEN + "enabled" + TextFormatting.GRAY + "." : TextFormatting.DARK_RED + "disabled" + TextFormatting.GRAY + "."));

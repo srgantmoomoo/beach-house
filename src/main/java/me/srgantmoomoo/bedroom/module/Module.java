@@ -21,16 +21,17 @@ public class Module implements Listenable {
 	protected static final MinecraftClient mc = MinecraftClient.getInstance();
 	public static ArrayList<Module> modules;
 	
-	public String name, description;
+	public String name, ID, description;
 	public KeybindSetting keyCode = new KeybindSetting(0);
 	public Category category;
 	public boolean enabled;
 	public int index;
 	public List<Setting> settings = new ArrayList<Setting>();
 	
-	public Module(String name, String description, int key, Category category) {
+	public Module(String name, String ID, String description, int key, Category category) {
 		super();
 		this.name = name;
+		this.ID = ID;
 		this.description = description;
 		keyCode.code = key;
 		addSettings(keyCode);
@@ -56,7 +57,11 @@ public class Module implements Listenable {
 	public String getName() {
 		return this.name;
 	}
-	
+
+	public String getID() {
+		return this.ID;
+	}
+
 	public Category getCategory() {
 		return this.category;
 	}

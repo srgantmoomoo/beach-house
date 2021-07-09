@@ -17,6 +17,7 @@ public class Setting extends Command {
     TextFormatting GREEN = TextFormatting.GREEN;
     TextFormatting RED = TextFormatting.RED;
     TextFormatting GRAY = TextFormatting.GRAY;
+    TextFormatting WHITE = TextFormatting.WHITE;
 
     @Override
     public void onCommand(String[] args, String command) {
@@ -26,10 +27,9 @@ public class Setting extends Command {
         }
 
         String moduleName = args[0];
-        moduleName = moduleName.replaceAll("\\s", "");
         String settingName = args[1];
-        Module module = Main.moduleManager.getModule(moduleName);
-        me.srgantmoomoo.bedroom.module.setting.Setting setting = Main.settingManager.getSettingsByMod(module).stream().filter(setting1 -> setting1.name.equalsIgnoreCase(settingName)).findFirst().orElse(null);
+        Module module = Main.moduleManager.getModuleByID(moduleName);
+        me.srgantmoomoo.bedroom.module.setting.Setting setting = Main.settingManager.getSettingByName(module, settingName);
 
         if(module == null) {
             CommandManager.addChatMessage("the module " + RED + moduleName + GRAY + " does not exist dumfuck.");
@@ -37,7 +37,7 @@ public class Setting extends Command {
         }
 
         if(setting == null) {
-            CommandManager.addChatMessage("the setting " + RED + settingName + GRAY + " does not exist fucking idiot.");
+            CommandManager.addChatMessage("the setting " + RED + settingName + GRAY + " does not exist for the module " + WHITE + moduleName + GRAY + ".");
             return;
         }
 
@@ -48,13 +48,13 @@ public class Setting extends Command {
 
     private void setValue(Module module, me.srgantmoomoo.bedroom.module.setting.Setting setting, String value) {
         if(setting instanceof BooleanSetting) {
-            if(!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false")) {
+            if(!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")) {
                 CommandManager.addChatMessage("boolean value must be either " + GREEN + "true " + GRAY + "or " + RED + "false" + GRAY + ".");
                 return;
             }
 
             ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(value));
-            CommandManager.addChatMessage("" + GREEN + setting + GRAY + " of" + GREEN + module + GRAY + " was set to " + (module.isEnabled() ? GREEN + value : RED + value));
+            CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (module.isEnabled() ? GREEN + value : RED + value + GRAY + "."));
         }
     }
 }
