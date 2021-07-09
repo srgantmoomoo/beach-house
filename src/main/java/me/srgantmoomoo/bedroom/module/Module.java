@@ -121,16 +121,10 @@ public class Module implements Listenable {
 		setEnabled(false);
 	}
 	
-	public void onEnable() {
-		
-	}
+	public void onEnable() { }
 	
-	public void onDisable() {
-		
-	}
+	public void onDisable() { }
 	
-	public void onUpdate() {
-		
-	}
+	public void onUpdate() { }
 
 }

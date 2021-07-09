@@ -1,6 +1,7 @@
 package me.srgantmoomoo.bedroom.api.event;
 
 import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.event.events.EventTick;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import me.zero.alpine.listener.EventHandler;

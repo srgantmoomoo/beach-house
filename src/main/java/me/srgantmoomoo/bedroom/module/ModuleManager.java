@@ -3,6 +3,8 @@ package me.srgantmoomoo.bedroom.module;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.srgantmoomoo.beachhouse.modules.beachhouse.PlayerInfo;
+import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
 
 import me.srgantmoomoo.beachhouse.Main;
@@ -52,6 +54,7 @@ public class ModuleManager {
 		modules.add(new Jesus());
 		modules.add(new FullBright());
 		modules.add(new Xray());
+		modules.add(new PlayerInfo());
 
 	}
 	
