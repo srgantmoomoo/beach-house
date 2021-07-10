@@ -19,6 +19,7 @@ public class Help extends Command {
 	public static Toggle toggle;
 	public static Setting setting;
 	public static ModuleList moduleList;
+	public static SettingList settingList;
 
 	@Override
 	public void onCommand(String[] args, String command) {
@@ -31,6 +32,7 @@ public class Help extends Command {
 		toggle = new Toggle();
 		setting = new Setting();
 		moduleList = new ModuleList();
+		settingList = new SettingList();
 		
 		welcomeMessage();
 		helpMessage(prefix.getName(), prefix.getDescription(), prefix.getSyntax());
@@ -38,6 +40,7 @@ public class Help extends Command {
 		helpMessage(toggle.getName(), toggle.getDescription(), toggle.getSyntax());
 		helpMessage(moduleList.getName(), moduleList.getDescription(), moduleList.getSyntax());
 		helpMessage(setting.getName(), setting.getDescription(), setting.getSyntax());
+		helpMessage(settingList.getName(), settingList.getDescription(), settingList.getSyntax());
 		goodbyeMessage();
 	}
 	

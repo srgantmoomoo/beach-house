@@ -31,7 +31,7 @@ public class BooleanSetting extends Setting {
 	}
 	
 	public void toggle() {
-	    this.enabled = !this.enabled;
+	    enabled = !enabled;
 	    
 	    if(Main.saveLoad != null) {
 			Main.saveLoad.save();

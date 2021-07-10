@@ -5,6 +5,7 @@ import me.srgantmoomoo.bedroom.module.Module;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 
 public class PlayerInfo extends Module {
@@ -15,10 +16,14 @@ public class PlayerInfo extends Module {
 
     @EventHandler
     private final Listener<EventDrawOverlay> overlayListener = new Listener<>(e -> {
+        TextRenderer tr = MinecraftClient.getInstance().textRenderer;
         int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
         int screenHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
 
         InGameHud.fill(e.matrix, screenWidth - 2, screenHeight - 2, screenWidth - 104, screenHeight - 44, 0x80ffffff);
 
+        String playerHealth = String.valueOf((int) mc.player.getHealth());
+        tr.drawWithShadow(e.matrix, playerHealth, screenWidth - tr.getWidth(playerHealth) - 82, screenHeight - 35, mc.player.getHealth() == 20 ? 0xff00ff00 : mc.player.getHealth() <= 10 ? 0xffffff00 :
+                mc.player.getHealth() <= 5 ? 0xffff0000 : 0xffffffff);
     });
 }

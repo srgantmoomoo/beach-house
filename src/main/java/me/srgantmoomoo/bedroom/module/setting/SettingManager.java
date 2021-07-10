@@ -42,10 +42,10 @@ public class SettingManager {
 	
 	public Setting getSettingByName(Module mod, String name) {
 		for (Module m : Main.moduleManager.getModules()) {
-		for (Setting set : m.settings) {
-			if (set.name.equalsIgnoreCase(name) && set.parent == mod) {
-				return set;
-			}
+			for (Setting set : m.settings) {
+				if (set.name.equalsIgnoreCase(name) && set.parent == mod) {
+					return set;
+				}
 			}
 		}
 		System.err.println("[bedroom] Error Setting NOT found: '" + name +"'!");
