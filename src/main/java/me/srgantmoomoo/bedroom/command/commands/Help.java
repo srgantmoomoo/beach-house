@@ -36,7 +36,6 @@ public class Help extends Command {
 		
 		welcomeMessage();
 		helpMessage(prefix.getName(), prefix.getDescription(), prefix.getSyntax());
-		helpMessage(moduleList.getName(), moduleList.getDescription(), moduleList.getSyntax());
 		helpMessage(toggle.getName(), toggle.getDescription(), toggle.getSyntax());
 		helpMessage(moduleList.getName(), moduleList.getDescription(), moduleList.getSyntax());
 		helpMessage(setting.getName(), setting.getDescription(), setting.getSyntax());
