@@ -20,7 +20,7 @@ public class PlayerInfo extends Module {
         int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
         int screenHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
 
-        InGameHud.fill(e.matrix, screenWidth - 2, screenHeight - 2, screenWidth - 104, screenHeight - 44, 0x80ffffff);
+        InGameHud.fill(e.matrix, screenWidth - 2, screenHeight - 2, screenWidth - 104, screenHeight - 44, 0x60EB78DF);
 
         String playerHealth = String.valueOf((int) mc.player.getHealth());
         tr.drawWithShadow(e.matrix, playerHealth, screenWidth - tr.getWidth(playerHealth) - 82, screenHeight - 35, mc.player.getHealth() == 20 ? 0xff00ff00 : mc.player.getHealth() <= 10 ? 0xffffff00 :

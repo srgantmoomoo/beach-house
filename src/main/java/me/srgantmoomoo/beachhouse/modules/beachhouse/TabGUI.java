@@ -19,13 +19,13 @@ import net.minecraft.client.gui.hud.InGameHud;
 import org.lwjgl.glfw.GLFW;
 // TODO tab gets all jumpy when disabled than enabled.
 public class TabGUI extends Module {
-	public ModeSetting theme = new ModeSetting("theme", this, "beach", "beach", "stealth");
-	public ModeSetting tab = new ModeSetting("tab", this, "bar", "bar", "line");
-	public BooleanSetting arrow = new BooleanSetting("arrow", this, true);
+	public BooleanSetting tab = new BooleanSetting("tab", this, false);
+	public BooleanSetting miniTab = new BooleanSetting("miniTab", this, true);
+	public BooleanSetting arrow = new BooleanSetting("arrow", this, false);
 	
 	public TabGUI() {
 		super("tab gui", "tabgui", "tabguiiiii.", 0, Category.BEACHHOUSE);
-		this.addSettings(theme, tab, arrow);
+		this.addSettings(tab, miniTab, arrow);
 	}
 	
 	@Override
@@ -50,12 +50,13 @@ public class TabGUI extends Module {
 
 		int backgroundColor = 0x80000000;
 		int tabColor = 0xff000000;
-		if(theme.is("beach")) backgroundColor = 0x80E6AB17;
-		if(theme.is("beach")) tabColor = 0xffF730FB;
+		int primaryColor = 0xffEB78DF;
 
 		InGameHud.fill(e.matrix, 2, 12, 60, 86, backgroundColor);
-		InGameHud.fill(e.matrix, 3, 13 + currentTab * 12, 59, 14 + currentTab * 12 + 11, tabColor);
-		tr.drawWithShadow(e.matrix, ">", currentTab == 3 ? 54 : 52, 15 + currentTab * 12, 0xffffffff);
+		if(tab.isEnabled()) InGameHud.fill(e.matrix, 3, 13 + currentTab * 12, 59, 14 + currentTab * 12 + 11, tabColor);
+		if(miniTab.isEnabled()) InGameHud.fill(e.matrix, 3, 13 + currentTab * 12, 4, 14 + currentTab * 12 + 11, primaryColor);
+
+		if(arrow.isEnabled()) tr.drawWithShadow(e.matrix, ">", currentTab == 3 ? 54 : 52, 15 + currentTab * 12, 0xffffffff);
 
 		int count = 0;
 		for (Category c : Module.Category.values()) {
@@ -84,7 +85,8 @@ public class TabGUI extends Module {
 				return;
 
 			InGameHud.fill(e.matrix, 61, 12, 130, 14 + modules.size() * 12, backgroundColor);
-			InGameHud.fill(e.matrix, 62, 14 + category.moduleIndex * 12 - 1, 129, 14 + category.moduleIndex * 12 + 11, tabColor);
+			if(tab.isEnabled()) InGameHud.fill(e.matrix, 62, 14 + category.moduleIndex * 12 - 1, 129, 14 + category.moduleIndex * 12 + 11, tabColor);
+			if(miniTab.isEnabled()) tr.draw(e.matrix, "-", 131, 14 + category.moduleIndex * 12 + 1, primaryColor);
 
 			count = 0;
 			for (Module m : modules) {
