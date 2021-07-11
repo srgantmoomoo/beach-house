@@ -38,7 +38,6 @@ public class ModuleList extends Module {
 		TextRenderer tr = MinecraftClient.getInstance().textRenderer;
 		
 		int y = 1;
-		final int[] counter = { 1 };
 		for (Module module : Main.moduleManager.getModules()) {
 			if (module.isEnabled()) {				
 				int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
@@ -55,7 +54,6 @@ public class ModuleList extends Module {
 				
 				tr.drawWithShadow(e.matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, colorTr.getRGB());
 				y += tr.fontHeight;
-				counter[0]++;
 			}
 		}
 		Main.moduleManager.getModules().sort(Comparator.comparing(module -> -MinecraftClient.getInstance().textRenderer.getWidth(module.getName())));

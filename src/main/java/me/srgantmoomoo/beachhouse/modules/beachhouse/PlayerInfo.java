@@ -10,8 +10,10 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.texture.ResourceTexture;
+import net.minecraft.item.ItemStack;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 
 public class PlayerInfo extends Module {
@@ -28,13 +30,20 @@ public class PlayerInfo extends Module {
         int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
         int screenHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
 
-        InGameHud.fill(e.matrix, screenWidth - 2, screenHeight - 2, screenWidth - 104, screenHeight - 44, 0x80000000); //0x60EB78DF
+        InGameHud.fill(e.matrix, screenWidth - 2, screenHeight - 2, screenWidth - 110, screenHeight - 46, 0x80000000); //0x60EB78DF
 
         String playerHealth = String.valueOf((int) mc.player.getHealth());
-        tr.drawWithShadow(e.matrix, playerHealth, screenWidth - tr.getWidth(playerHealth) - 83, screenHeight - 33, mc.player.getHealth() == 20 ? 0xff00ff00 : mc.player.getHealth() <= 10 ? 0xffffff00 :
+        tr.drawWithShadow(e.matrix, playerHealth, screenWidth - tr.getWidth(playerHealth) - 82, screenHeight - 34, mc.player.getHealth() == 20 ? 0xff00ff00 : mc.player.getHealth() <= 10 ? 0xffffff00 :
                 mc.player.getHealth() <= 5 ? 0xffff0000 : 0xffffffff);
 
         mc.getTextureManager().bindTexture(TEXTURE);
-        InGameHud.drawTexture(e.matrix, screenWidth - 102, screenHeight - 42, 24, 24, 0, 0, 24, 24, 24, 24);
+        InGameHud.drawTexture(e.matrix, screenWidth - 101, screenHeight - 43, 24, 24, 0, 0, 24, 24, 24, 24);
+
+        int x = 1;
+        for(ItemStack itemStack : mc.player.getItemsHand()) {
+            mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 108 + x, screenHeight - 19);
+            x += 20;
+            //mc.getItemRenderer().renderGuiItemIcon(itemStack.split(1), 0 ,0);
+        }
     });
 }
