@@ -29,7 +29,9 @@ public class PlayerInfo extends Module {
         int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
         int screenHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
 
-        InGameHud.fill(e.matrix, screenWidth - 2, screenHeight - 2, screenWidth - 110, screenHeight - 46, 0x80000000); //0x60EB78DF
+        InGameHud.fill(e.matrix, screenWidth - 2, screenHeight - 2, screenWidth - 108, screenHeight - 46, 0x80000000); //0x60EB78DF
+
+        tr.drawWithShadow(e.matrix, mc.player.getName(), screenWidth - tr.getWidth(mc.player.getName()) - 6, screenHeight - 14, 0xffffffff);
 
         // health string & bar
         healthString(e.matrix, tr, screenWidth, screenHeight);
@@ -45,10 +47,10 @@ public class PlayerInfo extends Module {
         }
 
         // armor items
+        int x1 = 1;
         for(ItemStack itemStack : mc.player.getArmorItems()) {
-            int x1 = 1;
-            mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 20 + x1, screenHeight - 20);
-            x1 += 20;
+            mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 20 + x1, screenHeight - 44);
+            x1 += -18;
         }
     });
 
@@ -92,11 +94,11 @@ public class PlayerInfo extends Module {
         }
 
         if(mc.player.getHealth() <= 10 && mc.player.getHealth() > 5) {
-            tr.drawWithShadow(matrix, playerHealth, scrWidth - tr.getWidth(playerHealth) - 84, scrHeight - 34, 0xffffff00);
+            tr.drawWithShadow(matrix, playerHealth, scrWidth - tr.getWidth(playerHealth) - 84, scrHeight - 34, 0xffffa500);
         }
 
         if(mc.player.getHealth() <= 5) {
-            tr.drawWithShadow(matrix, playerHealth, scrWidth - tr.getWidth(playerHealth) - 84, scrHeight - 34, 0xffffa500);
+            tr.drawWithShadow(matrix, playerHealth, scrWidth - tr.getWidth(playerHealth) - 84, scrHeight - 34, 0xffff0000);
         }
     }
 }
