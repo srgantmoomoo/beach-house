@@ -33,7 +33,7 @@ dependencies {
 	compile "com.github.ZeroMemes:Alpine:1.9"
 	compile "com.lukflug:panelstudio:0.1.8"
 	compile "com.lukflug:panelstudio-mc16:0.1.8"
-	implementation "com.github.beach-house-development:bedroom:4-pre4"
+	implementation "com.github.beach-house-development:bedroom:4-pre6"
 }
 
 processResources {
