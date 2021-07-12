@@ -28,6 +28,7 @@ public class Setting extends Command {
 
         String moduleName = args[0];
         String settingName = args[1];
+        String inputValue = args[2];
         Module module = Main.moduleManager.getModuleByID(moduleName);
         me.srgantmoomoo.bedroom.module.setting.Setting setting = Main.settingManager.getSettingByName(module, settingName);
 
@@ -41,20 +42,14 @@ public class Setting extends Command {
             return;
         }
 
-        String inputValue = args[2];
-
-        setValue(module, setting, inputValue);
-    }
-
-    private void setValue(Module module, me.srgantmoomoo.bedroom.module.setting.Setting setting, String value) {
         if(setting instanceof BooleanSetting) {
-            if(!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")) {
+            if(!inputValue.equalsIgnoreCase("true") && !inputValue.equalsIgnoreCase("false")) {
                 CommandManager.addChatMessage("boolean value must be either " + GREEN + "true " + GRAY + "or " + RED + "false" + GRAY + ".");
                 return;
             }
 
-            ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(value));
-            CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (module.isEnabled() ? GREEN + value : RED + value + GRAY + "."));
+            ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(inputValue));
+            CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (module.isEnabled() ? GREEN + inputValue : RED + inputValue + GRAY + "."));
         }
     }
 }
