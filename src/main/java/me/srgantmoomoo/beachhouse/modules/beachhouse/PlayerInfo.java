@@ -33,14 +33,12 @@ public class PlayerInfo extends Module {
 
         tr.drawWithShadow(e.matrix, mc.player.getName(), screenWidth - tr.getWidth(mc.player.getName()) - 6, screenHeight - 14, 0xffffffff);
 
-        // health string & bar
         healthString(e.matrix, tr, screenWidth, screenHeight);
         healthBar(e.matrix, screenWidth, screenHeight);
 
         // mainhand and offhand items
         int x = 1;
         for(ItemStack itemStack : mc.player.getItemsHand()) {
-
             mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 108 + x, screenHeight - 19);
             x += 20;
             //mc.getItemRenderer().renderGuiItemIcon(itemStack.split(1), 0 ,0);
@@ -60,7 +58,6 @@ public class PlayerInfo extends Module {
     private final Identifier DANGER_HEALTH = new Identifier(Main.modid, "danger.png");
 
     public void healthBar(MatrixStack matrix, int scrWidth, int scrHeight) {
-
         if(mc.player.getHealth() == 20) {
             mc.getTextureManager().bindTexture(FULL_HEALTH);
             InGameHud.drawTexture(matrix, scrWidth - 101, scrHeight - 43, 24, 24, 0, 0, 24, 24, 24, 24);
@@ -83,7 +80,6 @@ public class PlayerInfo extends Module {
     }
 
     public void healthString(MatrixStack matrix, TextRenderer tr, int scrWidth, int scrHeight) {
-
         String playerHealth = String.valueOf((int) mc.player.getHealth());
         if(mc.player.getHealth() == 20) {
             tr.drawWithShadow(matrix, playerHealth, scrWidth - tr.getWidth(playerHealth) - 82, scrHeight - 34, 0xff00ff00);

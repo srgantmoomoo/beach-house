@@ -11,7 +11,7 @@ import me.srgantmoomoo.bedroom.api.event.EventProcessor;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import me.srgantmoomoo.bedroom.module.setting.SettingManager;
-import me.srgantmoomoo.bedroom.ui.UI;
+import me.srgantmoomoo.beachhouse.gui.IngameUI;
 import me.zero.alpine.bus.EventBus;
 import me.zero.alpine.bus.EventManager;
 import net.fabricmc.api.ModInitializer;
@@ -30,7 +30,7 @@ public class Main implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("bedroom");
 	public static EventBus EVENTBUS = new EventManager();
 	
-	public static UI ui;
+	public static IngameUI ingameUI;
 	public static ModuleManager moduleManager;
 	public static SettingManager settingManager;
 	public static SaveLoad saveLoad;
@@ -72,9 +72,6 @@ public class Main implements ModInitializer {
 		settingManager = new SettingManager();
 		printLog("setting system initialized.");
 
-		ui = new UI();
-		printLog("ui initialized.");
-		
 		saveLoad = new SaveLoad();
 		printLog("config initialized.");
 		
@@ -90,6 +87,9 @@ public class Main implements ModInitializer {
 		      System.out.print(fonts[i].getName());
 		      System.out.println();
 		}
+
+		ingameUI = new IngameUI();
+		printLog("ui initialized.");
 		
 		printLog(Main.name + " has finished initialization.");
 	}

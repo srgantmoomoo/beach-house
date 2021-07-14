@@ -16,21 +16,16 @@ import net.minecraft.client.font.TextRenderer;
 
 public class ModuleList extends Module {
 	public ColorSetting color = new ColorSetting("color", this, new JColor(172, 172, 172, 255)); 
-	public ModeSetting mode = new ModeSetting("mode", this, "category", "category", "static");
+	public ModeSetting mode = new ModeSetting("mode", this, "dull", "dull", "vibrant");
 	
 	public ModuleList() {
 		super("module list", "modulelist", "module list.", 0, Category.BEACHHOUSE);
-		this.addSettings(color);
+		this.addSettings(mode);
 	}
 	    
 	@Override
 	public void onEnable() {
 		//color.setValue(true, new JColor(255,255,255));    SETS RAINBOW TRUE ON ENABLE.
-	}
-	
-	@Override
-	public void onDisable() {
-		
 	}
 	
 	@EventHandler
@@ -43,7 +38,14 @@ public class ModuleList extends Module {
 				int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
 
 				JColor colorTr = new JColor(255, 255, 255);
-				if(this.mode.is("category")) {
+				if(this.mode.is("dull")) {
+					if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(113, 229, 175);
+					if(module.getCategory().equals(Category.MOVEMENT)) colorTr = new JColor(113, 152, 229);
+					if(module.getCategory().equals(Category.RENDER)) colorTr = new JColor(229, 106, 113);
+					if(module.getCategory().equals(Category.PLAYER)) colorTr = new JColor(227, 229, 103);
+					if(module.getCategory().equals(Category.COMBAT)) colorTr = new JColor(122, 103, 229);
+					if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
+				}else if (this.mode.is("vibrant")) {
 					if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(113, 229, 175);
 					if(module.getCategory().equals(Category.MOVEMENT)) colorTr = new JColor(113, 152, 229);
 					if(module.getCategory().equals(Category.RENDER)) colorTr = new JColor(229, 106, 113);

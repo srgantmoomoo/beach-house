@@ -17,7 +17,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import org.lwjgl.glfw.GLFW;
-// TODO tab gets all jumpy when disabled than enabled.
+
 public class TabGUI extends Module {
 	public BooleanSetting tab = new BooleanSetting("tab", this, false);
 	public BooleanSetting miniTab = new BooleanSetting("miniTab", this, true);
@@ -26,18 +26,6 @@ public class TabGUI extends Module {
 	public TabGUI() {
 		super("tab gui", "tabgui", "tabguiiiii.", 0, Category.BEACHHOUSE);
 		this.addSettings(tab, miniTab, arrow);
-	}
-	
-	@Override
-	public void onEnable() {
-		Main.EVENTBUS.subscribe(overlayListener);
-		Main.EVENTBUS.subscribe(keyListener);
-	}
-	
-	@Override
-	public void onDisable() {
-		Main.EVENTBUS.unsubscribe(overlayListener);
-		Main.EVENTBUS.unsubscribe(keyListener);
 	}
 
 	public int currentTab;

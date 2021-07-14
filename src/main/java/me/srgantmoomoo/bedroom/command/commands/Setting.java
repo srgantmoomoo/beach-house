@@ -6,6 +6,8 @@ import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import org.w3c.dom.Text;
 
 public class Setting extends Command {
@@ -50,6 +52,14 @@ public class Setting extends Command {
 
             ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(inputValue));
             CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (module.isEnabled() ? GREEN + inputValue : RED + inputValue + GRAY + "."));
+        }
+
+        if(setting instanceof NumberSetting) {
+
+        }
+
+        if(setting instanceof ModeSetting) {
+
         }
     }
 }
