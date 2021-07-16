@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.srgantmoomoo.beachhouse.mixins",
+  "package": "me.srgantmoomoo.beachhouse.backend.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],

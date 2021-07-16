@@ -87,8 +87,8 @@ public final class Bedroom {
 		settingManager = new SettingManager();
 		printLog("setting system initialized.");
 		
-		//this.saveLoad = new SaveLoad();
-		//printLog("config initialized.");
+		saveLoad = new SaveLoad();
+		printLog("config initialized.");
 	}
 
 }

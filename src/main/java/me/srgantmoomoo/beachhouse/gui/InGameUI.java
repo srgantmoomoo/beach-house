@@ -1,7 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import me.zero.alpine.listener.EventHandler;

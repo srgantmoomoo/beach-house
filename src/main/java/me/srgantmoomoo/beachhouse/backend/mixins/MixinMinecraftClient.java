@@ -1,4 +1,4 @@
-package me.srgantmoomoo.beachhouse.mixins;
+package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.Main;
 import net.minecraft.client.MinecraftClient;
