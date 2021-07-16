@@ -3,7 +3,7 @@ package me.srgantmoomoo.bedroom.module.setting.settings;
 import java.util.Arrays;
 import java.util.List;
 
-import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 
@@ -31,9 +31,9 @@ public class ModeSetting extends Setting {
 	public void setMode(String mode) {
 		  this.index = this.modes.indexOf(mode);
 		  
-		   if(Main.saveLoad != null) {
-				Main.saveLoad.save();
-		   }
+		  if(Bedroom.INSTANCE.saveLoad != null) {
+				Bedroom.INSTANCE.saveLoad.save();
+		    }
 	}
 	  
 	public boolean is(String mode) {

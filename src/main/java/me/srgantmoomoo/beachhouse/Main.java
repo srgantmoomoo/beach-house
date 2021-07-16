@@ -3,6 +3,8 @@ package me.srgantmoomoo.beachhouse;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
+import me.srgantmoomoo.beachhouse.command.Commands;
+import me.srgantmoomoo.bedroom.Bedroom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,6 +22,8 @@ import net.fabricmc.api.ModInitializer;
  * @author SrgantMooMoo
  * @since 5/16/2021
  */
+
+//TODO register modules.
 public class Main implements ModInitializer {
 	
 	public static final String modid = "bh";
@@ -31,11 +35,7 @@ public class Main implements ModInitializer {
 	public static EventBus EVENTBUS = new EventManager();
 	
 	public static IngameUI ingameUI;
-	public static ModuleManager moduleManager;
-	public static SettingManager settingManager;
-	public static SaveLoad saveLoad;
-	public static EventProcessor eventProcessor;
-	public static CommandManager commandManager;
+	public static Commands commands;
 	
 	public final Object syncronize = new Object();
 	public void printLog(String text) {
@@ -51,31 +51,7 @@ public class Main implements ModInitializer {
 	}
 	
 	public void bedroomInit() {
-		printLog("welcome to bedroom!");
-		printLog("\n" +
-                " __                     __                                       \n" +
-                "[  |                   |  ]                                      \n" +
-                " | |.--.   .---.   .--.| |  _ .--.   .--.    .--.   _ .--..--.   \n" +
-                " | '/'`\\ \\/ /__\\\\/ /'`\\' | [ `/'`\\]/ .'`\\ \\/ .'`\\ \\[ `.-. .-. |  \n" +
-                " |  \\__/ || \\__.,| \\__/  |  | |    | \\__. || \\__. | | | | | | |  \n" +
-                "[__;.__.'  '.__.' '.__.;__][___]    '.__.'  '.__.' [___||__||__] \n");
-		
-		eventProcessor = new EventProcessor();
-		printLog("event system initialized.");
-		
-		commandManager = new CommandManager();
-		printLog("command system initialized.");
-		
-		moduleManager = new ModuleManager();
-		printLog("module system initialized.");
-		
-		settingManager = new SettingManager();
-		printLog("setting system initialized.");
-
-		saveLoad = new SaveLoad();
-		printLog("config initialized.");
-		
-		printLog("bedroom" + " has finished initialization :)");
+		Bedroom.init(modid, name, version);
 	}
 	
 	public void beachhouseInit() {
@@ -90,6 +66,10 @@ public class Main implements ModInitializer {
 
 		ingameUI = new IngameUI();
 		printLog("ui initialized.");
+
+		commands = new Commands();
+		Commands.init();
+		printLog("commands initialized.");
 		
 		printLog(Main.name + " has finished initialization.");
 	}

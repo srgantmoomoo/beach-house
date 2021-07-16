@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.KeybindSetting;
 import me.zero.alpine.listener.Listenable;
@@ -16,18 +16,18 @@ import net.minecraft.client.MinecraftClient;
  * @since 5/16/2021
  */
 
-public class Module implements Listenable {
-	
-	protected static final MinecraftClient mc = MinecraftClient.getInstance();
+public abstract class Module implements Listenable {
+
+	public static MinecraftClient mc = MinecraftClient.getInstance();
 	public static ArrayList<Module> modules;
-	
+
 	public String name, ID, description;
 	public KeybindSetting keyCode = new KeybindSetting(0);
 	public Category category;
 	public boolean enabled;
 	public int index;
 	public List<Setting> settings = new ArrayList<Setting>();
-	
+
 	public Module(String name, String ID, String description, int key, Category category) {
 		super();
 		this.name = name;
@@ -38,7 +38,9 @@ public class Module implements Listenable {
 		this.category = category;
 		enabled = false;
 	}
-	
+
+	// this by default contains the beach house category since it was originally created for beach house.... but obviously you don't have to use it.
+	//TODO make categories customizable.... and maybe switch the whole system to annotations to make life easier.
 	public enum Category {
 		PLAYER("player"), RENDER("render"), COMBAT("combat"), MOVEMENT("movement"), MISCELLANEOUS("miscellaneous"), BEACHHOUSE("beach house");
 		public String name;
@@ -61,7 +63,7 @@ public class Module implements Listenable {
 	public String getID() {
 		return this.ID;
 	}
-
+	
 	public Category getCategory() {
 		return this.category;
 	}
@@ -81,8 +83,8 @@ public class Module implements Listenable {
 	public void setKey(int key) {
 		this.keyCode.code = key;
 		
-		 if(Main.saveLoad != null) {
-				Main.saveLoad.save();
+		 if(Bedroom.INSTANCE.saveLoad != null) {
+				Bedroom.INSTANCE.saveLoad.save();
 		 }
 	} 
 	
@@ -94,8 +96,8 @@ public class Module implements Listenable {
 			disable();
 		}
 		
-		if(Main.saveLoad != null) {
-			Main.saveLoad.save();
+		if(Bedroom.INSTANCE.saveLoad != null) {
+			Bedroom.INSTANCE.saveLoad.save();
 		}
 	}
 	
@@ -106,13 +108,13 @@ public class Module implements Listenable {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 		if(enabled) {
-			Main.EVENTBUS.subscribe(this);
+			Bedroom.INSTANCE.EVENTBUS.subscribe(this);
 		}else {
-			Main.EVENTBUS.unsubscribe(this);
+			Bedroom.INSTANCE.EVENTBUS.unsubscribe(this);
 		}
 		
-		if(Main.saveLoad != null) {
-			Main.saveLoad.save();
+		if(Bedroom.INSTANCE.saveLoad != null) {
+			Bedroom.INSTANCE.saveLoad.save();
 		}
 	}
 	
@@ -126,10 +128,16 @@ public class Module implements Listenable {
 		setEnabled(false);
 	}
 	
-	public void onEnable() { }
+	public void onEnable() {
+		
+	}
 	
-	public void onDisable() { }
+	public void onDisable() {
+		
+	}
 	
-	public void onUpdate() { }
+	public void onUpdate() {
+		
+	}
 
 }

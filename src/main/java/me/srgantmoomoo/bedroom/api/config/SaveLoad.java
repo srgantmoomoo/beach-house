@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
@@ -28,8 +28,8 @@ public class SaveLoad {
 	private File dataFile;
 	
 	@SuppressWarnings("resource")
-	public SaveLoad() {
-		dir = new File(MinecraftClient.getInstance().runDirectory, Main.name);
+	public SaveLoad() {;
+		dir = new File(MinecraftClient.getInstance().runDirectory, Bedroom.INSTANCE.modname);
 		if(!dir.exists()) {
 			dir.mkdir();
 		}
@@ -46,11 +46,11 @@ public class SaveLoad {
 	public void save() {
 		ArrayList<String> toSave = new ArrayList<String>();
 		
-		for(Module mod : Main.moduleManager.getModules()) {
+		for(Module mod : ModuleManager.modules) {
 			toSave.add("MOD:" + mod.getName() + ":" + mod.isEnabled() + ":" + mod.getKey());
 		}
 		
-		for(Module mod : Main.moduleManager.getModules()) {
+		for(Module mod : ModuleManager.modules) {
 			for(Setting setting : mod.settings) {
 				
 				if(setting instanceof BooleanSetting) {
@@ -101,15 +101,15 @@ public class SaveLoad {
 		for(String s : lines) {
 			String[] args = s.split(":");
 			if(s.toLowerCase().startsWith("mod:")) {
-				Module m = Main.moduleManager.getModule(args[1]);
+				Module m = Bedroom.INSTANCE.moduleManager.getModule(args[1]);
 				if(m != null) {
 					m.setEnabled(Boolean.parseBoolean(args[2]));
 					m.setKey(Integer.parseInt(args[3]));
 				}
 			}else if(s.toLowerCase().startsWith("set:")) {
-				Module m = Main.moduleManager.getModule(args[1]);
+				Module m = Bedroom.INSTANCE.moduleManager.getModule(args[1]);
 				if(m != null) {
-					Setting setting = Main.settingManager.getSettingByName(m, args[2]);
+					Setting setting = Bedroom.INSTANCE.settingManager.getSettingByName(m, args[2]);
 					if(setting != null) {
 						if(setting instanceof BooleanSetting) {
 							((BooleanSetting)setting).setEnabled(Boolean.parseBoolean(args[3]));
@@ -123,7 +123,7 @@ public class SaveLoad {
 					}
 				}
 			}else if(s.toLowerCase().startsWith("commandprefix:")) {
-				CommandManager.setCommandPrefix(args[1]);
+				//CommandManager.setCommandPrefix(args[1]);
 			}
 		}
 	}
