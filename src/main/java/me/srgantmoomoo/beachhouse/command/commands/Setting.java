@@ -52,7 +52,7 @@ public class Setting extends Command {
             }
 
             ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(inputValue));
-            CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (module.isEnabled() ? GREEN + inputValue : RED + inputValue + GRAY + "."));
+            CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (inputValue.equalsIgnoreCase("true") ? GREEN + inputValue + GRAY + "." : RED + inputValue + GRAY + "."));
         }
 
         if(setting instanceof NumberSetting) {
