@@ -44,7 +44,7 @@ public class SettingList extends Command {
                     }
 
                     if(setting instanceof ModeSetting) {
-                        CommandManager.addChatMessage("mode: " + TextFormatting.WHITE + setting.name + ".");
+                        CommandManager.addChatMessage("mode: " + TextFormatting.WHITE + setting.name + " " + ((ModeSetting) setting).modes + TextFormatting.GRAY + ".");
                     }
 
                     if(setting instanceof NumberSetting) {

@@ -56,7 +56,17 @@ public class Setting extends Command {
         }
 
         if(setting instanceof NumberSetting) {
+            try {
+                double val = Double.parseDouble(inputValue);
 
+                if(val > ((NumberSetting) setting).getMaximum()) val = ((NumberSetting) setting).getMaximum();
+                else if(val < ((NumberSetting) setting).getMinimum()) val = ((NumberSetting) setting).getMinimum();
+
+                ((NumberSetting) setting).setValue(val);
+                CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + val + GRAY + ".");
+            } catch (NumberFormatException ignored) {
+                CommandManager.addChatMessage("number value " + RED + inputValue + GRAY + " is invalid.");
+            }
         }
 
         if(setting instanceof ModeSetting) {
