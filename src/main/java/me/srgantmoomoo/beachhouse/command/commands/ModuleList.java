@@ -30,8 +30,37 @@ public class ModuleList extends Command {
         MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(nothing));
 
         for(Module module : Bedroom.moduleManager.getModules()) {
-            CommandManager.addChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
-                    (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+
+            if(module.getCategory().equals(Module.Category.PLAYER)) {
+                CommandManager.addChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+            }
+
+            if(module.getCategory().equals(Module.Category.RENDER)) {
+                CommandManager.addChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+            }
+
+            if(module.getCategory().equals(Module.Category.COMBAT)) {
+                CommandManager.addChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+            }
+
+            if(module.getCategory().equals(Module.Category.MOVEMENT)) {
+                CommandManager.addChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+            }
+
+            if(module.getCategory().equals(Module.Category.MISCELLANEOUS)) {
+                CommandManager.addChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+            }
+
+            if(module.getCategory().equals(Module.Category.BEACHHOUSE)) {
+                CommandManager.addChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+            }
+
         }
 
         MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(nothing));

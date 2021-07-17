@@ -12,6 +12,7 @@ import me.srgantmoomoo.beachhouse.module.modules.movement.Speed;
 import me.srgantmoomoo.beachhouse.module.modules.movement.Sprint;
 import me.srgantmoomoo.beachhouse.module.modules.movement.Strafe;
 import me.srgantmoomoo.beachhouse.module.modules.player.Jesus;
+import me.srgantmoomoo.beachhouse.module.modules.render.ESP;
 import me.srgantmoomoo.beachhouse.module.modules.render.FullBright;
 import me.srgantmoomoo.beachhouse.module.modules.render.Xray;
 import me.srgantmoomoo.bedroom.Bedroom;
@@ -35,6 +36,7 @@ public class Modules {
 
         Bedroom.addModule(new Jesus());
 
+        Bedroom.addModule(new ESP());
         Bedroom.addModule(new FullBright());
         Bedroom.addModule(new Xray());
         // crystalesp

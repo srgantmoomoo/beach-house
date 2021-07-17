@@ -8,8 +8,7 @@ import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
-import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
-import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.*;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -41,28 +40,33 @@ public class SettingList extends Command {
                 for(Setting setting : m.settings) {
 
                     if(setting instanceof BooleanSetting) {
-                        CommandManager.addChatMessage("Boolean: " + TextFormatting.WHITE + setting.name);
+                        CommandManager.addChatMessage("boolean: " + TextFormatting.WHITE + setting.name + ".");
                     }
 
                     if(setting instanceof ModeSetting) {
-                        CommandManager.addChatMessage("Mode: " + TextFormatting.WHITE + setting.name);
+                        CommandManager.addChatMessage("mode: " + TextFormatting.WHITE + setting.name + ".");
+                    }
+
+                    if(setting instanceof NumberSetting) {
+                        CommandManager.addChatMessage("number: " + TextFormatting.WHITE + setting.name + ".");
+                    }
+
+                    if(setting instanceof ColorSetting) {
+                        CommandManager.addChatMessage("color: " + TextFormatting.WHITE + setting.name + ".");
+                    }
+
+                    if(setting instanceof KeybindSetting) {
+                        CommandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + ".");
                     }
 
                     moduleFound = true;
-                    break;
                 }
             }
         }
 
         if(!moduleFound) {
-            CommandManager.addChatMessage("module doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
+            CommandManager.addChatMessage("module " + TextFormatting.RED + moduleName + TextFormatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
             return;
         }
-
-        /*for(Module module1 : Main.moduleManager.getModules()) {
-            CommandManager.addChatMessage(module.settings.toString());
-        }*/
-
-        //CommandManager.addChatMessage(module.settings.toString());
     }
 }
