@@ -46,7 +46,7 @@ public class ModuleList extends Module {
 					if(module.getCategory().equals(Category.COMBAT)) colorTr = new JColor(122, 103, 229);
 					if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
 				}else if (this.mode.is("vibrant")) {
-					if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(113, 229, 175);
+					if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(255, 255, 255);
 					if(module.getCategory().equals(Category.MOVEMENT)) colorTr = new JColor(113, 152, 229);
 					if(module.getCategory().equals(Category.RENDER)) colorTr = new JColor(229, 106, 113);
 					if(module.getCategory().equals(Category.PLAYER)) colorTr = new JColor(227, 229, 103);

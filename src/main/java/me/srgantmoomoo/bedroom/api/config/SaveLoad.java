@@ -26,8 +26,7 @@ import net.minecraft.client.MinecraftClient;
 public class SaveLoad {
 	private File dir;
 	private File dataFile;
-	
-	@SuppressWarnings("resource")
+
 	public SaveLoad() {;
 		dir = new File(MinecraftClient.getInstance().runDirectory, Bedroom.modname);
 		if(!dir.exists()) {
@@ -123,7 +122,7 @@ public class SaveLoad {
 					}
 				}
 			}else if(s.toLowerCase().startsWith("commandprefix:")) {
-				//CommandManager.setCommandPrefix(args[1]);
+				CommandManager.setCommandPrefix(args[1]);
 			}
 		}
 	}

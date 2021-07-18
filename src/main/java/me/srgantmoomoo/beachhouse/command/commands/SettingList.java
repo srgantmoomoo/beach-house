@@ -40,7 +40,7 @@ public class SettingList extends Command {
                 for(Setting setting : m.settings) {
 
                     if(setting instanceof BooleanSetting) {
-                        CommandManager.addChatMessage("boolean: " + TextFormatting.WHITE + setting.name + ".");
+                        CommandManager.addChatMessage("boolean: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                     }
 
                     if(setting instanceof ModeSetting) {
@@ -48,15 +48,15 @@ public class SettingList extends Command {
                     }
 
                     if(setting instanceof NumberSetting) {
-                        CommandManager.addChatMessage("number: " + TextFormatting.WHITE + setting.name + ".");
+                        CommandManager.addChatMessage("number: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                     }
 
                     if(setting instanceof ColorSetting) {
-                        CommandManager.addChatMessage("color: " + TextFormatting.WHITE + setting.name + ".");
+                        CommandManager.addChatMessage("color: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                     }
 
                     if(setting instanceof KeybindSetting) {
-                        CommandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + ".");
+                        CommandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                     }
 
                     moduleFound = true;

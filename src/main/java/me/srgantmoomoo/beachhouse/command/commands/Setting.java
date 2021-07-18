@@ -70,7 +70,10 @@ public class Setting extends Command {
         }
 
         if(setting instanceof ModeSetting) {
-
+            if(((ModeSetting) setting).modes.contains(inputValue)) {
+                ((ModeSetting) setting).setMode(inputValue);
+                CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + inputValue + GRAY + ".");
+            }else CommandManager.addChatMessage("the mode " + RED + inputValue + GRAY + " does not exist for the module " + WHITE + module.name + GRAY + ". sorry :'(");
         }
     }
 }
