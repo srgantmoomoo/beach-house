@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import com.lukflug.panelstudio.settings.Toggleable;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.KeybindSetting;
@@ -16,7 +17,7 @@ import net.minecraft.client.MinecraftClient;
  * @since 5/16/2021
  */
 
-public abstract class Module implements Listenable {
+public abstract class Module implements Listenable, Toggleable {
 
 	public static MinecraftClient mc = MinecraftClient.getInstance();
 	public static ArrayList<Module> modules;
@@ -138,6 +139,10 @@ public abstract class Module implements Listenable {
 	
 	public void onUpdate() {
 		
+	}
+
+	public final boolean isOn() {
+		return enabled;
 	}
 
 }

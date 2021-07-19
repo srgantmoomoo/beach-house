@@ -1,6 +1,6 @@
 package me.srgantmoomoo.beachhouse.module;
 
-import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGUI;
+import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGUIModule;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ModuleList;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.PlayerInfo;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.TabGUI;
@@ -19,7 +19,7 @@ import me.srgantmoomoo.bedroom.Bedroom;
 
 public class Modules {
     public static void init() {
-        Bedroom.addModule(new ClickGUI());
+        Bedroom.addModule(new ClickGUIModule());
         Bedroom.addModule(new ModuleList());
         Bedroom.addModule(new PlayerInfo());
         Bedroom.addModule(new TabGUI());

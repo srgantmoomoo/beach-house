@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
 import me.srgantmoomoo.beachhouse.command.Commands;
+import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGUI;
 import me.srgantmoomoo.beachhouse.module.Modules;
 import me.srgantmoomoo.bedroom.Bedroom;
 import org.apache.logging.log4j.LogManager;
@@ -32,6 +33,7 @@ public class Main implements ModInitializer {
 	public static final String version = "0.01";
 
 	public static InGameUI inGameUI;
+	public static ClickGUI clickGUI;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
 	
@@ -71,6 +73,9 @@ public class Main implements ModInitializer {
 
 		Modules.init();
 		printLog("modules initialized.");
+
+		clickGUI = new ClickGUI();
+		printLog("clickGui initialized.");
 		
 		printLog(Main.name + " has finished initialization.");
 	}

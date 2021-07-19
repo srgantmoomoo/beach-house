@@ -12,7 +12,7 @@ import me.srgantmoomoo.bedroom.module.setting.Setting;
  * @since 05/16/2021
  */
 
-public class ModeSetting extends Setting {
+public class ModeSetting extends Setting implements com.lukflug.panelstudio.settings.EnumSetting{
 	public int index;
 	  
 	public List<String> modes;
@@ -46,5 +46,19 @@ public class ModeSetting extends Setting {
 	    } else {
 	      this.index = 0;
 	    }
+	}
+
+	@Override
+	public void increment() {
+		if(this.index < this.modes.size() - 1) {
+			this.index++;
+		}else {
+			this.index = 0;
+		}
+	}
+
+	@Override
+	public String getValueName() {
+		return this.modes.get(this.index);
 	}
 }

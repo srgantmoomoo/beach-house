@@ -1,5 +1,6 @@
 package me.srgantmoomoo.bedroom.module.setting.settings;
 
+import com.lukflug.panelstudio.settings.Toggleable;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
@@ -9,7 +10,7 @@ import me.srgantmoomoo.bedroom.module.setting.Setting;
  * @since 5/16/2021
  */
 
-public class BooleanSetting extends Setting {
+public class BooleanSetting extends Setting implements Toggleable {
 	public boolean enabled;
 	  
 	public BooleanSetting(String name, Module parent, boolean enabled) {
@@ -36,5 +37,10 @@ public class BooleanSetting extends Setting {
 	    if(Bedroom.INSTANCE.saveLoad != null) {
 			Bedroom.INSTANCE.saveLoad.save();
 	    }
+	}
+
+	@Override
+	public boolean isOn() {
+		return this.isEnabled();
 	}
 }
