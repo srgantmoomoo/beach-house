@@ -9,7 +9,7 @@ import me.srgantmoomoo.bedroom.module.setting.Setting;
  * @since 05/16/2021
  */
 
-public class NumberSetting extends Setting implements com.lukflug.panelstudio.settings.NumberSetting {
+public class NumberSetting extends Setting {
 	public double value;
 	public double minimum;
 	public double maximum;
@@ -64,30 +64,5 @@ public class NumberSetting extends Setting implements com.lukflug.panelstudio.se
 	  
 	public void setIncrement(double increment) {
 	    this.increment = increment;
-	}
-
-	@Override
-	public double getNumber() {
-		return getValue();
-	}
-
-	@Override
-	public void setNumber(double value) {
-		setValue(value);
-	}
-
-	@Override
-	public double getMaximumValue() {
-		return getMaximum();
-	}
-
-	@Override
-	public double getMinimumValue() {
-		return getMinimum();
-	}
-
-	@Override
-	public int getPrecision() {
-		return 1;
 	}
 }

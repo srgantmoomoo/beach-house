@@ -15,7 +15,7 @@ public class ESP extends Module {
     public NumberSetting range = new NumberSetting("range", this, 1, 0, 100, 1);
 
     public ESP() {
-        super("esp", "ESP", "allows you to see certain objects.", 0, Category.RENDER);
+        super("esp", "esp", "allows you to see certain objects.", 0, Category.RENDER);
         this.addSettings(playerEsp, hostileMobEsp, passiveMobEsp, storageEsp, holeEsp, voidEsp, crystalEsp, range);
     }
 }

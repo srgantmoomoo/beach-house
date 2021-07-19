@@ -10,7 +10,7 @@ import me.srgantmoomoo.bedroom.module.setting.Setting;
  * @since 5/16/2021
  */
 
-public class BooleanSetting extends Setting implements Toggleable {
+public class BooleanSetting extends Setting {
 	public boolean enabled;
 	  
 	public BooleanSetting(String name, Module parent, boolean enabled) {
@@ -37,10 +37,5 @@ public class BooleanSetting extends Setting implements Toggleable {
 	    if(Bedroom.INSTANCE.saveLoad != null) {
 			Bedroom.INSTANCE.saveLoad.save();
 	    }
-	}
-
-	@Override
-	public boolean isOn() {
-		return this.isEnabled();
 	}
 }

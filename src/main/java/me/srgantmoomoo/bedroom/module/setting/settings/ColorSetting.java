@@ -6,7 +6,7 @@ import me.srgantmoomoo.bedroom.module.setting.Setting;
 
 import java.awt.*;
 
-public class ColorSetting extends Setting implements com.lukflug.panelstudio.settings.ColorSetting {
+public class ColorSetting extends Setting {
 
 	private boolean rainbow;
 	private JColor value;
@@ -45,20 +45,5 @@ public class ColorSetting extends Setting implements com.lukflug.panelstudio.set
 	
 	public JColor getColor() {
 		return this.value;
-	}
-
-	@Override
-	public boolean getRainbow() {
-		return this.rainbow;
-	}
-
-	@Override
-	public void setRainbow(boolean rainbow) {
-		this.rainbow = rainbow;
-	}
-
-	@Override
-	public void setValue(Color value) {
-		this.setValue(getRainbow(), new JColor(value));
 	}
 }
