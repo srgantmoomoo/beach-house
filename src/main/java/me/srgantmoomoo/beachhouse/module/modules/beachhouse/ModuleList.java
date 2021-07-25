@@ -15,7 +15,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 
 public class ModuleList extends Module {
-	public ColorSetting color = new ColorSetting("color", this, new JColor(172, 172, 172, 255)); 
+	public ColorSetting color = new ColorSetting("color", this, new JColor(172, 172, 172, 255));
 	public ModeSetting mode = new ModeSetting("mode", this, "dull", "dull", "vibrant");
 	
 	public ModuleList() {

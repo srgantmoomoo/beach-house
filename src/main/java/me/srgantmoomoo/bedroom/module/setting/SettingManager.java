@@ -42,13 +42,13 @@ public class SettingManager implements Listenable {
 	
 	public Setting getSettingByName(Module mod, String name) {
 		for (Module m : ModuleManager.modules) {
-		for (Setting set : m.settings) {
-			if (set.name.equalsIgnoreCase(name) && set.parent == mod) {
-				return set;
-			}
+			for (Setting set : m.settings) {
+				if (set.name.equalsIgnoreCase(name) && set.parent == mod) {
+					return set;
+				}
 			}
 		}
-		System.err.println("[postman] Error Setting NOT found: '" + name +"'!");
+		System.err.println("[bedroom] Error Setting NOT found: '" + name +"'!");
 		return null;
 	}
 }

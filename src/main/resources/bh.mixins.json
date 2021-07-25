@@ -7,7 +7,7 @@
   ],
   "client": [
 	"MixinGameRenderer",
-	"MixinIngameHud",
+    "MixinInGameHud",
 	"MixinKeyboard",
 	"MixinClientConnection",
 	"MixinClientWorld",
