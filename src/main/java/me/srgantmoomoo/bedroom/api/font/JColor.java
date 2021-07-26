@@ -49,6 +49,6 @@ public class JColor extends Color {
 	}
 	
 	public void glColor() {
-		GlStateManager.color4f(getRed() / 255.0f, getGreen() / 255.0f, getBlue() / 255.0f, getAlpha() / 255.0f);
+		//GlStateManager.color4f(getRed() / 255.0f, getGreen() / 255.0f, getBlue() / 255.0f, getAlpha() / 255.0f);
 	}
 }

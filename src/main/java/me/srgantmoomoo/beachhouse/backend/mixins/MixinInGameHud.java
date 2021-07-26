@@ -28,7 +28,6 @@ public class MixinInGameHud {
 		try {
 			EventRender2D event = new EventRender2D(matrixStack);
 			Bedroom.INSTANCE.EVENTBUS.post(event);
-			GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

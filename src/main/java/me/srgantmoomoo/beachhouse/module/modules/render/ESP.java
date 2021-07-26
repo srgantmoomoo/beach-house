@@ -38,13 +38,13 @@ public class ESP extends Module {
     private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
     private HashMap<Entity, Vec3d> footPos = Maps.newHashMap();
 
-    /*@EventHandler
+    @EventHandler
     private final Listener<EventWorldRender> worldRenderListener = new Listener<>(e -> {
         headPos.clear();
         footPos.clear();
         for (Entity entity : minecraft.world.getEntities()) {
             headPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, entity.getHeight() + 0.2f, e.partialTicks, e.matrix));
-            footPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, -0.2f, e.partialTicks, e.matrixStack()));
+            footPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, -0.2f, e.partialTicks, e.matrix));
         }
     });
 
@@ -92,6 +92,6 @@ public class ESP extends Module {
         }
         int color = 0xffffffff;
         Render2DHelper.INSTANCE.fillAndBorder(matrixStack, x, y, x2, y2, 0xff000000, color, 1);
-    }*/
+    }
 
 }

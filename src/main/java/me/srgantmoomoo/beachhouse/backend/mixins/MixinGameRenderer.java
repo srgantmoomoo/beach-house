@@ -15,8 +15,8 @@ import net.minecraft.client.util.math.MatrixStack;
 public class MixinGameRenderer {
 
 	@Inject(at = @At("HEAD"), method = "renderHand", cancellable = true)
-	private void renderHand(MatrixStack matrixStack_1, Camera camera_1, float float_1, CallbackInfo info) {
-		EventWorldRender event = new EventWorldRender(float_1);
+	private void renderHand(MatrixStack matrixStack, Camera camera, float f, CallbackInfo info) {
+		EventWorldRender event = new EventWorldRender(f, matrixStack);
 		Bedroom.INSTANCE.EVENTBUS.post(event);
 		if (event.isCancelled()) info.cancel();
 	}

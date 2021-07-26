@@ -3,8 +3,8 @@ plugins {
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_16
-targetCompatibility = JavaVersion.VERSION_1_16
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -30,10 +30,9 @@ dependencies {
 	// api
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	compile group: 'org.joml', name: 'joml', version: '1.10.0'
-	compile "com.github.ZeroMemes:Alpine:1.9"
-	compile "com.lukflug:panelstudio:0.1.8"
-	compile "com.lukflug:panelstudio-mc16:0.1.8"
+	implementation "com.github.ZeroMemes:Alpine:1.9"
+	implementation "com.lukflug:panelstudio:0.1.8"
+	implementation "com.lukflug:panelstudio-mc16:0.1.8"
 	implementation "com.github.beach-house-development:bedroom:4-pre6"
 }
 
