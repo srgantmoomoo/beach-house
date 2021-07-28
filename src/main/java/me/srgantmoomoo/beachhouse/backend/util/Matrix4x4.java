@@ -149,7 +149,7 @@ public class Matrix4x4 {
         return proj;
     }
 
-    public Vector3D project(float x, float y, float z, int[] viewport, Vector3D winCoordsDest) {
+    /*public Vector3D project(float x, float y, float z, int[] viewport, Vector3D winCoordsDest) {
         float invW = 1.0f / Math.fma(a03, x, Math.fma(a13, y, Math.fma(a23, z, a33)));
         float nx = Math.fma(a00, x, Math.fma(a10, y, Math.fma(a20, z, a30))) * invW;
         float ny = Math.fma(a01, x, Math.fma(a11, y, Math.fma(a21, z, a31))) * invW;
@@ -178,7 +178,7 @@ public class Matrix4x4 {
         float nm32 = Math.fma(a02, matrix4x4.a30, Math.fma(a12, matrix4x4.a31, Math.fma(a22, matrix4x4.a32, a32 * matrix4x4.a33)));
         float nm33 = Math.fma(a03, matrix4x4.a30, Math.fma(a13, matrix4x4.a31, Math.fma(a23, matrix4x4.a32, a33 * matrix4x4.a33)));
         return new Matrix4x4(new float[]{nm00, nm01, nm02, nm03, nm10, nm11, nm12, nm13, nm20, nm21, nm22, nm23, nm30, nm31, nm32, nm33});
-    }
+    }*/
 
     public Matrix4x4 set(Matrix4x4 matrix4x4) {
         this.a00 = matrix4x4.a00;
