@@ -24,9 +24,9 @@ import net.fabricmc.api.ModInitializer;
  * @author SrgantMooMoo
  * @since 5/16/2021
  */
-
+//TODO fix all 1.17.1 things... keybind even, render event... etc.
 public class Main implements ModInitializer {
-	
+
 	public static final String modid = "bh";
 	public static final String name = "beach house";
 	public static final String nameCondensed = "beach-house"; 
