@@ -15,13 +15,13 @@ import net.minecraft.client.util.math.MatrixStack;
 @Mixin(InGameHud.class)
 public class MixinInGameHud {
 
-	@Inject(at = @At(value = "RETURN"), method = "render", cancellable = true)
+	/*@Inject(at = @At(value = "RETURN"), method = "render", cancellable = true)
 	public void render(MatrixStack matrixStack, float float_1, CallbackInfo info) {
 		EventDrawOverlay event = new EventDrawOverlay(matrixStack);
 		Bedroom.INSTANCE.EVENTBUS.post(event);
 		if (event.isCancelled())
 			info.cancel();
-	}
+	}*/
 
 	@Inject(method = "render", at = @At(value = "INVOKE", target = "net/minecraft/scoreboard/Scoreboard.getObjectiveForSlot(I)Lnet/minecraft/scoreboard/ScoreboardObjective;"))
 	public void draw(MatrixStack matrixStack, float float_1, CallbackInfo ci) {

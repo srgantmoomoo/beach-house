@@ -56,6 +56,7 @@ public class CommandManager implements Listenable {
 
 	@EventHandler
 	private final Listener<EventKeyPress> listener = new Listener<>(e -> {
+		System.out.println("please nigga");
 		if(InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), prefix.charAt(0)))
 		if (prefix.length() == 1) {
                 MinecraftClient.getInstance().openScreen(new ChatScreen(""));
