@@ -59,15 +59,6 @@ public final class Bedroom {
 		modversion = version;
 	}
 
-	public static void onEvent(Event e) {
-		for(Module m : moduleManager.getModules()){
-			if(!m.isEnabled())
-				continue;
-
-			m.onEvent(e);;
-		}
-	}
-
 	public static void init(String id, String name, String version) {
 		printLog("welcome to bedroom!");
 		printLog("\n" +

@@ -3,6 +3,7 @@ package me.srgantmoomoo.bedroom.module;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.gui.screen.ChatScreen;
@@ -31,6 +32,15 @@ public class ModuleManager implements Listenable {
 
 	public static void onUpdate() {
 		modules.stream().filter(Module::isEnabled).forEach(Module::onUpdate);
+	}
+
+	public static void onEvent(Event e) {
+		for(Module m :  Bedroom.moduleManager.getModules()){
+			if(!m.isEnabled())
+				continue;
+
+			m.onEvent(e);;
+		}
 	}
 
 	public boolean isModuleEnabled(String name) {

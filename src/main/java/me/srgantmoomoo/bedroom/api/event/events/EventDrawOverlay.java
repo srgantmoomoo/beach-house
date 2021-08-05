@@ -7,7 +7,7 @@ public class EventDrawOverlay extends Event<EventDrawOverlay> {
 
 	public MatrixStack matrix;
 
-	public EventDrawOverlay() {
-		//this.matrix = matrix;
+	public EventDrawOverlay(MatrixStack matrix) {
+		this.matrix = matrix;
 	}
 }

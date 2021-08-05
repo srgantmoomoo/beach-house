@@ -4,6 +4,7 @@ import java.util.List;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
+import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module;
@@ -13,6 +14,7 @@ import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
 
 public class TabGUI extends Module {
@@ -25,11 +27,68 @@ public class TabGUI extends Module {
 		this.addSettings(tab, miniTab, arrow);
 	}
 
-	/*public int currentTab;
+	public int currentTab;
 	public boolean expanded;
 	public boolean Tab;
 
-	@EventHandler
+	@Override
+	public void onEvent(Event e) {
+		if(e instanceof EventDrawOverlay) {
+			TextRenderer tr = MinecraftClient.getInstance().textRenderer;
+
+			int backgroundColor = 0x80000000;
+			int tabColor = 0xff000000;
+			int primaryColor = 0xffEB78DF;
+
+			InGameHud.fill(((EventDrawOverlay) e).matrix, 2, 12, 60, 86, backgroundColor);
+			if(tab.isEnabled()) InGameHud.fill(((EventDrawOverlay) e).matrix, 3, 13 + currentTab * 12, 59, 14 + currentTab * 12 + 11, tabColor);
+			if(miniTab.isEnabled()) InGameHud.fill(((EventDrawOverlay) e).matrix, 3, 13 + currentTab * 12, 4, 14 + currentTab * 12 + 11, primaryColor);
+
+			if(arrow.isEnabled()) tr.drawWithShadow(((EventDrawOverlay) e).matrix, ">", currentTab == 3 ? 54 : 52, 15 + currentTab * 12, 0xffffffff);
+
+			int count = 0;
+			for (Category c : Module.Category.values()) {
+
+				String catName = c.name;
+				if(c.name.equals("miscellaneous")) catName = "misc";
+				if(c.name.equals("beach house")) catName = "beach";
+
+				int catLength = 1;
+				if(c.name.equals("player")) catLength = 15;
+				if(c.name.equals("render")) catLength = 14;
+				if(c.name.equals("combat")) catLength = 14;
+				if(c.name.equals("movement")) catLength = 8;
+				if(c.name.equals("miscellaneous")) catLength = 21;
+				if(c.name.equals("beach house")) catLength = 16;
+
+				tr.drawWithShadow(((EventDrawOverlay) e).matrix, catName, catLength, 15 + count * 12, 0xffffffff);
+				count++;
+			}
+
+			if (expanded) {
+				Category category = Module.Category.values()[currentTab];
+				List<Module> modules = Bedroom.moduleManager.getModulesByCategory(category);
+
+				if (modules.size() == 0)
+					return;
+
+				InGameHud.fill(((EventDrawOverlay) e).matrix, 61, 12, 130, 14 + modules.size() * 12, backgroundColor);
+				if(tab.isEnabled()) InGameHud.fill(((EventDrawOverlay) e).matrix, 62, 14 + category.moduleIndex * 12 - 1, 129, 14 + category.moduleIndex * 12 + 11, tabColor);
+				if(miniTab.isEnabled()) tr.draw(((EventDrawOverlay) e).matrix, "-", 131, 14 + category.moduleIndex * 12 + 1, primaryColor);
+
+				count = 0;
+				for (Module m : modules) {
+					tr.drawWithShadow(((EventDrawOverlay) e).matrix, m.name, 64, 15 + count * 12, -1);
+					if(m.isEnabled()) {
+						InGameHud.fill(((EventDrawOverlay) e).matrix, 127, 14 + count * 12, 128, 23 + count * 12, 0xffffffff);
+					}
+					count++;
+				}
+			}
+		}
+	}
+
+	/*@EventHandler
 	private final Listener<EventDrawOverlay> overlayListener = new Listener<>(e -> {
 		TextRenderer tr = MinecraftClient.getInstance().textRenderer;
 
