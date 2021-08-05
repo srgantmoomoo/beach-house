@@ -9,14 +9,13 @@ import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import org.lwjgl.glfw.GLFW;
 
 public class ModuleList extends Module {
 	public ColorSetting color = new ColorSetting("color", this, new JColor(172, 172, 172, 255));
 	public ModeSetting mode = new ModeSetting("mode", this, "dull", "dull", "vibrant");
 	
 	public ModuleList() {
-		super("module list", "modulelist", "module list.", GLFW.GLFW_KEY_0, Category.BEACHHOUSE);
+		super("module list", "modulelist", "module list.", 0, Category.BEACHHOUSE);
 		this.addSettings(mode);
 	}
 	    

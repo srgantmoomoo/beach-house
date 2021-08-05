@@ -5,11 +5,13 @@ import java.util.List;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
+import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
+import org.lwjgl.glfw.GLFW;
 
 public class TabGUI extends Module {
 	public BooleanSetting tab = new BooleanSetting("tab", this, false);
@@ -80,114 +82,57 @@ public class TabGUI extends Module {
 				}
 			}
 		}
-	}
 
-	/*@EventHandler
-	private final Listener<EventDrawOverlay> overlayListener = new Listener<>(e -> {
-		TextRenderer tr = MinecraftClient.getInstance().textRenderer;
+		if(e instanceof EventKeyPress) {
+			int code = ((EventKeyPress)e).getKey();
 
-		int backgroundColor = 0x80000000;
-		int tabColor = 0xff000000;
-		int primaryColor = 0xffEB78DF;
-
-		InGameHud.fill(e.matrix, 2, 12, 60, 86, backgroundColor);
-		if(tab.isEnabled()) InGameHud.fill(e.matrix, 3, 13 + currentTab * 12, 59, 14 + currentTab * 12 + 11, tabColor);
-		if(miniTab.isEnabled()) InGameHud.fill(e.matrix, 3, 13 + currentTab * 12, 4, 14 + currentTab * 12 + 11, primaryColor);
-
-		if(arrow.isEnabled()) tr.drawWithShadow(e.matrix, ">", currentTab == 3 ? 54 : 52, 15 + currentTab * 12, 0xffffffff);
-
-		int count = 0;
-		for (Category c : Module.Category.values()) {
-
-			String catName = c.name;
-			if(c.name.equals("miscellaneous")) catName = "misc";
-			if(c.name.equals("beach house")) catName = "beach";
-
-			int catLength = 1;
-			if(c.name.equals("player")) catLength = 15;
-			if(c.name.equals("render")) catLength = 14;
-			if(c.name.equals("combat")) catLength = 14;
-			if(c.name.equals("movement")) catLength = 8;
-			if(c.name.equals("miscellaneous")) catLength = 21;
-			if(c.name.equals("beach house")) catLength = 16;
-
-			tr.drawWithShadow(e.matrix, catName, catLength, 15 + count * 12, 0xffffffff);
-			count++;
-		}
-
-		if (expanded) {
 			Category category = Module.Category.values()[currentTab];
 			List<Module> modules = Bedroom.moduleManager.getModulesByCategory(category);
 
-			if (modules.size() == 0)
-				return;
-
-			InGameHud.fill(e.matrix, 61, 12, 130, 14 + modules.size() * 12, backgroundColor);
-			if(tab.isEnabled()) InGameHud.fill(e.matrix, 62, 14 + category.moduleIndex * 12 - 1, 129, 14 + category.moduleIndex * 12 + 11, tabColor);
-			if(miniTab.isEnabled()) tr.draw(e.matrix, "-", 131, 14 + category.moduleIndex * 12 + 1, primaryColor);
-
-			count = 0;
-			for (Module m : modules) {
-				tr.drawWithShadow(e.matrix, m.name, 64, 15 + count * 12, -1);
-				if(m.isEnabled()) {
-					InGameHud.fill(e.matrix, 127, 14 + count * 12, 128, 23 + count * 12, 0xffffffff);
+			if(code == GLFW.GLFW_KEY_UP) {
+				if(expanded) {
+					if(category.moduleIndex <= 0) {
+						category.moduleIndex = modules.size() - 1;
+					}else
+						category.moduleIndex--;
+				}else {
+					if(currentTab <= 0) {
+						currentTab = Module.Category.values().length - 1;
+					}else
+						currentTab--;
 				}
-				count++;
+			}
+
+			if(code == GLFW.GLFW_KEY_DOWN) {
+				if (expanded) {
+					if(category.moduleIndex >= modules.size() - 1) {
+						category.moduleIndex = 0;
+					}else
+						category.moduleIndex++;
+				}else {
+					if(currentTab >= Module.Category.values().length - 1) {
+						currentTab = 0;
+					}else
+						currentTab++;
+				}
+			}
+
+			if(code == GLFW.GLFW_KEY_RIGHT) {
+				if(expanded && modules.size() !=0) {
+					Module module = modules.get(category.moduleIndex);
+					if(!module.name.equals("TabGUI"))
+						module.toggle();
+				}else {
+					expanded = true;
+
+
+				}
+			}
+
+			if(code == GLFW.GLFW_KEY_LEFT) {
+				expanded = false;
 			}
 		}
-	});
-
-	@EventHandler
-	private final Listener<EventKeyPress> keyListener = new Listener<>(e -> {
-
-		int code = ((EventKeyPress)e).getKey();
-
-		Category category = Module.Category.values()[currentTab];
-		List<Module> modules = Bedroom.moduleManager.getModulesByCategory(category);
-
-		if(code == GLFW.GLFW_KEY_UP) {
-			if(expanded) {
-				if(category.moduleIndex <= 0) {
-					category.moduleIndex = modules.size() - 1;
-				}else
-					category.moduleIndex--;
-			}else {
-				if(currentTab <= 0) {
-					currentTab = Module.Category.values().length - 1;
-				}else
-					currentTab--;
-			}
-		}
-
-		if(code == GLFW.GLFW_KEY_DOWN) {
-			if (expanded) {
-				if(category.moduleIndex >= modules.size() - 1) {
-					category.moduleIndex = 0;
-				}else
-					category.moduleIndex++;
-			}else {
-				if(currentTab >= Module.Category.values().length - 1) {
-					currentTab = 0;
-				}else
-					currentTab++;
-			}
-		}
-
-		if(code == GLFW.GLFW_KEY_RIGHT) {
-			if(expanded && modules.size() !=0) {
-				Module module = modules.get(category.moduleIndex);
-				if(!module.name.equals("TabGUI"))
-					module.toggle();
-			}else {
-				expanded = true;
-
-
-			}
-		}
-
-		if(code == GLFW.GLFW_KEY_LEFT) {
-			expanded = false;
-		}
-	});*/
+	}
 
 }
