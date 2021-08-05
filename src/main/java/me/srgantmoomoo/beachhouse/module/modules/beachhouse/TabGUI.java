@@ -25,7 +25,7 @@ public class TabGUI extends Module {
 		this.addSettings(tab, miniTab, arrow);
 	}
 
-	public int currentTab;
+	/*public int currentTab;
 	public boolean expanded;
 	public boolean Tab;
 
@@ -135,6 +135,6 @@ public class TabGUI extends Module {
 		if(code == GLFW.GLFW_KEY_LEFT) {
 			expanded = false;
 		}
-	});
+	});*/
 
 }

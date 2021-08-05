@@ -27,7 +27,7 @@ public class CommandManager implements Listenable {
 	public static String prefix = ",";
 
 	public CommandManager() {
-		Bedroom.INSTANCE.EVENTBUS.subscribe(listener);
+		//Bedroom.INSTANCE.EVENTBUS.subscribe(listener);
 		commands = new ArrayList<Command>();
 	}
 

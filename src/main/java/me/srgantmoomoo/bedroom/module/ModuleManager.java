@@ -69,12 +69,4 @@ public class ModuleManager implements Listenable {
 		} return modules;
 	}
 
-	@EventHandler
-	private final Listener<EventKeyPress> listener = new Listener<>(e -> {
-		if (InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_F3))
-			return;
-
-		modules.stream().filter(m -> m.getKey() == e.getKey()).forEach(Module::toggle);
-	});
-
 }

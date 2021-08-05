@@ -1,5 +1,5 @@
 package me.srgantmoomoo.bedroom.api.event.events;
 
-public class EventTick extends Event {
+public class EventTick {
 	
 }

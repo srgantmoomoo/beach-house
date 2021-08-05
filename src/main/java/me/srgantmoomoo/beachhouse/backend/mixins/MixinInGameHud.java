@@ -1,7 +1,5 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import me.srgantmoomoo.beachhouse.backend.events.EventRender2D;
 import me.srgantmoomoo.bedroom.api.event.Type;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,7 +16,7 @@ public class MixinInGameHud {
 
 	@Inject(at = @At(value = "RETURN"), method = "render", cancellable = true)
 	public void render(MatrixStack matrixStack, float float_1, CallbackInfo info) {
-		EventDrawOverlay e = new EventDrawOverlay(matrixStack);
+		EventDrawOverlay e = new EventDrawOverlay();
 		e.setType(Type.PRE);
 		Bedroom.onEvent(e);
 

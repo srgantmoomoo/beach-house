@@ -81,7 +81,7 @@ public final class Bedroom {
 		setVariables(id, name, version);
 		printLog("variables initialized.");
 
-		eventProcessor = new EventProcessor();
+		//eventProcessor = new EventProcessor();
 		//EVENTBUS.subscribe(eventProcessor);
 		printLog("event system initialized.");
 
