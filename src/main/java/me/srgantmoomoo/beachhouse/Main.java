@@ -10,14 +10,7 @@ import me.srgantmoomoo.bedroom.Bedroom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import me.srgantmoomoo.bedroom.api.config.SaveLoad;
-import me.srgantmoomoo.bedroom.api.event.EventProcessor;
-import me.srgantmoomoo.bedroom.command.CommandManager;
-import me.srgantmoomoo.bedroom.module.ModuleManager;
-import me.srgantmoomoo.bedroom.module.setting.SettingManager;
 import me.srgantmoomoo.beachhouse.gui.InGameUI;
-import me.zero.alpine.bus.EventBus;
-import me.zero.alpine.bus.EventManager;
 import net.fabricmc.api.ModInitializer;
 
 /** 
@@ -25,6 +18,9 @@ import net.fabricmc.api.ModInitializer;
  * @since 5/16/2021
  */
 //TODO fix all 1.17.1 things... keybind even, render event... etc.
+//TODO fix all classes that use events.
+//TODO fix/replace methods like onUpdate().
+//TODO restore all events & mixins.
 public class Main implements ModInitializer {
 
 	public static final String modid = "bh";

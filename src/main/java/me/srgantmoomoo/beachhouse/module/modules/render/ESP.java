@@ -7,8 +7,6 @@ import me.srgantmoomoo.bedroom.api.event.events.EventWorldRender;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;

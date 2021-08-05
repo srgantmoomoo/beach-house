@@ -2,15 +2,12 @@ package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
 import java.util.Comparator;
 
-import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 

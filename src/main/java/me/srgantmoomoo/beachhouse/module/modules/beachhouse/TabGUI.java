@@ -2,20 +2,14 @@ package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
 import java.util.List;
 
-import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
-import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.util.math.MatrixStack;
-import org.lwjgl.glfw.GLFW;
 
 public class TabGUI extends Module {
 	public BooleanSetting tab = new BooleanSetting("tab", this, false);

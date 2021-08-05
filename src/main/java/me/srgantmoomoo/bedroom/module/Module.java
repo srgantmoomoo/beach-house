@@ -5,12 +5,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import com.lukflug.panelstudio.settings.Toggleable;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.KeybindSetting;
-import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.MinecraftClient;
 
 /** 
@@ -41,7 +39,6 @@ public abstract class Module {
 		enabled = false;
 	}
 
-	// this by default contains the beach house category since it was originally created for beach house.... but obviously you don't have to use it.
 	//TODO make categories customizable.... and maybe switch the whole system to annotations to make life easier.
 	public enum Category {
 		PLAYER("player"), RENDER("render"), COMBAT("combat"), MOVEMENT("movement"), MISCELLANEOUS("miscellaneous"), BEACHHOUSE("beach house");
@@ -85,8 +82,8 @@ public abstract class Module {
 	public void setKey(int key) {
 		this.keyCode.code = key;
 		
-		 if(Bedroom.INSTANCE.saveLoad != null) {
-				Bedroom.INSTANCE.saveLoad.save();
+		 if(Bedroom.saveLoad != null) {
+				Bedroom.saveLoad.save();
 		 }
 	} 
 	
@@ -98,8 +95,8 @@ public abstract class Module {
 			disable();
 		}
 		
-		if(Bedroom.INSTANCE.saveLoad != null) {
-			Bedroom.INSTANCE.saveLoad.save();
+		if(Bedroom.saveLoad != null) {
+			Bedroom.saveLoad.save();
 		}
 	}
 	
@@ -115,8 +112,8 @@ public abstract class Module {
 			Bedroom.INSTANCE.EVENTBUS.unsubscribe(this);
 		}*/
 		
-		if(Bedroom.INSTANCE.saveLoad != null) {
-			Bedroom.INSTANCE.saveLoad.save();
+		if(Bedroom.saveLoad != null) {
+			Bedroom.saveLoad.save();
 		}
 	}
 

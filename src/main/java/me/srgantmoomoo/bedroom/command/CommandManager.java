@@ -7,9 +7,6 @@ import java.util.List;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listenable;
-import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.util.InputUtil;
@@ -21,7 +18,7 @@ import net.minecraft.text.Text;
  * @since 5/16/2021
  */
 
-public class CommandManager implements Listenable {
+public class CommandManager {
 
 	public static List<Command> commands;
 	public static String prefix = ",";

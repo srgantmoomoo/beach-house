@@ -3,8 +3,6 @@ package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.module.Module;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;

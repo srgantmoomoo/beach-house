@@ -4,25 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.command.CommandManager;
-import me.zero.alpine.listener.Listenable;
-import net.minecraft.client.gui.screen.ChatScreen;
-import org.lwjgl.glfw.GLFW;
-
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module.Category;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listener;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.InputUtil;
 
 /** 
  * @author SrgantMooMoo
  * @since 5/16/2021
  */
 
-public class ModuleManager implements Listenable {
+public class ModuleManager {
 	
 	public static ArrayList<Module> modules;
 	

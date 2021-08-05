@@ -1,13 +1,8 @@
 package me.srgantmoomoo.beachhouse.gui;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listenable;
-import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.util.math.MatrixStack;

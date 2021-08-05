@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
-import me.zero.alpine.listener.Listenable;
 
 /** 
  * @author SrgantMooMoo
  * @since 5/16/2021
  */
 
-public class SettingManager implements Listenable {
+public class SettingManager {
 	
 	private ArrayList<Setting> settings;
 	
