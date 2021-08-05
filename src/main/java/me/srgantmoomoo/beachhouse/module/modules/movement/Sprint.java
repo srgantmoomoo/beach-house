@@ -16,12 +16,14 @@ public class Sprint extends Module {
 	@Override
 	public void onEvent(Event e) {
 		if(e instanceof EventTick) {
+			assert MinecraftClient.getInstance().player != null;
 			MinecraftClient.getInstance().player.setSprinting(true);
 		}
 	}
 	
 	@Override
 	public void onDisable() {
+		assert MinecraftClient.getInstance().player != null;
 		MinecraftClient.getInstance().player.setSprinting(false);
 	}
 }
