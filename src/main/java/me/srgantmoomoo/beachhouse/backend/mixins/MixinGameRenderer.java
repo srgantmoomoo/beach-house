@@ -23,11 +23,9 @@ public class MixinGameRenderer {
 		if (event.isCancelled()) info.cancel();
 	}
 
-	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;render(Lnet/minecraft/client/util/math/MatrixStack;F)V"), cancellable = true)
-	public void render(CallbackInfo info) {
+	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;render(Lnet/minecraft/client/util/math/MatrixStack;F)V"))
+	public void render(CallbackInfo callbackInfo) {
 		EventDrawOverlay event = new EventDrawOverlay(matrixStack);
 		Bedroom.EVENTBUS.post(event);
-		if (event.isCancelled())
-			info.cancel();
 	}
 }

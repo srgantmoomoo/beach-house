@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.lukflug.panelstudio.settings.Toggleable;
 import me.srgantmoomoo.bedroom.Bedroom;
+import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.KeybindSetting;
 import me.zero.alpine.listener.Listenable;
@@ -108,17 +109,17 @@ public abstract class Module implements Listenable {
 	
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
-		if(enabled) {
+		/*if(enabled) {
 			Bedroom.INSTANCE.EVENTBUS.subscribe(this);
 		}else {
 			Bedroom.INSTANCE.EVENTBUS.unsubscribe(this);
-		}
+		}*/
 		
 		if(Bedroom.INSTANCE.saveLoad != null) {
 			Bedroom.INSTANCE.saveLoad.save();
 		}
 	}
-	
+
 	public void enable() {
 		onEnable();
 		setEnabled(true);
@@ -139,6 +140,10 @@ public abstract class Module implements Listenable {
 	
 	public void onUpdate() {
 		
+	}
+
+	public void onEvent(Event e) {
+
 	}
 
 }

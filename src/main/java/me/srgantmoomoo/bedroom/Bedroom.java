@@ -1,5 +1,6 @@
 package me.srgantmoomoo.bedroom;
 
+import me.srgantmoomoo.bedroom.api.event.Event;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,7 +33,6 @@ public final class Bedroom {
 	public static CommandManager commandManager;
 	
 	public static final Logger LOGGER = LogManager.getLogger("bedroom");
-	public static EventBus EVENTBUS = new EventManager();
 
 	public static final Object syncronize = new Object();
 	public static void printLog(String text) {
@@ -59,6 +59,15 @@ public final class Bedroom {
 		modversion = version;
 	}
 
+	public static void onEvent(Event e) {
+		for(Module m : moduleManager.getModules()){
+			if(!m.isEnabled())
+				continue;
+
+			m.onEvent(e);;
+		}
+	}
+
 	public static void init(String id, String name, String version) {
 		printLog("welcome to bedroom!");
 		printLog("\n" +
@@ -73,15 +82,15 @@ public final class Bedroom {
 		printLog("variables initialized.");
 
 		eventProcessor = new EventProcessor();
-		EVENTBUS.subscribe(eventProcessor);
+		//EVENTBUS.subscribe(eventProcessor);
 		printLog("event system initialized.");
 
 		commandManager = new CommandManager();
-		EVENTBUS.subscribe(commandManager);
+		//EVENTBUS.subscribe(commandManager);
 		printLog("command system initialized.");
 
 		moduleManager = new ModuleManager();
-		EVENTBUS.subscribe(moduleManager);
+		//EVENTBUS.subscribe(moduleManager);
 		printLog("module system initialized.");
 
 		settingManager = new SettingManager();

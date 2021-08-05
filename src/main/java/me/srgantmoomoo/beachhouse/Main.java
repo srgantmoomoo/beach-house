@@ -65,7 +65,6 @@ public class Main implements ModInitializer {
 		}
 
 		inGameUI = new InGameUI();
-		Bedroom.EVENTBUS.subscribe(inGameUI);
 		printLog("ui initialized.");
 
 		Commands.init();
