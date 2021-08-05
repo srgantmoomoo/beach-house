@@ -5,7 +5,11 @@ import java.util.List;
 
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.Bedroom;
+import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module.Category;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.InputUtil;
+import org.lwjgl.glfw.GLFW;
 
 /** 
  * @author SrgantMooMoo
@@ -13,7 +17,7 @@ import me.srgantmoomoo.bedroom.module.Module.Category;
  */
 
 public class ModuleManager {
-	
+
 	public static ArrayList<Module> modules;
 	
 	public ModuleManager() {
@@ -67,6 +71,15 @@ public class ModuleManager {
 				if(m.getCategory() == c)
 					modules.add(m);
 		} return modules;
+	}
+
+	// for key binds (called in MixinKeyboard).
+	public void keyPress(int key, int scancode) {
+		EventKeyPress e = new EventKeyPress(key, scancode);
+		if (InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_F3))
+			return;
+
+		modules.stream().filter(m -> m.getKey() == e.getKey()).forEach(Module::toggle);
 	}
 
 }
