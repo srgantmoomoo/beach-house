@@ -7,8 +7,11 @@
   ],
   "client": [
     "MixinClientConnection",
+    "MixinClientWorld",
+    "MixinGameRenderer",
     "MixinInGameHud",
-    "MixinKeyboard"
+    "MixinKeyboard",
+    "MixinMinecraftClient"
   ],
   "injectors": {
     "defaultRequire": 1

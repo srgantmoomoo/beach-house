@@ -134,10 +134,6 @@ public abstract class Module {
 	public void onDisable() {
 		
 	}
-	
-	public void onUpdate() {
-		
-	}
 
 	public void onEvent(Event e) {
 

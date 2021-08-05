@@ -24,10 +24,6 @@ public class ModuleManager {
 		modules = new ArrayList<>();
 	}
 
-	public static void onUpdate() {
-		modules.stream().filter(Module::isEnabled).forEach(Module::onUpdate);
-	}
-
 	public static void onEvent(Event e) {
 		for(Module m : Bedroom.moduleManager.getModules()){
 			if(!m.isEnabled())

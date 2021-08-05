@@ -19,7 +19,6 @@ import net.fabricmc.api.ModInitializer;
  */
 //TODO fix all 1.17.1 things... keybind even, render event... etc.
 //TODO fix/replace methods like onUpdate().
-//TODO restore all events & mixins.
 public class Main implements ModInitializer {
 
 	public static final String modid = "bh";

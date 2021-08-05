@@ -1,5 +1,8 @@
 package me.srgantmoomoo.bedroom.api.event.events;
 
-public class EventTick {
+import me.srgantmoomoo.bedroom.api.event.Event;
+
+public class EventTick extends Event<EventTick> {
 	
 }
+// posted in MixinClientWorld.

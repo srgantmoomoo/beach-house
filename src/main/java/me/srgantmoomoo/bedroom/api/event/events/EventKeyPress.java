@@ -2,6 +2,7 @@ package me.srgantmoomoo.bedroom.api.event.events;
 
 import me.srgantmoomoo.bedroom.api.event.Event;
 
+// posted in MixinKeyboard
 public class EventKeyPress extends Event<EventKeyPress> {
     private int key;
     private int scanCode;
