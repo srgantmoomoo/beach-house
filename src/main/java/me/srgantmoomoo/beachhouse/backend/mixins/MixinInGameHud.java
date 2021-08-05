@@ -22,7 +22,6 @@ public class MixinInGameHud {
 		EventDrawOverlay e = new EventDrawOverlay(matrixStack);
 		e.setType(Type.PRE);
 		ModuleManager.onEvent(e);
-
 		if (e.isCancelled()) info.cancel();
 	}
 

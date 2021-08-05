@@ -51,14 +51,13 @@ public class CommandManager {
         }
     }
 
-	@EventHandler
-	private final Listener<EventKeyPress> listener = new Listener<>(e -> {
-		System.out.println("please nigga");
+    // opens chat when prefix is clicked (called in MixinKeyboard).
+    public void openChatScreen() {
 		if(InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), prefix.charAt(0)))
-		if (prefix.length() == 1) {
-                MinecraftClient.getInstance().openScreen(new ChatScreen(""));
-            }
-	});
+			if (prefix.length() == 1) {
+				MinecraftClient.getInstance().openScreen(new ChatScreen(""));
+			}
+	}
 
 	public static void setCommandPrefix(String pre) {
 		prefix = pre;

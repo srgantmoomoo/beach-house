@@ -25,7 +25,7 @@ public class ModuleManager {
 	}
 
 	public static void onEvent(Event e) {
-		for(Module m :  Bedroom.moduleManager.getModules()){
+		for(Module m : Bedroom.moduleManager.getModules()){
 			if(!m.isEnabled())
 				continue;
 

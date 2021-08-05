@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
 import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.MinecraftClient;
@@ -16,34 +17,36 @@ public class PlayerInfo extends Module {
         super("player info", "playerinfo", "sucks ur pp for u.", 0, Category.BEACHHOUSE);
     }
 
-    @EventHandler
-    private final Listener<EventDrawOverlay> overlayListener = new Listener<>(e -> {
-        TextRenderer tr = MinecraftClient.getInstance().textRenderer;
-        int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
-        int screenHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
+    @Override
+    public void onEvent(Event e) {
+        if(e instanceof EventDrawOverlay) {
+            TextRenderer tr = MinecraftClient.getInstance().textRenderer;
+            int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
+            int screenHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
 
-        InGameHud.fill(e.matrix, screenWidth - 2, screenHeight - 2, screenWidth - 108, screenHeight - 46, 0x80000000); //0x60EB78DF
+            InGameHud.fill(((EventDrawOverlay) e).matrix, screenWidth - 2, screenHeight - 2, screenWidth - 108, screenHeight - 46, 0x80000000); //0x60EB78DF
 
-        tr.drawWithShadow(e.matrix, mc.player.getName(), screenWidth - tr.getWidth(mc.player.getName()) - 6, screenHeight - 14, 0xffffffff);
+            tr.drawWithShadow(((EventDrawOverlay) e).matrix, mc.player.getName(), screenWidth - tr.getWidth(mc.player.getName()) - 6, screenHeight - 14, 0xffffffff);
 
-        healthString(e.matrix, tr, screenWidth, screenHeight);
-        healthBar(e.matrix, screenWidth, screenHeight);
+            healthString(((EventDrawOverlay) e).matrix, tr, screenWidth, screenHeight);
+            healthBar(((EventDrawOverlay) e).matrix, screenWidth, screenHeight);
 
-        // mainhand and offhand items
-        int x = 1;
-        for(ItemStack itemStack : mc.player.getItemsHand()) {
-            mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 108 + x, screenHeight - 19);
-            x += 20;
-            //mc.getItemRenderer().renderGuiItemIcon(itemStack.split(1), 0 ,0);
+            // mainhand and offhand items
+            int x = 1;
+            for (ItemStack itemStack : mc.player.getItemsHand()) {
+                mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 108 + x, screenHeight - 19);
+                x += 20;
+                //mc.getItemRenderer().renderGuiItemIcon(itemStack.split(1), 0 ,0);
+            }
+
+            // armor items
+            int x1 = 1;
+            for (ItemStack itemStack : mc.player.getArmorItems()) {
+                mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 20 + x1, screenHeight - 44);
+                x1 += -18;
+            }
         }
-
-        // armor items
-        int x1 = 1;
-        for(ItemStack itemStack : mc.player.getArmorItems()) {
-            mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 20 + x1, screenHeight - 44);
-            x1 += -18;
-        }
-    });
+    }
 
     private final Identifier FULL_HEALTH = new Identifier(Main.modid, "full.png");
     private final Identifier MODERATE_HEALTH = new Identifier(Main.modid, "moderate.png");
