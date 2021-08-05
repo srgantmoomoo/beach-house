@@ -1,5 +1,7 @@
 package me.srgantmoomoo.beachhouse.module.modules.movement;
 
+import me.srgantmoomoo.bedroom.api.event.Event;
+import me.srgantmoomoo.bedroom.api.event.events.EventTick;
 import org.lwjgl.glfw.GLFW;
 
 import me.srgantmoomoo.bedroom.module.Module;
@@ -12,12 +14,16 @@ public class Sprint extends Module {
 	}
 	
 	@Override
-	public void onUpdate() {
-		MinecraftClient.getInstance().player.setSprinting(true);
+	public void onEvent(Event e) {
+		if(e instanceof EventTick) {
+			assert MinecraftClient.getInstance().player != null;
+			MinecraftClient.getInstance().player.setSprinting(true);
+		}
 	}
 	
 	@Override
 	public void onDisable() {
+		assert MinecraftClient.getInstance().player != null;
 		MinecraftClient.getInstance().player.setSprinting(false);
 	}
 }

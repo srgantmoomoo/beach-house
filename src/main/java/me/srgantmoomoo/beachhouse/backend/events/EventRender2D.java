@@ -1,9 +1,8 @@
 package me.srgantmoomoo.beachhouse.backend.events;
 
-import me.srgantmoomoo.bedroom.api.event.Event;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class EventRender2D extends Event {
+/*public class EventRender2D extends Event {
 
     private MatrixStack matrix;
 
@@ -15,4 +14,4 @@ public class EventRender2D extends Event {
         return this.matrix;
     }
 
-}
+}*/

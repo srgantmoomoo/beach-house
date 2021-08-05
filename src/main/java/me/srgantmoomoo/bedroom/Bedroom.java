@@ -4,14 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import me.srgantmoomoo.bedroom.api.config.SaveLoad;
-import me.srgantmoomoo.bedroom.api.event.EventProcessor;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import me.srgantmoomoo.bedroom.module.setting.SettingManager;
-import me.zero.alpine.bus.EventBus;
-import me.zero.alpine.bus.EventManager;
 
 /** 
  * @author SrgantMooMoo
@@ -28,11 +25,9 @@ public final class Bedroom {
 	public static ModuleManager moduleManager;
 	public static SettingManager settingManager;
 	public static SaveLoad saveLoad;
-	public static EventProcessor eventProcessor;
 	public static CommandManager commandManager;
 	
 	public static final Logger LOGGER = LogManager.getLogger("bedroom");
-	public static EventBus EVENTBUS = new EventManager();
 
 	public static final Object syncronize = new Object();
 	public static void printLog(String text) {
@@ -72,16 +67,10 @@ public final class Bedroom {
 		setVariables(id, name, version);
 		printLog("variables initialized.");
 
-		eventProcessor = new EventProcessor();
-		EVENTBUS.subscribe(eventProcessor);
-		printLog("event system initialized.");
-
 		commandManager = new CommandManager();
-		EVENTBUS.subscribe(commandManager);
 		printLog("command system initialized.");
 
 		moduleManager = new ModuleManager();
-		EVENTBUS.subscribe(moduleManager);
 		printLog("module system initialized.");
 
 		settingManager = new SettingManager();

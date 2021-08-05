@@ -3,13 +3,10 @@ package me.srgantmoomoo.beachhouse.module.modules.render;
 import com.google.common.collect.Maps;
 import me.srgantmoomoo.beachhouse.backend.ClientMathHelper;
 import me.srgantmoomoo.beachhouse.backend.Render2DHelper;
-import me.srgantmoomoo.beachhouse.backend.events.EventRender2D;
 import me.srgantmoomoo.bedroom.api.event.events.EventWorldRender;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
@@ -35,63 +32,5 @@ public class ESP extends Module {
     }
 
     MinecraftClient minecraft = MinecraftClient.getInstance();
-    private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
-    private HashMap<Entity, Vec3d> footPos = Maps.newHashMap();
-
-    @EventHandler
-    private final Listener<EventWorldRender> worldRenderListener = new Listener<>(e -> {
-        headPos.clear();
-        footPos.clear();
-        for (Entity entity : minecraft.world.getEntities()) {
-            headPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, entity.getHeight() + 0.2f, e.partialTicks, e.matrix));
-            footPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, -0.2f, e.partialTicks, e.matrix));
-        }
-    });
-
-    @EventHandler
-    private final Listener<EventRender2D> twoDListener = new Listener<>(e -> {
-
-        headPos.keySet().forEach(entity -> {
-            Vec3d top = headPos.get(entity);
-            Vec3d bottom = footPos.get(entity);
-            if (Render2DHelper.INSTANCE.isOnScreen(top) && Render2DHelper.INSTANCE.isOnScreen(bottom)) {
-                float x = (float) top.x;
-                float y = (float) top.y;
-                float x2 = (float) bottom.x;
-                float y2 = (float) bottom.y;
-                if (y > y2) {
-                    float saved = y;
-                    y = y2;
-                    y2 = saved;
-                }
-                if (x > x2) {
-                    float saved = x;
-                    x = x2;
-                    x2 = saved;
-                }
-                float dif = Math.abs(y2 - y);
-
-                if (entity instanceof ItemEntity)
-                    dif /= 2;
-                else
-                    dif /= ClientMathHelper.INSTANCE.clamp(entity.getWidth() * 5f, 1f, 10f);
-                drawBox(e.getMatrixStack(), x - dif, y + 1, x2 + dif, y2, entity);
-            }
-        });
-    });
-
-    public void drawBox(MatrixStack matrixStack, float x, float y, float x2, float y2, Entity entity) {
-        float f = 1f;
-
-        if(entity instanceof LivingEntity){
-            float percent = ((LivingEntity) entity).getHealth() / ((LivingEntity) entity).getMaxHealth();
-            int color = 0xffffffff;
-            float distance = y - y2;
-            float pos = percent * distance;
-            Render2DHelper.INSTANCE.fillAndBorder(matrixStack,x2 - 1, y2 + pos, x2 + 2, y2, 0xff000000, color, 1);
-        }
-        int color = 0xffffffff;
-        Render2DHelper.INSTANCE.fillAndBorder(matrixStack, x, y, x2, y2, 0xff000000, color, 1);
-    }
 
 }

@@ -7,9 +7,6 @@ import java.util.List;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listenable;
-import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.util.InputUtil;
@@ -21,13 +18,13 @@ import net.minecraft.text.Text;
  * @since 5/16/2021
  */
 
-public class CommandManager implements Listenable {
+public class CommandManager {
 
 	public static List<Command> commands;
 	public static String prefix = ",";
 
 	public CommandManager() {
-		Bedroom.INSTANCE.EVENTBUS.subscribe(listener);
+		//Bedroom.INSTANCE.EVENTBUS.subscribe(listener);
 		commands = new ArrayList<Command>();
 	}
 
@@ -54,14 +51,13 @@ public class CommandManager implements Listenable {
         }
     }
 
-	@EventHandler
-	private final Listener<EventKeyPress> listener = new Listener<>(e -> {
-		System.out.println("please nigga");
+    // opens chat when prefix is clicked (called in MixinKeyboard).
+    public void openChatScreen() {
 		if(InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), prefix.charAt(0)))
-		if (prefix.length() == 1) {
-                MinecraftClient.getInstance().openScreen(new ChatScreen(""));
-            }
-	});
+			if (prefix.length() == 1) {
+				MinecraftClient.getInstance().openScreen(new ChatScreen(""));
+			}
+	}
 
 	public static void setCommandPrefix(String pre) {
 		prefix = pre;

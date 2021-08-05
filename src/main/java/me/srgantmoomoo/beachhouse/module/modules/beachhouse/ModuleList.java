@@ -1,16 +1,12 @@
 package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
-import java.util.Comparator;
-
-import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
+import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 
@@ -27,38 +23,41 @@ public class ModuleList extends Module {
 	public void onEnable() {
 		//color.setValue(true, new JColor(255,255,255));    SETS RAINBOW TRUE ON ENABLE.
 	}
-	
-	@EventHandler
-	private final Listener<EventDrawOverlay> listener = new Listener<>(e -> {
-		TextRenderer tr = MinecraftClient.getInstance().textRenderer;
-		
-		int y = 1;
-		for (Module module : Bedroom.moduleManager.getModules()) {
-			if (module.isEnabled()) {				
-				int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
 
-				JColor colorTr = new JColor(255, 255, 255);
-				if(this.mode.is("dull")) {
-					if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(113, 229, 175);
-					if(module.getCategory().equals(Category.MOVEMENT)) colorTr = new JColor(113, 152, 229);
-					if(module.getCategory().equals(Category.RENDER)) colorTr = new JColor(229, 106, 113);
-					if(module.getCategory().equals(Category.PLAYER)) colorTr = new JColor(227, 229, 103);
-					if(module.getCategory().equals(Category.COMBAT)) colorTr = new JColor(122, 103, 229);
-					if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
-				}else if (this.mode.is("vibrant")) {
-					if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(255, 255, 255);
-					if(module.getCategory().equals(Category.MOVEMENT)) colorTr = new JColor(113, 152, 229);
-					if(module.getCategory().equals(Category.RENDER)) colorTr = new JColor(229, 106, 113);
-					if(module.getCategory().equals(Category.PLAYER)) colorTr = new JColor(227, 229, 103);
-					if(module.getCategory().equals(Category.COMBAT)) colorTr = new JColor(122, 103, 229);
-					if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
+	@Override
+	public void onEvent(Event e) {
+		if(e instanceof EventDrawOverlay) {
+			TextRenderer tr = MinecraftClient.getInstance().textRenderer;
+
+			int y = 1;
+			for (Module module : Bedroom.moduleManager.getModules()) {
+				if (module.isEnabled()) {
+					int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
+
+					JColor colorTr = new JColor(255, 255, 255);
+					if(this.mode.is("dull")) {
+						if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(113, 229, 175);
+						if(module.getCategory().equals(Category.MOVEMENT)) colorTr = new JColor(113, 152, 229);
+						if(module.getCategory().equals(Category.RENDER)) colorTr = new JColor(229, 106, 113);
+						if(module.getCategory().equals(Category.PLAYER)) colorTr = new JColor(227, 229, 103);
+						if(module.getCategory().equals(Category.COMBAT)) colorTr = new JColor(122, 103, 229);
+						if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
+					}else if (this.mode.is("vibrant")) {
+						if(module.getCategory().equals(Category.BEACHHOUSE)) colorTr = new JColor(255, 255, 255);
+						if(module.getCategory().equals(Category.MOVEMENT)) colorTr = new JColor(113, 152, 229);
+						if(module.getCategory().equals(Category.RENDER)) colorTr = new JColor(229, 106, 113);
+						if(module.getCategory().equals(Category.PLAYER)) colorTr = new JColor(227, 229, 103);
+						if(module.getCategory().equals(Category.COMBAT)) colorTr = new JColor(122, 103, 229);
+						if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
+					}
+
+					tr.drawWithShadow(((EventDrawOverlay) e).matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, colorTr.getRGB());
+					y += tr.fontHeight;
 				}
-				
-				tr.drawWithShadow(e.matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, colorTr.getRGB());
-				y += tr.fontHeight;
 			}
+			//TODO this causes crashes cause of onEvent();
+			//Bedroom.moduleManager.getModules().sort(Comparator.comparing(module -> -MinecraftClient.getInstance().textRenderer.getWidth(module.getName())));
 		}
-		Bedroom.moduleManager.getModules().sort(Comparator.comparing(module -> -MinecraftClient.getInstance().textRenderer.getWidth(module.getName())));
-	});
+	}
 
 }

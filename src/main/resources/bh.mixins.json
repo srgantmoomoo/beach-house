@@ -6,15 +6,14 @@
   "mixins": [
   ],
   "client": [
-	"MixinGameRenderer",
+    "MixinClientConnection",
+    "MixinClientWorld",
+    "MixinGameRenderer",
     "MixinInGameHud",
-	"MixinKeyboard",
-	"MixinClientConnection",
-	"MixinClientWorld",
+    "MixinKeyboard",
     "MixinMinecraftClient"
   ],
   "injectors": {
     "defaultRequire": 1
   }
 }
- 
