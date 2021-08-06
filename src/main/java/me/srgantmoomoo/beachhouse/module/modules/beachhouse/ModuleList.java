@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
+import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
@@ -26,7 +27,7 @@ public class ModuleList extends Module {
 
 	@Override
 	public void onEvent(Event e) {
-		if(e instanceof EventDrawOverlay) {
+		if(e instanceof DrawOverlayEvent) {
 			TextRenderer tr = MinecraftClient.getInstance().textRenderer;
 
 			int y = 1;
@@ -51,7 +52,7 @@ public class ModuleList extends Module {
 						if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
 					}
 
-					tr.drawWithShadow(((EventDrawOverlay) e).matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, colorTr.getRGB());
+					tr.drawWithShadow(((DrawOverlayEvent) e).matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, colorTr.getRGB());
 					y += tr.fontHeight;
 				}
 			}

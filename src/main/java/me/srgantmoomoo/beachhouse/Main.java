@@ -40,12 +40,12 @@ public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		bedroomInit();
-		beachhouseInit();
 	}
-	
+
 	public void bedroomInit() {
 		Bedroom.init(modid, name, version);
 	}
+		beachhouseInit();
 	
 	public void beachhouseInit() {
 		Font[] fonts;

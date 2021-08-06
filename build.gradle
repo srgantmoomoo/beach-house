@@ -19,6 +19,10 @@ repositories {
 		name = "lukflug"
 		url = "https://lukflug.github.io/maven"
 	}
+	maven {
+		name = "beachhouse"
+		url = "https://github.com/beach-house-development"
+	}
 }
 
 dependencies {
@@ -32,7 +36,7 @@ dependencies {
 
 	implementation "com.lukflug:panelstudio:0.1.8"
 	implementation "com.lukflug:panelstudio-mc16:0.1.8"
-	implementation "com.github.beach-house-development:bedroom:4-pre6"
+	implementation "com.github.beach-house-development:bedroom:4-pre28"
 }
 
 processResources {

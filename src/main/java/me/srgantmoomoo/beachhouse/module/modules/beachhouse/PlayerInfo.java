@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
 import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.module.Module;
@@ -16,20 +17,21 @@ public class PlayerInfo extends Module {
     public PlayerInfo() {
         super("player info", "playerinfo", "sucks ur pp for u.", 0, Category.BEACHHOUSE);
     }
+    public MinecraftClient mc = MinecraftClient.getInstance();
 
     @Override
     public void onEvent(Event e) {
-        if(e instanceof EventDrawOverlay) {
+        if(e instanceof DrawOverlayEvent) {
             TextRenderer tr = MinecraftClient.getInstance().textRenderer;
             int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
             int screenHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
 
-            InGameHud.fill(((EventDrawOverlay) e).matrix, screenWidth - 2, screenHeight - 2, screenWidth - 108, screenHeight - 46, 0x80000000); //0x60EB78DF
+            InGameHud.fill(((DrawOverlayEvent) e).matrix, screenWidth - 2, screenHeight - 2, screenWidth - 108, screenHeight - 46, 0x80000000); //0x60EB78DF
 
-            tr.drawWithShadow(((EventDrawOverlay) e).matrix, mc.player.getName(), screenWidth - tr.getWidth(mc.player.getName()) - 6, screenHeight - 14, 0xffffffff);
+            tr.drawWithShadow(((DrawOverlayEvent) e).matrix, mc.player.getName(), screenWidth - tr.getWidth(mc.player.getName()) - 6, screenHeight - 14, 0xffffffff);
 
-            healthString(((EventDrawOverlay) e).matrix, tr, screenWidth, screenHeight);
-            healthBar(((EventDrawOverlay) e).matrix, screenWidth, screenHeight);
+            healthString(((DrawOverlayEvent) e).matrix, tr, screenWidth, screenHeight);
+            healthBar(((DrawOverlayEvent) e).matrix, screenWidth, screenHeight);
 
             // mainhand and offhand items
             int x = 1;
