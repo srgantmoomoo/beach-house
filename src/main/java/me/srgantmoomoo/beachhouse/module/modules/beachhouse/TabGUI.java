@@ -5,7 +5,6 @@ import java.util.List;
 import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;

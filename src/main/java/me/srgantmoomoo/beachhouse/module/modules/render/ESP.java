@@ -1,20 +1,11 @@
 package me.srgantmoomoo.beachhouse.module.modules.render;
 
-import com.google.common.collect.Maps;
 import me.srgantmoomoo.beachhouse.backend.ClientMathHelper;
 import me.srgantmoomoo.beachhouse.backend.Render2DHelper;
-import me.srgantmoomoo.bedroom.api.event.events.EventWorldRender;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.Vec3d;
-
-import java.util.HashMap;
 
 public class ESP extends Module {
     public BooleanSetting playerEsp = new BooleanSetting("player", this, true);

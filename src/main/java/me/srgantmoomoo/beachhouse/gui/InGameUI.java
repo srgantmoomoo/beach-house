@@ -2,7 +2,6 @@ package me.srgantmoomoo.beachhouse.gui;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
-import me.srgantmoomoo.bedroom.api.event.events.EventDrawOverlay;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;

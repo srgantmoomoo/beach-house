@@ -6,12 +6,9 @@ import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
-import me.srgantmoomoo.bedroom.module.ModuleManager;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.*;
-import org.w3c.dom.Text;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SettingList extends Command {
