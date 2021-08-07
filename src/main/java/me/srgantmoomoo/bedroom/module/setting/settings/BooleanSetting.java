@@ -1,6 +1,5 @@
 package me.srgantmoomoo.bedroom.module.setting.settings;
 
-import com.lukflug.panelstudio.settings.Toggleable;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;

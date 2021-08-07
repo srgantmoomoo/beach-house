@@ -8,6 +8,8 @@ import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.*;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.LiteralText;
 
 import java.util.List;
 
@@ -29,6 +31,11 @@ public class SettingList extends Command {
         boolean moduleFound = false;
 
         List<Module> modules = Bedroom.moduleManager.getModules();
+
+        String nothing = TextFormatting.AQUA + " ";
+        String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
+        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(wuw));
+        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(nothing));
         for(Module m : modules) {
             String moduleIn = m.name;
             moduleIn = moduleIn.replaceAll("\\s", "");
@@ -53,13 +60,16 @@ public class SettingList extends Command {
                     }
 
                     if(setting instanceof KeybindSetting) {
-                        CommandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
+                        //CommandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");  notiing 0_0
                     }
 
                     moduleFound = true;
                 }
             }
         }
+        String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
+        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(nothing));
+        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(uwu));
 
         if(!moduleFound) {
             CommandManager.addChatMessage("module " + TextFormatting.RED + moduleName + TextFormatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");

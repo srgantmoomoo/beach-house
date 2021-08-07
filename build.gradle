@@ -15,14 +15,6 @@ repositories {
 		name = "jitpack.io"
 		url = "https://jitpack.io"
 	}
-	maven {
-		name = "lukflug"
-		url = "https://lukflug.github.io/maven"
-	}
-	maven {
-		name = "beachhouse"
-		url = "https://github.com/beach-house-development"
-	}
 }
 
 dependencies {
@@ -33,9 +25,6 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	// api
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	implementation "com.lukflug:panelstudio:0.1.8"
-	implementation "com.lukflug:panelstudio-mc16:0.1.8"
 }
 
 processResources {
