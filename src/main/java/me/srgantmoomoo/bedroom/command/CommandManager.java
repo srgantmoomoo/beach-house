@@ -19,7 +19,7 @@ import net.minecraft.text.Text;
 
 public class CommandManager {
 
-    public static List<Command> commands;
+    public List<Command> commands;
     public static String prefix = ",";
 
     public CommandManager() {
@@ -37,7 +37,7 @@ public class CommandManager {
         if(message.split(" ").length > 0) {
             boolean commandFound = false;
             String commandName = message.split(" ")[0];
-            for(Command c : commands) {
+            for(Command c : Bedroom.commandManager.commands) {
                 if(c.aliases.contains(commandName) || c.name.equalsIgnoreCase(commandName)) {
                     c.onCommand(Arrays.copyOfRange(message.split(" "), 1, message.split(" ").length), message);
                     commandFound = true;

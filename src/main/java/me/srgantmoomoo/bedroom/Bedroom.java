@@ -41,7 +41,7 @@ public final class Bedroom {
     }
 
     public static void addCommand(Command command) {
-        CommandManager.commands.add(command);
+        commandManager.commands.add(command);
     }
 
     public static String modid;
