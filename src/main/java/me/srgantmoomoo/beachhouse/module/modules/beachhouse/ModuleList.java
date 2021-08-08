@@ -1,5 +1,9 @@
 package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
@@ -18,6 +22,7 @@ public class ModuleList extends Module {
 		super("module list", "modulelist", "module list.", 0, Category.BEACHHOUSE);
 		this.addSettings(mode);
 	}
+	private ArrayList<Module> mods = new ArrayList<>();
 	    
 	@Override
 	public void onEnable() {
@@ -27,10 +32,13 @@ public class ModuleList extends Module {
 	@Override
 	public void onEvent(Event e) {
 		if(e instanceof DrawOverlayEvent) {
+			if(mods.isEmpty()) 
+				mods.addAll(Bedroom.moduleManager.getModules());
+			
 			TextRenderer tr = MinecraftClient.getInstance().textRenderer;
-
+			
 			int y = 1;
-			for (Module module : Bedroom.moduleManager.getModules()) {
+			for (Module module : mods) {
 				if (module.isEnabled()) {
 					int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
 
@@ -50,14 +58,12 @@ public class ModuleList extends Module {
 						if(module.getCategory().equals(Category.COMBAT)) colorTr = new JColor(122, 103, 229);
 						if(module.getCategory().equals(Category.MISCELLANEOUS)) colorTr = new JColor(235, 120, 223);
 					}
-
 					tr.drawWithShadow(((DrawOverlayEvent) e).matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, colorTr.getRGB());
 					y += tr.fontHeight;
 				}
 			}
 			//TODO this causes crashes cause of onEvent();
-			//Bedroom.moduleManager.getModules().sort(Comparator.comparing(module -> -MinecraftClient.getInstance().textRenderer.getWidth(module.getName())));
+			mods.sort(Comparator.comparing(module -> -MinecraftClient.getInstance().textRenderer.getWidth(module.getName())));
 		}
 	}
-
 }

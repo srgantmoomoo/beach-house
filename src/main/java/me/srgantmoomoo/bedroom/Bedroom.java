@@ -37,7 +37,7 @@ public final class Bedroom {
     }
 
     public static void addModule(Module module) {
-        ModuleManager.modules.add(module);
+        moduleManager.modules.add(module);
     }
 
     public static void addCommand(Command command) {

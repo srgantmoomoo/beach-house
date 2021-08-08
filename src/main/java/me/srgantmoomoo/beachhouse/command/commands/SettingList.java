@@ -1,6 +1,5 @@
 package me.srgantmoomoo.beachhouse.command.commands;
 
-import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
@@ -67,7 +66,7 @@ public class SettingList extends Command {
                 }
             }
         }
-        String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
+        String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
         MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(nothing));
         MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(uwu));
 

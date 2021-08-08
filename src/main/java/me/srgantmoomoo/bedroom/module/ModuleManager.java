@@ -18,14 +18,14 @@ import org.lwjgl.glfw.GLFW;
 
 public class ModuleManager {
 
-    public static ArrayList<Module> modules;
+    public ArrayList<Module> modules;
 
     public ModuleManager() {
         modules = new ArrayList<>();
     }
 
     public static void onEvent(Event e) {
-        for(Module m : Bedroom.moduleManager.getModules()){
+        for(Module m : Bedroom.moduleManager.modules) {
             if(!m.isEnabled())
                 continue;
 
@@ -39,7 +39,7 @@ public class ModuleManager {
     }
 
     public Module getModule(String name) {
-        for (Module m : ModuleManager.modules) {
+        for (Module m : Bedroom.moduleManager.modules) {
             if(m.getName().equalsIgnoreCase(name)) {
                 return m;
             }
@@ -48,7 +48,7 @@ public class ModuleManager {
     }
 
     public Module getModuleByID(String moduleID) {
-        for(Module m : ModuleManager.modules) {
+        for(Module m : Bedroom.moduleManager.modules) {
             if(m.getID().equalsIgnoreCase(moduleID)) {
                 return m;
             }
@@ -63,7 +63,7 @@ public class ModuleManager {
     public List<Module> getModulesByCategory(Category c) {
         List<Module> modules = new ArrayList<Module>();
 
-        for(Module m : ModuleManager.modules) {
+        for(Module m : Bedroom.moduleManager.modules) {
             if(m.getCategory() == c)
                 modules.add(m);
         } return modules;
