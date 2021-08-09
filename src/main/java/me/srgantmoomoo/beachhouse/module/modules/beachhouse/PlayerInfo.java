@@ -16,7 +16,6 @@ public class PlayerInfo extends Module {
     public PlayerInfo() {
         super("player info", "playerinfo", "sucks ur pp for u.", 0, Category.BEACHHOUSE);
     }
-    public MinecraftClient mc = MinecraftClient.getInstance();
 
     @Override
     public void onEvent(Event e) {
@@ -27,23 +26,23 @@ public class PlayerInfo extends Module {
 
             InGameHud.fill(((DrawOverlayEvent) e).matrix, screenWidth - 2, screenHeight - 2, screenWidth - 108, screenHeight - 46, 0x90000000); //0x60EB78DF
 
-            tr.drawWithShadow(((DrawOverlayEvent) e).matrix, mc.player.getName(), screenWidth - tr.getWidth(mc.player.getName()) - 6, screenHeight - 14, 0xffffffff);
+            tr.drawWithShadow(((DrawOverlayEvent) e).matrix, minecraft.player.getName(), screenWidth - tr.getWidth(minecraft.player.getName()) - 6, screenHeight - 14, 0xffffffff);
 
             healthString(((DrawOverlayEvent) e).matrix, tr, screenWidth, screenHeight);
             healthBar(((DrawOverlayEvent) e).matrix, screenWidth, screenHeight);
 
             // mainhand and offhand items
             int x = 1;
-            for (ItemStack itemStack : mc.player.getItemsHand()) {
-                mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 108 + x, screenHeight - 19);
+            for (ItemStack itemStack : minecraft.player.getItemsHand()) {
+            	minecraft.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 108 + x, screenHeight - 19);
                 x += 20;
                 //mc.getItemRenderer().renderGuiItemIcon(itemStack.split(1), 0 ,0);
             }
 
             // armor items
             int x1 = 1;
-            for (ItemStack itemStack : mc.player.getArmorItems()) {
-                mc.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 20 + x1, screenHeight - 44);
+            for (ItemStack itemStack : minecraft.player.getArmorItems()) {
+            	minecraft.getItemRenderer().renderGuiItemIcon(itemStack, screenWidth - 20 + x1, screenHeight - 44);
                 x1 += -18;
             }
         }
@@ -55,42 +54,42 @@ public class PlayerInfo extends Module {
     private final Identifier DANGER_HEALTH = new Identifier(Main.modid, "danger.png");
 
     public void healthBar(MatrixStack matrix, int scrWidth, int scrHeight) {
-        if(mc.player.getHealth() == 20) {
-            mc.getTextureManager().bindTexture(FULL_HEALTH);
+        if(minecraft.player.getHealth() == 20) {
+        	minecraft.getTextureManager().bindTexture(FULL_HEALTH);
             InGameHud.drawTexture(matrix, scrWidth - 101, scrHeight - 43, 24, 24, 0, 0, 24, 24, 24, 24);
         }
 
-        if(mc.player.getHealth() < 20 && mc.player.getHealth() > 10) {
-            mc.getTextureManager().bindTexture(MODERATE_HEALTH);
+        if(minecraft.player.getHealth() < 20 && minecraft.player.getHealth() > 10) {
+        	minecraft.getTextureManager().bindTexture(MODERATE_HEALTH);
             InGameHud.drawTexture(matrix, scrWidth - 101, scrHeight - 43, 24, 24, 0, 0, 24, 24, 24, 24);
         }
 
-        if(mc.player.getHealth() <= 10 && mc.player.getHealth() > 5) {
-            mc.getTextureManager().bindTexture(WARNING_HEALTH);
+        if(minecraft.player.getHealth() <= 10 && minecraft.player.getHealth() > 5) {
+        	minecraft.getTextureManager().bindTexture(WARNING_HEALTH);
             InGameHud.drawTexture(matrix, scrWidth - 101, scrHeight - 43, 24, 24, 0, 0, 24, 24, 24, 24);
         }
 
-        if(mc.player.getHealth() <= 5) {
-            mc.getTextureManager().bindTexture(DANGER_HEALTH);
+        if(minecraft.player.getHealth() <= 5) {
+        	minecraft.getTextureManager().bindTexture(DANGER_HEALTH);
             InGameHud.drawTexture(matrix, scrWidth - 101, scrHeight - 43, 24, 24, 0, 0, 24, 24, 24, 24);
         }
     }
 
     public void healthString(MatrixStack matrix, TextRenderer tr, int scrWidth, int scrHeight) {
-        String playerHealth = String.valueOf((int) mc.player.getHealth());
-        if(mc.player.getHealth() == 20) {
+        String playerHealth = String.valueOf((int) minecraft.player.getHealth());
+        if(minecraft.player.getHealth() == 20) {
             tr.drawWithShadow(matrix, playerHealth, scrWidth - tr.getWidth(playerHealth) - 82, scrHeight - 34, 0xff00ff00);
         }
 
-        if(mc.player.getHealth() < 20 && mc.player.getHealth() > 10) {
+        if(minecraft.player.getHealth() < 20 && minecraft.player.getHealth() > 10) {
             tr.drawWithShadow(matrix, playerHealth, scrWidth - tr.getWidth(playerHealth) - 82, scrHeight - 34, 0xffffffff);
         }
 
-        if(mc.player.getHealth() <= 10 && mc.player.getHealth() > 5) {
+        if(minecraft.player.getHealth() <= 10 && minecraft.player.getHealth() > 5) {
             tr.drawWithShadow(matrix, playerHealth, scrWidth - tr.getWidth(playerHealth) - 84, scrHeight - 34, 0xffffa500);
         }
 
-        if(mc.player.getHealth() <= 5) {
+        if(minecraft.player.getHealth() <= 5) {
             tr.drawWithShadow(matrix, playerHealth, scrWidth - tr.getWidth(playerHealth) - 84, scrHeight - 34, 0xffff0000);
         }
     }

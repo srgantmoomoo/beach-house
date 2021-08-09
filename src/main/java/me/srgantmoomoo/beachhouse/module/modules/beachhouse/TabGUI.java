@@ -8,7 +8,6 @@ import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import org.lwjgl.glfw.GLFW;
@@ -30,7 +29,7 @@ public class TabGUI extends Module {
 	@Override
 	public void onEvent(Event e) {
 		if(e instanceof DrawOverlayEvent) {
-			TextRenderer tr = MinecraftClient.getInstance().textRenderer;
+			TextRenderer tr = minecraft.textRenderer;
 
 			int backgroundColor = 0x90000000;
 			int tabColor = 0xff000000;
