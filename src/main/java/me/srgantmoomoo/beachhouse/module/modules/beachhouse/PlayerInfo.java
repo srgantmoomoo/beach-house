@@ -25,7 +25,7 @@ public class PlayerInfo extends Module {
             int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
             int screenHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
 
-            InGameHud.fill(((DrawOverlayEvent) e).matrix, screenWidth - 2, screenHeight - 2, screenWidth - 108, screenHeight - 46, 0x80000000); //0x60EB78DF
+            InGameHud.fill(((DrawOverlayEvent) e).matrix, screenWidth - 2, screenHeight - 2, screenWidth - 108, screenHeight - 46, 0x90000000); //0x60EB78DF
 
             tr.drawWithShadow(((DrawOverlayEvent) e).matrix, mc.player.getName(), screenWidth - tr.getWidth(mc.player.getName()) - 6, screenHeight - 14, 0xffffffff);
 

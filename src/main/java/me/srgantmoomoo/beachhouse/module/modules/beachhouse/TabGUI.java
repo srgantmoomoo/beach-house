@@ -32,7 +32,7 @@ public class TabGUI extends Module {
 		if(e instanceof DrawOverlayEvent) {
 			TextRenderer tr = MinecraftClient.getInstance().textRenderer;
 
-			int backgroundColor = 0x80000000;
+			int backgroundColor = 0x90000000;
 			int tabColor = 0xff000000;
 			int primaryColor = 0xffEB78DF;
 

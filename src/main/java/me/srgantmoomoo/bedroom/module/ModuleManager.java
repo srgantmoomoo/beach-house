@@ -59,6 +59,15 @@ public class ModuleManager {
     public ArrayList<Module> getModules() {
         return modules;
     }
+    
+    public List<Module> getEnabledModules() {
+    	List<Module> modules = new ArrayList<Module>();
+    	
+    	for(Module m : Bedroom.moduleManager.modules) {
+    		if(m.isEnabled())
+    			modules.add(m);
+    	} return modules;
+    }
 
     public List<Module> getModulesByCategory(Category c) {
         List<Module> modules = new ArrayList<Module>();
