@@ -1,8 +1,5 @@
 package me.srgantmoomoo.beachhouse.module.modules.player;
 
-import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.api.event.events.EventPacket;
-
 public class NoFall extends me.srgantmoomoo.bedroom.module.Module {
 	
 	public NoFall() {

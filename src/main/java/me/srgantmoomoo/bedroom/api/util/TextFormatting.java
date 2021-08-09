@@ -47,7 +47,8 @@ public enum TextFormatting
     /** The name of this color/formatting */
     private final String name;
     /** The formatting code that produces this format. */
-    private final char formattingCode;
+    @SuppressWarnings("unused")
+	private final char formattingCode;
     private final boolean fancyStyling;
     /**
      * The control string (section sign + formatting code) that can be inserted into client-side text to display

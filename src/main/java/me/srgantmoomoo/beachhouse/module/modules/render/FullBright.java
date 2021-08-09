@@ -26,7 +26,8 @@ public class FullBright extends Module {
         originalGamma = minecraft.options.gamma;
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public void onEvent(Event e) {
     	if(e instanceof EventTick) {
     		minecraft.options.gamma += (gamma - minecraft.options.gamma) * 0.1f;

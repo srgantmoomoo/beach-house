@@ -13,17 +13,18 @@ public class Sprint extends Module {
 		super("sprint", "sprint", "sprinttt.", GLFW.GLFW_KEY_G, Category.MOVEMENT);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void onEvent(Event e) {
 		if(e instanceof EventTick) {
 			assert MinecraftClient.getInstance().player != null;
-			MinecraftClient.getInstance().player.setSprinting(true);
+			minecraft.player.setSprinting(true);
 		}
 	}
 	
 	@Override
 	public void onDisable() {
 		assert MinecraftClient.getInstance().player != null;
-		MinecraftClient.getInstance().player.setSprinting(false);
+		minecraft.player.setSprinting(false);
 	}
 }

@@ -61,8 +61,8 @@ public class CommandManager {
     public static void setCommandPrefix(String pre) {
         prefix = pre;
 
-        if(Bedroom.INSTANCE.saveLoad != null) {
-            Bedroom.INSTANCE.saveLoad.save();
+        if(Bedroom.saveLoad != null) {
+            Bedroom.saveLoad.save();
         }
     }
 
@@ -71,8 +71,9 @@ public class CommandManager {
      * @param message
      */
 
-    public static void addChatMessage(String message) {
-        String messageWithPre = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.INSTANCE.modname + TextFormatting.GRAY + ": " + message;
+    @SuppressWarnings("resource")
+	public static void addChatMessage(String message) {
+        String messageWithPre = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + message;
         Text textComponentString = new LiteralText(messageWithPre);
         MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(textComponentString);
     }
@@ -83,9 +84,10 @@ public class CommandManager {
      * @param syntax
      */
 
-    public static void correctUsageMsg(String name, String syntax) {
+    @SuppressWarnings("resource")
+	public static void correctUsageMsg(String name, String syntax) {
         String usage = TextFormatting.RED + "correct usage of " + name + " command -> " + TextFormatting.GRAY + prefix + syntax;
-        String message = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.INSTANCE.modname + TextFormatting.GRAY + ": " + usage;
+        String message = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + usage;
 
         Text textComponentString = new LiteralText(message);
         MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(textComponentString);

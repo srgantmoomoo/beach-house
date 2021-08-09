@@ -26,6 +26,7 @@ public class TabGUI extends Module {
 	public boolean expanded;
 	public boolean Tab;
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void onEvent(Event e) {
 		if(e instanceof DrawOverlayEvent) {

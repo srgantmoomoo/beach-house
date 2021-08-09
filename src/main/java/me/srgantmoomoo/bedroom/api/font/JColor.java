@@ -2,8 +2,6 @@ package me.srgantmoomoo.bedroom.api.font;
 
 import java.awt.Color;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-
 public class JColor extends Color {
 
     private static final long serialVersionUID = 1L;

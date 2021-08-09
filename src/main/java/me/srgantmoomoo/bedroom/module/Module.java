@@ -134,7 +134,8 @@ public abstract class Module {
 
     }
 
-    public void onEvent(Event e) {
+    @SuppressWarnings("rawtypes")
+	public void onEvent(Event e) {
 
     }
 

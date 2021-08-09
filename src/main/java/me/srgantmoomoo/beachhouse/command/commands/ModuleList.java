@@ -3,12 +3,12 @@ package me.srgantmoomoo.beachhouse.command.commands;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 
 public class ModuleList extends Command {
@@ -29,8 +29,8 @@ public class ModuleList extends Command {
 
         String nothing = TextFormatting.AQUA + " ";
         String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(wuw));
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(nothing));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(wuw));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
 
         for(Module module : mods) {
 
@@ -66,9 +66,9 @@ public class ModuleList extends Command {
 
         }
 
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(nothing));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
         String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(uwu));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(uwu));
 
         mods.sort(Comparator.comparing(Module::getCategory));
     }

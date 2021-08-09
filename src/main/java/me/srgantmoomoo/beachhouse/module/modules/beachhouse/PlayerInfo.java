@@ -17,10 +17,11 @@ public class PlayerInfo extends Module {
         super("player info", "playerinfo", "sucks ur pp for u.", 0, Category.BEACHHOUSE);
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public void onEvent(Event e) {
         if(e instanceof DrawOverlayEvent) {
-            TextRenderer tr = MinecraftClient.getInstance().textRenderer;
+            TextRenderer tr = minecraft.textRenderer;
             int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
             int screenHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
 

@@ -24,7 +24,8 @@ public class ModuleManager {
         modules = new ArrayList<>();
     }
 
-    public static void onEvent(Event e) {
+    @SuppressWarnings("rawtypes")
+	public static void onEvent(Event e) {
         for(Module m : Bedroom.moduleManager.modules) {
             if(!m.isEnabled())
                 continue;

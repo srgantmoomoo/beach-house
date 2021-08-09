@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
 
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
+
 public enum ClientMathHelper {
     INSTANCE;
 
@@ -47,7 +49,7 @@ public enum ClientMathHelper {
     public double getFOV(Camera camera, float tickDelta, boolean changingFov) {
         double d = 70.0D;
         if (changingFov) {
-            d = MinecraftClient.getInstance().options.fov;
+            d = Reference.minecraft.options.fov;
             d *= (double)MathHelper.lerp(tickDelta, this.lastMovementFovMultiplier, this.movementFovMultiplier);
         }
 
@@ -58,7 +60,7 @@ public enum ClientMathHelper {
 
         CameraSubmersionType cameraSubmersionType = camera.getSubmersionType();
         if (cameraSubmersionType == CameraSubmersionType.LAVA || cameraSubmersionType == CameraSubmersionType.WATER) {
-            d *= (double)MathHelper.lerp(MinecraftClient.getInstance().options.fovEffectScale, 1.0F, 0.85714287F);
+            d *= (double)MathHelper.lerp(Reference.minecraft.options.fovEffectScale, 1.0F, 0.85714287F);
         }
 
         updateMovementFovMultiplier();

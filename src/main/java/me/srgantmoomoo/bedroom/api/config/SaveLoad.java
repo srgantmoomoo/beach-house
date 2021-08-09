@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
-import me.srgantmoomoo.bedroom.module.ModuleManager;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
@@ -27,7 +26,8 @@ public class SaveLoad {
     private File dir;
     private File dataFile;
 
-    public SaveLoad() {;
+    @SuppressWarnings("resource")
+	public SaveLoad() {;
         dir = new File(MinecraftClient.getInstance().runDirectory, Bedroom.modname);
         if(!dir.exists()) {
             dir.mkdir();

@@ -266,7 +266,7 @@ public enum Render2DHelper {
                 RenderSystem.enableDepthTest();
             }
 
-            ClientPlayerEntity clientPlayerEntity = MinecraftClient.getInstance().player;
+            ClientPlayerEntity clientPlayerEntity = Reference.minecraft.player;
             float f = clientPlayerEntity == null ? 0.0F : clientPlayerEntity.getItemCooldownManager().getCooldownProgress(stack.getItem(), MinecraftClient.getInstance().getTickDelta());
             if (f > 0.0F) {
                 RenderSystem.disableDepthTest();
@@ -369,8 +369,8 @@ public enum Render2DHelper {
     public Vec3d getEntityRenderPosition(Entity entity, double partial, MatrixStack matrixStack) {
         Matrix4f matrix = matrixStack.peek().getModel();
         double x = entity.prevX + ((entity.getX() - entity.prevX) * partial) - minecraft.getEntityRenderDispatcher().camera.getPos().x;
-        double y = entity.prevY + ((entity.getY() - entity.prevY) * partial) - MinecraftClient.getInstance().getEntityRenderDispatcher().camera.getPos().y;
-        double z = entity.prevZ + ((entity.getZ() - entity.prevZ) * partial) - MinecraftClient.getInstance().getEntityRenderDispatcher().camera.getPos().z;
+        double y = entity.prevY + ((entity.getY() - entity.prevY) * partial) - Reference.minecraft.getEntityRenderDispatcher().camera.getPos().y;
+        double z = entity.prevZ + ((entity.getZ() - entity.prevZ) * partial) - Reference.minecraft.getEntityRenderDispatcher().camera.getPos().z;
         Vector4f vector4f = new Vector4f((float)x, (float)y, (float)z, 1.f);
         vector4f.transform(matrix);
         return new Vec3d(vector4f.getX(), vector4f.getY(), vector4f.getZ());
