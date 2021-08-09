@@ -1,4 +1,4 @@
-package me.srgantmoomoo.beachhouse.backend;
+package me.srgantmoomoo.beachhouse.backend.util.math;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -18,8 +18,8 @@ import java.util.Random;
 public enum ClientMathHelper {
     INSTANCE;
 
-    public final MinecraftClient minecraft = MinecraftClient.getInstance();
     public final float PI = 3.14159f;
+
     private final Random rng = new Random();
 
     public float getAngleDifference(float alpha, float beta) {
@@ -47,7 +47,7 @@ public enum ClientMathHelper {
     public double getFOV(Camera camera, float tickDelta, boolean changingFov) {
         double d = 70.0D;
         if (changingFov) {
-            d = minecraft.options.fov;
+            d = MinecraftClient.getInstance().options.fov;
             d *= (double)MathHelper.lerp(tickDelta, this.lastMovementFovMultiplier, this.movementFovMultiplier);
         }
 
@@ -58,7 +58,7 @@ public enum ClientMathHelper {
 
         CameraSubmersionType cameraSubmersionType = camera.getSubmersionType();
         if (cameraSubmersionType == CameraSubmersionType.LAVA || cameraSubmersionType == CameraSubmersionType.WATER) {
-            d *= (double)MathHelper.lerp(minecraft.options.fovEffectScale, 1.0F, 0.85714287F);
+            d *= (double)MathHelper.lerp(MinecraftClient.getInstance().options.fovEffectScale, 1.0F, 0.85714287F);
         }
 
         updateMovementFovMultiplier();
@@ -67,8 +67,8 @@ public enum ClientMathHelper {
 
     private void updateMovementFovMultiplier() {
         float f = 1.0F;
-        if (minecraft.getCameraEntity() instanceof AbstractClientPlayerEntity) {
-            AbstractClientPlayerEntity abstractClientPlayerEntity = (AbstractClientPlayerEntity)minecraft.getCameraEntity();
+        if (MinecraftClient.getInstance().getCameraEntity() instanceof AbstractClientPlayerEntity) {
+            AbstractClientPlayerEntity abstractClientPlayerEntity = (AbstractClientPlayerEntity) MinecraftClient.getInstance().getCameraEntity();
             f = abstractClientPlayerEntity.getSpeed();
         }
 

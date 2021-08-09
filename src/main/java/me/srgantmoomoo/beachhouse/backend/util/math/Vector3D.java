@@ -1,10 +1,10 @@
-package me.srgantmoomoo.beachhouse.backend.util;
+package me.srgantmoomoo.beachhouse.backend.util.math;
 
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3d;
 
 public class Vector3D {
-
+    
     public double x,y,z;
 
     public Vector3D() {

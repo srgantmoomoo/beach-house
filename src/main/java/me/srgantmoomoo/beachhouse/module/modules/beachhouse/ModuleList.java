@@ -19,7 +19,7 @@ import net.minecraft.client.gui.hud.InGameHud;
 
 public class ModuleList extends Module {
 	public ColorSetting solidColor = new ColorSetting("color", this, new JColor(172, 172, 172, 255));
-	public ModeSetting style = new ModeSetting("style", this, "dull", "dull", "vibrant", "beach", "solid", "rainbow");
+	public ModeSetting style = new ModeSetting("style", this, "beach", "dull", "vibrant", "beach", "solid", "rainbow");
 	public BooleanSetting background = new BooleanSetting("background", this, false);
 	public BooleanSetting forgeHax = new BooleanSetting("forgeHax", this, false);
 	
@@ -29,7 +29,7 @@ public class ModuleList extends Module {
 	}
 	private ArrayList<Module> mods = new ArrayList<>();
 	private JColor moduleColor = new JColor(255, 255, 255);
-	public int maxLength = 1;
+	private int maxLength = 1;
 	public Module newModule;
 	
 	@SuppressWarnings({ "rawtypes" })
@@ -48,6 +48,7 @@ public class ModuleList extends Module {
 				
 				int outlineColor = 0xff000000;
 				if(style.is("vibrant")) outlineColor = 0xffffffff;
+				if(style.is("beach")) outlineColor = 0xffffffff;
 				if(style.is("rainbow")) outlineColor = rainbow(counterB[0] * 300);
 				
 				InGameHud.fill(((DrawOverlayEvent) e).matrix, screenWidth - maxLength - 6, 0, screenWidth, size * tr.fontHeight + 6, 0x90000000);

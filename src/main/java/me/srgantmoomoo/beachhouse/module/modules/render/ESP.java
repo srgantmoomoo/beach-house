@@ -1,27 +1,117 @@
 package me.srgantmoomoo.beachhouse.module.modules.render;
 
-import me.srgantmoomoo.beachhouse.backend.ClientMathHelper;
-import me.srgantmoomoo.beachhouse.backend.Render2DHelper;
+import java.util.HashMap;
+
+import com.google.common.collect.Maps;
+
+import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
+import me.srgantmoomoo.beachhouse.backend.events.Render3dEvent;
+import me.srgantmoomoo.beachhouse.backend.util.math.ClientMathHelper;
+import me.srgantmoomoo.beachhouse.backend.util.render.Render2DHelper;
+import me.srgantmoomoo.bedroom.api.event.Event;
+import me.srgantmoomoo.bedroom.api.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.Vec3d;
 
 public class ESP extends Module {
-    public BooleanSetting playerEsp = new BooleanSetting("player", this, true);
-    public BooleanSetting hostileMobEsp = new BooleanSetting("hostileMob", this, true);
-    public BooleanSetting passiveMobEsp = new BooleanSetting("passiveMob", this, true);
-    public BooleanSetting storageEsp = new BooleanSetting("storage ", this, true);
-    public BooleanSetting holeEsp = new BooleanSetting("hole", this, true);
-    public BooleanSetting voidEsp = new BooleanSetting("void", this, true);
-    public BooleanSetting crystalEsp = new BooleanSetting("crystal", this, true);
+	public BooleanSetting self = new BooleanSetting("self", this, false);
+    public BooleanSetting player = new BooleanSetting("player", this, true);
+    public BooleanSetting hostile = new BooleanSetting("hostile", this, true);
+    public BooleanSetting passive = new BooleanSetting("passive", this, true);
+    public BooleanSetting storage = new BooleanSetting("storage ", this, true);
+    public BooleanSetting item = new BooleanSetting("item", this, true);
+    public BooleanSetting hole = new BooleanSetting("hole", this, false);
+    public BooleanSetting voidEsp = new BooleanSetting("void", this, false);
+    public BooleanSetting crystal = new BooleanSetting("crystal", this, false);
+    public ColorSetting backColor = new ColorSetting("backColor", this, new JColor(0, 0, 0, 0));
+    public ColorSetting outlineColor = new ColorSetting("outlineColor", this, new JColor(0, 255, 0, 255));
     public NumberSetting range = new NumberSetting("range", this, 1, 0, 100, 1);
 
     public ESP() {
         super("esp", "esp", "allows you to see certain objects.", 0, Category.RENDER);
-        this.addSettings(playerEsp, hostileMobEsp, passiveMobEsp, storageEsp, holeEsp, voidEsp, crystalEsp, range);
+        this.addSettings(self, player, hostile, passive, storage, item, hole, voidEsp, crystal, backColor, outlineColor, range);
+    }
+    
+    private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
+    private HashMap<Entity, Vec3d> footPos = Maps.newHashMap();
+
+    @SuppressWarnings("rawtypes")
+	@Override
+    public void onEvent(Event e) {
+        if (e instanceof Render3dEvent) {
+            headPos.clear();
+            footPos.clear();
+            for (Entity entity : minecraft.world.getEntities()) {
+            	if (isValid(entity)) {
+                    headPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, entity.getHeight() + 0.2f, ((Render3dEvent) e).partialTicks, ((Render3dEvent) e).matrix));
+                    footPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, -0.2f, ((Render3dEvent) e).partialTicks, ((Render3dEvent) e).matrix));
+            	}
+            }
+        } else if (e instanceof DrawOverlayEvent) {
+        	
+        	headPos.keySet().forEach(entity -> {
+                Vec3d top = headPos.get(entity);
+                Vec3d bottom = footPos.get(entity);
+                if (Render2DHelper.INSTANCE.isOnScreen(top) && Render2DHelper.INSTANCE.isOnScreen(bottom)) {
+                    float x = (float) top.x;
+                    float y = (float) top.y;
+                    float x2 = (float) bottom.x;
+                    float y2 = (float) bottom.y;
+                    if(y > y2) {
+                        float saved = y;
+                        y = y2;
+                        y2 = saved;
+                    }
+                    if(x > x2) {
+                        float saved = x;
+                        x = x2;
+                        x2 = saved;
+                    }
+                    float dif = Math.abs(y2 - y);
+
+                    if(entity instanceof ItemEntity)
+                        dif /= 2;
+                    else
+                        dif /= ClientMathHelper.INSTANCE.clamp(entity.getWidth() * 5f, 1f, 10f);
+                    drawBox(((DrawOverlayEvent) e).matrix, x - dif, y + 1, x2 + dif, y2);
+                }
+            });
+        }
     }
 
-    MinecraftClient minecraft = MinecraftClient.getInstance();
+    public void drawBox(MatrixStack matrixStack, float x, float y, float x2, float y2) {
+        JColor back = backColor.getValue();
+        JColor outline = outlineColor.getValue();
+        Render2DHelper.INSTANCE.fillAndBorder(matrixStack, x, y, x2, y2, outline.getRGB(), back.getRGB(), 1f);
+    }
+    
+    public boolean isValid(Entity entity) {
+    	if (entity == null)
+            return false;
+        if (entity instanceof ItemEntity)
+            return item.isEnabled();
+        if (!(entity instanceof LivingEntity livingEntity))
+            return false;
+        if (livingEntity == minecraft.player)
+            return self.isEnabled();
+        if (livingEntity instanceof PlayerEntity)
+            return player.isEnabled();
+        if(livingEntity instanceof PassiveEntity)
+        	return passive.isEnabled();
+        if (livingEntity instanceof HostileEntity)
+            return hostile.isEnabled();
+        return false;
+    }
+   
 
 }

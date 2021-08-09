@@ -1,6 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
-import me.srgantmoomoo.beachhouse.backend.events.WorldRenderEvent;
+import me.srgantmoomoo.beachhouse.backend.events.Render3dEvent;
 import me.srgantmoomoo.bedroom.api.event.Type;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,9 +18,11 @@ public class MixinGameRenderer {
 
     @Inject(at = @At("HEAD"), method = "renderHand", cancellable = true)
     private void renderHand(MatrixStack matrixStack, Camera camera, float f, CallbackInfo info) {
-        WorldRenderEvent e = new WorldRenderEvent(f, matrixStack);
+    	
+        Render3dEvent e = new Render3dEvent(f, matrixStack);
         e.setType(Type.PRE);
         ModuleManager.onEvent(e);
         if (e.isCancelled()) info.cancel();
+        
     }
 }
