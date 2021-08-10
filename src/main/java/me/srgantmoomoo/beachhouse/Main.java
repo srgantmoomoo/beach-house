@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.command.Commands;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGUI;
 import me.srgantmoomoo.beachhouse.module.Modules;
@@ -12,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import me.srgantmoomoo.beachhouse.gui.InGameUI;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.option.KeyBinding;
 
 /**
  * @author SrgantMooMoo

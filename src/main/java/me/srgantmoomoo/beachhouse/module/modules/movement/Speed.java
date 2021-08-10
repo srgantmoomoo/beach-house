@@ -7,5 +7,7 @@ public class Speed extends Module {
 	public Speed() {
 		super("speed", "speed", "speeded.", 0, Category.MOVEMENT);
 	}
+	
+	
 
 }
