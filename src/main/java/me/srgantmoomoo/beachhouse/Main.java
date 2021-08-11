@@ -6,6 +6,7 @@ import java.awt.GraphicsEnvironment;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.command.Commands;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGUI;
+import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
 import me.srgantmoomoo.beachhouse.module.Modules;
 import me.srgantmoomoo.bedroom.Bedroom;
 import org.apache.logging.log4j.LogManager;
@@ -29,6 +30,7 @@ public class Main implements ModInitializer {
 
 	public static InGameUI inGameUI;
 	public static ClickGUI clickGUI;
+	public static HudManager hudManager;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
 
@@ -70,6 +72,8 @@ public class Main implements ModInitializer {
 
 		clickGUI = new ClickGUI();
 		printLog("clickGui initialized.");
+		
+		hudManager = new HudManager();
 
 		printLog(Main.name + " has finished initialization.");
 	}

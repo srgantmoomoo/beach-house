@@ -2,6 +2,8 @@ package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
 import me.srgantmoomoo.bedroom.api.event.Type;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +20,9 @@ public class MixinInGameHud {
 	@Inject(at = @At(value = "RETURN"), method = "render", cancellable = true)
 	public void render(MatrixStack matrixStack, float float_1, CallbackInfo info) {
 		Main.inGameUI.draw(matrixStack);
+		
+		if(!(Reference.minecraft.currentScreen instanceof HudScreen))
+			Main.hudManager.renderMods(matrixStack);
 
 		DrawOverlayEvent e = new DrawOverlayEvent(matrixStack);
 		e.setType(Type.PRE);

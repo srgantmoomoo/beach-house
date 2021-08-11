@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import io.netty.channel.Channel;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
-import me.srgantmoomoo.beachhouse.gui.InGameUI;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
@@ -25,10 +24,9 @@ public class MixinClientConnection {
         if (packet_1 instanceof ChatMessageC2SPacket) {
             ChatMessageC2SPacket pack = (ChatMessageC2SPacket) packet_1;
             if (pack.getChatMessage().startsWith(CommandManager.prefix)) {
-            	InGameUI.in = true;
                 CommandManager.callCommandReturn(pack.getChatMessage());
                 callback.cancel();
-            }else InGameUI.in = false;
+            }
         }
     }
 }

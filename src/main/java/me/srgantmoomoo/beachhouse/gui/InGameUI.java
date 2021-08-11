@@ -9,7 +9,6 @@ import net.minecraft.client.util.math.MatrixStack;
 
 public class InGameUI {
     private final MinecraftClient mc = MinecraftClient.getInstance();
-    public static boolean in = false;
     
     // this is called in MixinInGameHud
     public void draw(MatrixStack matrix) {

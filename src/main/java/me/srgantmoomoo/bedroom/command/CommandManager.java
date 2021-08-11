@@ -23,7 +23,6 @@ public class CommandManager {
     public static String prefix = ",";
 
     public CommandManager() {
-        //Bedroom.INSTANCE.EVENTBUS.subscribe(listener);
         commands = new ArrayList<Command>();
     }
 
