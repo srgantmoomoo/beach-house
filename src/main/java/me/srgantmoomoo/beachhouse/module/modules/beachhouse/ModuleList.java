@@ -39,7 +39,7 @@ public class ModuleList extends Module {
 			if(mods.isEmpty()) mods.addAll(Bedroom.moduleManager.getModules());
 			
 			int screenWidth = Reference.window.getScaledWidth();
-			TextRenderer tr = Reference.tr;
+			TextRenderer tr = Reference.textRenderer;
 			
 			// BACKGROUND
 			if(background.isEnabled()) {

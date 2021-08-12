@@ -14,7 +14,7 @@ public class Reference {
 	public static final ClientWorld world = minecraft.world;
 	public static final Window window = minecraft.getWindow();
 	
-	public static final TextRenderer tr = minecraft.textRenderer;
+	public static final TextRenderer textRenderer = minecraft.textRenderer;
 	
 	public static int screenWidth = window.getScaledWidth();
 	public static int screenHeight = window.getScaledHeight();

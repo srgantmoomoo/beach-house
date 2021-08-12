@@ -23,10 +23,10 @@ public class CustomChatScreen extends ChatScreen {
 		// background
     	InGameHud.fill(matrix, 2, screenHeight - 14, screenWidth - 2, screenHeight - 2, 0x90000000);
     	// text
-    	Reference.tr.drawWithShadow(matrix, chatField.getText(), 4, screenHeight - 12, 0xffffffff);
+    	Reference.textRenderer.drawWithShadow(matrix, chatField.getText(), 4, screenHeight - 12, 0xffffffff);
 		if(chatField.getText().startsWith(CommandManager.prefix)) {
 			if(chatField.getText().equals(","))
-		        Reference.tr.drawWithShadow(matrix, "beach house :)", 6, screenHeight - 12, 0xff999999);
+		        Reference.textRenderer.drawWithShadow(matrix, "beach house :)", 6, screenHeight - 12, 0xff999999);
 	    	final int[] counter = {1};
 	    	// left
 	    	InGameHud.fill(matrix, 1, screenHeight - 14, 2, screenHeight - 2, rainbow(counter[0] * 300));

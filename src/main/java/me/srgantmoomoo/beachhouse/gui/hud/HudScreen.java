@@ -10,7 +10,6 @@ public class HudScreen extends Screen {
 
 	public HudScreen() {
 		super(new LiteralText("bigppgui"));
-		
 	}
 	
 	// this renders the hud module when the screen is opened, it doesn't need any events since its already extending Screen.
