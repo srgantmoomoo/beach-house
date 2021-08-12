@@ -6,7 +6,7 @@ import java.util.List;
 
 import me.srgantmoomoo.beachhouse.gui.chat.CustomChatScreen;
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.util.TextFormatting;
+import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.LiteralText;
@@ -71,7 +71,7 @@ public class CommandManager {
      */
 
     @SuppressWarnings("resource")
-	public static void addChatMessage(String message) {
+    public static void addChatMessage(String message) {
         String messageWithPre = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + message;
         Text textComponentString = new LiteralText(messageWithPre);
         MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(textComponentString);
@@ -84,7 +84,7 @@ public class CommandManager {
      */
 
     @SuppressWarnings("resource")
-	public static void correctUsageMsg(String name, String syntax) {
+    public static void correctUsageMsg(String name, String syntax) {
         String usage = TextFormatting.RED + "correct usage of " + name + " command -> " + TextFormatting.GRAY + prefix + syntax;
         String message = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + usage;
 

@@ -19,7 +19,7 @@ public class MixinInGameHud {
 
 	@Inject(at = @At(value = "RETURN"), method = "render", cancellable = true)
 	public void render(MatrixStack matrixStack, float float_1, CallbackInfo info) {
-		
+
 		if(!(Reference.minecraft.currentScreen instanceof HudScreen))
 			Main.hudManager.renderMods(matrixStack);
 

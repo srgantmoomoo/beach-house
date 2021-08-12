@@ -4,7 +4,7 @@ import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.bedroom.command.Command;
 
 public class Clear extends Command {
-	
+
 	public Clear() {
 		super("clear", "clears the chat client side.", "clear", "c");
 	}

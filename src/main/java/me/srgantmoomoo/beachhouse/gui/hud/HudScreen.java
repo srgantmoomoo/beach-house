@@ -11,16 +11,16 @@ public class HudScreen extends Screen {
 	public HudScreen() {
 		super(new LiteralText("bigppgui"));
 	}
-	
+
 	// this renders the hud module when the screen is opened, it doesn't need any events since its already extending Screen.
 	@Override
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 		this.renderBackground(matrices);
-		
+
 		for(HudModule m : Main.hudManager.hudModules) {
 			m.drawDraggable(matrices, mouseX, mouseY);
 		}
-		
+
 		super.render(matrices, mouseX, mouseY, delta);
 	}
 }

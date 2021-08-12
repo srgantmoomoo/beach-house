@@ -18,11 +18,11 @@ public class MixinGameRenderer {
 
     @Inject(at = @At("HEAD"), method = "renderHand", cancellable = true)
     private void renderHand(MatrixStack matrixStack, Camera camera, float f, CallbackInfo info) {
-    	
+
         Render3dEvent e = new Render3dEvent(f, matrixStack);
         e.setType(Type.PRE);
         ModuleManager.onEvent(e);
         if (e.isCancelled()) info.cancel();
-        
+
     }
 }

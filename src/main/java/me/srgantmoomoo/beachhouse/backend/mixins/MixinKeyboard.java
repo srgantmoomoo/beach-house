@@ -22,9 +22,9 @@ public class MixinKeyboard {
     private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo info) {
         Bedroom.commandManager.openChatScreen();
         Bedroom.moduleManager.keyPress(key, scanCode);
-        
+
         if(InputUtil.isKeyPressed(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_RIGHT_SHIFT))
-        	Reference.minecraft.openScreen(new HudScreen());
+            Reference.minecraft.openScreen(new HudScreen());
 
         EventKeyPress e = new EventKeyPress(key, scanCode);
         e.setType(Type.PRE);

@@ -17,15 +17,15 @@ public class MixinClientWorld {
 
     @Inject(method = "tickEntities", at = @At("HEAD"), cancellable = true)
     public void tickEntities(CallbackInfo info) {
-    	if(FullBright.goingDown) {
+        if(FullBright.goingDown) {
             double dif = (FullBright.originalGamma - Reference.minecraft.options.gamma);
             Reference.minecraft.options.gamma += dif * 0.1f;
             if (Math.abs(dif) <= .05f) {
                 Reference.minecraft.options.gamma = FullBright.originalGamma;
                 FullBright.goingDown = false;
+            }
         }
-	}
-    	
+
         EventTick e = new EventTick();
         e.setType(Type.PRE);
         ModuleManager.onEvent(e);

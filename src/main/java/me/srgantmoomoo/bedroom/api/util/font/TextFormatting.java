@@ -1,4 +1,4 @@
-package me.srgantmoomoo.bedroom.api.util;
+package me.srgantmoomoo.bedroom.api.util.font;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

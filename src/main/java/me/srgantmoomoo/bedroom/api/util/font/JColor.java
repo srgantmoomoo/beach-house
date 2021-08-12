@@ -1,4 +1,4 @@
-package me.srgantmoomoo.bedroom.api.font;
+package me.srgantmoomoo.bedroom.api.util.font;
 
 import java.awt.Color;
 

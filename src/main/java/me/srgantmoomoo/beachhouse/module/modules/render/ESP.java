@@ -1,30 +1,14 @@
 package me.srgantmoomoo.beachhouse.module.modules.render;
 
-import java.util.HashMap;
-
-import com.google.common.collect.Maps;
-
-import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
-import me.srgantmoomoo.beachhouse.backend.events.Render3dEvent;
-import me.srgantmoomoo.beachhouse.backend.util.math.ClientMathHelper;
 //import me.srgantmoomoo.beachhouse.backend.util.render.Render2DHelper;
-import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.api.font.JColor;
+import me.srgantmoomoo.bedroom.api.util.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.Vec3d;
 
 public class ESP extends Module {
-	public BooleanSetting self = new BooleanSetting("self", this, false);
+    public BooleanSetting self = new BooleanSetting("self", this, false);
     public BooleanSetting player = new BooleanSetting("player", this, true);
     public BooleanSetting hostile = new BooleanSetting("hostile", this, true);
     public BooleanSetting passive = new BooleanSetting("passive", this, true);
@@ -112,6 +96,5 @@ public class ESP extends Module {
             return hostile.isEnabled();
         return false;
     }*/
-   
 
 }
