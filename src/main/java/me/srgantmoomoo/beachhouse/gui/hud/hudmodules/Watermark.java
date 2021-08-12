@@ -31,11 +31,11 @@ public class Watermark extends HudModule {
 
 	@Override
 	public int getWidth() {
-		return 38;
+		return 46;
 	}
 
 	@Override
 	public int getHeight() {
-		return 11;
+		return 10;
 	}
 }
