@@ -3,7 +3,6 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 import net.minecraft.client.util.math.MatrixStack;
 import me.srgantmoomoo.bedroom.module.Module;
 
-//TODO 
 public class HudModule extends Module {
 
 	public String name;
@@ -31,7 +30,7 @@ public class HudModule extends Module {
 		return 50;
 	}
 
-	// this is called in HudManager by renderMods(). //TODO UPDATEE
+	// this is called in HudManager by renderMods().
 	public void draw(MatrixStack matrix) {
 
 	}

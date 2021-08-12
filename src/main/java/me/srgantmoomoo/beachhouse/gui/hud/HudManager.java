@@ -16,7 +16,7 @@ public class HudManager {
 		hudModules.add(new Watermark());
 	}
 
-	//TODO UPDATE this is called in MixinInGameHud.
+	// this is called in MixinInGameHud.
 	public void renderMods(MatrixStack matrix) {
 		for(HudModule m : hudModules) {
 			if(m.isHudEnabled())

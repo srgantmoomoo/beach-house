@@ -5,7 +5,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 
-// this screen is opened in MixinKeyboard currently... //TODO make it a module keybind and changeable.
+// this screen is opened in MixinKeyboard. //TODO make it a module keybind and changeable.
 public class HudScreen extends Screen {
 
 	public HudScreen() {

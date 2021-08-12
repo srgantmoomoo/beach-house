@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 import org.jetbrains.annotations.Nullable;
 
-// stolen old src code from minecwaft 1.12.2, using forges mcp.
+// stolen old src code from minecwaft 1.12.2, using forges mcp. //TODO this aint even needed lol
 
 public enum TextFormatting
 {
