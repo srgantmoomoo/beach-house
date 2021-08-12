@@ -14,7 +14,7 @@ public class CustomChatScreen extends ChatScreen {
 		super(prefix);
 	}
 
-	//TODO when t is clicked first, this doesn't work. replace ChatScreen with CustomChatScreen.
+	//TODO when t is clicked first, this doesn't work. replace ChatScreen with CustomChatScreen. or... use accessTransformer for chatField.
 	@Override
 	public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks) {
 		int screenWidth = Reference.window.getScaledWidth();
