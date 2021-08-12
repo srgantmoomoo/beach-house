@@ -50,29 +50,29 @@ public class DraggableComponent {
         return width;
     }
 
-	public void draw(MatrixStack matrix, int mouseX, int mouseY) {
+    public void draw(MatrixStack matrix, int mouseX, int mouseY) {
         draggingFix(mouseX, mouseY);
         boolean mouseOverX = (mouseX >= this.getXPos() && mouseX <= this.getXPos() + this.getWidth());
         boolean mouseOverY = (mouseY >= this.getYPos() && mouseY <= this.getYPos() + this.getHeight());
         if(mouseOverX && mouseOverY) {
-        	if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !clickHeld) {
-        		clickHeld = true;
+            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !clickHeld) {
+                clickHeld = true;
                 if (!this.dragging) {
                     this.lastX = x - mouseX;
                     this.lastY = y - mouseY;
                     this.dragging = true;
                 }
             }
-        	
-        	if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !clickHeld) {
-        		clickHeld = true;
+
+            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !clickHeld) {
+                clickHeld = true;
                 for(HudModule m : Main.hudManager.hudModules) {
-                	if(!m.isHudEnabled()) m.hudEnabled = true;
-                	else m.hudEnabled = false;
+                    if(!m.isHudEnabled()) m.hudEnabled = true;
+                    else m.hudEnabled = false;
                 }
             }else if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
-    			clickHeld = false;
-    		}
+                clickHeld = false;
+            }
         }
     }
 
