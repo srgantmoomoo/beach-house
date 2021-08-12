@@ -3,7 +3,7 @@ This is a latest version fabric client for minecraft. This is a private client, 
 <br>
 
 # development
-beach house requires jdk11 in a dev enviorment. <br>
+beach house requires jdk 16 in a dev enviorment. <br>
 
 **gradle**
 - gradlew eclipse
