@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import me.srgantmoomoo.beachhouse.gui.CustomChatScreen;
+import me.srgantmoomoo.beachhouse.gui.chat.CustomChatScreen;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.TextFormatting;
 import net.minecraft.client.MinecraftClient;

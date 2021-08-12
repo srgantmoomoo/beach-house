@@ -1,4 +1,4 @@
-package me.srgantmoomoo.beachhouse.gui;
+package me.srgantmoomoo.beachhouse.gui.chat;
 
 import java.awt.Color;
 

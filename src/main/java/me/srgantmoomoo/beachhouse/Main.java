@@ -3,7 +3,6 @@ package me.srgantmoomoo.beachhouse;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
-import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.command.Commands;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGUI;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
@@ -12,9 +11,7 @@ import me.srgantmoomoo.bedroom.Bedroom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import me.srgantmoomoo.beachhouse.gui.InGameUI;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.option.KeyBinding;
 
 /**
  * @author SrgantMooMoo
@@ -28,7 +25,6 @@ public class Main implements ModInitializer {
 	public static final String nameCondensed = "beach-house";
 	public static final String version = "0.01";
 
-	public static InGameUI inGameUI;
 	public static ClickGUI clickGUI;
 	public static HudManager hudManager;
 
@@ -61,9 +57,6 @@ public class Main implements ModInitializer {
 			System.out.println();
 		}
 
-		inGameUI = new InGameUI();
-		printLog("ui initialized.");
-
 		Commands.init();
 		printLog("commands initialized.");
 
@@ -74,6 +67,7 @@ public class Main implements ModInitializer {
 		printLog("clickGui initialized.");
 		
 		hudManager = new HudManager();
+		printLog("hud editor initialized.");
 
 		printLog(Main.name + " has finished initialization.");
 	}

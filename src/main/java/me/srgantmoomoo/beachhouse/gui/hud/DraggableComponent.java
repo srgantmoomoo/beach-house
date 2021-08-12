@@ -2,9 +2,8 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 
 import org.lwjgl.glfw.GLFW;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
 
 public class DraggableComponent {
@@ -17,6 +16,7 @@ public class DraggableComponent {
     private int lastY;
 
     private boolean dragging;
+    private boolean clickHeld = false;
 
     //TODO merge with HudModule
     public DraggableComponent(int x, int y, int width, int height) {
@@ -26,19 +26,19 @@ public class DraggableComponent {
         this.y = y;
     }
 
-    public int getxPosition() {
+    public int getXPos() {
         return x;
     }
 
-    public int getyPosition() {
+    public int getYPos() {
         return y;
     }
 
-    public void setxPosition(int x) {
+    public void setXPos(int x) {
         this.x = x;
     }
 
-    public void setyPosition(int y) {
+    public void setYPos(int y) {
         this.y = y;
     }
 
@@ -50,18 +50,29 @@ public class DraggableComponent {
         return width;
     }
 
-    public void draw(MatrixStack matrix, int mouseX, int mouseY) {
+	public void draw(MatrixStack matrix, int mouseX, int mouseY) {
         draggingFix(mouseX, mouseY);
-        boolean mouseOverX = (mouseX >= this.getxPosition() && mouseX <= this.getxPosition()+this.getWidth());
-        boolean mouseOverY = (mouseY >= this.getyPosition() && mouseY <= this.getyPosition()+this.getHeight());
+        boolean mouseOverX = (mouseX >= this.getXPos() && mouseX <= this.getXPos() + this.getWidth());
+        boolean mouseOverY = (mouseY >= this.getYPos() && mouseY <= this.getYPos() + this.getHeight());
         if(mouseOverX && mouseOverY) {
-        	if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+        	if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !clickHeld) {
+        		clickHeld = true;
                 if (!this.dragging) {
                     this.lastX = x - mouseX;
                     this.lastY = y - mouseY;
                     this.dragging = true;
                 }
             }
+        	
+        	if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !clickHeld) {
+        		clickHeld = true;
+                for(HudModule m : Main.hudManager.hudModules) {
+                	if(!m.isHudEnabled()) m.hudEnabled = true;
+                	else m.hudEnabled = false;
+                }
+            }else if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
+    			clickHeld = false;
+    		}
         }
     }
 

@@ -105,11 +105,6 @@ public abstract class Module {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-		/*if(enabled) {
-			Bedroom.INSTANCE.EVENTBUS.subscribe(this);
-		}else {
-			Bedroom.INSTANCE.EVENTBUS.unsubscribe(this);
-		}*/
 
         if(Bedroom.saveLoad != null) {
             Bedroom.saveLoad.save();

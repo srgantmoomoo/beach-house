@@ -18,13 +18,10 @@ public class HudScreen extends Screen {
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 		this.renderBackground(matrices);
 		
-		for(HudModule m : Main.hudManager.hudMods) {
+		for(HudModule m : Main.hudManager.hudModules) {
 			m.drawDraggable(matrices, mouseX, mouseY);
 		}
 		
 		super.render(matrices, mouseX, mouseY, delta);
 	}
-	
-	
-
 }
