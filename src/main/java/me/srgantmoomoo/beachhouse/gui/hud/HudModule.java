@@ -23,7 +23,6 @@ public class HudModule extends Module {
 
 	public int getWidth() {
 		return 20;
-
 	}
 
 	public int getHeight() {
