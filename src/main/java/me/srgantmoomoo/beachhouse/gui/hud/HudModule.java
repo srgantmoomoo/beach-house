@@ -3,7 +3,7 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 import net.minecraft.client.util.math.MatrixStack;
 import me.srgantmoomoo.bedroom.module.Module;
 
-//TODO extends this class from module.
+//TODO 
 public class HudModule extends Module {
 	
 	public String name;

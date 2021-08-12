@@ -16,12 +16,12 @@ import org.lwjgl.opengl.GL11;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.backend.util.math.Matrix4x4;
+//import me.srgantmoomoo.beachhouse.backend.util.math.Matrix4x4;
 import me.srgantmoomoo.beachhouse.backend.util.math.Vector3D;
 
 import java.awt.*;
 
-public enum Render2DHelper {
+/*public enum Render2DHelper {
     INSTANCE;
     protected Identifier cog = new Identifier("jex", "gui/click/cog.png");
 
@@ -412,4 +412,4 @@ public enum Render2DHelper {
         vector4f.transform(matrix);
         return new Vec3d(vector4f.getX(), vector4f.getY(), vector4f.getZ());
     }
-}
+}*/

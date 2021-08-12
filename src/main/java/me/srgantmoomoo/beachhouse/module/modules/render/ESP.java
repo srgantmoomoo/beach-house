@@ -7,7 +7,7 @@ import com.google.common.collect.Maps;
 import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
 import me.srgantmoomoo.beachhouse.backend.events.Render3dEvent;
 import me.srgantmoomoo.beachhouse.backend.util.math.ClientMathHelper;
-import me.srgantmoomoo.beachhouse.backend.util.render.Render2DHelper;
+//import me.srgantmoomoo.beachhouse.backend.util.render.Render2DHelper;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
@@ -42,7 +42,7 @@ public class ESP extends Module {
         this.addSettings(self, player, hostile, passive, storage, item, hole, voidEsp, crystal, backColor, outlineColor, range);
     }
     
-    private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
+    /*private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
     private HashMap<Entity, Vec3d> footPos = Maps.newHashMap();
 
     @SuppressWarnings("rawtypes")
@@ -111,7 +111,7 @@ public class ESP extends Module {
         if (livingEntity instanceof HostileEntity)
             return hostile.isEnabled();
         return false;
-    }
+    }*/
    
 
 }
