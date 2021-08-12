@@ -36,7 +36,7 @@ public class HudModule extends Module {
 
 	// this is called in HudScreen. 
 	public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
-		drag.draw(matrix, mouseX, mouseY);
+		drag.draw(matrix, mouseX, mouseY, this);
 	}
 
 	public boolean isHudEnabled() {
