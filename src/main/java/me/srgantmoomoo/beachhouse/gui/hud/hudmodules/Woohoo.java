@@ -4,22 +4,26 @@ import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class TestModule extends HudModule {
+public class Woohoo extends HudModule {
 
-	public TestModule() {
-		super("test module", "testmodule", "is a test", 30, 3, Category.BEACHHOUSE);
+	public Woohoo() {
+		super("woohoo", "woohoo", "is a test", 30, 3, Category.BEACHHOUSE);
+	}
+
+	private void drawFinale(MatrixStack matrix) {
+		minecraft.textRenderer.drawWithShadow(matrix, "woohoo", getX(), getY(), 0xffffffff);
 	}
 
 	@Override
 	public void draw(MatrixStack matrix) {
-		minecraft.textRenderer.drawWithShadow(matrix, "woohoo", getX(), getY(), 0xffffffff);
+		drawFinale(matrix);
 		super.draw(matrix);
 	}
 
 	@Override
 	public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
-		Main.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), hudEnabled ? 0xffffffff : 0xffff0000);
-		minecraft.textRenderer.drawWithShadow(matrix, "woohoo", getX(), getY(), 0xffffffff);
+		Main.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), hudEnabled ? 0xff00ff00 : 0xffffffff);
+		drawFinale(matrix);
 
 		super.drawDraggable(matrix, mouseX, mouseY);
 	}

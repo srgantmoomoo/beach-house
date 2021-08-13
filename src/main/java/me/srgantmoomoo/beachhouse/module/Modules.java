@@ -1,7 +1,6 @@
 package me.srgantmoomoo.beachhouse.module;
 
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ModuleList;
-import me.srgantmoomoo.beachhouse.module.modules.beachhouse.PlayerInfo;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.TabGUI;
 import me.srgantmoomoo.beachhouse.module.modules.combat.AutoCrystal;
 import me.srgantmoomoo.beachhouse.module.modules.combat.Criticals;
@@ -20,7 +19,6 @@ import me.srgantmoomoo.bedroom.Bedroom;
 public class Modules {
     public static void init() {
         Bedroom.addModule(new ModuleList());
-        Bedroom.addModule(new PlayerInfo());
         Bedroom.addModule(new TabGUI());
 
         Bedroom.addModule(new AutoCrystal());

@@ -12,19 +12,22 @@ public class Watermark extends HudModule {
 		hudEnabled = true;
 	}
 
-	@Override
-	public void draw(MatrixStack matrix) {
+	private void drawFinale(MatrixStack matrix) {
 		minecraft.textRenderer.drawWithShadow(matrix, TextFormatting.LIGHT_PURPLE + "{" + TextFormatting.GOLD + "bh" + TextFormatting.LIGHT_PURPLE + "}" +
 				TextFormatting.AQUA + " " + Main.version, getX(), getY(), 0xffffffff);
+	}
+
+	@Override
+	public void draw(MatrixStack matrix) {
+		drawFinale(matrix);
 
 		super.draw(matrix);
 	}
 
 	@Override
 	public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
-		Main.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), hudEnabled ? 0xffffffff : 0xffff0000);
-		minecraft.textRenderer.drawWithShadow(matrix, TextFormatting.LIGHT_PURPLE + "{" + TextFormatting.GOLD + "bh" + TextFormatting.LIGHT_PURPLE + "}" +
-				TextFormatting.AQUA + " " + Main.version, getX(), getY(), 0xffffffff);
+		Main.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), hudEnabled ? 0xff00ff00 : 0xffffffff);
+		drawFinale(matrix);
 
 		super.drawDraggable(matrix, mouseX, mouseY);
 	}
