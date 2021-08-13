@@ -1,20 +1,11 @@
 package me.srgantmoomoo.beachhouse.module;
 
-import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ModuleList;
-import me.srgantmoomoo.beachhouse.module.modules.beachhouse.TabGUI;
-import me.srgantmoomoo.beachhouse.module.modules.combat.AutoCrystal;
-import me.srgantmoomoo.beachhouse.module.modules.combat.Criticals;
-import me.srgantmoomoo.beachhouse.module.modules.combat.SwingAura;
-import me.srgantmoomoo.beachhouse.module.modules.miscellaneous.AntiNick;
-import me.srgantmoomoo.beachhouse.module.modules.movement.Speed;
-import me.srgantmoomoo.beachhouse.module.modules.movement.Sprint;
-import me.srgantmoomoo.beachhouse.module.modules.movement.Strafe;
-import me.srgantmoomoo.beachhouse.module.modules.player.Jesus;
-import me.srgantmoomoo.beachhouse.module.modules.player.NoFall;
-import me.srgantmoomoo.beachhouse.module.modules.render.ESP;
-import me.srgantmoomoo.beachhouse.module.modules.render.FullBright;
-import me.srgantmoomoo.beachhouse.module.modules.render.RainbowEnchant;
-import me.srgantmoomoo.beachhouse.module.modules.render.Xray;
+import me.srgantmoomoo.beachhouse.module.modules.beachhouse.*;
+import me.srgantmoomoo.beachhouse.module.modules.combat.*;
+import me.srgantmoomoo.beachhouse.module.modules.miscellaneous.*;
+import me.srgantmoomoo.beachhouse.module.modules.movement.*;
+import me.srgantmoomoo.beachhouse.module.modules.player.*;
+import me.srgantmoomoo.beachhouse.module.modules.render.*;
 import me.srgantmoomoo.bedroom.Bedroom;
 
 public class Modules {

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import me.srgantmoomoo.beachhouse.gui.chat.CustomChatScreen;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -53,7 +53,7 @@ public class CommandManager {
     public void openChatScreen() {
         if(InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), prefix.charAt(0)))
             if (prefix.length() == 1) {
-                MinecraftClient.getInstance().openScreen(new CustomChatScreen(""));
+                MinecraftClient.getInstance().openScreen(new ChatScreen(""));
             }
     }
 

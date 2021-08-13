@@ -12,7 +12,8 @@
     "MixinInGameHud",
     "MixinKeyboard",
     "MixinMinecraftClient",
-    "MixinShader"
+    "MixinShader",
+    "AccessorChatScreen"
   ],
   "injectors": {
     "defaultRequire": 1

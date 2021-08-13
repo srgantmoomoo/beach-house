@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse.backend.mixins;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.gui.chat.ChatScreenRenderer;
 import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
 import me.srgantmoomoo.bedroom.api.event.Type;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
@@ -22,6 +23,8 @@ public class MixinInGameHud {
 
 		if(!(Reference.minecraft.currentScreen instanceof HudScreen))
 			Main.hudManager.renderMods(matrixStack);
+
+		ChatScreenRenderer.renderChatBox(matrixStack);
 
 		DrawOverlayEvent e = new DrawOverlayEvent(matrixStack);
 		e.setType(Type.PRE);
