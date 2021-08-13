@@ -1,11 +1,27 @@
 package me.srgantmoomoo.beachhouse.module.modules.render;
 
 //import me.srgantmoomoo.beachhouse.backend.util.render.Render2DHelper;
+import com.google.common.collect.Maps;
+import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
+import me.srgantmoomoo.beachhouse.backend.events.Render3dEvent;
+import me.srgantmoomoo.beachhouse.backend.util.math.ClientMathHelper;
+import me.srgantmoomoo.beachhouse.backend.util.render.Render2DHelper;
+import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.util.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.Vec3d;
+
+import java.util.HashMap;
 
 public class ESP extends Module {
     public BooleanSetting self = new BooleanSetting("self", this, false);
@@ -26,7 +42,7 @@ public class ESP extends Module {
         this.addSettings(self, player, hostile, passive, storage, item, hole, voidEsp, crystal, backColor, outlineColor, range);
     }
     
-    /*private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
+    private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
     private HashMap<Entity, Vec3d> footPos = Maps.newHashMap();
 
     @SuppressWarnings("rawtypes")
@@ -95,6 +111,6 @@ public class ESP extends Module {
         if (livingEntity instanceof HostileEntity)
             return hostile.isEnabled();
         return false;
-    }*/
+    }
 
 }

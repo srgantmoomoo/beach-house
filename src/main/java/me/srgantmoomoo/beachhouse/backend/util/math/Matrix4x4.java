@@ -5,7 +5,7 @@ import org.lwjgl.system.MemoryStack;
 
 import java.nio.FloatBuffer;
 
-/*public class Matrix4x4 {
+public class Matrix4x4 {
 
     public float a00;
     public float a01;
@@ -101,4 +101,4 @@ import java.nio.FloatBuffer;
         float nm33 = Math.fma(a03, matrix4x4.a30, Math.fma(a13, matrix4x4.a31, Math.fma(a23, matrix4x4.a32, a33 * matrix4x4.a33)));
         return new Matrix4x4(new float[]{nm00, nm01, nm02, nm03, nm10, nm11, nm12, nm13, nm20, nm21, nm22, nm23, nm30, nm31, nm32, nm33});
     }
-}*/
+}

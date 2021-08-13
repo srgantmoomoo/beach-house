@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.util.render;
 
+import me.srgantmoomoo.beachhouse.backend.util.math.Matrix4x4;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
@@ -21,7 +22,7 @@ import me.srgantmoomoo.beachhouse.backend.util.math.Vector3D;
 
 import java.awt.*;
 
-/*public enum Render2DHelper {
+public enum Render2DHelper {
     INSTANCE;
     protected Identifier cog = new Identifier("jex", "gui/click/cog.png");
 
@@ -412,4 +413,4 @@ import java.awt.*;
         vector4f.transform(matrix);
         return new Vec3d(vector4f.getX(), vector4f.getY(), vector4f.getZ());
     }
-}*/
+}

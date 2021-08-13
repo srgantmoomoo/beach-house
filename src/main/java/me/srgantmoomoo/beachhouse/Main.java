@@ -8,6 +8,7 @@ import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGUI;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
 import me.srgantmoomoo.beachhouse.module.Modules;
 import me.srgantmoomoo.bedroom.Bedroom;
+import net.minecraft.client.gui.screen.ChatScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,6 +31,7 @@ public class Main implements ModInitializer {
 
 	public static ClickGUI clickGUI;
 	public static HudManager hudManager;
+	public static ChatScreen chatScreen;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
 
@@ -67,6 +69,8 @@ public class Main implements ModInitializer {
 		
 		hudManager = new HudManager();
 		printLog("hud editor initialized.");
+
+		chatScreen = new ChatScreen("chat_screen.title");
 
 		printLog(Main.name + " has finished initialization.");
 	}

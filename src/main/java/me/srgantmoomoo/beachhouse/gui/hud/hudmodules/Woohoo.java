@@ -1,7 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.hud.hudmodules;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.backend.mixins.AccessorChatScreen;
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.util.math.MatrixStack;
