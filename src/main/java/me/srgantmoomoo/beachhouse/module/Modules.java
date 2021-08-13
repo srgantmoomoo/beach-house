@@ -13,6 +13,7 @@ import me.srgantmoomoo.beachhouse.module.modules.player.Jesus;
 import me.srgantmoomoo.beachhouse.module.modules.player.NoFall;
 import me.srgantmoomoo.beachhouse.module.modules.render.ESP;
 import me.srgantmoomoo.beachhouse.module.modules.render.FullBright;
+import me.srgantmoomoo.beachhouse.module.modules.render.RainbowEnchant;
 import me.srgantmoomoo.beachhouse.module.modules.render.Xray;
 import me.srgantmoomoo.bedroom.Bedroom;
 
@@ -36,6 +37,7 @@ public class Modules {
 
         Bedroom.addModule(new ESP());
         Bedroom.addModule(new FullBright());
+        Bedroom.addModule(new RainbowEnchant());
         Bedroom.addModule(new Xray());
         // crystalesp
         // entityesp - player, mobs, items.
