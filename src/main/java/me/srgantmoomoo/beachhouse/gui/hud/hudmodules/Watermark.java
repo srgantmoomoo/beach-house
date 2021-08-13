@@ -13,8 +13,12 @@ public class Watermark extends HudModule {
 	}
 
 	private void drawFinale(MatrixStack matrix) {
-		minecraft.textRenderer.drawWithShadow(matrix, TextFormatting.LIGHT_PURPLE + "{" + TextFormatting.GOLD + "bh" + TextFormatting.LIGHT_PURPLE + "}" +
-				TextFormatting.AQUA + " " + Main.version, getX(), getY(), 0xffffffff);
+		//minecraft.textRenderer.drawWithShadow(matrix, TextFormatting.LIGHT_PURPLE + "{" + TextFormatting.GOLD + "bh" + TextFormatting.LIGHT_PURPLE + "}" +
+				//TextFormatting.AQUA + " " + Main.version, getX(), getY(), 0xffffffff);
+
+		minecraft.textRenderer.drawWithShadow(matrix, "{                 }", getX(), getY(), 0xfff868fb);
+		minecraft.textRenderer.drawWithShadow(matrix, "beach house", getX() + 6, getY(), 0xffe6ab17);
+		minecraft.textRenderer.drawWithShadow(matrix, Main.version, getX() + 80, getY(), 0xff11c1e8);
 	}
 
 	@Override
@@ -34,7 +38,7 @@ public class Watermark extends HudModule {
 
 	@Override
 	public int getWidth() {
-		return 46;
+		return 101;
 	}
 
 	@Override

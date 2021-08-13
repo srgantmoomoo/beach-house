@@ -7,7 +7,7 @@ import net.minecraft.client.util.math.MatrixStack;
 public class Woohoo extends HudModule {
 
 	public Woohoo() {
-		super("woohoo", "woohoo", "is a test", 30, 3, Category.BEACHHOUSE);
+		super("woohoo", "woohoo", "is a test", 104, 2, Category.BEACHHOUSE);
 	}
 
 	private void drawFinale(MatrixStack matrix) {
@@ -35,7 +35,7 @@ public class Woohoo extends HudModule {
 
 	@Override
 	public int getHeight() {
-		return 11;
+		return 10;
 	}
 
 }

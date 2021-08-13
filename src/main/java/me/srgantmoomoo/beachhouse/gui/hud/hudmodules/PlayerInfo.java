@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 public class PlayerInfo extends HudModule {
 
     public PlayerInfo() {
-        super("player info", "playerinfo", "sucks ur pp for u.", 20, 20, Category.BEACHHOUSE);
+        super("player info", "playerinfo", "sucks ur pp for u.", 2, 80, Category.BEACHHOUSE);
     }
 
     private final Identifier FULL_HEALTH = new Identifier(Main.modid, "full.png");
