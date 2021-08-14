@@ -1,6 +1,5 @@
 package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
-import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventTick;
