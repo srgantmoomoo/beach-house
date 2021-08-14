@@ -2,8 +2,8 @@ package me.srgantmoomoo.beachhouse.module.modules.render;
 
 //import me.srgantmoomoo.beachhouse.backend.util.render.Render2DHelper;
 import com.google.common.collect.Maps;
-import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
-import me.srgantmoomoo.beachhouse.backend.events.Render3dEvent;
+import me.srgantmoomoo.beachhouse.backend.events.EventRender2d;
+import me.srgantmoomoo.beachhouse.backend.events.EventRender3d;
 import me.srgantmoomoo.beachhouse.backend.util.math.ClientMathHelper;
 import me.srgantmoomoo.beachhouse.backend.util.render.Render2DHelper;
 import me.srgantmoomoo.bedroom.api.event.Event;
@@ -48,16 +48,16 @@ public class ESP extends Module {
     @SuppressWarnings("rawtypes")
 	@Override
     public void onEvent(Event e) {
-        if (e instanceof Render3dEvent) {
+        if (e instanceof EventRender3d) {
             headPos.clear();
             footPos.clear();
             for (Entity entity : minecraft.world.getEntities()) {
             	if (isValid(entity)) {
-                    headPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, entity.getHeight() + 0.2f, ((Render3dEvent) e).partialTicks, ((Render3dEvent) e).matrix));
-                    footPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, -0.2f, ((Render3dEvent) e).partialTicks, ((Render3dEvent) e).matrix));
+                    headPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, entity.getHeight() + 0.2f, ((EventRender3d) e).partialTicks, ((EventRender3d) e).matrix));
+                    footPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, -0.2f, ((EventRender3d) e).partialTicks, ((EventRender3d) e).matrix));
             	}
             }
-        } else if (e instanceof DrawOverlayEvent) {
+        } else if (e instanceof EventRender2d) {
         	
         	headPos.keySet().forEach(entity -> {
                 Vec3d top = headPos.get(entity);
@@ -83,7 +83,7 @@ public class ESP extends Module {
                         dif /= 2;
                     else
                         dif /= ClientMathHelper.INSTANCE.clamp(entity.getWidth() * 5f, 1f, 10f);
-                    drawBox(((DrawOverlayEvent) e).matrix, x - dif, y + 1, x2 + dif, y2);
+                    drawBox(((EventRender2d) e).matrix, x - dif, y + 1, x2 + dif, y2);
                 }
             });
         }

@@ -1,7 +1,7 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.backend.events.EventGetGlintShaders;
-import me.srgantmoomoo.beachhouse.backend.events.Render3dEvent;
+import me.srgantmoomoo.beachhouse.backend.events.EventRender3d;
 import me.srgantmoomoo.bedroom.api.event.Type;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import net.minecraft.client.render.Shader;
@@ -30,7 +30,7 @@ public class MixinGameRenderer {
     @Inject(at = @At("HEAD"), method = "renderHand", cancellable = true)
     private void renderHand(MatrixStack matrixStack, Camera camera, float f, CallbackInfo info) {
 
-        Render3dEvent e = new Render3dEvent(f, matrixStack);
+        EventRender3d e = new EventRender3d(f, matrixStack);
         e.setType(Type.PRE);
         ModuleManager.onEvent(e);
         if (e.isCancelled()) info.cancel();

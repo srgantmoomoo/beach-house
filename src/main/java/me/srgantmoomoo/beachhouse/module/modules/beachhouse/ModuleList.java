@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
+import me.srgantmoomoo.beachhouse.backend.events.EventRender2d;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
@@ -35,7 +35,7 @@ public class ModuleList extends Module {
 	@SuppressWarnings({ "rawtypes" })
 	@Override
 	public void onEvent(Event e) {
-		if(e instanceof DrawOverlayEvent) {
+		if(e instanceof EventRender2d) {
 			if(mods.isEmpty()) mods.addAll(Bedroom.moduleManager.getModules());
 
 			int screenWidth = Reference.window.getScaledWidth();
@@ -51,9 +51,9 @@ public class ModuleList extends Module {
 				if(style.is("beach")) outlineColor = 0xffffffff;
 				if(style.is("rainbow")) outlineColor = rainbow(counterB[0] * 300);
 
-				InGameHud.fill(((DrawOverlayEvent) e).matrix, screenWidth - maxLength - 6, 0, screenWidth, size * tr.fontHeight + 6, 0x90000000);
-				InGameHud.fill(((DrawOverlayEvent) e).matrix, screenWidth - maxLength - 6, 0, screenWidth - maxLength - 5, size * tr.fontHeight + 6, outlineColor);
-				InGameHud.fill(((DrawOverlayEvent) e).matrix, screenWidth - maxLength - 6, size * tr.fontHeight + 5, screenWidth, size * tr.fontHeight + 6, outlineColor);
+				InGameHud.fill(((EventRender2d) e).matrix, screenWidth - maxLength - 6, 0, screenWidth, size * tr.fontHeight + 6, 0x90000000);
+				InGameHud.fill(((EventRender2d) e).matrix, screenWidth - maxLength - 6, 0, screenWidth - maxLength - 5, size * tr.fontHeight + 6, outlineColor);
+				InGameHud.fill(((EventRender2d) e).matrix, screenWidth - maxLength - 6, size * tr.fontHeight + 5, screenWidth, size * tr.fontHeight + 6, outlineColor);
 				counterB[0]++;
 			}
 
@@ -95,7 +95,7 @@ public class ModuleList extends Module {
 					}else if(this.style.is("solid")) moduleColor = solidColor.getValue();
 
 					// draws the modules.
-					tr.drawWithShadow(((DrawOverlayEvent) e).matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, this.style.is("rainbow") ? rainbow(counter[0] * 300) : moduleColor.getRGB());
+					tr.drawWithShadow(((EventRender2d) e).matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, this.style.is("rainbow") ? rainbow(counter[0] * 300) : moduleColor.getRGB());
 					y += tr.fontHeight;
 					counter[0]++;
 				}

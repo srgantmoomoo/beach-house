@@ -1,7 +1,7 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
+import me.srgantmoomoo.beachhouse.backend.events.EventRender2d;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.chat.ChatScreenRenderer;
 import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
@@ -26,7 +26,7 @@ public class MixinInGameHud {
 
 		ChatScreenRenderer.renderChatBox(matrixStack);
 
-		DrawOverlayEvent e = new DrawOverlayEvent(matrixStack);
+		EventRender2d e = new EventRender2d(matrixStack);
 		e.setType(Type.PRE);
 		ModuleManager.onEvent(e);
 		if (e.isCancelled()) info.cancel();

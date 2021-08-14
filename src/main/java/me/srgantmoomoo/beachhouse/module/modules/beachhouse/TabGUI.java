@@ -2,7 +2,7 @@ package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
 import java.util.List;
 
-import me.srgantmoomoo.beachhouse.backend.events.DrawOverlayEvent;
+import me.srgantmoomoo.beachhouse.backend.events.EventRender2d;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
@@ -29,18 +29,18 @@ public class TabGUI extends Module {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void onEvent(Event e) {
-		if(e instanceof DrawOverlayEvent) {
+		if(e instanceof EventRender2d) {
 			TextRenderer tr = minecraft.textRenderer;
 
 			int backgroundColor = 0x90000000;
 			int tabColor = 0xff000000;
 			int primaryColor = 0xffEB78DF;
 
-			InGameHud.fill(((DrawOverlayEvent) e).matrix, 2, 12, 60, 86, backgroundColor);
-			if(tab.isEnabled()) InGameHud.fill(((DrawOverlayEvent) e).matrix, 3, 13 + currentTab * 12, 59, 14 + currentTab * 12 + 11, tabColor);
-			if(miniTab.isEnabled()) InGameHud.fill(((DrawOverlayEvent) e).matrix, 3, 13 + currentTab * 12, 4, 14 + currentTab * 12 + 11, primaryColor);
+			InGameHud.fill(((EventRender2d) e).matrix, 2, 12, 60, 86, backgroundColor);
+			if(tab.isEnabled()) InGameHud.fill(((EventRender2d) e).matrix, 3, 13 + currentTab * 12, 59, 14 + currentTab * 12 + 11, tabColor);
+			if(miniTab.isEnabled()) InGameHud.fill(((EventRender2d) e).matrix, 3, 13 + currentTab * 12, 4, 14 + currentTab * 12 + 11, primaryColor);
 
-			if(arrow.isEnabled()) tr.drawWithShadow(((DrawOverlayEvent) e).matrix, ">", currentTab == 3 ? 54 : 52, 15 + currentTab * 12, 0xffffffff);
+			if(arrow.isEnabled()) tr.drawWithShadow(((EventRender2d) e).matrix, ">", currentTab == 3 ? 54 : 52, 15 + currentTab * 12, 0xffffffff);
 
 			int count = 0;
 			for (Category c : Module.Category.values()) {
@@ -57,7 +57,7 @@ public class TabGUI extends Module {
 				if(c.name.equals("miscellaneous")) catLength = 21;
 				if(c.name.equals("beach house")) catLength = 16;
 
-				tr.drawWithShadow(((DrawOverlayEvent) e).matrix, catName, catLength, 15 + count * 12, 0xffffffff);
+				tr.drawWithShadow(((EventRender2d) e).matrix, catName, catLength, 15 + count * 12, 0xffffffff);
 				count++;
 			}
 
@@ -68,15 +68,15 @@ public class TabGUI extends Module {
 				if (modules.size() == 0)
 					return;
 
-				InGameHud.fill(((DrawOverlayEvent) e).matrix, 61, 12, 130, 14 + modules.size() * 12, backgroundColor);
-				if(tab.isEnabled()) InGameHud.fill(((DrawOverlayEvent) e).matrix, 62, 14 + category.moduleIndex * 12 - 1, 129, 14 + category.moduleIndex * 12 + 11, tabColor);
-				if(miniTab.isEnabled()) tr.draw(((DrawOverlayEvent) e).matrix, "-", 131, 14 + category.moduleIndex * 12 + 1, primaryColor);
+				InGameHud.fill(((EventRender2d) e).matrix, 61, 12, 130, 14 + modules.size() * 12, backgroundColor);
+				if(tab.isEnabled()) InGameHud.fill(((EventRender2d) e).matrix, 62, 14 + category.moduleIndex * 12 - 1, 129, 14 + category.moduleIndex * 12 + 11, tabColor);
+				if(miniTab.isEnabled()) tr.draw(((EventRender2d) e).matrix, "-", 131, 14 + category.moduleIndex * 12 + 1, primaryColor);
 
 				count = 0;
 				for (Module m : modules) {
-					tr.drawWithShadow(((DrawOverlayEvent) e).matrix, m.name, 64, 15 + count * 12, -1);
+					tr.drawWithShadow(((EventRender2d) e).matrix, m.name, 64, 15 + count * 12, -1);
 					if(m.isEnabled()) {
-						InGameHud.fill(((DrawOverlayEvent) e).matrix, 127, 14 + count * 12, 128, 23 + count * 12, 0xffffffff);
+						InGameHud.fill(((EventRender2d) e).matrix, 127, 14 + count * 12, 128, 23 + count * 12, 0xffffffff);
 					}
 					count++;
 				}
