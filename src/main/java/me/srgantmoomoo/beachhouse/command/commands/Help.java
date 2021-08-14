@@ -2,12 +2,12 @@ package me.srgantmoomoo.beachhouse.command.commands;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import net.minecraft.text.LiteralText;
 
-//TODO optimize code
 public class Help extends Command {
 
     public Help() {
@@ -20,13 +20,6 @@ public class Help extends Command {
     TextFormatting BOLD = TextFormatting.BOLD;
     TextFormatting ITALIC = TextFormatting.ITALIC;
 
-    public static Prefix prefix;
-    public static Toggle toggle;
-    public static Setting setting;
-    public static ModuleList moduleList;
-    public static SettingList settingList;
-    public static Clear clear;
-
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 0) {
@@ -34,21 +27,10 @@ public class Help extends Command {
             return;
         }
 
-        // MAKE A NEW OBJECT BEFORE TRYING HELP COMMAND STUPID FUCK.
-        prefix = new Prefix();
-        toggle = new Toggle();
-        setting = new Setting();
-        moduleList = new ModuleList();
-        settingList = new SettingList();
-        clear = new Clear();
-
         welcomeMessage();
-        helpMessage(prefix.getName(), prefix.getDescription(), prefix.getSyntax());
-        helpMessage(toggle.getName(), toggle.getDescription(), toggle.getSyntax());
-        helpMessage(moduleList.getName(), moduleList.getDescription(), moduleList.getSyntax());
-        helpMessage(setting.getName(), setting.getDescription(), setting.getSyntax());
-        helpMessage(settingList.getName(), settingList.getDescription(), settingList.getSyntax());
-        helpMessage(clear.getName(), clear.getDescription(), clear.getSyntax());
+        Bedroom.commandManager.commands.forEach(c -> {
+            helpMessage(c.name, c.description, c.syntax);
+        });
         goodbyeMessage();
     }
 
