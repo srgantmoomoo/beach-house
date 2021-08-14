@@ -7,6 +7,7 @@ import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
+//TODO hud editor doesn't seem to enable when toggling with commands.
 public class HudEditor extends Module {
 
     public HudEditor() {
