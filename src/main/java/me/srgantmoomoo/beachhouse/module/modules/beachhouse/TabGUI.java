@@ -1,5 +1,7 @@
 package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
+import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 import java.util.List;
 
 import me.srgantmoomoo.beachhouse.backend.events.EventRender2d;
@@ -26,10 +28,22 @@ public class TabGUI extends Module {
 	public boolean expanded;
 	public boolean Tab;
 
+	public Graphics g;
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void onEvent(Event e) {
 		if(e instanceof EventRender2d) {
+			Graphics2D g2 = (Graphics2D) g;
+
+			g2.setPaint(Color.RED);
+			g2.setStroke(new BasicStroke(2.0f));
+
+			double x = 50;
+			double y = 50;
+			double w = x + 250;
+			double h = y + 100;
+			g2.draw(new RoundRectangle2D.Double(x, y, w, h, 50, 50));
+
 			TextRenderer tr = minecraft.textRenderer;
 
 			int backgroundColor = 0x90000000;

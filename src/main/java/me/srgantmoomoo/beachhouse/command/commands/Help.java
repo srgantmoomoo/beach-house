@@ -7,6 +7,7 @@ import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import net.minecraft.text.LiteralText;
 
+//TODO optimize code
 public class Help extends Command {
 
     public Help() {

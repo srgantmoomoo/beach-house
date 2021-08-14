@@ -6,6 +6,7 @@ import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
 public class PlayerInfo extends HudModule {
@@ -38,7 +39,6 @@ public class PlayerInfo extends HudModule {
         }
     }
     private void drawBar(MatrixStack matrix, Identifier identifier) {
-        minecraft.getTextureManager().bindTexture(identifier);
         RenderSystem.setShaderTexture(0, identifier);
         InGameHud.drawTexture(matrix, getX() + 8, getY() + 2, 22, 22, 0, 0, 22, 22, 22, 22);
     }

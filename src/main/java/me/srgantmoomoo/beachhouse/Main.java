@@ -8,7 +8,6 @@ import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGui;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
 import me.srgantmoomoo.beachhouse.module.Modules;
 import me.srgantmoomoo.bedroom.Bedroom;
-import net.minecraft.client.gui.screen.ChatScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +18,6 @@ import net.fabricmc.api.ModInitializer;
  * @since 5/16/2021
  */
 
-//TODO chat screen with access transformers.
 //TODO rainbow enchant so sexi D:
 //TODO fix settingslist when a module does not have any settings... and add a color setting to setting command.
 public class Main implements ModInitializer {
@@ -31,7 +29,6 @@ public class Main implements ModInitializer {
 
 	public static ClickGui clickGUI;
 	public static HudManager hudManager;
-	public static ChatScreen chatScreen;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
 
@@ -69,8 +66,6 @@ public class Main implements ModInitializer {
 		
 		hudManager = new HudManager();
 		printLog("hud editor initialized.");
-
-		chatScreen = new ChatScreen("chat_screen.title");
 
 		printLog(Main.name + " has finished initialization.");
 	}
