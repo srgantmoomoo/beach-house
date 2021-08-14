@@ -1,22 +1,25 @@
 package me.srgantmoomoo.beachhouse.gui.chat;
 
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.bedroom.command.CommandManager;
+import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.util.math.MatrixStack;
 
 import java.awt.*;
 
-
 public class ChatScreenRenderer { //((AccessorChatScreen) chatScreen).getChatField().getText()
     public static ChatScreen chatScreen;
 
     public static void renderChatBox(MatrixStack matrix) {
-        /*chatScreen = new ChatScreen("chat_screen.title");
-        if(Reference.minecraft.currentScreen instanceof ChatScreen) {
-            if (chatScreen.chatField.getText().startsWith(CommandManager.prefix)) {
+        if (Reference.minecraft.currentScreen instanceof ChatScreen) {
+            IChatScreen chatScreen = (IChatScreen) (ChatScreen) Reference.minecraft.currentScreen;
+        
+            if(chatScreen.getText().startsWith(CommandManager.prefix)) {
                 int screenWidth = Reference.window.getScaledWidth();
                 int screenHeight = Reference.window.getScaledHeight();
 
-                if (((AccessorChatScreen) chatScreen).getChatField().getText().equals(CommandManager.prefix))
+                if (chatScreen.getText().equals(CommandManager.prefix))
                     Reference.textRenderer.drawWithShadow(matrix, "beach house :)", 6, screenHeight - 12, 0xff999999);
 
                 final int[] counter = {1};
@@ -30,7 +33,7 @@ public class ChatScreenRenderer { //((AccessorChatScreen) chatScreen).getChatFie
                 InGameHud.fill(matrix, 1, screenHeight - 2, screenWidth - 1, screenHeight - 1, rainbow(counter[0] * 300));
                 counter[0]++;
             }
-        }*/
+        }
     }
 
     private static int rainbow(int delay) {
