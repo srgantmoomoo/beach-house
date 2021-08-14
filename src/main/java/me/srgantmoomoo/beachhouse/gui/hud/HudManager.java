@@ -2,9 +2,7 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 
 import java.util.ArrayList;
 
-import me.srgantmoomoo.beachhouse.gui.hud.hudmodules.PlayerInfo;
-import me.srgantmoomoo.beachhouse.gui.hud.hudmodules.Watermark;
-import me.srgantmoomoo.beachhouse.gui.hud.hudmodules.Woohoo;
+import me.srgantmoomoo.beachhouse.gui.hud.hudmodules.*;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -16,6 +14,7 @@ public class HudManager {
 		hudModules.add(new Woohoo());
 		hudModules.add(new Watermark());
 		hudModules.add(new PlayerInfo());
+		hudModules.add(new TabGui());
 	}
 
 	// this is called in MixinInGameHud.

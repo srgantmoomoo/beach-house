@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.hud;
 
+import me.srgantmoomoo.bedroom.api.event.Event;
 import net.minecraft.client.util.math.MatrixStack;
 import me.srgantmoomoo.bedroom.module.Module;
 
@@ -21,13 +22,11 @@ public class HudModule extends Module {
 		drag = new DraggableComponent(x, y, getWidth(), getHeight());
 	}
 
-	public int getWidth() {
-		return 20;
+	@Override
+	public void onEvent(Event e) {
+
 	}
 
-	public int getHeight() {
-		return 50;
-	}
 
 	// this is called in HudManager by renderMods().
 	public void draw(MatrixStack matrix) {
@@ -49,6 +48,14 @@ public class HudModule extends Module {
 
 	public int getY() {
 		return drag.getYPos();
+	}
+
+	public int getWidth() {
+		return 20;
+	}
+
+	public int getHeight() {
+		return 50;
 	}
 
 }
