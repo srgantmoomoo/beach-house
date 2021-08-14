@@ -11,7 +11,6 @@ import me.srgantmoomoo.bedroom.Bedroom;
 public class Modules {
     public static void init() {
         Bedroom.addModule(new ModuleList());
-        Bedroom.addModule(new TabGUI());
 
         Bedroom.addModule(new AutoCrystal());
         Bedroom.addModule(new Criticals());

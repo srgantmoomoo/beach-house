@@ -1,11 +1,11 @@
 package me.srgantmoomoo.beachhouse.gui.hud.hudmodules;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module;
-import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -13,11 +13,12 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
 
-//TODO add own keyboard method and add to mixin since onEvent wont work in hud modules D:
 public class TabGui extends HudModule {
+    public static TabGui INSTANCE;
 
     public TabGui() {
         super("tab gui", "tabgui", "does tabb stuffs.", 2, 12, Category.BEACHHOUSE);
+        INSTANCE = this;
     }
 
     public int currentTab;
@@ -53,6 +54,8 @@ public class TabGui extends HudModule {
             count++;
         }
 
+        // for expanded, i often use getX() + getWidth() and than plus an extra 1 to whatever number i would originally use for the x value, this gets the true x value of the expanded list...
+        // ... since getX() would just return the x value of the normal tab.
         if (expanded) {
             Category category = Module.Category.values()[currentTab];
             List<Module> modules = Bedroom.moduleManager.getModulesByCategory(category);
@@ -60,22 +63,22 @@ public class TabGui extends HudModule {
             if (modules.size() == 0)
                 return;
 
-            InGameHud.fill(matrix, 61, 12, 130, 14 + modules.size() * 12, backgroundColor);
-            tr.draw(matrix, "-", 131, 14 + category.moduleIndex * 12 + 1, primaryColor);
+            InGameHud.fill(matrix, getX() + getWidth() + 1, getY(), getX() + getWidth() + 70, getY() + 2 + modules.size() * 12, backgroundColor);
+            tr.draw(matrix, "-", getX() + getWidth() + 71, getY() + 2 + category.moduleIndex * 12 + 1, primaryColor);
 
             count = 0;
             for (Module m : modules) {
-                tr.drawWithShadow(matrix, m.name, 64, 15 + count * 12, -1);
+                tr.drawWithShadow(matrix, m.name, getX() + getWidth() + 3, getY() + 3 + count * 12, -1);
                 if (m.isEnabled()) {
-                    InGameHud.fill(matrix, 127, 14 + count * 12, 128, 23 + count * 12, 0xffffffff);
+                    InGameHud.fill(matrix, getX() + getWidth() + 67, getY() + 2 + count * 12, getX() + getWidth() + 68, getY() + 11 + count * 12, 0xffffffff);
                 }
                 count++;
             }
         }
     }
 
-    @Override
-    public void onEvent(Event e) {
+    // called in MixinKeyboard.
+    public void onKeyPressed(Event e) {
         if(e instanceof EventKeyPress) {
             int code = ((EventKeyPress)e).getKey();
 
@@ -138,6 +141,7 @@ public class TabGui extends HudModule {
     @Override
     public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
         drawFinale(matrix);
+        Main.hudManager.drawIndicator(matrix, getX(), getY(), this.hudEnabled ? 0xff00ff00 : 0xffffffff);
 
         super.drawDraggable(matrix, mouseX, mouseY);
     }

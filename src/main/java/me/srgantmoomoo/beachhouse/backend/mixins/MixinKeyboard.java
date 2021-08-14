@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
+import me.srgantmoomoo.beachhouse.gui.hud.hudmodules.TabGui;
 import me.srgantmoomoo.bedroom.api.event.Type;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
@@ -20,15 +21,22 @@ import net.minecraft.client.util.InputUtil;
 public class MixinKeyboard {
     @Inject(method = "onKey", at = @At(value = "INVOKE", target = "net/minecraft/client/util/InputUtil.isKeyPressed(JI)Z", ordinal = 5), cancellable = true)
     private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo info) {
-        Bedroom.commandManager.openChatScreen();
-        Bedroom.moduleManager.keyPress(key, scanCode);
 
+        // calls openChatScreen method which checks if the prefix is pressed for commands.
+        Bedroom.commandManager.openChatScreen();
+
+        // opens hud editor screen.
         if(InputUtil.isKeyPressed(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_RIGHT_SHIFT))
             Reference.minecraft.openScreen(new HudScreen());
+
+        // for module keybinds.
+        Bedroom.moduleManager.keyPress(key, scanCode);
 
         EventKeyPress e = new EventKeyPress(key, scanCode);
         e.setType(Type.PRE);
         ModuleManager.onEvent(e);
+        TabGui.INSTANCE.onKeyPressed(e);
         if (e.isCancelled()) info.cancel();
+
     }
 }

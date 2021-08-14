@@ -18,7 +18,7 @@ public class HudScreen extends Screen {
 	// this renders the hud module when the screen is opened, it doesn't need any events since its already extending Screen.
 	@Override
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		//this.renderBackground(matrices);
+		this.renderBackground(matrices);
 
 		for(HudModule m : Main.hudManager.hudModules) {
 			m.drawDraggable(matrices, mouseX, mouseY);

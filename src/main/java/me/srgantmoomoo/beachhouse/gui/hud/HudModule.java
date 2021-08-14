@@ -22,11 +22,6 @@ public class HudModule extends Module {
 		drag = new DraggableComponent(x, y, getWidth(), getHeight());
 	}
 
-	@Override
-	public void onEvent(Event e) {
-
-	}
-
 
 	// this is called in HudManager by renderMods().
 	public void draw(MatrixStack matrix) {

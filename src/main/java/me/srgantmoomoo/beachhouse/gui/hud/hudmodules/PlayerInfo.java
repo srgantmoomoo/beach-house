@@ -6,13 +6,12 @@ import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
 public class PlayerInfo extends HudModule {
 
     public PlayerInfo() {
-        super("player info", "playerinfo", "sucks ur pp for u.", 2, 80, Category.BEACHHOUSE);
+        super("player info", "playerinfo", "sucks ur pp for u.", 2, 88, Category.BEACHHOUSE);
     }
 
     private final Identifier FULL_HEALTH = new Identifier(Main.modid, "full.png");
