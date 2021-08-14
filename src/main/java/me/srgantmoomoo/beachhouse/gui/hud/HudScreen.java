@@ -8,9 +8,10 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
-// this screen is opened in MixinKeyboard. //TODO make it a module keybind and changeable.
+// this screen is opened in the HudEditor module.
 public class HudScreen extends Screen {
 
+	// bigppgui
 	public HudScreen() {
 		super(new LiteralText("bigppgui"));
 	}

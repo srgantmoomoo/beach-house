@@ -5,17 +5,13 @@ import me.srgantmoomoo.bedroom.api.event.Type;
 import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 
-import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
 import me.srgantmoomoo.bedroom.Bedroom;
 import net.minecraft.client.Keyboard;
-import net.minecraft.client.util.InputUtil;
 
 @Mixin(Keyboard.class)
 public class MixinKeyboard {

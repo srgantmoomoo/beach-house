@@ -21,9 +21,11 @@ public class MixinInGameHud {
 	@Inject(at = @At(value = "RETURN"), method = "render", cancellable = true)
 	public void render(MatrixStack matrixStack, float float_1, CallbackInfo info) {
 
+		// renders hud modules when not in the hud screen.
 		if(!(Reference.minecraft.currentScreen instanceof HudScreen))
 			Main.hudManager.renderMods(matrixStack);
 
+		// renders the chat outline for commands.
 		ChatScreenRenderer.renderChatBox(matrixStack);
 
 		EventRender2d e = new EventRender2d(matrixStack);

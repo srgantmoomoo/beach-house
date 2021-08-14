@@ -18,7 +18,6 @@ public class DraggableComponent {
     private boolean dragging;
     private boolean clickHeld = false;
 
-    //TODO merge with HudModule
     public DraggableComponent(int x, int y, int width, int height) {
         this.width = width;
         this.height = height;

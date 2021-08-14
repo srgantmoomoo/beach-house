@@ -8,9 +8,10 @@ import net.minecraft.client.util.math.MatrixStack;
 
 import java.awt.*;
 
-public class ChatScreenRenderer { //((AccessorChatScreen) chatScreen).getChatField().getText()
+public class ChatScreenRenderer {
     public static ChatScreen chatScreen;
 
+    // this is called in MixinInGameHud
     public static void renderChatBox(MatrixStack matrix) {
         if (Reference.minecraft.currentScreen instanceof ChatScreen) {
             IChatScreen chatScreen = (IChatScreen) (ChatScreen) Reference.minecraft.currentScreen;
