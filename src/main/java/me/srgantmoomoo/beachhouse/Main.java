@@ -18,6 +18,7 @@ import net.fabricmc.api.ModInitializer;
  * @since 5/16/2021
  */
 
+//TODO add a bind command.
 //TODO rainbow enchant so sexi D:
 //TODO fix settingslist when a module does not have any settings... and add a color setting to setting command.
 public class Main implements ModInitializer {

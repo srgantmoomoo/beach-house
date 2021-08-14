@@ -23,7 +23,7 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.HashMap;
 
-public class ESP extends Module {
+public class Esp extends Module {
     public BooleanSetting self = new BooleanSetting("self", this, false);
     public BooleanSetting player = new BooleanSetting("player", this, true);
     public BooleanSetting hostile = new BooleanSetting("hostile", this, true);
@@ -37,7 +37,7 @@ public class ESP extends Module {
     public ColorSetting outlineColor = new ColorSetting("outlineColor", this, new JColor(0, 255, 0, 255));
     public NumberSetting range = new NumberSetting("range", this, 1, 0, 100, 1);
 
-    public ESP() {
+    public Esp() {
         super("esp", "esp", "allows you to see certain objects.", 0, Category.RENDER);
         this.addSettings(self, player, hostile, passive, storage, item, hole, voidEsp, crystal, backColor, outlineColor, range);
     }

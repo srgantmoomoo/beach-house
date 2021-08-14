@@ -11,6 +11,7 @@ import me.srgantmoomoo.bedroom.Bedroom;
 public class Modules {
     public static void init() {
         Bedroom.addModule(new ModuleList());
+        Bedroom.addModule(new HudEditor());
 
         Bedroom.addModule(new AutoCrystal());
         Bedroom.addModule(new Criticals());
@@ -25,7 +26,7 @@ public class Modules {
         Bedroom.addModule(new Jesus());
         Bedroom.addModule(new NoFall());
 
-        Bedroom.addModule(new ESP());
+        Bedroom.addModule(new Esp());
         Bedroom.addModule(new FullBright());
         Bedroom.addModule(new RainbowEnchant());
         Bedroom.addModule(new Xray());
