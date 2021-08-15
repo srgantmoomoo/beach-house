@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.hud.hudmodules;
 
 import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.beachhouse.backend.util.Timer;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
