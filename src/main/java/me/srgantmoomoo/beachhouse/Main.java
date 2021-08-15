@@ -24,6 +24,7 @@ import net.fabricmc.api.ModInitializer;
 //TODO add a bind command.
 //TODO rainbow enchant so sexi D:
 //TODO fix settingslist when a module does not have any settings... and add a color setting to setting command.
+//TODO animations
 public class Main implements ModInitializer {
 
 	public static final String modid = "bh";

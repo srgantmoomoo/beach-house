@@ -10,6 +10,7 @@ import net.minecraft.util.Identifier;
 
 public class PlayerInfo extends HudModule {
 
+    //TODO fix player name going off the rect when too long.
     public PlayerInfo() {
         super("player info", "playerinfo", "sucks ur pp for u.", 2, 88, Category.BEACHHOUSE);
     }
