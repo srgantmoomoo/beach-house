@@ -12,11 +12,11 @@ public class Component {
 
     }
 
-    public void mouseClicked(int mouseX, int mouseY, int button) {
+    public void mouseClicked(int mouseX, int mouseY) {
 
     }
 
-    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
+    public void mouseReleased(int mouseX, int mouseY) {
 
     }
 

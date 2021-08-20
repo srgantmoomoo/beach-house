@@ -1,9 +1,11 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui;
 
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 
@@ -39,30 +41,39 @@ public class ClickGui extends Screen {
 
         // mouse clicked
         for (Panel p : panels) {
-            if (p.isWithinHeader(mouseX, mouseY) && mouseButton == 0) {
+            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                 p.setDragging(true);
                 p.dragX = mouseX - p.getX();
                 p.dragY = mouseY - p.getY();
             }
 
-            if (p.isWithinHeader(mouseX, mouseY) && mouseButton == 1) {
+            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS) {
                 p.setOpen(!p.isOpen());
             }
 
             if (p.isOpen() && !p.getComponents().isEmpty()) {
                 for (Component component : p.getComponents()) {
-                    component.mouseClicked(mouseX, mouseY, mouseButton);
+                    component.mouseClicked(mouseX, mouseY);
                 }
             }
         }
 
         // mouse released
+        for (Panel p : panels) {
+            p.setDragging(false);
+
+            if (p.isOpen() && !p.getComponents().isEmpty()) {
+                for (Component component : p.getComponents()) {
+                    component.mouseReleased(mouseX, mouseY);
+                }
+            }
+        }
 
         // key typed
 
     }
 
-    @Override
+    /*@Override
     protected void keyTyped(char typedChar, int keyCode) {
         for (Panel panel : panels) {
             if (panel.isOpen() && !panel.getComponents().isEmpty() && keyCode != 1) {
@@ -74,20 +85,7 @@ public class ClickGui extends Screen {
         if (keyCode == 1) {
             this.mc.displayGuiScreen(null);
         }
-    }
-
-    @Override
-    public void mouseReleased(int mouseX, int mouseY, int state) {
-        for (Panel p : panels) {
-            p.setDragging(false);
-
-            if (p.isOpen() && !p.getComponents().isEmpty()) {
-                for (Component component : p.getComponents()) {
-                    component.mouseReleased(mouseX, mouseY, state);
-                }
-            }
-        }
-    }
+    }*/
 
     public static ArrayList<Panel> getPanels() {
         return panels;

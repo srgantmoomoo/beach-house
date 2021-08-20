@@ -2,9 +2,14 @@ package me.srgantmoomoo.beachhouse.gui.clickgui.components;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
+import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
+import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
+import me.srgantmoomoo.bedroom.module.setting.Setting;
+import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 
@@ -26,21 +31,17 @@ public class ModuleButton extends Component {
         this.open = false;
         int opY = offset + 12;
 
-        if (Past.settingsManager.getSettingsModule(mod) != null) {
-            for (Setting setting : Past.settingsManager.getSettingsModule(mod)) {
-                if (setting.getType() == "boolean") {
+        if (Bedroom.settingManager.getSettingsByMod(mod) != null) {
+            for (Setting setting : Bedroom.settingManager.getSettingsByMod(mod)) {
+                if (setting instanceof BooleanSetting) {
                     this.subcomponents.add(new BooleanComponent(setting, this, opY));
                     opY += 12;
                 }
-                if (setting.getType() == "integer") {
+                if (setting instanceof NumberSetting) {
                     this.subcomponents.add(new IntegerComponent(setting, this, opY));
                     opY += 12;
                 }
-                if (setting.getType() == "double") {
-                    this.subcomponents.add(new DoubleComponent(setting, this, opY));
-                    opY += 12;
-                }
-                if (setting.getType() == "mode") {
+                if (setting instanceof ModeSetting) {
                     this.subcomponents.add(new ModeComponent(setting, this, opY));
                     opY += 12;
                 }
@@ -120,12 +121,12 @@ public class ModuleButton extends Component {
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY, int button) {
-        if (isMouseOnButton(mouseX, mouseY) && button == 0) {
+    public void mouseClicked(int mouseX, int mouseY) {
+        if (isMouseOnButton(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
             this.mod.toggle();
         }
 
-        if (isMouseOnButton(mouseX, mouseY) && button == 1) {
+        if (isMouseOnButton(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS) {
             if (!this.isOpen()) {
                 parent.closeAllSetting();
                 this.setOpen(true);
@@ -135,7 +136,7 @@ public class ModuleButton extends Component {
         }
 
         for (Component comp : this.subcomponents) {
-            comp.mouseClicked(mouseX, mouseY, button);
+            comp.mouseClicked(mouseX, mouseY);
         }
     }
 
@@ -147,9 +148,9 @@ public class ModuleButton extends Component {
     }
 
     @Override
-    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
+    public void mouseReleased(int mouseX, int mouseY) {
         for (Component comp : this.subcomponents) {
-            comp.mouseReleased(mouseX, mouseY, mouseButton);
+            comp.mouseReleased(mouseX, mouseY);
         }
     }
 
