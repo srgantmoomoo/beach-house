@@ -19,7 +19,7 @@ public class ClickGui extends Screen {
         int panelHeight = 15;
 
         for (Module.Category c : Module.Category.values()) {
-            ClickGui.panels.add(new Panel(c.getCategoryName(), panelX, panelY, panelWidth, panelHeight, c));
+            ClickGui.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, c));
             panelX += 81;
         }
     }
@@ -30,16 +30,14 @@ public class ClickGui extends Screen {
 
         for (Panel p : panels) {
             p.updatePosition(mouseX, mouseY);
-            p.drawScreen(matrix, mouseX, mouseY, partialTicks);
+            p.drawScreen(matrix, mouseX, mouseY, delta);
 
             for (Component comp : p.getComponents()) {
                 comp.updateComponent(mouseX, mouseY);
             }
         }
-    }
 
-    @Override
-    public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+        // mouse clicked
         for (Panel p : panels) {
             if (p.isWithinHeader(mouseX, mouseY) && mouseButton == 0) {
                 p.setDragging(true);
@@ -57,6 +55,11 @@ public class ClickGui extends Screen {
                 }
             }
         }
+
+        // mouse released
+
+        // key typed
+
     }
 
     @Override
