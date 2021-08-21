@@ -2,7 +2,6 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 
 import org.lwjgl.glfw.GLFW;
 
-import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -16,7 +15,7 @@ public class DraggableComponent {
     private int lastY;
 
     private boolean dragging;
-    private boolean clickHeld = false;
+    private boolean mouseHeld = false;
 
     public DraggableComponent(int x, int y, int width, int height) {
         this.width = width;
@@ -54,8 +53,8 @@ public class DraggableComponent {
         boolean mouseOverX = (mouseX >= this.getXPos() && mouseX <= this.getXPos() + this.getWidth());
         boolean mouseOverY = (mouseY >= this.getYPos() && mouseY <= this.getYPos() + this.getHeight());
         if(mouseOverX && mouseOverY) {
-            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !clickHeld) {
-                clickHeld = true;
+            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                mouseHeld = true;
                 if (!this.dragging) {
                     this.lastX = x - mouseX;
                     this.lastY = y - mouseY;
@@ -63,12 +62,12 @@ public class DraggableComponent {
                 }
             }
 
-            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !clickHeld) {
-                clickHeld = true;
-                    if(!module.hudEnabled) module.hudEnabled = true;
-                    else module.hudEnabled = false;
+            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                mouseHeld = true;
+                if(!module.hudEnabled) module.hudEnabled = true;
+                else module.hudEnabled = false;
             }else if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
-                clickHeld = false;
+                mouseHeld = false;
             }
         }
     }

@@ -9,10 +9,11 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 
-public class ClickGui extends Screen {
+// this screen is opened in the ClickGui module.
+public class ClickGuiScreen extends Screen {
     public static ArrayList<Panel> panels;
 
-    public ClickGui() {
+    public ClickGuiScreen() {
         super(new LiteralText("smallppgui"));
         panels = new ArrayList<>();
         int panelX = 10;
@@ -21,7 +22,7 @@ public class ClickGui extends Screen {
         int panelHeight = 15;
 
         for (Module.Category c : Module.Category.values()) {
-            ClickGui.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, c));
+            ClickGuiScreen.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, c));
             panelX += 81;
         }
     }

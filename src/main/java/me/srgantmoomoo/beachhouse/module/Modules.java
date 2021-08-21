@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.module;
 
+import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.*;
 import me.srgantmoomoo.beachhouse.module.modules.combat.*;
 import me.srgantmoomoo.beachhouse.module.modules.miscellaneous.*;
@@ -12,6 +13,7 @@ public class Modules {
     public static void init() {
         Bedroom.addModule(new ModuleList());
         Bedroom.addModule(new HudEditor());
+        Bedroom.addModule(new ClickGui());
 
         Bedroom.addModule(new AutoCrystal());
         Bedroom.addModule(new Criticals());

@@ -31,7 +31,7 @@ public class ModuleButton extends Component {
         this.open = false;
         int opY = offset + 12;
 
-        if (Bedroom.settingManager.getSettingsByMod(mod) != null) {
+       /* if (Bedroom.settingManager.getSettingsByMod(mod) != null) {
             for (Setting setting : Bedroom.settingManager.getSettingsByMod(mod)) {
                 if (setting instanceof BooleanSetting) {
                     this.subcomponents.add(new BooleanComponent(setting, this, opY));
@@ -47,7 +47,7 @@ public class ModuleButton extends Component {
                 }
             }
         }
-        this.subcomponents.add(new KeybindComponent(this, opY));
+        this.subcomponents.add(new KeybindComponent(this, opY));*/
     }
 
     @Override
@@ -120,18 +120,29 @@ public class ModuleButton extends Component {
         }
     }
 
+    private boolean mouseHeld = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
-        if (isMouseOnButton(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
-            this.mod.toggle();
-        }
+        if(isMouseOnButton(mouseX, mouseY)) {
+            // left click
+            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                mouseHeld = true;
+                this.mod.toggle();
+            }else if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE) {
+                mouseHeld = false;
+            }
 
-        if (isMouseOnButton(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS) {
-            if (!this.isOpen()) {
-                parent.closeAllSetting();
-                this.setOpen(true);
-            } else {
-                this.setOpen(false);
+            // right click
+            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                mouseHeld = true;
+                if (!this.isOpen()) {
+                    parent.closeAllSetting();
+                    this.setOpen(true);
+                } else {
+                    this.setOpen(false);
+                }
+            }else if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
+                mouseHeld = false;
             }
         }
 

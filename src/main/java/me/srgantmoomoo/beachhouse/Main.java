@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
 import me.srgantmoomoo.beachhouse.command.Commands;
-import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGui;
+import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
 import me.srgantmoomoo.beachhouse.module.Modules;
 import me.srgantmoomoo.bedroom.Bedroom;
@@ -33,7 +33,7 @@ public class Main implements ModInitializer {
 	public static final String nameCondensed = "beach-house";
 	public static final String version = "0.10";
 
-	public static ClickGui clickGUI;
+	public static ClickGuiScreen clickGUI;
 	public static HudManager hudManager;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
@@ -67,7 +67,7 @@ public class Main implements ModInitializer {
 		Modules.init();
 		printLog("modules initialized.");
 
-		clickGUI = new ClickGui();
+		clickGUI = new ClickGuiScreen();
 		printLog("clickGui initialized.");
 		
 		hudManager = new HudManager();
