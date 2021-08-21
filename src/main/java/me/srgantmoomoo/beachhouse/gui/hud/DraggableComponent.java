@@ -66,7 +66,7 @@ public class DraggableComponent {
                 mouseHeld = true;
                 if(!module.hudEnabled) module.hudEnabled = true;
                 else module.hudEnabled = false;
-            }else if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
+            }else if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
                 mouseHeld = false;
             }
         }

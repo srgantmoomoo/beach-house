@@ -12,6 +12,7 @@ import java.util.ArrayList;
 // this screen is opened in the ClickGui module.
 public class ClickGuiScreen extends Screen {
     public static ArrayList<Panel> panels;
+    private boolean mouseHeld = false;
 
     public ClickGuiScreen() {
         super(new LiteralText("smallppgui"));
@@ -42,17 +43,20 @@ public class ClickGuiScreen extends Screen {
 
         // mouse clicked
         for (Panel p : panels) {
-            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+            if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                 p.setDragging(true);
                 p.dragX = mouseX - p.getX();
                 p.dragY = mouseY - p.getY();
             }
 
-            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS) {
+            if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                mouseHeld = true;
                 p.setOpen(!p.isOpen());
+            }else if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
+                mouseHeld = false;
             }
 
-            if (p.isOpen() && !p.getComponents().isEmpty()) {
+            if(p.isOpen() && !p.getComponents().isEmpty()) {
                 for (Component component : p.getComponents()) {
                     component.mouseClicked(mouseX, mouseY);
                 }
