@@ -73,7 +73,6 @@ public class Panel {
         if (this.isDragging) {
             this.setX(mouseX - dragX);
             this.setY(mouseY - dragY);
-            System.out.println("niggers like mousex");
         }
     }
 
@@ -93,7 +92,6 @@ public class Panel {
 
     public void setDragging(boolean drag) {
         this.isDragging = drag;
-        System.out.println("fuckme");
     }
 
     public boolean isOpen() {

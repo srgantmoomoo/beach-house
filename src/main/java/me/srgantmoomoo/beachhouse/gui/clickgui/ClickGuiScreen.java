@@ -1,20 +1,11 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import ladysnake.satin.api.managed.ManagedShaderEffect;
-import ladysnake.satin.api.managed.ShaderEffectManager;
-import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
-import me.srgantmoomoo.beachhouse.module.modules.beachhouse.HudEditor;
 import me.srgantmoomoo.bedroom.module.Module;
-import net.minecraft.client.gl.ShaderEffect;
-import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.resource.ResourceManager;
 import net.minecraft.text.LiteralText;
-import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
@@ -25,7 +16,7 @@ public class ClickGuiScreen extends Screen {
     private boolean mouseHeld = false;
 
     public ClickGuiScreen() {
-        super(new LiteralText("smallppgui"));
+        super(new LiteralText("smallppguis"));
         panels = new ArrayList<>();
         int panelX = 10;
         int panelY = 5;
@@ -40,10 +31,10 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        if(ClickGui.INSTANCE.background.is("blur"))
+        if (ClickGui.INSTANCE.background.is("blur"))
             Reference.blur.render(1);
 
-        if(ClickGui.INSTANCE.background.is("dim"))
+        if (ClickGui.INSTANCE.background.is("dim"))
             this.renderBackground(matrix);
 
         for (Panel p : panels) {
@@ -56,21 +47,21 @@ public class ClickGuiScreen extends Screen {
         }
 
         // mouse clicked
-        for(Panel p : panels) {
-            if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+        for (Panel p : panels) {
+            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                 p.setDragging(true);
                 p.dragX = mouseX - p.getX();
                 p.dragY = mouseY - p.getY();
             }
 
-            if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld) {
+            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld) {
                 mouseHeld = true;
                 p.setOpen(!p.isOpen());
-            }else if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
+            } else if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
                 mouseHeld = false;
             }
 
-            if(p.isOpen() && !p.getComponents().isEmpty()) {
+            if (p.isOpen() && !p.getComponents().isEmpty()) {
                 for (Component component : p.getComponents()) {
                     component.mouseClicked(mouseX, mouseY);
                 }
@@ -79,17 +70,18 @@ public class ClickGuiScreen extends Screen {
 
         // mouse released
         for (Panel p : panels) {
-            p.setDragging(false);
+            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE) {
+                p.setDragging(false);
 
-            if (p.isOpen() && !p.getComponents().isEmpty()) {
-                for (Component component : p.getComponents()) {
-                    component.mouseReleased(mouseX, mouseY);
+                if (p.isOpen() && !p.getComponents().isEmpty()) {
+                    for (Component component : p.getComponents()) {
+                        component.mouseReleased(mouseX, mouseY);
+                    }
                 }
             }
         }
 
         // key typed
-
     }
 
     /*@Override
