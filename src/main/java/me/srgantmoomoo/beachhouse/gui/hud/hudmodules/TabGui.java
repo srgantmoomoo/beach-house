@@ -81,53 +81,55 @@ public class TabGui extends HudModule {
     // called in MixinKeyboard.
     public void onKeyPressed(Event e) {
         if(e instanceof EventKeyPress) {
-            int code = ((EventKeyPress)e).getKey();
+            if(this.hudEnabled) {
+                int code = ((EventKeyPress) e).getKey();
 
-            Category category = Module.Category.values()[currentTab];
-            List<Module> modules = Bedroom.moduleManager.getModulesByCategory(category);
+                Category category = Module.Category.values()[currentTab];
+                List<Module> modules = Bedroom.moduleManager.getModulesByCategory(category);
 
-            if(code == GLFW.GLFW_KEY_UP) {
-                if(expanded) {
-                    if(category.moduleIndex <= 0) {
-                        category.moduleIndex = modules.size() - 1;
-                    }else
-                        category.moduleIndex--;
-                }else {
-                    if(currentTab <= 0) {
-                        currentTab = Module.Category.values().length - 1;
-                    }else
-                        currentTab--;
+                if (code == GLFW.GLFW_KEY_UP) {
+                    if (expanded) {
+                        if (category.moduleIndex <= 0) {
+                            category.moduleIndex = modules.size() - 1;
+                        } else
+                            category.moduleIndex--;
+                    } else {
+                        if (currentTab <= 0) {
+                            currentTab = Module.Category.values().length - 1;
+                        } else
+                            currentTab--;
+                    }
                 }
-            }
 
-            if(code == GLFW.GLFW_KEY_DOWN) {
-                if (expanded) {
-                    if(category.moduleIndex >= modules.size() - 1) {
-                        category.moduleIndex = 0;
-                    }else
-                        category.moduleIndex++;
-                }else {
-                    if(currentTab >= Module.Category.values().length - 1) {
-                        currentTab = 0;
-                    }else
-                        currentTab++;
+                if (code == GLFW.GLFW_KEY_DOWN) {
+                    if (expanded) {
+                        if (category.moduleIndex >= modules.size() - 1) {
+                            category.moduleIndex = 0;
+                        } else
+                            category.moduleIndex++;
+                    } else {
+                        if (currentTab >= Module.Category.values().length - 1) {
+                            currentTab = 0;
+                        } else
+                            currentTab++;
+                    }
                 }
-            }
 
-            if(code == GLFW.GLFW_KEY_RIGHT) {
-                if(expanded && modules.size() !=0) {
-                    Module module = modules.get(category.moduleIndex);
-                    if(!module.name.equals("TabGUI"))
-                        module.toggle();
-                }else {
-                    expanded = true;
+                if (code == GLFW.GLFW_KEY_RIGHT) {
+                    if (expanded && modules.size() != 0) {
+                        Module module = modules.get(category.moduleIndex);
+                        if (!module.name.equals("TabGUI"))
+                            module.toggle();
+                    } else {
+                        expanded = true;
 
 
+                    }
                 }
-            }
 
-            if(code == GLFW.GLFW_KEY_LEFT) {
-                expanded = false;
+                if (code == GLFW.GLFW_KEY_LEFT) {
+                    expanded = false;
+                }
             }
         }
     }

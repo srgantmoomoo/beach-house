@@ -8,7 +8,7 @@ import net.minecraft.util.Formatting;
 public class SessionInfo extends HudModule {
 
     public SessionInfo() {
-        super("session info", "sessioninfo", "see ur sesh info.", 100, 20, Category.BEACHHOUSE);
+        super("session info", "sessioninfo", "see ur sesh info.", 70, 12, Category.BEACHHOUSE);
     }
 
     private void drawFinale(MatrixStack matrix) {
@@ -19,7 +19,7 @@ public class SessionInfo extends HudModule {
         minecraft.textRenderer.drawWithShadow(matrix, minecraft.world.isRaining() ? Formatting.GRAY + "weather" + Formatting.WHITE + " : rainy"
                 : Formatting.GRAY + "weather" + Formatting.WHITE + " : sunny with a chance of meatballs.", getX(), getY() + 10, 0xffffffff);
 
-        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "game time" + Formatting.WHITE + " : " + minecraft.world.getLunarTime(), getX(), getY() + 20, 0xffffffff);
+        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "game time" + Formatting.WHITE + " : " + minecraft.world.getTimeOfDay(), getX(), getY() + 20, 0xffffffff);
 
         minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "time played" + Formatting.WHITE + " : " + minecraft.player.age, getX(), getY() + 30, 0xffffffff);
 
@@ -80,11 +80,11 @@ public class SessionInfo extends HudModule {
 
     @Override
     public int getWidth() {
-        return 10;
+        return 92;
     }
 
     @Override
     public int getHeight() {
-        return 10;
+        return 50;
     }
 }
