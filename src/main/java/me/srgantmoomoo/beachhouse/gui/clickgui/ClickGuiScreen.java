@@ -5,6 +5,8 @@ import ladysnake.satin.api.managed.ManagedShaderEffect;
 import ladysnake.satin.api.managed.ShaderEffectManager;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
+import me.srgantmoomoo.beachhouse.module.modules.beachhouse.HudEditor;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.gl.ShaderEffect;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -38,7 +40,11 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        Reference.blur.render(1);
+        if(ClickGui.INSTANCE.background.is("blur"))
+            Reference.blur.render(1);
+
+        if(ClickGui.INSTANCE.background.is("dim"))
+            this.renderBackground(matrix);
 
         for (Panel p : panels) {
             p.updatePosition(mouseX, mouseY);

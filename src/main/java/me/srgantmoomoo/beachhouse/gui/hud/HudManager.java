@@ -15,7 +15,7 @@ public class HudManager {
 		hudModules.add(new Watermark());
 		hudModules.add(new PlayerInfo());
 		hudModules.add(new TabGui());
-		hudModules.add(new EnabledModules());
+		//hudModules.add(new EnabledModules());
 		hudModules.add(new SessionInfo());
 	}
 

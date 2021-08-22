@@ -17,14 +17,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 
-public class ModuleList extends Module {
+public class EnabledModules extends Module {
 	public ColorSetting solidColor = new ColorSetting("color", this, new JColor(172, 172, 172, 255));
 	public ModeSetting style = new ModeSetting("style", this, "beach", "dull", "vibrant", "beach", "solid", "rainbow");
 	public BooleanSetting background = new BooleanSetting("background", this, false);
 	public BooleanSetting forgeHax = new BooleanSetting("forgeHax", this, false);
 
-	public ModuleList() {
-		super("module list", "modulelist", "module list.", 0, Category.BEACHHOUSE);
+	public EnabledModules() {
+		super("enabled modules", "enabledmodules", "enabled stuffysiejsdahjn.", 0, Category.BEACHHOUSE);
 		this.addSettings(solidColor, forgeHax, style, background);
 	}
 	private ArrayList<Module> mods = new ArrayList<>();

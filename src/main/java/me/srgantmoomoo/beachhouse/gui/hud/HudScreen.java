@@ -2,6 +2,7 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.module.modules.beachhouse.HudEditor;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.resource.ResourceManager;
@@ -19,7 +20,11 @@ public class HudScreen extends Screen {
 	// this renders the hud module when the screen is opened, it doesn't need any events since its already extending Screen.
 	@Override
 	public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-		Reference.blur.render(1);
+		if(HudEditor.INSTANCE.background.is("blur"))
+			Reference.blur.render(1);
+
+		if(HudEditor.INSTANCE.background.is("dim"))
+			this.renderBackground(matrix);
 
 		for(HudModule m : Main.hudManager.hudModules) {
 			m.drawDraggable(matrix, mouseX, mouseY);

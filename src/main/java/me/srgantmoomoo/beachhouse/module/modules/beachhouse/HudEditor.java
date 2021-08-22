@@ -15,14 +15,11 @@ import org.lwjgl.glfw.GLFW;
 public class HudEditor extends Module {
     public static HudEditor INSTANCE;
 
-    public ColorSetting solidColor = new ColorSetting("color", this, new JColor(172, 172, 172, 255));
-    public ModeSetting style = new ModeSetting("style", this, "beach", "dull", "vibrant", "beach", "solid", "rainbow");
-    public BooleanSetting background = new BooleanSetting("background", this, false);
-    public BooleanSetting forgeHax = new BooleanSetting("forgeHax", this, false);
+    public ModeSetting background = new ModeSetting("background", this, "blur", "blur", "dim", "none");
 
     public HudEditor() {
         super("hud editor", "hudeditor", "edit ur hud an stuff", GLFW.GLFW_KEY_RIGHT_SHIFT, Category.BEACHHOUSE);
-        this.addSettings(solidColor, style, background, forgeHax);
+        this.addSettings(background);
         INSTANCE = this;
     }
 
