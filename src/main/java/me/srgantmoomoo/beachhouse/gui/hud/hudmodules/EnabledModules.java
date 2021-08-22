@@ -24,7 +24,7 @@ public class EnabledModules extends HudModule {
     public Module newModule;
 
     public EnabledModules() {
-        super("enabled modules", "enabledmodules", "shows enabled modules.", 40, 40, Category.BEACHHOUSE);
+        super("enabled modules", "enabledmodules", "shows enabled modules.", 100, 40, Category.BEACHHOUSE);
     }
 
     public void drawFinale(MatrixStack matrix) {
@@ -118,7 +118,7 @@ public class EnabledModules extends HudModule {
 
     @Override
     public int getWidth() {
-        return 10;
+        return 30;
     }
 
     @Override

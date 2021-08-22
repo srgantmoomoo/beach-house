@@ -50,7 +50,7 @@ public class Panel {
     }
 
     public void drawScreen(MatrixStack matrix, int mouseX, int mouseY, float partialTicks) {
-        InGameHud.fill(matrix, x, y, x + width, y + height, 0xFF222222);
+        InGameHud.fill(matrix, x, y, x + width, y + height, 0xffe6ab17);
 
         Reference.textRenderer.drawWithShadow(matrix, title, x + 2, y + height / 2 - Reference.textRenderer.fontHeight / 2, -1);
 
@@ -73,6 +73,7 @@ public class Panel {
         if (this.isDragging) {
             this.setX(mouseX - dragX);
             this.setY(mouseY - dragY);
+            System.out.println("niggers like mousex");
         }
     }
 
@@ -92,6 +93,7 @@ public class Panel {
 
     public void setDragging(boolean drag) {
         this.isDragging = drag;
+        System.out.println("fuckme");
     }
 
     public boolean isOpen() {

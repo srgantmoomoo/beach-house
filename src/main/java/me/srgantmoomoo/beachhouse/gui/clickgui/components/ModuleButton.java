@@ -53,7 +53,7 @@ public class ModuleButton extends Component {
     @Override
     public void renderComponent(MatrixStack matrix) {
         if (this.mod.isEnabled()) {
-            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0xFF222222);
+            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0xfff868fB);
         } else {
             InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0xFF111111);
         }

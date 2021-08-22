@@ -16,6 +16,7 @@ public class HudManager {
 		hudModules.add(new PlayerInfo());
 		hudModules.add(new TabGui());
 		hudModules.add(new EnabledModules());
+		hudModules.add(new SessionInfo());
 	}
 
 	// this is called in MixinInGameHud.

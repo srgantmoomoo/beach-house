@@ -1,10 +1,18 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import ladysnake.satin.api.managed.ManagedShaderEffect;
+import ladysnake.satin.api.managed.ShaderEffectManager;
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.bedroom.module.Module;
+import net.minecraft.client.gl.ShaderEffect;
+import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.resource.ResourceManager;
 import net.minecraft.text.LiteralText;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
@@ -20,7 +28,7 @@ public class ClickGuiScreen extends Screen {
         int panelX = 10;
         int panelY = 5;
         int panelWidth = 80;
-        int panelHeight = 15;
+        int panelHeight = 12;
 
         for (Module.Category c : Module.Category.values()) {
             ClickGuiScreen.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, c));
@@ -30,7 +38,7 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrix);
+        Reference.blur.render(1);
 
         for (Panel p : panels) {
             p.updatePosition(mouseX, mouseY);
@@ -42,7 +50,7 @@ public class ClickGuiScreen extends Screen {
         }
 
         // mouse clicked
-        for (Panel p : panels) {
+        for(Panel p : panels) {
             if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                 p.setDragging(true);
                 p.dragX = mouseX - p.getX();
