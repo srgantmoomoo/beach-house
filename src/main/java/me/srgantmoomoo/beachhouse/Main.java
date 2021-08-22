@@ -4,69 +4,76 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
 import me.srgantmoomoo.beachhouse.command.Commands;
-import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGUI;
+import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
+import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
+import me.srgantmoomoo.beachhouse.gui.newclickgui.ClickGui;
 import me.srgantmoomoo.beachhouse.module.Modules;
 import me.srgantmoomoo.bedroom.Bedroom;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import me.srgantmoomoo.bedroom.api.config.SaveLoad;
-import me.srgantmoomoo.bedroom.api.event.EventProcessor;
-import me.srgantmoomoo.bedroom.command.CommandManager;
-import me.srgantmoomoo.bedroom.module.ModuleManager;
-import me.srgantmoomoo.bedroom.module.setting.SettingManager;
-import me.srgantmoomoo.beachhouse.gui.InGameUI;
-import me.zero.alpine.bus.EventBus;
-import me.zero.alpine.bus.EventManager;
 import net.fabricmc.api.ModInitializer;
 
-/** 
+/**
  * @author SrgantMooMoo
  * @since 5/16/2021
  */
 
+//TODO notepad.
+//TODO config.
+//TODO font renderer.
+//TODO add a bind command.
+//TODO rainbow enchant so sexi D:
+//TODO fix settingslist when a module does not have any settings... and add a color setting to setting command.
+//TODO animations
+//TODO if(settings (opened))
 public class Main implements ModInitializer {
-	
+
 	public static final String modid = "bh";
 	public static final String name = "beach house";
-	public static final String nameCondensed = "beach-house"; 
-	public static final String version = "0.01";
+	public static final String nameCondensed = "beach-house";
+	public static final String version = "0.10";
 
-	public static InGameUI inGameUI;
-	public static ClickGUI clickGUI;
+	public static ClickGuiScreen clickGUI;
+	public static HudManager hudManager;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
-	
+
 	public final Object syncronize = new Object();
 	public void printLog(String text) {
 		synchronized (syncronize) {
 			LOGGER.info(text);
 		}
 	}
-	
+
+	public static ClickGui gui;
+	private boolean inited=false;
 	@Override
 	public void onInitialize() {
-		bedroomInit();
-		beachhouseInit();
-	}
-	
-	public void bedroomInit() {
 		Bedroom.init(modid, name, version);
+		beachhouseInit();
+
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			if (!inited) {
+				gui=new ClickGui();
+				HudRenderCallback.EVENT.register((cli, tickDelta)->gui.render());
+				inited=true;
+			}
+		});
+
 	}
-	
+
 	public void beachhouseInit() {
 		Font[] fonts;
 		fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
 		for (int i = 0; i < fonts.length; i++) {
-		      System.out.print(fonts[i].getFontName() + " : ");
-		      System.out.print(fonts[i].getFamily() + " : ");
-		      System.out.print(fonts[i].getName());
-		      System.out.println();
+			System.out.print(fonts[i].getFontName() + " : ");
+			System.out.print(fonts[i].getFamily() + " : ");
+			System.out.print(fonts[i].getName());
+			System.out.println();
 		}
-
-		inGameUI = new InGameUI();
-		Bedroom.EVENTBUS.subscribe(inGameUI);
-		printLog("ui initialized.");
 
 		Commands.init();
 		printLog("commands initialized.");
@@ -74,9 +81,12 @@ public class Main implements ModInitializer {
 		Modules.init();
 		printLog("modules initialized.");
 
-		clickGUI = new ClickGUI();
+		clickGUI = new ClickGuiScreen();
 		printLog("clickGui initialized.");
 		
+		hudManager = new HudManager();
+		printLog("hud editor initialized.");
+
 		printLog(Main.name + " has finished initialization.");
 	}
 }

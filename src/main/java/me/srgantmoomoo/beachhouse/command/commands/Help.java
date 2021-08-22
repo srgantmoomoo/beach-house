@@ -1,14 +1,13 @@
 package me.srgantmoomoo.beachhouse.command.commands;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.bedroom.api.util.TextFormatting;
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.bedroom.Bedroom;
+import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
 
-@SuppressWarnings("resource")
 public class Help extends Command {
 
     public Help() {
@@ -21,12 +20,6 @@ public class Help extends Command {
     TextFormatting BOLD = TextFormatting.BOLD;
     TextFormatting ITALIC = TextFormatting.ITALIC;
 
-    public static Prefix prefix;
-    public static Toggle toggle;
-    public static Setting setting;
-    public static ModuleList moduleList;
-    public static SettingList settingList;
-
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 0) {
@@ -34,18 +27,10 @@ public class Help extends Command {
             return;
         }
 
-        prefix = new Prefix();
-        toggle = new Toggle();
-        setting = new Setting();
-        moduleList = new ModuleList();
-        settingList = new SettingList();
-
         welcomeMessage();
-        helpMessage(prefix.getName(), prefix.getDescription(), prefix.getSyntax());
-        helpMessage(toggle.getName(), toggle.getDescription(), toggle.getSyntax());
-        helpMessage(moduleList.getName(), moduleList.getDescription(), moduleList.getSyntax());
-        helpMessage(setting.getName(), setting.getDescription(), setting.getSyntax());
-        helpMessage(settingList.getName(), settingList.getDescription(), settingList.getSyntax());
+        Bedroom.commandManager.commands.forEach(c -> {
+            helpMessage(c.name, c.description, c.syntax);
+        });
         goodbyeMessage();
     }
 
@@ -53,8 +38,8 @@ public class Help extends Command {
         String starter = LIGHT_PURPLE + commandName + GRAY + " - " + commandDesc;
         String syntaxMessage = " [" + CommandManager.prefix + commandSyntax + "]";
 
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(starter));
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(syntaxMessage));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(starter));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(syntaxMessage));
     }
 
     private void welcomeMessage() {
@@ -62,9 +47,9 @@ public class Help extends Command {
         String nothing = " ";
         String atClientName = AQUA + "@" + ITALIC + Main.name;
 
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(welcomeString));
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(nothing));
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(atClientName));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(welcomeString));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(atClientName));
 
     }
 
@@ -72,8 +57,8 @@ public class Help extends Command {
         String uwu = GRAY + "" + BOLD + "uwu" + AQUA + " ~";
         String nothing = " ";
 
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(nothing));
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(uwu));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(uwu));
     }
 
 }

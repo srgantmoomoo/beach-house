@@ -1,17 +1,15 @@
 package me.srgantmoomoo.beachhouse.command.commands;
 
-import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.util.TextFormatting;
+import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
-import me.srgantmoomoo.bedroom.module.ModuleManager;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.*;
-import org.w3c.dom.Text;
+import net.minecraft.text.LiteralText;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SettingList extends Command {
@@ -32,6 +30,11 @@ public class SettingList extends Command {
         boolean moduleFound = false;
 
         List<Module> modules = Bedroom.moduleManager.getModules();
+
+        String nothing = TextFormatting.AQUA + " ";
+        String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(wuw));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
         for(Module m : modules) {
             String moduleIn = m.name;
             moduleIn = moduleIn.replaceAll("\\s", "");
@@ -56,13 +59,16 @@ public class SettingList extends Command {
                     }
 
                     if(setting instanceof KeybindSetting) {
-                        CommandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
+                        //CommandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");  notiing 0_0
                     }
 
                     moduleFound = true;
                 }
             }
         }
+        String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(uwu));
 
         if(!moduleFound) {
             CommandManager.addChatMessage("module " + TextFormatting.RED + moduleName + TextFormatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");

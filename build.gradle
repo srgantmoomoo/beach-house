@@ -1,10 +1,10 @@
 plugins {
-	id 'fabric-loom' version '0.6-SNAPSHOT'
+	id 'fabric-loom' version '0.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -16,24 +16,35 @@ repositories {
 		url = "https://jitpack.io"
 	}
 	maven {
-		name = "lukflug"
-		url = "https://lukflug.github.io/maven"
+		name = 'Ladysnake Mods'
+		url = 'https://ladysnake.jfrog.io/artifactory/mods'
+		content {
+			includeGroup 'io.github.ladysnake'
+			includeGroupByRegex 'io\\.github\\.onyxstudios.*'
+		}
 	}
+	/*maven {
+		name = "lukflug"
+		url = "https://lukflug.github.io/maven/"
+	}*/
 }
 
 dependencies {
 	// fabric shit
-	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	// api
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	compile "com.github.ZeroMemes:Alpine:1.9"
-	compile "com.lukflug:panelstudio:0.1.8"
-	compile "com.lukflug:panelstudio-mc16:0.1.8"
-	implementation "com.github.beach-house-development:bedroom:4-pre6"
+	//implementation "com.lukflug:panelstudio:${studio_version}"
+	//implementation "com.lukflug:panelstudio-mc17:${studio_version}"
+
+	modImplementation "io.github.ladysnake:satin:${satin_version}"
+	include "io.github.ladysnake:satin:${satin_version}"
+}
+
+minecraft {
+	accessWidener = file("src/main/resources/beachhouse.aw")
 }
 
 processResources {
@@ -54,10 +65,7 @@ tasks.withType(JavaCompile).configureEach {
 	// The Minecraft launcher currently installs Java 8 for users, so your mod probably wants to target Java 8 too
 	// JDK 9 introduced a new way of specifying this that will make sure no newer classes or methods are used.
 	// We'll use that if it's available, but otherwise we'll use the older option.
-	def targetVersion = 8
-	if (JavaVersion.current().isJava9Compatible()) {
-		 it.options.release = targetVersion
-	}
+	def targetVersion = 16
 }
 
 java {

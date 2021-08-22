@@ -3,7 +3,7 @@ This is a latest version fabric client for minecraft. This is a private client, 
 <br>
 
 # development
-beach house requires jdk11 in a dev enviorment. <br>
+beach house requires jdk 16 in a dev enviorment. <br>
 
 **gradle**
 - gradlew eclipse
@@ -11,7 +11,5 @@ beach house requires jdk11 in a dev enviorment. <br>
 
 # credits
 beach house is a [bedroom](https://github.com/moomooooo/bedroom) based client and is currently running bedroom 3. <br>
-Zero's [Alpine](https://github.com/ZeroMemes/Alpine) for an event system. <br>
-lukflugs [PanelStudio](https://github.com/lukflug/PanelStudio) for the clickgui.
 
 beach house is developed in [Fabric](https://fabricmc.net) for [Minecraft](www.minecraft.net).

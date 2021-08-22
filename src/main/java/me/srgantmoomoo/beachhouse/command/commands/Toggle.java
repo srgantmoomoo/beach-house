@@ -1,12 +1,10 @@
 package me.srgantmoomoo.beachhouse.command.commands;
 
-import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.util.TextFormatting;
+import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
-import me.srgantmoomoo.bedroom.module.ModuleManager;
 
 public class Toggle extends Command {
 
@@ -27,7 +25,7 @@ public class Toggle extends Command {
             String moduleIn = module.name.replaceAll("\\s", "");
             if(moduleIn.equalsIgnoreCase(moduleName)) {
                 module.toggle();
-                CommandManager.addChatMessage(module.name + " " + (module.isEnabled() ? TextFormatting.GREEN + "enabled" + TextFormatting.GRAY + "." : TextFormatting.DARK_RED + "disabled" + TextFormatting.GRAY + "."));
+                CommandManager.addChatMessage(module.name + " " + (module.isActive() ? TextFormatting.GREEN + "enabled" + TextFormatting.GRAY + "." : TextFormatting.DARK_RED + "disabled" + TextFormatting.GRAY + "."));
                 moduleFound = true;
                 break;
             }

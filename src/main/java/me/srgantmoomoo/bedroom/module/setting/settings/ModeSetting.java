@@ -3,6 +3,8 @@ package me.srgantmoomoo.bedroom.module.setting.settings;
 import java.util.Arrays;
 import java.util.List;
 
+import com.lukflug.panelstudio.setting.IEnumSetting;
+import com.lukflug.panelstudio.setting.ILabeled;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
@@ -12,53 +14,77 @@ import me.srgantmoomoo.bedroom.module.setting.Setting;
  * @since 05/16/2021
  */
 
-public class ModeSetting extends Setting implements com.lukflug.panelstudio.settings.EnumSetting{
-	public int index;
-	  
-	public List<String> modes;
-	  
-	public ModeSetting(String name, Module parent, String defaultMode, String... modes) {
-	    this.name = name;
-	    this.parent = parent;
-	    this.modes = Arrays.asList(modes);
-	    this.index = this.modes.indexOf(defaultMode);
-	}
-	  
-	public String getMode() {
-	    return this.modes.get(this.index);
-	}
-	  
-	public void setMode(String mode) {
-		  this.index = this.modes.indexOf(mode);
-		  
-		  if(Bedroom.INSTANCE.saveLoad != null) {
-				Bedroom.INSTANCE.saveLoad.save();
-		    }
-	}
-	  
-	public boolean is(String mode) {
-	    return (this.index == this.modes.indexOf(mode));
-	}
-	  
-	public void cycle() {
-	    if (this.index < this.modes.size() - 1) {
-	      this.index++;
-	    } else {
-	      this.index = 0;
-	    }
-	}
+public class ModeSetting extends Setting implements IEnumSetting {
+    public int index;
 
-	@Override
-	public void increment() {
-		if(this.index < this.modes.size() - 1) {
-			this.index++;
-		}else {
-			this.index = 0;
-		}
-	}
+    public List<String> modes;
 
-	@Override
-	public String getValueName() {
-		return this.modes.get(this.index);
-	}
+    public ModeSetting(String name, Module parent, String defaultMode, String... modes) {
+        this.name = name;
+        this.parent = parent;
+        this.modes = Arrays.asList(modes);
+        this.index = this.modes.indexOf(defaultMode);
+    }
+
+    public String getMode() {
+        return this.modes.get(this.index);
+    }
+
+    public void setMode(String mode) {
+        this.index = this.modes.indexOf(mode);
+
+        if(Bedroom.saveLoad != null) {
+            Bedroom.saveLoad.save();
+        }
+    }
+
+    public boolean is(String mode) {
+        return (this.index == this.modes.indexOf(mode));
+    }
+
+    public void cycle() {
+        if (this.index < this.modes.size() - 1) {
+            this.index++;
+        } else {
+            this.index = 0;
+        }
+    }
+
+    @Override
+    public void increment() {
+        if (this.index < this.modes.size() - 1) {
+            this.index++;
+        } else {
+            this.index = 0;
+        }
+    }
+
+    @Override
+    public void decrement() {
+        if (this.index < this.modes.size() - 1) {
+            this.index--;
+        } else {
+            this.index = 0;
+        }
+    }
+
+    @Override
+    public String getValueName() {
+        return getMode().toString();
+    }
+
+    @Override
+    public int getValueIndex() {
+        return this.index;
+    }
+
+    @Override
+    public void setValueIndex(int index) {
+        this.index = this.modes.indexOf(index);
+    }
+
+    @Override
+    public ILabeled[] getAllowedValues() {
+        return null;
+    }
 }

@@ -1,5 +1,6 @@
 package me.srgantmoomoo.bedroom.api.util;
 
+import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 
 public class ColorMain extends Module {
     public static final Module ColorMain = null;
-    public static ModeSetting colorModel = new ModeSetting("penis right?", ColorMain, "HSB", "RGB", "HSB");
+    public static ModeSetting colorModel = new ModeSetting("penisright?", ColorMain, "HSB", "RGB", "HSB");
 
     public ColorMain() {
         super("colorMain", "colorMain", "oof", 0, Category.BEACHHOUSE);
