@@ -2,7 +2,10 @@ package me.srgantmoomoo.beachhouse.gui.clickgui;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
+import me.srgantmoomoo.bedroom.api.event.Event;
+import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 public class ClickGuiScreen extends Screen {
     public static ArrayList<Panel> panels;
     private boolean mouseHeld = false;
+    public static ClickGuiScreen INSTANCE;
 
     public ClickGuiScreen() {
         super(new LiteralText("smallppguis"));
@@ -22,6 +26,8 @@ public class ClickGuiScreen extends Screen {
         int panelY = 5;
         int panelWidth = 88;
         int panelHeight = 12;
+
+        INSTANCE = this;
 
         for (Module.Category c : Module.Category.values()) {
             ClickGuiScreen.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, c));
@@ -80,23 +86,23 @@ public class ClickGuiScreen extends Screen {
                 }
             }
         }
-
-        // key typed
     }
 
-    /*@Override
-    protected void keyTyped(char typedChar, int keyCode) {
+    // called in MixinKeyboard
+    public void onKeyPressed(int key) {
         for (Panel panel : panels) {
-            if (panel.isOpen() && !panel.getComponents().isEmpty() && keyCode != 1) {
+            if (panel.isOpen() && !panel.getComponents().isEmpty() && GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_ESCAPE) != GLFW.GLFW_PRESS) {
                 for (Component component : panel.getComponents()) {
-                    component.keyTyped(typedChar, keyCode);
+                    component.keyTyped(key);
                 }
             }
         }
-        if (keyCode == 1) {
-            this.mc.displayGuiScreen(null);
-        }
-    }*/
+    }
+
+    @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
 
     public static ArrayList<Panel> getPanels() {
         return panels;

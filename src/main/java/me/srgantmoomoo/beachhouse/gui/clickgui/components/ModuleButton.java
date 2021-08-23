@@ -153,9 +153,9 @@ public class ModuleButton extends Component {
     }
 
     @Override
-    public void keyTyped(char typedChar, int key) {
+    public void keyTyped(int key) {
         for (Component comp : this.subcomponents) {
-            comp.keyTyped(typedChar, key);
+            comp.keyTyped(key);
         }
     }
 

@@ -14,7 +14,7 @@ public class Component {
 
     public void mouseReleased(int mouseX, int mouseY) {}
 
-    public void keyTyped(char typedChar, int key) {}
+    public void keyTyped(int key) {}
 
     public void closeAllSub() {}
 

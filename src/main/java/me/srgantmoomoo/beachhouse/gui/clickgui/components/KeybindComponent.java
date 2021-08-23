@@ -28,8 +28,8 @@ public class KeybindComponent extends Component {
         if (isBinding) {
             Reference.textRenderer.drawWithShadow(matrix, "Listening" + Formatting.GRAY + " " + "...", parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
         } else {
-            Reference.textRenderer.drawWithShadow(matrix, "Bind", parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
-            //Reference.textRenderer.drawWithShadow(matrix, "Bind" + Formatting.GRAY + " " + Keyboard.getKeyName(this.parent.mod.getKey()), parent.parent.getX() + 82, (parent.parent.getY() + offset - 10), -1);
+            //Reference.textRenderer.drawWithShadow(matrix, "Bind", parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
+            Reference.textRenderer.drawWithShadow(matrix, "Bind" + Formatting.GRAY + " " + GLFW.glfwGetKeyName(this.parent.mod.getKey(), GLFW.glfwGetKeyScancode(this.parent.mod.getKey())), parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
         }
     }
 
@@ -42,12 +42,9 @@ public class KeybindComponent extends Component {
     private boolean mouseHeld = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
-        System.out.println("" + this.x + " " + this.y);
-        System.out.println("" + mouseX + " " + mouseY);
         if (this.parent.isOpen()) {
             if(isMouseOnButton(mouseX, mouseY)) {
-                System.out.println("absolutehuge");
-                if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+                if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                     mouseHeld = true;
                     this.isBinding = !this.isBinding;
                 } else if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
@@ -57,19 +54,18 @@ public class KeybindComponent extends Component {
     }
 
     @Override
-    public void keyTyped(char typedChar, int key) {
-        /*if (this.isBinding) {
-            if (Keyboard.isKeyDown(Keyboard.KEY_DELETE)) {
-                this.parent.mod.setKey(Keyboard.KEY_NONE);
+    public void keyTyped(int key) {
+        if (this.isBinding) {
+            if(GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_DELETE) == GLFW.GLFW_PRESS) {
+                this.parent.mod.setKey(0);
                 this.isBinding = false;
-            } else if (Keyboard.isKeyDown(Keyboard.KEY_BACK)) {
-                this.parent.mod.setKey(Keyboard.KEY_NONE);
+            }else if(GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_DELETE) == GLFW.GLFW_PRESS) {
                 this.isBinding = false;
-            } else {
+            }else {
                 this.parent.mod.setKey(key);
                 this.isBinding = false;
             }
-        }*/
+        }
     }
 
     public boolean isMouseOnButton(int x, int y) {
