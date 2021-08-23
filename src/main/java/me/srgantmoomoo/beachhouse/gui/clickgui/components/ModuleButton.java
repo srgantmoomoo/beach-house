@@ -7,6 +7,8 @@ import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
@@ -31,46 +33,43 @@ public class ModuleButton extends Component {
         this.open = false;
         int opY = offset + 12;
 
-        /*if (Past.settingsManager.getSettingsModule(mod) != null) {
-            for (Setting setting : Past.settingsManager.getSettingsModule(mod)) {
-                if (setting.getType() == "boolean") {
-                    this.subcomponents.add(new BooleanComponent(setting, this, opY));
+        if (Bedroom.settingManager.getSettingsByMod(mod) != null) {
+            for (Setting setting : Bedroom.settingManager.getSettingsByMod(mod)) {
+                if (setting instanceof BooleanSetting) {
+                    this.subcomponents.add(new BooleanComponent((BooleanSetting) setting, this, opY));
                     opY += 12;
                 }
-                if (setting.getType() == "integer") {
-                    this.subcomponents.add(new IntegerComponent(setting, this, opY));
-                    opY += 12;
-                }
-                if (setting.getType() == "double") {
+                /*if (setting instanceof NumberSetting) {
                     this.subcomponents.add(new DoubleComponent(setting, this, opY));
                     opY += 12;
                 }
-                if (setting.getType() == "mode") {
+                if (setting instanceof ModeSetting) {
                     this.subcomponents.add(new ModeComponent(setting, this, opY));
                     opY += 12;
-                }
+                }*/
             }
         }
-        this.subcomponents.add(new KeybindComponent(this, opY));*/
+        this.subcomponents.add(new KeybindComponent(this, opY));
     }
 
     @Override
     public void renderComponent(MatrixStack matrix) {
         if(this.mod.isEnabled()) {
-            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0xFF222222);
+            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
+            InGameHud.fill(matrix, parent.getX() + parent.getWidth(), parent.getY() + 1 + offset, parent.getX() + parent.getWidth() - 1, parent.getY() + 11 + offset, 0xfff868fB);
         } else {
-            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0xFF111111);
+            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
         }
 
         Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 2), -1);
 
-        if (this.subcomponents.size() > 1) {
+        /*if (this.subcomponents.size() > 0) {
             if (!this.isOpen()) {
                 Reference.textRenderer.drawWithShadow(matrix, "+", parent.getX() + parent.getWidth() - 10, (parent.getY() + offset + 2), -1);
             } else if (this.isOpen()) {
                 Reference.textRenderer.drawWithShadow(matrix, "-", parent.getX() + parent.getWidth() - 10, (parent.getY() + offset + 2), -1);
             }
-        }
+        }*/
 
         if (this.open && !this.subcomponents.isEmpty()) {
             for (Component comp : this.subcomponents) {
@@ -125,23 +124,27 @@ public class ModuleButton extends Component {
     }
 
     private boolean mouseHeld = false;
+    private boolean mouseHeld2 = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
         if(isMouseOnButton(mouseX, mouseY)) {
+            System.out.println("absolutesmall");
             if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                 mouseHeld = true;
                 this.mod.toggle();
             }else if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE && mouseHeld)
                 mouseHeld = false;
 
-            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS) {
+            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld2) {
+                mouseHeld2 = true;
                 if (!this.isOpen()) {
                     parent.closeAllSetting();
                     this.setOpen(true);
                 } else {
                     this.setOpen(false);
                 }
-            }
+            }else if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE && mouseHeld2)
+                mouseHeld2 = false;
 
             for (Component comp : this.subcomponents) {
                 comp.mouseClicked(mouseX, mouseY);
@@ -164,7 +167,7 @@ public class ModuleButton extends Component {
     }
 
     public boolean isMouseOnButton(int x, int y) {
-        if (x > parent.getX() && x < parent.getX() + 80 && y > this.parent.getY() + this.offset && y < this.parent.getY() + 12 + this.offset) {
+        if (x > parent.getX() && x < parent.getX() + 88 && y > this.parent.getY() + this.offset && y < this.parent.getY() + 12 + this.offset) {
             return true;
         } else {
             return false;

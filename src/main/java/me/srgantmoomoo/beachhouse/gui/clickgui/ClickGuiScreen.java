@@ -20,12 +20,12 @@ public class ClickGuiScreen extends Screen {
         panels = new ArrayList<>();
         int panelX = 10;
         int panelY = 5;
-        int panelWidth = 80;
+        int panelWidth = 88;
         int panelHeight = 12;
 
         for (Module.Category c : Module.Category.values()) {
             ClickGuiScreen.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, c));
-            panelX += 81;
+            panelX += 89;
         }
     }
 
