@@ -42,6 +42,8 @@ public class KeybindComponent extends Component {
     private boolean mouseHeld = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
+        System.out.println("" + this.x + " " + this.y);
+        System.out.println("" + mouseX + " " + mouseY);
         if (this.parent.isOpen()) {
             if(isMouseOnButton(mouseX, mouseY)) {
                 System.out.println("absolutehuge");

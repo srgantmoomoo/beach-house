@@ -72,11 +72,11 @@ public class ClickGuiScreen extends Screen {
         for (Panel p : panels) {
             if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE) {
                 p.setDragging(false);
+            }
 
-                if (p.isOpen() && !p.getComponents().isEmpty()) {
-                    for (Component component : p.getComponents()) {
-                        component.mouseReleased(mouseX, mouseY);
-                    }
+            if (p.isOpen() && !p.getComponents().isEmpty()) {
+                for (Component component : p.getComponents()) {
+                    component.mouseReleased(mouseX, mouseY);
                 }
             }
         }
