@@ -25,12 +25,12 @@ public class BooleanComponent extends Component {
     @Override
     public void renderComponent(MatrixStack matrix) {
         if(this.op.isEnabled()) {
-            InGameHud.fill(matrix, parent.parent.getX() + 80, parent.parent.getY() - 12 + offset, parent.parent.getX() + parent.parent.getWidth() + parent.parent.getWidth(), parent.parent.getY() + offset, 0xFF222222);
+            InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0xff11c1e8);
         } else {
-            InGameHud.fill(matrix, parent.parent.getX() + 80, parent.parent.getY() - 12 + offset, parent.parent.getX() + parent.parent.getWidth() + parent.parent.getWidth(), parent.parent.getY() + offset, 0xFF111111);
+            InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0x90000000);
         }
 
-        Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + 82, (parent.parent.getY() + offset - 10), -1);
+        Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
     }
 
     @Override
@@ -39,14 +39,17 @@ public class BooleanComponent extends Component {
         this.x = parent.parent.getX() + 80;
     }
 
+    private boolean mouseHeld = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
         if (isMouseOnButton(mouseX, mouseY)) {
-            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+            if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                mouseHeld = true;
                 if (this.parent.isOpen()) {
                     this.op.setEnabled(!op.isEnabled());
                 }
-            }
+            }else if(GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
+                mouseHeld = false;
         }
     }
 

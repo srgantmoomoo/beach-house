@@ -28,7 +28,7 @@ public class Esp extends Module {
     public BooleanSetting player = new BooleanSetting("player", this, true);
     public BooleanSetting hostile = new BooleanSetting("hostile", this, true);
     public BooleanSetting passive = new BooleanSetting("passive", this, true);
-    public BooleanSetting storage = new BooleanSetting("storage ", this, true);
+    public BooleanSetting storage = new BooleanSetting("storage", this, true);
     public BooleanSetting item = new BooleanSetting("item", this, true);
     public BooleanSetting hole = new BooleanSetting("hole", this, false);
     public BooleanSetting voidEsp = new BooleanSetting("void", this, false);

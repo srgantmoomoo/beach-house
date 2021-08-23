@@ -33,8 +33,9 @@ public class ModuleButton extends Component {
         this.open = false;
         int opY = offset + 12;
 
-        if (Bedroom.settingManager.getSettingsByMod(mod) != null) {
-            for (Setting setting : Bedroom.settingManager.getSettingsByMod(mod)) {
+
+        if (mod.settings != null) {
+            for (Setting setting : mod.settings) {
                 if (setting instanceof BooleanSetting) {
                     this.subcomponents.add(new BooleanComponent((BooleanSetting) setting, this, opY));
                     opY += 12;
@@ -54,6 +55,7 @@ public class ModuleButton extends Component {
 
     @Override
     public void renderComponent(MatrixStack matrix) {
+
         if(this.mod.isEnabled()) {
             InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
             InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0xfff868fB);

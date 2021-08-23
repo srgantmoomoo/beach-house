@@ -16,13 +16,14 @@ public class KeybindComponent extends Component {
 
     public KeybindComponent(ModuleButton parent, int offset) {
         this.parent = parent;
-        this.x = parent.parent.getX() + 90;
+        this.x = parent.parent.getX() + parent.parent.getWidth();
         this.y = parent.parent.getY() + parent.offset;
         this.offset = offset;
     }
 
     @Override
     public void renderComponent(MatrixStack matrix) {
+        // the second x value has a +90 instaed of +width because in this case, we are drawing the panel out 90 pixels rather than 88, width would return 88.
         InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0x90000000);
 
         if (isBinding) {
@@ -56,10 +57,13 @@ public class KeybindComponent extends Component {
     @Override
     public void keyTyped(int key) {
         if (this.isBinding) {
-            if(GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_DELETE) == GLFW.GLFW_PRESS) {
+            if(GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_BACKSPACE) == GLFW.GLFW_PRESS) {
                 this.parent.mod.setKey(0);
                 this.isBinding = false;
             }else if(GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_DELETE) == GLFW.GLFW_PRESS) {
+                this.parent.mod.setKey(0);
+                this.isBinding = false;
+            }else if(GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_ESCAPE) == GLFW.GLFW_PRESS) {
                 this.isBinding = false;
             }else {
                 this.parent.mod.setKey(key);
