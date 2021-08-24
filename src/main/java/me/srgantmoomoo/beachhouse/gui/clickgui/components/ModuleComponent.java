@@ -63,15 +63,20 @@ public class ModuleComponent extends Component {
     // using this method to draw longer module names with "..."
     private void drawModuleName(MatrixStack matrix) {
         if(this.mod.getID() == "enabledmodules") {
-            if(hovered) {
+            if(hovered || !this.mod.isEnabled()) {
                 Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
             }else
             Reference.textRenderer.drawWithShadow(matrix, "enabled mo" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
         }else if(this.mod.getID() == "rainbowenchant") {
-            if(hovered) {
+            if (hovered || !this.mod.isEnabled()) {
+                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+            } else
+                Reference.textRenderer.drawWithShadow(matrix, "rainbow enc" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+        }else if(this.mod.getID() == "elytrareplace") {
+            if(hovered || !this.mod.isEnabled()) {
                 Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
             }else
-                Reference.textRenderer.drawWithShadow(matrix, "rainbow enc" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+                Reference.textRenderer.drawWithShadow(matrix, "elytra rep" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
         }else
             Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
     }
