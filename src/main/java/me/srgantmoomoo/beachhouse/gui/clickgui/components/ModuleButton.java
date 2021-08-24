@@ -44,10 +44,10 @@ public class ModuleButton extends Component {
                     this.subcomponents.add(new NumberComponent((NumberSetting) setting, this, opY));
                     opY += 12;
                 }
-                /*if (setting instanceof ModeSetting) {
-                    this.subcomponents.add(new ModeComponent(setting, this, opY));
+                if (setting instanceof ModeSetting) {
+                    this.subcomponents.add(new ModeComponent((ModeSetting) setting, this, opY));
                     opY += 12;
-                }*/
+                }
             }
         }
         this.subcomponents.add(new KeybindComponent(this, opY));
@@ -132,13 +132,13 @@ public class ModuleButton extends Component {
         if(isMouseOnButton(mouseX, mouseY)) {
             //InGameHud.fill(matrix, parent.getX(), parent.getY() + 1 + offset, parent.getX() + 1, parent.getY() + 11 + offset, 0xfff868fB);
             //System.out.println("absolutesmall");
-            if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+            if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                 mouseHeld = true;
                 this.mod.toggle();
-            } else if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE && mouseHeld)
+            } else if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE && mouseHeld)
                 mouseHeld = false;
 
-            if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld2) {
+            if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld2) {
                 mouseHeld2 = true;
                 if (!this.isOpen()) {
                     parent.closeAllSetting();
@@ -146,7 +146,7 @@ public class ModuleButton extends Component {
                 } else {
                     this.setOpen(false);
                 }
-            } else if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE && mouseHeld2)
+            } else if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE && mouseHeld2)
                 mouseHeld2 = false;
         }
         for (Component comp : this.subcomponents) {

@@ -70,7 +70,7 @@ public class NumberComponent extends Component {
     public void mouseClicked(int mouseX, int mouseY) {
         if (this.isMouseOnButton(mouseX, mouseY)) {
             if(this.parent.isOpen()) {
-                if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+                if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                     this.dragging = true;
 
                     this.y = parent.parent.getY() - 12 + this.offset;

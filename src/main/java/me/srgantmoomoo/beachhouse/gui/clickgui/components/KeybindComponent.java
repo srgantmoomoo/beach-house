@@ -45,10 +45,10 @@ public class KeybindComponent extends Component {
     public void mouseClicked(int mouseX, int mouseY) {
         if (this.parent.isOpen()) {
             if(isMouseOnButton(mouseX, mouseY)) {
-                if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                     mouseHeld = true;
                     this.isBinding = !this.isBinding;
-                } else if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
+                } else if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
                     mouseHeld = false;
             }
         }
@@ -57,13 +57,13 @@ public class KeybindComponent extends Component {
     @Override
     public void keyTyped(int key) {
         if (this.isBinding) {
-            if(GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_BACKSPACE) == GLFW.GLFW_PRESS) {
+            if(GLFW.glfwGetKey(Reference.window.getHandle(), GLFW.GLFW_KEY_BACKSPACE) == GLFW.GLFW_PRESS) {
                 this.parent.mod.setKey(0);
                 this.isBinding = false;
-            }else if(GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_DELETE) == GLFW.GLFW_PRESS) {
+            }else if(GLFW.glfwGetKey(Reference.window.getHandle(), GLFW.GLFW_KEY_DELETE) == GLFW.GLFW_PRESS) {
                 this.parent.mod.setKey(0);
                 this.isBinding = false;
-            }else if(GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_ESCAPE) == GLFW.GLFW_PRESS) {
+            }else if(GLFW.glfwGetKey(Reference.window.getHandle(), GLFW.GLFW_KEY_ESCAPE) == GLFW.GLFW_PRESS) {
                 this.isBinding = false;
             }else {
                 this.parent.mod.setKey(key);
