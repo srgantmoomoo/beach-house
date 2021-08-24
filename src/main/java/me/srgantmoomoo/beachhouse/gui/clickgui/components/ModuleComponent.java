@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui.components;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.BooleanComponent;
@@ -164,7 +165,11 @@ public class ModuleComponent extends Component {
             if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld2) {
                 mouseHeld2 = true;
                 if (!this.isOpen()) {
-                    parent.closeAllSetting();
+                    // if i want settings to close across all panels i would use this.
+                    /*ClickGuiScreen.getPanels().forEach(p -> {
+                        p.closeAllSettings();
+                    });*/
+                    parent.closeAllSettings();
                     this.setOpen(true);
                 } else {
                     this.setOpen(false);

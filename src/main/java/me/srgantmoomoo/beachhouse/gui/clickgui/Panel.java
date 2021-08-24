@@ -77,7 +77,7 @@ public class Panel {
         }
     }
 
-    public void closeAllSetting() {
+    public void closeAllSettings() {
         for (Component component : components) {
             component.closeAllSub();
         }
