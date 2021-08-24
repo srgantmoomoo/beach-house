@@ -36,7 +36,7 @@ public class BooleanComponent extends Component {
     @Override
     public void updateComponent(int mouseX, int mouseY) {
         this.y = parent.parent.getY() - 12 + this.offset;
-        this.x = parent.parent.getX() + 80;
+        this.x = parent.parent.getX() + 90;
     }
 
     private boolean mouseHeld = false;

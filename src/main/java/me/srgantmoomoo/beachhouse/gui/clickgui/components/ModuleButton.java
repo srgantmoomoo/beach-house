@@ -40,11 +40,11 @@ public class ModuleButton extends Component {
                     this.subcomponents.add(new BooleanComponent((BooleanSetting) setting, this, opY));
                     opY += 12;
                 }
-                /*if (setting instanceof NumberSetting) {
-                    this.subcomponents.add(new DoubleComponent(setting, this, opY));
+                if (setting instanceof NumberSetting) {
+                    this.subcomponents.add(new NumberComponent((NumberSetting) setting, this, opY));
                     opY += 12;
                 }
-                if (setting instanceof ModeSetting) {
+                /*if (setting instanceof ModeSetting) {
                     this.subcomponents.add(new ModeComponent(setting, this, opY));
                     opY += 12;
                 }*/
@@ -63,7 +63,7 @@ public class ModuleButton extends Component {
             InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
         }
 
-        Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 2), -1);
+        Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), -1);
 
         /*if (this.subcomponents.size() > 0) {
             if (!this.isOpen()) {
