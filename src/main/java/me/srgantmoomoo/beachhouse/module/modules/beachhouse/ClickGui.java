@@ -15,7 +15,7 @@ public class ClickGui extends Module {
     public ModeSetting background = new ModeSetting("background", this, "blur", "blur", "dim", "none");
 
     public ClickGui() {
-        super("click gui", "clickgui", "does clicky click clack stuff", GLFW.GLFW_KEY_RIGHT_CONTROL, Category.BEACHHOUSE);
+        super("click gui", "clickgui", "does clicky click clack stuff", GLFW.GLFW_KEY_B, Category.BEACHHOUSE);
         this.addSettings(background);
         INSTANCE = this;
     }
