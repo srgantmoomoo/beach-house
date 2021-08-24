@@ -1,7 +1,8 @@
-package me.srgantmoomoo.beachhouse.gui.clickgui.components;
+package me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
+import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleComponent;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -10,12 +11,12 @@ import org.lwjgl.glfw.GLFW;
 
 public class BooleanComponent extends Component {
     private BooleanSetting op;
-    private ModuleButton parent;
+    private ModuleComponent parent;
     private int offset;
     private int x;
     private int y;
 
-    public BooleanComponent(BooleanSetting op, ModuleButton parent, int offset) {
+    public BooleanComponent(BooleanSetting op, ModuleComponent parent, int offset) {
         this.op = op;
         this.parent = parent;
         this.x = parent.parent.getX() + parent.parent.getWidth();

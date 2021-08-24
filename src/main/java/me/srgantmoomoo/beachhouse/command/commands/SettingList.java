@@ -26,7 +26,7 @@ public class SettingList extends Command {
             return;
         }
 
-        String moduleName = args[0];
+        String inputValue = args[0];
         boolean moduleFound = false;
 
         List<Module> modules = Bedroom.moduleManager.getModules();
@@ -36,10 +36,9 @@ public class SettingList extends Command {
         Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(wuw));
         Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
         for(Module m : modules) {
-            String moduleIn = m.name;
-            moduleIn = moduleIn.replaceAll("\\s", "");
+            String moduleId = m.getID();
 
-            if(moduleIn.equalsIgnoreCase(moduleName)) {
+            if(moduleId.equalsIgnoreCase(inputValue)) {
                 for(Setting setting : m.settings) {
 
                     if(setting instanceof BooleanSetting) {
@@ -71,7 +70,7 @@ public class SettingList extends Command {
         Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(uwu));
 
         if(!moduleFound) {
-            CommandManager.addChatMessage("module " + TextFormatting.RED + moduleName + TextFormatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
+            CommandManager.addChatMessage("module " + TextFormatting.RED + inputValue + TextFormatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
             return;
         }
     }

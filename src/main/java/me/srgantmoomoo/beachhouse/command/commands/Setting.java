@@ -8,6 +8,7 @@ import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
+import net.minecraft.util.Formatting;
 
 public class Setting extends Command {
 
@@ -15,10 +16,10 @@ public class Setting extends Command {
         super("setting", "allows you to change settings of modules.", "setting <module> <setting> <value>", "s");
     }
 
-    TextFormatting GREEN = TextFormatting.GREEN;
-    TextFormatting RED = TextFormatting.RED;
-    TextFormatting GRAY = TextFormatting.GRAY;
-    TextFormatting WHITE = TextFormatting.WHITE;
+    Formatting GREEN = Formatting.GREEN;
+    Formatting RED = Formatting.RED;
+    Formatting GRAY = Formatting.GRAY;
+    Formatting WHITE = Formatting.WHITE;
 
     @Override
     public void onCommand(String[] args, String command) {
@@ -27,51 +28,48 @@ public class Setting extends Command {
             return;
         }
 
-        String moduleName = args[0];
-        String settingName = args[1];
-        String inputValue = args[2];
-        Module module = Bedroom.moduleManager.getModuleByID(moduleName);
-        me.srgantmoomoo.bedroom.module.setting.Setting setting = Bedroom.settingManager.getSettingByName(module, settingName);
+        String moduleInput = args[0];
+        String settingNameInput = args[1];
+        String settingValueInput = args[2];
+        Module module = Bedroom.moduleManager.getModuleByID(moduleInput);
+        me.srgantmoomoo.bedroom.module.setting.Setting setting = Bedroom.settingManager.getSettingByName(module, settingNameInput);
 
         if(module == null) {
-            CommandManager.addChatMessage("the module " + RED + moduleName + GRAY + " does not exist dumfuck.");
+            CommandManager.addChatMessage("the module " + RED + moduleInput + GRAY + " does not exist dumfuck.");
             return;
         }
 
         if(setting == null) {
-            CommandManager.addChatMessage("the setting " + RED + settingName + GRAY + " does not exist for the module " + WHITE + moduleName + GRAY + ".");
+            CommandManager.addChatMessage("the setting " + RED + settingNameInput + GRAY + " does not exist for the module " + WHITE + moduleInput + GRAY + ".");
             return;
         }
 
         if(setting instanceof BooleanSetting) {
-            if(!inputValue.equalsIgnoreCase("true") && !inputValue.equalsIgnoreCase("false")) {
-                CommandManager.addChatMessage("boolean value must be either " + GREEN + "true " + GRAY + "or " + RED + "false" + GRAY + ".");
-                return;
-            }
-
-            ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(inputValue));
-            CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (inputValue.equalsIgnoreCase("true") ? GREEN + inputValue + GRAY + "." : RED + inputValue + GRAY + "."));
+            if(settingValueInput.equalsIgnoreCase("true") || settingValueInput.equalsIgnoreCase("false")) {
+                ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(settingValueInput));
+                CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (settingValueInput.equalsIgnoreCase("true") ? GREEN + settingValueInput + GRAY + "." : RED + settingValueInput + GRAY + "."));
+            }else CommandManager.addChatMessage("boolean value must be either " + GREEN + "true " + GRAY + "or " + RED + "false" + GRAY + ".");
         }
 
         if(setting instanceof NumberSetting) {
             try {
-                double val = Double.parseDouble(inputValue);
+                double val = Double.parseDouble(settingValueInput);
 
                 if(val > ((NumberSetting) setting).getMaximum()) val = ((NumberSetting) setting).getMaximum();
                 else if(val < ((NumberSetting) setting).getMinimum()) val = ((NumberSetting) setting).getMinimum();
 
                 ((NumberSetting) setting).setValue(val);
                 CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + val + GRAY + ".");
-            } catch (NumberFormatException ignored) {
-                CommandManager.addChatMessage("number value " + RED + inputValue + GRAY + " is invalid.");
+            } catch (NumberFormatException invalid) {
+                CommandManager.addChatMessage("number value " + RED + settingValueInput + GRAY + " is invalid.");
             }
         }
 
         if(setting instanceof ModeSetting) {
-            if(((ModeSetting) setting).modes.contains(inputValue)) {
-                ((ModeSetting) setting).setMode(inputValue);
-                CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + inputValue + GRAY + ".");
-            }else CommandManager.addChatMessage("the mode " + RED + inputValue + GRAY + " does not exist for the module " + WHITE + module.name + GRAY + ". sorry :'(");
+            if(((ModeSetting) setting).modes.contains(settingValueInput)) {
+                ((ModeSetting) setting).setMode(settingValueInput);
+                CommandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + settingValueInput + GRAY + ".");
+            }else CommandManager.addChatMessage("the mode " + RED + settingValueInput + GRAY + " does not exist for the module " + WHITE + module.name + GRAY + ". sorry :'(");
         }
     }
 }

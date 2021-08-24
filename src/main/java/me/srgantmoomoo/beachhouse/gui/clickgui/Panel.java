@@ -2,7 +2,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleButton;
+import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleComponent;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.MinecraftClient;
@@ -43,7 +43,7 @@ public class Panel {
 
         for (Module mod : Bedroom.moduleManager.getModules()) {
             if (mod.getCategory() == cat) {
-                ModuleButton modButton = new ModuleButton(mod, this, tY);
+                ModuleComponent modButton = new ModuleComponent(mod, this, tY);
                 this.components.add(modButton);
                 tY += 12;
             }

@@ -1,9 +1,9 @@
-package me.srgantmoomoo.beachhouse.gui.clickgui.components;
+package me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
+import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleComponent;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
-import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -15,14 +15,14 @@ import java.math.RoundingMode;
 
 public class NumberComponent extends Component {
     private NumberSetting set;
-    private ModuleButton parent;
+    private ModuleComponent parent;
     private int offset;
     private int x;
     private int y;
     private boolean dragging;
     private double sliderWidth;
 
-    public NumberComponent(NumberSetting value, ModuleButton button, int offset) {
+    public NumberComponent(NumberSetting value, ModuleComponent button, int offset) {
         this.dragging = false;
         this.set = value;
         this.parent = button;
@@ -46,12 +46,11 @@ public class NumberComponent extends Component {
         }
     }
 
-    @Override
-    public void updateComponent(int mouseX, int mouseY) {
+    private void renderOne(int xx, int yy) {
         if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
             this.y = parent.parent.getY() - 12 + this.offset;
             this.x = parent.parent.getX() - 92;
-            double diff = Math.min(90, Math.max(0, mouseX - this.x));
+            double diff = Math.min(90, Math.max(0, xx - this.x));
             double min = this.set.getMinimum();
             double max = this.set.getMaximum();
             this.sliderWidth = 90 * (this.set.getValue() - min) / (max - min);
@@ -66,7 +65,7 @@ public class NumberComponent extends Component {
         }else {
             this.y = parent.parent.getY() - 12 + this.offset;
             this.x = parent.parent.getX() + 90;
-            double diff = Math.min(88, Math.max(0, mouseX - this.x));
+            double diff = Math.min(88, Math.max(0, xx - this.x));
             double min = this.set.getMinimum();
             double max = this.set.getMaximum();
             this.sliderWidth = 88 * (this.set.getValue() - min) / (max - min);
@@ -79,6 +78,11 @@ public class NumberComponent extends Component {
                 }
             }
         }
+    }
+
+    @Override
+    public void updateComponent(int mouseX, int mouseY) {
+        renderOne(mouseX, mouseY);
     }
 
     private static double roundToPlace(double value, int places) {
@@ -98,33 +102,7 @@ public class NumberComponent extends Component {
                 if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                     this.dragging = true;
 
-                    if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-                        double diff = Math.min(90, Math.max(0, mouseX - this.x));
-                        double min = this.set.getMinimum();
-                        double max = this.set.getMaximum();
-                        this.sliderWidth = 90 * (this.set.getValue() - min) / (max - min);
-                        if (this.dragging) {
-                            if (diff == 0) {
-                                this.set.setValue(this.set.getMinimum());
-                            } else {
-                                double newValue = roundToPlace(diff / 90 * (max - min) + min, 2);
-                                this.set.setValue(newValue);
-                            }
-                        }
-                    }else {
-                        double diff = Math.min(88, Math.max(0, mouseX - this.x));
-                        double min = this.set.getMinimum();
-                        double max = this.set.getMaximum();
-                        this.sliderWidth = 88 * (this.set.getValue() - min) / (max - min);
-                        if (this.dragging) {
-                            if (diff == 0) {
-                                this.set.setValue(this.set.getMinimum());
-                            } else {
-                                double newValue = roundToPlace(diff / 88 * (max - min) + min, 2);
-                                this.set.setValue(newValue);
-                            }
-                        }
-                    }
+                    renderOne(mouseX, mouseY);
                 }
             }
         }

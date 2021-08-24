@@ -1,7 +1,8 @@
-package me.srgantmoomoo.beachhouse.gui.clickgui.components;
+package me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
+import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleComponent;
 import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -10,12 +11,12 @@ import org.lwjgl.glfw.GLFW;
 
 public class KeybindComponent extends Component {
     private boolean isBinding;
-    private ModuleButton parent;
+    private ModuleComponent parent;
     private int offset;
     private int x;
     private int y;
 
-    public KeybindComponent(ModuleButton parent, int offset) {
+    public KeybindComponent(ModuleComponent parent, int offset) {
         this.parent = parent;
         this.x = parent.parent.getX() + parent.parent.getWidth();
         this.y = parent.parent.getY() + parent.offset;

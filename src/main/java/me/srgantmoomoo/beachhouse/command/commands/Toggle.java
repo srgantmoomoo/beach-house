@@ -19,11 +19,11 @@ public class Toggle extends Command {
             return;
         }
 
-        String moduleName = args[0];
+        String inputValue = args[0];
         boolean moduleFound = false;
         for(Module module : Bedroom.moduleManager.getModules()) {
-            String moduleIn = module.name.replaceAll("\\s", "");
-            if(moduleIn.equalsIgnoreCase(moduleName)) {
+            String moudleId = module.getID();
+            if(moudleId.equalsIgnoreCase(inputValue)) {
                 module.toggle();
                 CommandManager.addChatMessage(module.name + " " + (module.isEnabled() ? TextFormatting.GREEN + "enabled" + TextFormatting.GRAY + "." : TextFormatting.DARK_RED + "disabled" + TextFormatting.GRAY + "."));
                 moduleFound = true;
@@ -31,7 +31,7 @@ public class Toggle extends Command {
             }
         }
         if(!moduleFound) {
-            CommandManager.addChatMessage("the module, " + TextFormatting.RED + moduleName + TextFormatting.GRAY + ", was not found.");
+            CommandManager.addChatMessage("the module, " + TextFormatting.RED + inputValue + TextFormatting.GRAY + ", was not found.");
         }
     }
 }

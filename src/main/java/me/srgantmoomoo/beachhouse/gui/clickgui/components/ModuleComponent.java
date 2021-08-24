@@ -3,7 +3,10 @@ package me.srgantmoomoo.beachhouse.gui.clickgui.components;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
-import me.srgantmoomoo.bedroom.Bedroom;
+import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.BooleanComponent;
+import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.KeybindComponent;
+import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.ModeComponent;
+import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.NumberComponent;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
@@ -15,7 +18,7 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 
-public class ModuleButton extends Component {
+public class ModuleComponent extends Component {
     private ArrayList<Component> subcomponents;
     public Module mod;
     public Panel parent;
@@ -25,7 +28,7 @@ public class ModuleButton extends Component {
     int mousexx;
     int mouseyy;
 
-    public ModuleButton(Module mod, Panel parent, int offset) {
+    public ModuleComponent(Module mod, Panel parent, int offset) {
         this.mod = mod;
         this.parent = parent;
         this.offset = offset;
