@@ -228,8 +228,10 @@ public class Config {
                 String open = curLine.split(":")[3];
                 int x1 = Integer.parseInt(x);
                 int y1 = Integer.parseInt(y);
+                String newName = name;
+                if(name.equalsIgnoreCase("BEACHHOUSE")) newName = "beach house";
                 boolean opened = Boolean.parseBoolean(open);
-                Panel p = ClickGuiScreen.getPanelByName(name);
+                Panel p = ClickGuiScreen.getPanelByName(newName);
                 if (p != null) {
                     p.x = x1;
                     p.y = y1;

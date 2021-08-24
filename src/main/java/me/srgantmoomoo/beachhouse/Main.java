@@ -30,7 +30,6 @@ import net.fabricmc.api.ModInitializer;
 //TODO overlapping panels in general.
 //TODO command prefix config.
 //TODO settings in config.
-//TODO last panel (beach house) not loading correctly from config.
 //TODO finish all components for click gui.
 //TODO hudeditor in config
 //TODO optimize config code.
