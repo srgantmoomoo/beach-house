@@ -2,6 +2,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui.components;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
+import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -28,22 +29,44 @@ public class ModeComponent extends Component {
     public boolean hoverCrafted = false;
     @Override
     public void renderComponent(MatrixStack matrix) {
-        InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0x90000000);
+        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            InGameHud.fill(matrix, parent.parent.getX() - 2, parent.parent.getY() - 12 + offset, parent.parent.getX() - 92, parent.parent.getY() + offset, 0x90000000);
 
-        if(Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) > 86) toBig = true;
-        else if(Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86) toBig = false;
+            if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) > 86)
+                toBig = true;
+            else if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
+                toBig = false;
 
-        if(toBig && !hoverCrafted) {
-            Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
+            if (toBig && !hoverCrafted) {
+                Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() - 90, (parent.parent.getY() + offset - 10), -1);
+            } else {
+                Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() - 90, (parent.parent.getY() + offset - 10), -1);
+            }
         }else {
-            Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
+            InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0x90000000);
+
+            if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) > 86)
+                toBig = true;
+            else if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
+                toBig = false;
+
+            if (toBig && !hoverCrafted) {
+                Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
+            } else {
+                Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
+            }
         }
     }
 
     @Override
     public void updateComponent(int mouseX, int mouseY) {
-        this.y = parent.parent.getY() - 12 + this.offset;
-        this.x = parent.parent.getX() + 90;
+        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            this.y = parent.parent.getY() - 12 + this.offset;
+            this.x = parent.parent.getX() - 2;
+        }else {
+            this.y = parent.parent.getY() - 12 + this.offset;
+            this.x = parent.parent.getX() + 90;
+        }
     }
 
     private boolean mouseHeld = false;
@@ -67,11 +90,27 @@ public class ModeComponent extends Component {
             hoverCrafted = false;
     }
 
-    public boolean isMouseOnButton(int x, int y) {
-        if (x > this.x && x < this.x + 80 && y > this.y && y < this.y + 12) {
+    public boolean onWall() {
+        int secondWidth = Reference.minecraft.getWindow().getScaledWidth() - (parent.parent.getX() + 90);
+        if(secondWidth < 89)
             return true;
-        } else {
+        else
             return false;
+    }
+
+    public boolean isMouseOnButton(int x, int y) {
+        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            if (x < this.x && x > this.x - 92 && y > this.y && y < this.y + 12) {
+                return true;
+            } else {
+                return false;
+            }
+        }else {
+            if (x > this.x && x < this.x + 90 && y > this.y && y < this.y + 12) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

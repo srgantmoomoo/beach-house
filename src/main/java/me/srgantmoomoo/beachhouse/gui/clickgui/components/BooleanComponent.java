@@ -2,6 +2,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui.components;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
+import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -24,19 +25,34 @@ public class BooleanComponent extends Component {
 
     @Override
     public void renderComponent(MatrixStack matrix) {
-        if(this.op.isEnabled()) {
-            InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0xff11c1e8);
-        } else {
-            InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0x90000000);
-        }
+        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            if (this.op.isEnabled()) {
+                InGameHud.fill(matrix, parent.parent.getX() - 2, parent.parent.getY() - 12 + offset, parent.parent.getX() - 92, parent.parent.getY() + offset, 0xff11c1e8);
+            } else {
+                InGameHud.fill(matrix, parent.parent.getX() - 2, parent.parent.getY() - 12 + offset, parent.parent.getX() - 92, parent.parent.getY() + offset, 0x90000000);
+            }
 
-        Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
+            Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() - 90, (parent.parent.getY() + offset - 10), -1);
+        }else {
+            if (this.op.isEnabled()) {
+                InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0xff11c1e8);
+            } else {
+                InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0x90000000);
+            }
+
+            Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
+        }
     }
 
     @Override
     public void updateComponent(int mouseX, int mouseY) {
-        this.y = parent.parent.getY() - 12 + this.offset;
-        this.x = parent.parent.getX() + 90;
+        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            this.y = parent.parent.getY() - 12 + this.offset;
+            this.x = parent.parent.getX() - 2;
+        }else {
+            this.y = parent.parent.getY() - 12 + this.offset;
+            this.x = parent.parent.getX() + 90;
+        }
     }
 
     private boolean mouseHeld = false;
@@ -53,11 +69,27 @@ public class BooleanComponent extends Component {
         }
     }
 
-    public boolean isMouseOnButton(int x, int y) {
-        if (x > this.x && x < this.x + 80 && y > this.y && y < this.y + 12) {
+    public boolean onWall() {
+        int secondWidth = Reference.minecraft.getWindow().getScaledWidth() - (parent.parent.getX() + 90);
+        if(secondWidth < 89)
             return true;
-        } else {
+        else
             return false;
+    }
+
+    public boolean isMouseOnButton(int x, int y) {
+        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            if (x < this.x && x > this.x - 92 && y > this.y && y < this.y + 12) {
+                return true;
+            } else {
+                return false;
+            }
+        }else {
+            if (x > this.x && x < this.x + 90 && y > this.y && y < this.y + 12) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

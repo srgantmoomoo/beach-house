@@ -46,7 +46,7 @@ public class Coordinates extends HudModule {
             return width;
         }
 
-        return 10;
+        return 60;
     }
 
     @Override

@@ -35,7 +35,7 @@ public class Config {
             ArrayList<String> modulesToSave = new ArrayList<>();
 
             for (Module module : Bedroom.moduleManager.getModules()) {
-                if (module.isEnabled() && module.getID() != "clickgui") {
+                if (module.isEnabled() && module.getID() != "clickgui" && module.getID() != "hudeditor") {
                     modulesToSave.add(module.getName());
                 }
             }

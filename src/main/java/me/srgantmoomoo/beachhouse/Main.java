@@ -32,6 +32,9 @@ import net.fabricmc.api.ModInitializer;
 //TODO settings in config.
 //TODO hudeditor in config
 //TODO optimize config code.
+//TODO main menu and splash screen. simple.
+//TODO gui code can be improved on a lot. make single method for rendering with the onwall shit.
+//TODO get number setting to work with onwall.
 public class Main implements ModInitializer {
 
 	public static final String modid = "bh";

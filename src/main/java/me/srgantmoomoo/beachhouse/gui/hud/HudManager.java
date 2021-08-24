@@ -17,7 +17,7 @@ public class HudManager {
 		hudModules.add(new TabGui());
 		//hudModules.add(new EnabledModules());
 		hudModules.add(new SessionInfo());
-		hudModules.add(new PotionEffects());
+		//hudModules.add(new PotionEffects());
 		hudModules.add(new Coordinates());
 	}
 

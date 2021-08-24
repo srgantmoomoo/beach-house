@@ -18,7 +18,7 @@ public class HudEditor extends Module {
     public ModeSetting background = new ModeSetting("background", this, "blur", "blur", "dim", "none");
 
     public HudEditor() {
-        super("hud editor", "hudeditor", "edit ur hud an stuff", GLFW.GLFW_KEY_RIGHT_SHIFT, Category.BEACHHOUSE);
+        super("hud editor", "hudeditor", "edit ur hud an stuff", GLFW.GLFW_KEY_V, Category.BEACHHOUSE);
         this.addSettings(background);
         INSTANCE = this;
     }

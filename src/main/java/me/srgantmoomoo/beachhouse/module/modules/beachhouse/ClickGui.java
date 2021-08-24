@@ -5,6 +5,7 @@ import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventTick;
 import me.srgantmoomoo.bedroom.module.Module;
+import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
@@ -13,10 +14,11 @@ public class ClickGui extends Module {
     public static ClickGui INSTANCE;
 
     public ModeSetting background = new ModeSetting("background", this, "blur", "blur", "dim", "none");
+    public BooleanSetting dynamicSide = new BooleanSetting("dynamicSide", this, true);
 
     public ClickGui() {
         super("click gui", "clickgui", "does clicky click clack stuff", GLFW.GLFW_KEY_B, Category.BEACHHOUSE);
-        this.addSettings(background);
+        this.addSettings(background, dynamicSide);
         INSTANCE = this;
     }
 

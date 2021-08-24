@@ -8,7 +8,7 @@ import net.minecraft.util.Formatting;
 public class SessionInfo extends HudModule {
 
     public SessionInfo() {
-        super("session info", "sessioninfo", "see ur sesh info.", 70, 12, Category.BEACHHOUSE);
+        super("session info", "sessioninfo", "see ur sesh info.", 70, 16, Category.BEACHHOUSE);
     }
 
     private void drawFinale(MatrixStack matrix) {
