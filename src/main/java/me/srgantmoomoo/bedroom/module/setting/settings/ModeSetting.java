@@ -30,10 +30,6 @@ public class ModeSetting extends Setting {
 
     public void setMode(String mode) {
         this.index = this.modes.indexOf(mode);
-
-        if(Bedroom.saveLoad != null) {
-            Bedroom.saveLoad.save();
-        }
     }
 
     public boolean is(String mode) {

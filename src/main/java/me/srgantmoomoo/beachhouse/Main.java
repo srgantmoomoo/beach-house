@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
+import me.srgantmoomoo.beachhouse.backend.Config;
 import me.srgantmoomoo.beachhouse.command.Commands;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
@@ -27,6 +28,12 @@ import net.fabricmc.api.ModInitializer;
 //TODO animations.
 //TODO if(settings (opened)) *** focused settings.
 //TODO overlapping panels in general.
+//TODO command prefix config.
+//TODO settings in config.
+//TODO last panel (beach house) not loading correctly from config.
+//TODO finish all components for click gui.
+//TODO hudeditor in config
+//TODO optimize config code.
 public class Main implements ModInitializer {
 
 	public static final String modid = "bh";
@@ -36,6 +43,7 @@ public class Main implements ModInitializer {
 
 	public static ClickGuiScreen clickGUI;
 	public static HudManager hudManager;
+	public static Config config;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
 
@@ -69,10 +77,13 @@ public class Main implements ModInitializer {
 		printLog("modules initialized.");
 
 		clickGUI = new ClickGuiScreen();
-		printLog("clickGui initialized.");
+		printLog("click gui initialized.");
 		
 		hudManager = new HudManager();
 		printLog("hud editor initialized.");
+
+		config = new Config();
+		printLog("configs initialized.");
 
 		printLog(Main.name + " has finished initialization.");
 	}

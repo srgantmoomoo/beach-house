@@ -1,6 +1,5 @@
 package me.srgantmoomoo.bedroom.module.setting.settings;
 
-import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 
@@ -24,17 +23,9 @@ public class BooleanSetting extends Setting {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-
-        if (Bedroom.saveLoad != null) {
-            Bedroom.saveLoad.save();
-        }
     }
 
     public void toggle() {
         this.enabled = !this.enabled;
-
-        if (Bedroom.saveLoad != null) {
-            Bedroom.saveLoad.save();
-        }
     }
 }

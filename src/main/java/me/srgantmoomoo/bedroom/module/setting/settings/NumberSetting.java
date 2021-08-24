@@ -1,6 +1,5 @@
 package me.srgantmoomoo.bedroom.module.setting.settings;
 
-import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 
@@ -32,10 +31,6 @@ public class NumberSetting extends Setting {
         double precision = 1.0D / this.increment;
         //this.value = value;
         this.value = Math.round(Math.max(this.minimum, Math.min(this.maximum, value)) * precision) / precision;
-
-        if(Bedroom.saveLoad != null) {
-            Bedroom.saveLoad.save();
-        }
     }
 
     public void increment(boolean positive) {

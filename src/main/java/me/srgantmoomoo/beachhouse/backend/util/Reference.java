@@ -19,9 +19,6 @@ public class Reference {
 
 	public static final TextRenderer textRenderer = minecraft.textRenderer;
 
-	public static int screenWidth = window.getScaledWidth();
-	public static int screenHeight = window.getScaledHeight();
-
 	public static final ManagedShaderEffect blur = ShaderEffectManager.getInstance().manage(new Identifier("minecraft", "shaders/post/blur" + ".json"));
 
 }

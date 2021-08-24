@@ -59,10 +59,6 @@ public class CommandManager {
 
     public static void setCommandPrefix(String pre) {
         prefix = pre;
-
-        if(Bedroom.saveLoad != null) {
-            Bedroom.saveLoad.save();
-        }
     }
 
     /**

@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleButton;
 import me.srgantmoomoo.bedroom.Bedroom;
@@ -112,10 +113,22 @@ public class Panel {
 
     public void setX(int newX) {
         this.x = newX;
+
+        if (Main.config != null) {
+            try {
+                Main.config.saveGuiPanels();
+            } catch (Exception e) {}
+        }
     }
 
     public void setY(int newY) {
         this.y = newY;
+
+        if (Main.config != null) {
+            try {
+                Main.config.saveGuiPanels();
+            } catch (Exception e) {}
+        }
     }
 
     public Module.Category getCategory() {

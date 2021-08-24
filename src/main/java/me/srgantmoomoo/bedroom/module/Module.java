@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
@@ -80,10 +81,6 @@ public abstract class Module {
 
     public void setKey(int key) {
         this.keyCode.code = key;
-
-        if(Bedroom.saveLoad != null) {
-            Bedroom.saveLoad.save();
-        }
     }
 
     public void toggle() {
@@ -93,10 +90,6 @@ public abstract class Module {
         }else {
             disable();
         }
-
-        if(Bedroom.saveLoad != null) {
-            Bedroom.saveLoad.save();
-        }
     }
 
     public boolean isEnabled() {
@@ -105,18 +98,26 @@ public abstract class Module {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-
-        if(Bedroom.saveLoad != null) {
-            Bedroom.saveLoad.save();
-        }
     }
 
     public void enable() {
+        if (Main.config != null) {
+            try {
+                Main.config.saveLoadedModules();
+            } catch (Exception e) {}
+        }
+
         onEnable();
         setEnabled(true);
     }
 
     public void disable() {
+        if (Main.config != null) {
+            try {
+                Main.config.saveLoadedModules();
+            } catch (Exception e) {}
+        }
+
         onDisable();
         setEnabled(false);
     }

@@ -3,7 +3,6 @@ package me.srgantmoomoo.bedroom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import me.srgantmoomoo.bedroom.api.config.SaveLoad;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
@@ -24,7 +23,6 @@ public final class Bedroom {
 
     public static ModuleManager moduleManager;
     public static SettingManager settingManager;
-    public static SaveLoad saveLoad;
     public static CommandManager commandManager;
 
     public static final Logger LOGGER = LogManager.getLogger("bedroom");
@@ -75,9 +73,6 @@ public final class Bedroom {
 
         settingManager = new SettingManager();
         printLog("setting system initialized.");
-
-        saveLoad = new SaveLoad();
-        printLog("config initialized.");
     }
 
 }

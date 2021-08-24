@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.module.modules.beachhouse;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventTick;
@@ -22,6 +23,7 @@ public class ClickGui extends Module {
     @Override
     public void onEnable() {
         minecraft.openScreen(new ClickGuiScreen());
+        Main.config.loadGuiPanels();
     }
 
     @Override
