@@ -27,7 +27,8 @@ public class ModeComponent extends Component {
         this.modeIndex = 0;
     }
     public boolean toBig = false;
-    public boolean hoverCrafted = false;
+    public boolean hovered = false;
+
     @Override
     public void renderComponent(MatrixStack matrix) {
         if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
@@ -38,7 +39,7 @@ public class ModeComponent extends Component {
             else if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
                 toBig = false;
 
-            if (toBig && !hoverCrafted) {
+            if (toBig && !hovered) {
                 Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() - 90, (parent.parent.getY() + offset - 10), -1);
             } else {
                 Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() - 90, (parent.parent.getY() + offset - 10), -1);
@@ -51,7 +52,7 @@ public class ModeComponent extends Component {
             else if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
                 toBig = false;
 
-            if (toBig && !hoverCrafted) {
+            if (toBig && !hovered) {
                 Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
             } else {
                 Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
@@ -74,7 +75,7 @@ public class ModeComponent extends Component {
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
         if (this.isMouseOnButton(mouseX, mouseY)) {
-            hoverCrafted = true;
+            hovered = true;
             if(this.parent.isOpen()) {
                 if(GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                     mouseHeld = true;
@@ -88,7 +89,7 @@ public class ModeComponent extends Component {
                     mouseHeld = false;
             }
         }else
-            hoverCrafted = false;
+            hovered = false;
     }
 
     public boolean onWall() {

@@ -1,5 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui.components;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
@@ -14,6 +16,8 @@ import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
@@ -56,25 +60,36 @@ public class ModuleComponent extends Component {
         this.subcomponents.add(new KeybindComponent(this, opY));
     }
 
+    // using this method to draw longer module names with "..."
+    private void drawModuleName(MatrixStack matrix) {
+        if(this.mod.getID() == "enabledmodules") {
+            if(hovered) {
+                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+            }else
+            Reference.textRenderer.drawWithShadow(matrix, "enabled mo" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+        }else if(this.mod.getID() == "rainbowenchant") {
+            if(hovered) {
+                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+            }else
+                Reference.textRenderer.drawWithShadow(matrix, "rainbow enc" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+        }else
+            Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+    }
+
+    private final Identifier check = new Identifier(Main.modid, "check.png");
     @Override
     public void renderComponent(MatrixStack matrix) {
 
         if(this.mod.isEnabled()) {
             InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
-            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0xfff868fB);
+            drawModuleName(matrix);
+
+            RenderSystem.setShaderTexture(0, check);
+            InGameHud.drawTexture(matrix,  parent.getX() + parent.getWidth() - 13, (parent.getY() + offset + 1), 10, 10, 0, 0, 10, 10, 10, 10);
         } else {
             InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
+            drawModuleName(matrix);
         }
-
-        Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), -1);
-
-        /*if (this.subcomponents.size() > 0) {
-            if (!this.isOpen()) {
-                Reference.textRenderer.drawWithShadow(matrix, "+", parent.getX() + parent.getWidth() - 10, (parent.getY() + offset + 2), -1);
-            } else if (this.isOpen()) {
-                Reference.textRenderer.drawWithShadow(matrix, "-", parent.getX() + parent.getWidth() - 10, (parent.getY() + offset + 2), -1);
-            }
-        }*/
 
         if (this.open && !this.subcomponents.isEmpty()) {
             for (Component comp : this.subcomponents) {

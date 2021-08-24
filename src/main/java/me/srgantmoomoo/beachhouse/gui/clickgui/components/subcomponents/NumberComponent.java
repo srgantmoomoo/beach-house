@@ -46,6 +46,7 @@ public class NumberComponent extends Component {
         }
     }
 
+    // using this method so that i dont have to do this in both updateComponent and mouseClicked.
     private void renderOne(int xx, int yy) {
         if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
             this.y = parent.parent.getY() - 12 + this.offset;
