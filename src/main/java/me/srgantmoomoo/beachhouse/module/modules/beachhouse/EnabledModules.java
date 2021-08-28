@@ -30,7 +30,8 @@ public class EnabledModules extends Module {
 	}
 	private ArrayList<Module> mods = new ArrayList<>();
 	private JColor moduleColor = new JColor(255, 255, 255);
-	private int maxLength = 1;
+	private int maxLength;
+	private int size;
 	public Module newModule;
 
 	@SuppressWarnings({ "rawtypes" })
@@ -45,11 +46,10 @@ public class EnabledModules extends Module {
 			// BACKGROUND
 			if(background.isEnabled()) {
 				final int[] counterB = {1};
-				int size  = Bedroom.moduleManager.getEnabledModules().size();
 
 				int outlineColor = 0xff000000;
-				if(style.is("vibrant")) outlineColor = 0xffffffff;
-				if(style.is("beach")) outlineColor = 0xffffffff;
+				if(style.is("vibrant")) outlineColor = 0xffa9a9a9;
+				if(style.is("beach")) outlineColor = 0xffa9a9a9;
 				if(style.is("rainbow")) outlineColor = rainbow(counterB[0] * 300);
 
 				InGameHud.fill(((EventRender2d) e).matrix, screenWidth - maxLength - 6, 0, screenWidth, size * tr.fontHeight + 6, 0x90000000);
@@ -57,23 +57,26 @@ public class EnabledModules extends Module {
 				InGameHud.fill(((EventRender2d) e).matrix, screenWidth - maxLength - 6, size * tr.fontHeight + 5, screenWidth, size * tr.fontHeight + 6, outlineColor);
 				counterB[0]++;
 			}
+			//InGameHud.fill(((EventRender2d) e).matrix, screenWidth, 0, screenWidth - maxLength - 3, 2, 0x90000000);
 
 			// MODULES
 			final int[] counter = {1};
-			int y = 1;
+			int y = 0;
 			for (Module module : mods) {
-				if (!module.isEnabled())
+				if(!module.isEnabled())
 					continue;
 
 				if(!showHidden.isEnabled() && module.getCategory() == Category.BEACHHOUSE)
 					continue;
 
+				size = mods.size();
+
 				// constantly checks what the length of the longest module is for the background to draw correctly.
-				if(maxLength < tr.getWidth(module.getName())) {
-					maxLength = tr.getWidth(module.getName());
-					newModule = module;
-				}
-				if(!newModule.isEnabled()) maxLength = 0;
+					if (maxLength < tr.getWidth(module.getName())) {
+						maxLength = tr.getWidth(module.getName());
+						newModule = module;
+					}
+					if (!newModule.isEnabled()) maxLength = 0;
 
 				// sets the color for the modules.
 				if(this.style.is("dull")) {
@@ -100,7 +103,8 @@ public class EnabledModules extends Module {
 				}else if(this.style.is("solid")) moduleColor = solidColor.getValue();
 
 				// draws the modules.
-				tr.drawWithShadow(((EventRender2d) e).matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 1, 1 + y, this.style.is("rainbow") ? rainbow(counter[0] * 300) : moduleColor.getRGB());
+				//InGameHud.fill(((EventRender2d) e).matrix, screenWidth, tr.fontHeight + 2 + y, screenWidth - tr.getWidth(module.getName()) -3, tr.fontHeight - (tr.fontHeight) + 2 + y, 0x90000000);
+				tr.drawWithShadow(((EventRender2d) e).matrix, module.getName(), screenWidth - tr.getWidth(module.getName()) - 2, y +2, this.style.is("rainbow") ? rainbow(counter[0] * 300) : moduleColor.getRGB());
 				y += tr.fontHeight;
 				counter[0]++;
 			}

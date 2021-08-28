@@ -10,6 +10,7 @@ import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.BooleanC
 import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.KeybindComponent;
 import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.ModeComponent;
 import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.NumberComponent;
+import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
@@ -86,6 +87,7 @@ public class ModuleComponent extends Component {
     @Override
     public void renderComponent(MatrixStack matrix) {
 
+        // draw check marks if module is enabled
         if(this.mod.isEnabled()) {
             InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
             drawModuleName(matrix);
@@ -93,8 +95,17 @@ public class ModuleComponent extends Component {
             RenderSystem.setShaderTexture(0, check);
             InGameHud.drawTexture(matrix,  parent.getX() + parent.getWidth() - 13, (parent.getY() + offset + 1), 10, 10, 0, 0, 10, 10, 10, 10);
         } else {
-            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
-            drawModuleName(matrix);
+            // if hovered and hover is enabled, float the module names.
+            if(hovered) {
+                if(ClickGui.INSTANCE.hover.isEnabled()) {
+                    InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
+                    Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
+                }
+            }else {
+                // draw module names along with their background
+                InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
+                drawModuleName(matrix);
+            }
         }
 
         if (this.open && !this.subcomponents.isEmpty()) {

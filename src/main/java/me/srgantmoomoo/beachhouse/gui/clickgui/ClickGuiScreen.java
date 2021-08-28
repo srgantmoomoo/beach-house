@@ -26,11 +26,12 @@ public class ClickGuiScreen extends Screen {
         int panelY = 5;
         int panelWidth = 88;
         int panelHeight = 12;
+        boolean focused = false;
 
         INSTANCE = this;
 
         for (Module.Category c : Module.Category.values()) {
-            ClickGuiScreen.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, c));
+            ClickGuiScreen.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, focused, c));
             panelX += 89;
         }
     }
@@ -39,6 +40,9 @@ public class ClickGuiScreen extends Screen {
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
         if (ClickGui.INSTANCE.background.is("blur"))
             Reference.blur.render(1);
+
+        if (ClickGui.INSTANCE.background.is("art"))
+            Reference.art.render(1);
 
         if (ClickGui.INSTANCE.background.is("dim"))
             this.renderBackground(matrix);
@@ -54,10 +58,17 @@ public class ClickGuiScreen extends Screen {
 
         // mouse clicked
         for (Panel p : panels) {
-            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
-                p.setDragging(true);
-                p.dragX = mouseX - p.getX();
-                p.dragY = mouseY - p.getY();
+            if (p.isWithinHeader(mouseX, mouseY)) {
+                p.focused = true;
+                Panel.globalBoolean = true;
+                if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+                    p.setDragging(true);
+                    p.dragX = mouseX - p.getX();
+                    p.dragY = mouseY - p.getY();
+                }
+            }else {
+                p.focused = false;
+                Panel.globalBoolean = false;
             }
 
             if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld) {

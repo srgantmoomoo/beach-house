@@ -25,9 +25,12 @@ public class Panel {
     private boolean open;
     public int dragX;
     public int dragY;
+    public boolean focused;
     public Module.Category cat;
 
-    public Panel(String title, int x, int y, int width, int height, Module.Category cat) {
+    public static boolean globalBoolean = false;
+
+    public Panel(String title, int x, int y, int width, int height, boolean focused, Module.Category cat) {
         this.components = new ArrayList<>();
         this.title = title;
         this.x = x;
@@ -38,6 +41,7 @@ public class Panel {
         this.isSettingOpen = true;
         this.isDragging = false;
         this.open = true;
+        this.focused = false;
         this.cat = cat;
         int tY = this.height;
 

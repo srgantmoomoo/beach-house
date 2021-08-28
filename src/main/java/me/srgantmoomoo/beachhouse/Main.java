@@ -37,6 +37,7 @@ import net.fabricmc.api.ModInitializer;
 //TODO get number setting to work with onwall.
 //TODO if(clicked out) than setting closes.
 //TODO focusing for the panels.
+//TODO animations
 public class Main implements ModInitializer {
 
 	public static final String modid = "bh";

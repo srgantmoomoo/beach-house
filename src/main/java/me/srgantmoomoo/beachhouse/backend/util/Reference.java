@@ -20,5 +20,7 @@ public class Reference {
 	public static final TextRenderer textRenderer = minecraft.textRenderer;
 
 	public static final ManagedShaderEffect blur = ShaderEffectManager.getInstance().manage(new Identifier("minecraft", "shaders/post/blur" + ".json"));
+	public static final ManagedShaderEffect art = ShaderEffectManager.getInstance().manage(new Identifier("minecraft", "shaders/post/art" + ".json"));
+	public static final ManagedShaderEffect color_convolve = ShaderEffectManager.getInstance().manage(new Identifier("minecraft", "shaders/post/color_convolve" + ".json"));
 
 }

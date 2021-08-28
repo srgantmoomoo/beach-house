@@ -13,8 +13,9 @@ import org.lwjgl.glfw.GLFW;
 public class ClickGui extends Module {
     public static ClickGui INSTANCE;
 
-    public ModeSetting background = new ModeSetting("background", this, "blur", "blur", "dim", "none");
+    public ModeSetting background = new ModeSetting("background", this, "art", "blur", "art", "dim", "none");
     public BooleanSetting dynamicSide = new BooleanSetting("dynamicSide", this, true);
+    public BooleanSetting hover = new BooleanSetting("hover", this, true);
 
     public ClickGui() {
         super("click gui", "clickgui", "does clicky click clack stuff", GLFW.GLFW_KEY_B, Category.BEACHHOUSE);
