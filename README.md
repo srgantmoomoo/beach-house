@@ -5,7 +5,7 @@ This is a latest version fabric client for minecraft. This is a private client, 
 # development
 beach house requires jdk 16 in a dev enviorment. <br>
 
-**gradle**
+**gradle for eclipse users**
 - gradlew eclipse
 - gradlew genSources
 
