@@ -11,10 +11,11 @@ import me.srgantmoomoo.bedroom.Bedroom;
 
 public class Modules {
     public static void init() {
+        Bedroom.addModule(new ChatScreen());
+        Bedroom.addModule(new ClickGui());
         Bedroom.addModule(new EnabledModules());
         Bedroom.addModule(new HudEditor());
-        Bedroom.addModule(new ClickGui());
-        Bedroom.addModule(new ChatScreen());
+        Bedroom.addModule(new Watermark());
 
         Bedroom.addModule(new AutoArmor());
         Bedroom.addModule(new AutoCrystal());

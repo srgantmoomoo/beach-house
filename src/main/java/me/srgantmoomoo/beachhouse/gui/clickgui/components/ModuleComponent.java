@@ -62,7 +62,7 @@ public class ModuleComponent extends Component {
         this.subcomponents.add(new KeybindComponent(this, opY));
     }
 
-    // using this method to draw longer module names with "..."
+    // using this method to draw longer module names with "..." AND draw module names that are hovered.
     private void drawModuleName(MatrixStack matrix) {
         if(this.mod.getID() == "enabledmodules") {
             if(hovered || !this.mod.isEnabled()) {
@@ -80,7 +80,11 @@ public class ModuleComponent extends Component {
             }else
                 Reference.textRenderer.drawWithShadow(matrix, "elytra rep" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
         }else
-            Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+            // if hovered and hover is enabled, float the module names.
+            if(hovered && (ClickGui.INSTANCE.hover.isEnabled()))
+                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
+            else
+                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
     }
 
     private final Identifier check = new Identifier(Main.modid, "check.png");
@@ -96,16 +100,8 @@ public class ModuleComponent extends Component {
             InGameHud.drawTexture(matrix,  parent.getX() + parent.getWidth() - 13, (parent.getY() + offset + 1), 10, 10, 0, 0, 10, 10, 10, 10);
         } else {
             // if hovered and hover is enabled, float the module names.
-            if(hovered) {
-                if(ClickGui.INSTANCE.hover.isEnabled()) {
-                    InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
-                    Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
-                }
-            }else {
-                // draw module names along with their background
-                InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
-                drawModuleName(matrix);
-            }
+            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
+            drawModuleName(matrix);
         }
 
         if (this.open && !this.subcomponents.isEmpty()) {

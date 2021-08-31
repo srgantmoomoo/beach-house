@@ -19,7 +19,7 @@ public class ClickGui extends Module {
 
     public ClickGui() {
         super("click gui", "clickgui", "does clicky click clack stuff", GLFW.GLFW_KEY_B, Category.BEACHHOUSE);
-        this.addSettings(background, dynamicSide);
+        this.addSettings(background, hover, dynamicSide);
         INSTANCE = this;
     }
 
