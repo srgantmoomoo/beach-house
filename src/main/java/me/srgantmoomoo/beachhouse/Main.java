@@ -9,6 +9,8 @@ import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
 import me.srgantmoomoo.beachhouse.module.Modules;
 import me.srgantmoomoo.bedroom.Bedroom;
+import net.earthcomputer.multiconnect.api.MultiConnectAPI;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -60,6 +62,7 @@ public class Main implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+
 		Bedroom.init(modid, name, version);
 		beachhouseInit();
 	}

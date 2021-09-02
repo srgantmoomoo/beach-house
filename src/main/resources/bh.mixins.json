@@ -12,7 +12,8 @@
     "MixinInGameHud",
     "MixinKeyboard",
     "MixinMinecraftClient",
-    "MixinChatScreen"
+    "MixinChatScreen",
+    "MixinSplashOverlay"
   ],
   "injectors": {
     "defaultRequire": 1

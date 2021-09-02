@@ -161,8 +161,6 @@ public class ModuleComponent extends Component {
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
         if(isMouseOnButton(mouseX, mouseY)) {
-            //InGameHud.fill(matrix, parent.getX(), parent.getY() + 1 + offset, parent.getX() + 1, parent.getY() + 11 + offset, 0xfff868fB);
-            //System.out.println("absolutesmall");
             if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                 mouseHeld = true;
                 this.mod.toggle();
