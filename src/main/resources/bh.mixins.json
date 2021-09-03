@@ -13,7 +13,7 @@
     "MixinKeyboard",
     "MixinMinecraftClient",
     "MixinChatScreen",
-    "MixinSplashOverlay"
+    "MixinTitleScreen"
   ],
   "injectors": {
     "defaultRequire": 1
