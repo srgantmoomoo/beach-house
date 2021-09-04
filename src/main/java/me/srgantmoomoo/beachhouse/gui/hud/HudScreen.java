@@ -2,12 +2,10 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.module.modules.beachhouse.HudEditor;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.HudEditor;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.resource.ResourceManager;
 import net.minecraft.text.LiteralText;
-import net.minecraft.util.Identifier;
 
 // this screen is opened in the HudEditor module.
 public class HudScreen extends Screen {

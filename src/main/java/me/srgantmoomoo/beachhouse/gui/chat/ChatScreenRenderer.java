@@ -23,7 +23,7 @@ public class ChatScreenRenderer {
                 if (chatScreen.getText().equals(CommandManager.prefix))
                     Reference.textRenderer.drawWithShadow(matrix, "beach house :)", 6, screenHeight - 12, 0xff999999);
 
-                if(me.srgantmoomoo.beachhouse.module.modules.beachhouse.ChatScreen.INSTANCE.background.isEnabled())
+                if(me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ChatScreen.INSTANCE.background.isEnabled())
                     Reference.blur.render(1);
 
                 final int[] counter = {1};

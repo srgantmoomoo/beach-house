@@ -3,7 +3,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
 import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleComponent;
-import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;

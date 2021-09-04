@@ -1,11 +1,8 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.module.modules.beachhouse.ClickGui;
-import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.Module;
-import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;

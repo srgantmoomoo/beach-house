@@ -1,7 +1,7 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.module.modules.render.FullBright;
+import me.srgantmoomoo.beachhouse.feature.module.modules.render.FullBright;
 import me.srgantmoomoo.bedroom.api.event.Type;
 import me.srgantmoomoo.bedroom.api.event.events.EventTick;
 import me.srgantmoomoo.bedroom.module.ModuleManager;

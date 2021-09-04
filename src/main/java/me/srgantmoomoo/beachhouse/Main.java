@@ -4,14 +4,12 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
 import me.srgantmoomoo.beachhouse.backend.Config;
-import me.srgantmoomoo.beachhouse.command.Commands;
+import me.srgantmoomoo.beachhouse.feature.command.Commands;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
-import me.srgantmoomoo.beachhouse.module.Modules;
-import me.srgantmoomoo.beachhouse.notepad.NotepadManager;
+import me.srgantmoomoo.beachhouse.feature.module.Modules;
+import me.srgantmoomoo.beachhouse.feature.notepad.NotepadManager;
 import me.srgantmoomoo.bedroom.Bedroom;
-import net.earthcomputer.multiconnect.api.MultiConnectAPI;
-import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
