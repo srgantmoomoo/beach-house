@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.command.commands;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.notepad.NotepadManager;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
@@ -21,8 +22,8 @@ public class Notepad extends Command {
         String initial = args[0];
 
         if(initial.equals("notes")) {
-            if(!NotepadManager.notes.isEmpty()) {
-                for (me.srgantmoomoo.beachhouse.notepad.Notepad note : NotepadManager.notes) {
+            if(!Main.notepadManager.notes.isEmpty()) {
+                for (me.srgantmoomoo.beachhouse.notepad.Notepad note : Main.notepadManager.notes) {
                     CommandManager.addChatMessage(note.getName() + note.getMessage());
                 }
             }else CommandManager.addChatMessage("u have no notes stupid.");
@@ -50,9 +51,9 @@ public class Notepad extends Command {
         String noteName = initial;
 
         if(action.equals("write")) {
-            NotepadManager.addNote(noteName, noteMessageInput);
+            Main.notepadManager.addNote(noteName, noteMessageInput);
         }else if(action.equals("erase")) {
-            NotepadManager.removeNote(noteName);
+            Main.notepadManager.removeNote(noteName);
         }else
             CommandManager.correctUsageMsg(getName(), getSyntax());
     }

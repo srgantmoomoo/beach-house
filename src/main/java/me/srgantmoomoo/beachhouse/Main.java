@@ -62,6 +62,8 @@ public class Main implements ModInitializer {
 		}
 	}
 
+
+
 	@Override
 	public void onInitialize() {
 		Bedroom.init(modid, name, version);
