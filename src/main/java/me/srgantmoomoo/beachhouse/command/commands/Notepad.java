@@ -5,6 +5,7 @@ import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import net.minecraft.util.Formatting;
 
+//TODO list notes in centered aread (modulelist too).
 public class Notepad extends Command {
 
     public Notepad() {
