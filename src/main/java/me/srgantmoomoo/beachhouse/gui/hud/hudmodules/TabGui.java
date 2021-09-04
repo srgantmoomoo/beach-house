@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.hud.hudmodules;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Timer;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
@@ -10,6 +11,7 @@ import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
@@ -26,6 +28,7 @@ public class TabGui extends HudModule {
     public boolean expanded;
     public boolean Tab;
 
+    private final Identifier check = new Identifier(Main.modid, "check.png");
     public void drawFinale(MatrixStack matrix) {
         TextRenderer tr = minecraft.textRenderer;
 
@@ -64,14 +67,19 @@ public class TabGui extends HudModule {
             if (modules.size() == 0)
                 return;
 
-            InGameHud.fill(matrix, getX() + getWidth() + 1, getY(), getX() + getWidth() + 70, getY() + 2 + modules.size() * 12, backgroundColor);
-            tr.draw(matrix, "-", getX() + getWidth() + 71, getY() + 2 + category.moduleIndex * 12 + 1, primaryColor);
+            // backgound.
+            InGameHud.fill(matrix, getX() + getWidth() + 1, getY(), getX() + getWidth() + 90, getY() + 2 + modules.size() * 12, backgroundColor);
 
+            // selector
+            tr.draw(matrix, "-", getX() + getWidth() + 91, getY() + 2 + category.moduleIndex * 12 + 1, primaryColor);
+
+            // draw the module
             count = 0;
             for (Module m : modules) {
                 tr.drawWithShadow(matrix, m.name, getX() + getWidth() + 3, getY() + 3 + count * 12, -1);
                 if (m.isEnabled()) {
-                    InGameHud.fill(matrix, getX() + getWidth() + 67, getY() + 2 + count * 12, getX() + getWidth() + 68, getY() + 11 + count * 12, 0xffffffff);
+                    RenderSystem.setShaderTexture(0, check);
+                    InGameHud.drawTexture(matrix,  getX() + getWidth() + 90 - 12, getY() + 1 + count * 12, 10, 10, 0, 0, 10, 10, 10, 10);
                 }
                 count++;
             }

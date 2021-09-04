@@ -90,17 +90,14 @@ public class ModuleComponent extends Component {
     @Override
     public void renderComponent(MatrixStack matrix) {
 
+        // module name and background
+        InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
+        drawModuleName(matrix);
+
         // draw check marks if module is enabled
         if(this.mod.isEnabled()) {
-            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
-            drawModuleName(matrix);
-
             RenderSystem.setShaderTexture(0, check);
             InGameHud.drawTexture(matrix,  parent.getX() + parent.getWidth() - 13, (parent.getY() + offset + 1), 10, 10, 0, 0, 10, 10, 10, 10);
-        } else {
-            // if hovered and hover is enabled, float the module names.
-            InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
-            drawModuleName(matrix);
         }
 
         if (this.open && !this.subcomponents.isEmpty()) {
@@ -108,32 +105,6 @@ public class ModuleComponent extends Component {
                 comp.renderComponent(matrix);
             }
         }
-
-        /*if (Past.settingsManager.getSettingID("OldClickGUIDescriptions").getValBoolean() && hovered == true) {
-            if (Past.settingsManager.getSettingID("OldClickGUIRainbow").getValBoolean()) {
-                if (Past.settingsManager.getSettingID("FontFont").getValueString() == "Lato") {
-                    Gui.drawRect(mousexx - 2, mouseyy - 2, mousexx + Past.latoFont.getStringWidth(mod.getDescription()) + 2, mouseyy + FontUtil.getFontHeight() + 2, RainbowUtil.getMultiColour().getRGB());
-                } else if (Past.settingsManager.getSettingID("FontFont").getValueString() == "Verdana") {
-                    Gui.drawRect(mousexx - 2, mouseyy - 2, mousexx + Past.verdanaFont.getStringWidth(mod.getDescription()) + 2, mouseyy + FontUtil.getFontHeight() + 2, RainbowUtil.getMultiColour().getRGB());
-                } else if (Past.settingsManager.getSettingID("FontFont").getValueString() == "Arial") {
-                    Gui.drawRect(mousexx - 2, mouseyy - 2, mousexx + Past.arialFont.getStringWidth(mod.getDescription()) + 2, mouseyy + FontUtil.getFontHeight() + 2, RainbowUtil.getMultiColour().getRGB());
-                } else {
-                    Gui.drawRect(mousexx - 2, mouseyy - 2, mousexx + mc.fontRenderer.getStringWidth(mod.getDescription()) + 2, mouseyy + FontUtil.getFontHeight() + 2, RainbowUtil.getMultiColour().getRGB());
-                }
-            } else {
-                if (Past.settingsManager.getSettingID("FontFont").getValueString() == "Lato") {
-                    Gui.drawRect(mousexx - 2, mouseyy - 2, mousexx + Past.latoFont.getStringWidth(mod.getDescription()) + 2, mouseyy + FontUtil.getFontHeight() + 2, 0xFF222222);
-                } else if (Past.settingsManager.getSettingID("FontFont").getValueString() == "Verdana") {
-                    Gui.drawRect(mousexx - 2, mouseyy - 2, mousexx + Past.verdanaFont.getStringWidth(mod.getDescription()) + 2, mouseyy + FontUtil.getFontHeight() + 2, 0xFF222222);
-                } else if (Past.settingsManager.getSettingID("FontFont").getValueString() == "Arial") {
-                    Gui.drawRect(mousexx - 2, mouseyy - 2, mousexx + Past.arialFont.getStringWidth(mod.getDescription()) + 2, mouseyy + FontUtil.getFontHeight() + 2, 0xFF222222);
-                } else {
-                    Gui.drawRect(mousexx - 2, mouseyy - 2, mousexx + mc.fontRenderer.getStringWidth(mod.getDescription()) + 2, mouseyy + FontUtil.getFontHeight() + 2, 0xFF222222);
-                }
-            }
-
-            FontUtil.drawText(mod.getDescription(), mousexx, mouseyy, -1);
-        }*/
     }
 
     @Override
