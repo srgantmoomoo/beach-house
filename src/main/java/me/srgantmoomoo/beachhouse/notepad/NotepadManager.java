@@ -10,6 +10,15 @@ public class NotepadManager {
         notes = new ArrayList<>();
     }
 
+    public boolean isNote(String name) {
+        for(Notepad n : notes) {
+            if(n.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<String> getNotes() {
         ArrayList<String> notesL = new ArrayList<>();
         notes.forEach(note -> notesL.add(note.getName()));

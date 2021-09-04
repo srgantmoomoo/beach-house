@@ -23,13 +23,13 @@ public class Help extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 0) {
-            CommandManager.correctUsageMsg(name, syntax);
+            CommandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
 
         welcomeMessage();
         Bedroom.commandManager.commands.forEach(c -> {
-            helpMessage(c.name, c.description, c.syntax);
+            helpMessage(c.getName(), c.getDescription(), c.getSyntax());
         });
         goodbyeMessage();
     }

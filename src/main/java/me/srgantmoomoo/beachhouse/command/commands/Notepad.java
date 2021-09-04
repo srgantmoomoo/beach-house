@@ -1,16 +1,17 @@
 package me.srgantmoomoo.beachhouse.command.commands;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.notepad.NotepadManager;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
+import net.minecraft.util.Formatting;
 
 public class Notepad extends Command {
 
     public Notepad() {
-        super("notepad", "does notee padee thingees.", "notepad <noteName> write <notes> | notepad <noteName> erase | notepad notes", "n");
+        super("notepad", "does notee padee thingees.", "notepad <name> write <notes> | notepad <name> erase | notepad <name> read | notepad notes", "n");
     }
-    private static String noteMessageInput;
+
+    private String noteMessageInput;
 
     @Override
     public void onCommand(String[] args, String command) {
@@ -24,12 +25,13 @@ public class Notepad extends Command {
         if(initial.equals("notes")) {
             if(!Main.notepadManager.notes.isEmpty()) {
                 for (me.srgantmoomoo.beachhouse.notepad.Notepad note : Main.notepadManager.notes) {
-                    CommandManager.addChatMessage(note.getName() + note.getMessage());
+                    CommandManager.addChatMessage(Formatting.WHITE + note.getName());
                 }
             }else CommandManager.addChatMessage("u have no notes stupid.");
             return;
         }
 
+        // defines the message when a note is written.
         if(args.length >= 3) {
             StringBuilder msg = new StringBuilder();
             boolean flag = true;
@@ -42,18 +44,40 @@ public class Notepad extends Command {
             }
 
             noteMessageInput = msg.toString().replace("write", "");
-            CommandManager.addChatMessage("added " + noteMessageInput);
-            //me.srgantmoomoo.postman.client.module.modules.pvp.AutoCope.setMessage(args[0] + " " + msg.toString());
-            //ModuleManager.addChatMessage("set autoCope message to " + ChatFormatting.GREEN + args[0] + " " + msg.toString() + ChatFormatting.GRAY + ".");
         }
 
         String action = args[1];
         String noteName = initial;
-
         if(action.equals("write")) {
-            Main.notepadManager.addNote(noteName, noteMessageInput);
+
+            if(!Main.notepadManager.isNote(noteName)) {
+
+                Main.notepadManager.addNote(noteName, noteMessageInput);
+                CommandManager.addChatMessage(Formatting.GREEN + "wrote" + Formatting.GRAY + " new note, " + Formatting.WHITE + noteName + Formatting.GRAY + ", to the notepad.");
+
+            }else CommandManager.addChatMessage("you cannot write a note" + " (" + Formatting.WHITE + noteName + Formatting.GRAY + ") that" + Formatting.RED + " already exists"
+                    + Formatting.GRAY + ".");
+
         }else if(action.equals("erase")) {
-            Main.notepadManager.removeNote(noteName);
+
+            if(Main.notepadManager.isNote(noteName)) {
+
+                Main.notepadManager.removeNote(noteName);
+                CommandManager.addChatMessage(Formatting.RED + "erased" + Formatting.GRAY + " note, " + Formatting.WHITE + noteName + Formatting.GRAY + ", from the notepad :(");
+
+            }else CommandManager.addChatMessage("you cannot erase a note that" + Formatting.RED + " does not exist" + Formatting.GRAY + "(" + Formatting.WHITE + noteName + Formatting.GRAY
+                    + "). silly dumb fucking piece of shit.");
+
+        }else if(action.equals("read")) {
+
+            if(Main.notepadManager.isNote(noteName)) {
+
+                me.srgantmoomoo.beachhouse.notepad.Notepad note1 = Main.notepadManager.getNoteByName(noteName);
+                CommandManager.addChatMessage(Formatting.WHITE + note1.getName() + Formatting.GRAY + note1.getMessage());
+
+            }else CommandManager.addChatMessage("you cannot read a note that" + Formatting.RED + " does not exist" + Formatting.GRAY + "(" + Formatting.WHITE + noteName + Formatting.GRAY
+                    + "). silly dumb fucking piece of shit.");
+
         }else
             CommandManager.correctUsageMsg(getName(), getSyntax());
     }
