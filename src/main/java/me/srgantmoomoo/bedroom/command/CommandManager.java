@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import net.minecraft.client.MinecraftClient;
@@ -62,10 +63,17 @@ public class CommandManager {
     }
 
     /**
+     * send a client side chat message without a prefix to the minecraft chat.
+     * @param message
+     */
+    public static void addCustomChatMessage(String message) {
+        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(message));
+    }
+
+    /**
      * send a client side chat message with a prefix to the minecraft chat.
      * @param message
      */
-
     @SuppressWarnings("resource")
     public static void addChatMessage(String message) {
         String messageWithPre = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + message;
@@ -78,7 +86,6 @@ public class CommandManager {
      * @param name
      * @param syntax
      */
-
     @SuppressWarnings("resource")
     public static void correctUsageMsg(String name, String syntax) {
         String usage = TextFormatting.RED + "correct usage of " + name + " command -> " + TextFormatting.GRAY + prefix + syntax;

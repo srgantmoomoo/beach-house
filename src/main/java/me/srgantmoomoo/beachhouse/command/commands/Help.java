@@ -38,8 +38,8 @@ public class Help extends Command {
         String starter = LIGHT_PURPLE + commandName + GRAY + " - " + commandDesc;
         String syntaxMessage = " [" + CommandManager.prefix + commandSyntax + "]";
 
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(starter));
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(syntaxMessage));
+        CommandManager.addCustomChatMessage(starter);
+        CommandManager.addCustomChatMessage(syntaxMessage);
     }
 
     private void welcomeMessage() {
@@ -47,9 +47,9 @@ public class Help extends Command {
         String nothing = " ";
         String atClientName = AQUA + "@" + ITALIC + Main.name;
 
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(welcomeString));
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(atClientName));
+        CommandManager.addCustomChatMessage(welcomeString);
+        CommandManager.addCustomChatMessage(nothing);
+        CommandManager.addCustomChatMessage(atClientName);
 
     }
 
@@ -57,8 +57,8 @@ public class Help extends Command {
         String uwu = GRAY + "" + BOLD + "uwu" + AQUA + " ~";
         String nothing = " ";
 
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(uwu));
+        CommandManager.addCustomChatMessage(nothing);
+        CommandManager.addCustomChatMessage(uwu);
     }
 
 }
