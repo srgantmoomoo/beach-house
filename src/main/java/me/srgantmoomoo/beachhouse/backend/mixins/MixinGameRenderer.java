@@ -1,6 +1,5 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
-import me.srgantmoomoo.beachhouse.backend.events.EventGetGlintShaders;
 import me.srgantmoomoo.beachhouse.backend.events.EventRender3d;
 import me.srgantmoomoo.bedroom.api.event.Type;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
@@ -35,32 +34,5 @@ public class MixinGameRenderer {
         ModuleManager.onEvent(e);
         if (e.isCancelled()) info.cancel();
 
-    }
-
-    @Inject(method = "getRenderTypeGlintDirectShader", at = @At("HEAD"), cancellable = true)
-    private static void overrideGlintShader(CallbackInfoReturnable<Shader> cir) {
-        EventGetGlintShaders e = new EventGetGlintShaders(renderTypeGlintDirectShader);
-        e.setType(Type.PRE);
-        ModuleManager.onEvent(e);
-        if (e.isCancelled())
-            cir.setReturnValue(e.getShader());
-    }
-
-    @Inject(method = "getRenderTypeArmorEntityGlintShader", at = @At("HEAD"), cancellable = true)
-    private static void overrideGlintShader1(CallbackInfoReturnable<Shader> cir) {
-        EventGetGlintShaders e = new EventGetGlintShaders(renderTypeArmorEntityGlintShader);
-        e.setType(Type.PRE);
-        ModuleManager.onEvent(e);
-        if (e.isCancelled())
-            cir.setReturnValue(e.getShader());
-    }
-
-    @Inject(method = "getRenderTypeArmorGlintShader", at = @At("HEAD"), cancellable = true)
-    private static void overrideGlintShader2(CallbackInfoReturnable<Shader> cir) {
-        EventGetGlintShaders e = new EventGetGlintShaders(renderTypeArmorGlintShader);
-        e.setType(Type.PRE);
-        ModuleManager.onEvent(e);
-        if (e.isCancelled())
-            cir.setReturnValue(e.getShader());
     }
 }

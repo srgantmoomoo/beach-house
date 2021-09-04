@@ -66,6 +66,7 @@ public class Modules {
         Bedroom.addModule(new RenderCancel());
         Bedroom.addModule(new ShulkerPeek());
         Bedroom.addModule(new Tracers());
+        Bedroom.addModule(new VibrantShader());
         Bedroom.addModule(new Xray());
         // crystalesp
         // entityesp - player, mobs, items.

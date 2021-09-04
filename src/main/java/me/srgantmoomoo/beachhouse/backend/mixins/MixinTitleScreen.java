@@ -1,7 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import net.minecraft.client.render.Camera;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;

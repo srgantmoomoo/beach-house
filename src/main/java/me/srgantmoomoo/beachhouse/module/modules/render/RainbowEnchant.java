@@ -8,11 +8,4 @@ public class RainbowEnchant extends Module {
         super("rainbow enchant", "rainbowenchant", "does rainbowey stuffey.", 0, Category.RENDER);
     }
 
-    /*public void onEvent(Event e) {
-        if(e instanceof EventGetGlintShaders) {
-            ((EventGetGlintShaders) e).setShader(Shaders.getRainbowEnchantShader());
-            ((EventGetGlintShaders) e).setCancelled(true);
-        }
-    }*/
-
 }
