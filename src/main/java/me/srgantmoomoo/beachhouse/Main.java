@@ -8,6 +8,7 @@ import me.srgantmoomoo.beachhouse.command.Commands;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
 import me.srgantmoomoo.beachhouse.module.Modules;
+import me.srgantmoomoo.beachhouse.notepad.NotepadManager;
 import me.srgantmoomoo.bedroom.Bedroom;
 import net.earthcomputer.multiconnect.api.MultiConnectAPI;
 import net.minecraft.util.Identifier;
@@ -50,6 +51,7 @@ public class Main implements ModInitializer {
 	public static ClickGuiScreen clickGUI;
 	public static HudManager hudManager;
 	public static Config config;
+	public static NotepadManager notepadManager;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
 
@@ -87,6 +89,9 @@ public class Main implements ModInitializer {
 		
 		hudManager = new HudManager();
 		printLog("hud editor initialized.");
+
+		notepadManager = new NotepadManager();
+		printLog("big pp notepad manager is initialized.");
 
 		config = new Config();
 		printLog("configs initialized.");

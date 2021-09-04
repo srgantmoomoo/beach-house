@@ -21,7 +21,7 @@ public class ModuleList extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 0) {
-            CommandManager.correctUsageMsg(name, syntax);
+            CommandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
         if(mods.isEmpty()) 
