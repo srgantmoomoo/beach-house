@@ -35,7 +35,6 @@ import net.fabricmc.api.ModInitializer;
 //TODO if(clicked out) than setting closes.
 //TODO focusing for the panels.
 //TODO animations
-//TODO fix tabgui length
 //TODO clickgui hover for specific modules.
 public class Main implements ModInitializer {
 
@@ -57,8 +56,6 @@ public class Main implements ModInitializer {
 			LOGGER.info(text);
 		}
 	}
-
-
 
 	@Override
 	public void onInitialize() {
