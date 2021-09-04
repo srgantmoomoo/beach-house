@@ -1,10 +1,12 @@
 package me.srgantmoomoo.beachhouse.command.commands;
 
 import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import net.minecraft.util.Formatting;
 
+//TODO improve on this
 public class Notepad extends Command {
 
     public Notepad() {
@@ -24,9 +26,20 @@ public class Notepad extends Command {
 
         if(initial.equals("notes")) {
             if(!Main.notepadManager.notes.isEmpty()) {
+
+                String nothing = TextFormatting.AQUA + " ";
+                String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
+                CommandManager.addCustomChatMessage(wuw);
+                CommandManager.addCustomChatMessage(nothing);
+
                 for (me.srgantmoomoo.beachhouse.notepad.Notepad note : Main.notepadManager.notes) {
                     CommandManager.addCustomChatMessage(Formatting.WHITE + note.getName());
                 }
+
+                CommandManager.addCustomChatMessage(nothing);
+                String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
+                CommandManager.addCustomChatMessage(uwu);
+
             }else CommandManager.addChatMessage("u have no notes stupid.");
             return;
         }
