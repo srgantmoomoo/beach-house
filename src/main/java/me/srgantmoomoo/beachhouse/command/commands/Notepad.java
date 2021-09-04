@@ -78,7 +78,7 @@ public class Notepad extends Command {
                 Main.notepadManager.removeNote(noteName);
                 CommandManager.addChatMessage(Formatting.RED + "erased" + Formatting.GRAY + " note, " + Formatting.WHITE + noteName + Formatting.GRAY + ", from the notepad :(");
 
-            }else CommandManager.addChatMessage("you cannot erase a note that" + Formatting.RED + " does not exist" + Formatting.GRAY + "(" + Formatting.WHITE + noteName + Formatting.GRAY
+            }else CommandManager.addChatMessage("you cannot erase a note that" + Formatting.RED + " does not exist" + Formatting.GRAY + " (" + Formatting.WHITE + noteName + Formatting.GRAY
                     + "). silly dumb fucking piece of shit.");
 
         }else if(action.equals("read")) {
@@ -88,8 +88,8 @@ public class Notepad extends Command {
                 me.srgantmoomoo.beachhouse.notepad.Notepad note1 = Main.notepadManager.getNoteByName(noteName);
                 CommandManager.addChatMessage(Formatting.WHITE + note1.getName() + Formatting.GRAY + note1.getMessage());
 
-            }else CommandManager.addChatMessage("you cannot read a note that" + Formatting.RED + " does not exist" + Formatting.GRAY + "(" + Formatting.WHITE + noteName + Formatting.GRAY
-                    + "). silly dumb fucking piece of shit.");
+            }else CommandManager.addChatMessage("you cannot read a note that" + Formatting.RED + " does not exist" + Formatting.GRAY + " (" + Formatting.WHITE + noteName + Formatting.GRAY
+                    + ")");
 
         }else
             CommandManager.correctUsageMsg(getName(), getSyntax());
