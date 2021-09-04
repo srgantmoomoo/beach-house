@@ -1,5 +1,5 @@
 # beach house
-This is a latest version fabric client for minecraft. This is a private client, however, older versions will be publicized and open sourced here in this repository for any and everyone to see.
+This is a latest version fabric client for minecraft. This is a private client, however, older versions will be publicized and open sourced [here](https://github.com/beach-house-development/beach-house-public) for anyone to see.
 <br>
 
 # development
