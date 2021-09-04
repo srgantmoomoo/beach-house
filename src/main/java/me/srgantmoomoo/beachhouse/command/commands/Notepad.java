@@ -25,7 +25,7 @@ public class Notepad extends Command {
         if(initial.equals("notes")) {
             if(!Main.notepadManager.notes.isEmpty()) {
                 for (me.srgantmoomoo.beachhouse.notepad.Notepad note : Main.notepadManager.notes) {
-                    CommandManager.addChatMessage(Formatting.WHITE + note.getName());
+                    CommandManager.addCustomChatMessage(Formatting.WHITE + note.getName());
                 }
             }else CommandManager.addChatMessage("u have no notes stupid.");
             return;

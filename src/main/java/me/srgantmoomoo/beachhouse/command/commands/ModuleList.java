@@ -29,8 +29,8 @@ public class ModuleList extends Command {
 
         String nothing = TextFormatting.AQUA + " ";
         String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(wuw));
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
+        CommandManager.addCustomChatMessage(wuw);
+        CommandManager.addCustomChatMessage(nothing);
 
         for(Module module : mods) {
 
@@ -66,9 +66,9 @@ public class ModuleList extends Command {
 
         }
 
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
+        CommandManager.addCustomChatMessage(nothing);
         String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(uwu));
+        CommandManager.addCustomChatMessage(uwu);
 
         mods.sort(Comparator.comparing(Module::getCategory));
     }

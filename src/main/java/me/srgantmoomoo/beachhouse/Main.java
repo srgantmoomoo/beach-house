@@ -22,25 +22,23 @@ import net.fabricmc.api.ModInitializer;
  * @since 5/16/2021
  */
 
-//TODO notepad.
-//TODO config.
 //TODO font renderer.
 //TODO add a bind command.
 //TODO rainbow enchant so sexi D:
-//TODO fix settingslist when a module does not have any settings... and add a color setting to setting command.
-//TODO animations.
+//TODO add a color setting to setting command.
 //TODO if(settings (opened)) *** focused settings.
 //TODO overlapping panels in general.
 //TODO command prefix config.
 //TODO settings in config.
 //TODO hudeditor in config
 //TODO optimize config code.
-//TODO main menu and splash screen. simple.
 //TODO gui code can be improved on a lot. make single method for rendering with the onwall shit.
 //TODO get number setting to work with onwall.
 //TODO if(clicked out) than setting closes.
 //TODO focusing for the panels.
 //TODO animations
+//TODO fix tabgui length
+//TODO clickgui hover for specific modules.
 public class Main implements ModInitializer {
 
 	public static final String modid = "bh";

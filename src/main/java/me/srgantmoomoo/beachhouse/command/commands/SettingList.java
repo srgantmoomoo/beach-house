@@ -33,8 +33,8 @@ public class SettingList extends Command {
 
         String nothing = TextFormatting.AQUA + " ";
         String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(wuw));
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
+        CommandManager.addCustomChatMessage(wuw);
+        CommandManager.addCustomChatMessage(nothing);
         for(Module m : modules) {
             String moduleId = m.getID();
             Boolean sent = false;
@@ -43,22 +43,22 @@ public class SettingList extends Command {
                 for(Setting setting : m.settings) {
 
                     if(setting instanceof BooleanSetting) {
-                        CommandManager.addChatMessage("boolean: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
+                        CommandManager.addCustomChatMessage("boolean: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof ModeSetting) {
-                        CommandManager.addChatMessage("mode: " + TextFormatting.WHITE + setting.name + " " + ((ModeSetting) setting).modes + TextFormatting.GRAY + ".");
+                        CommandManager.addCustomChatMessage("mode: " + TextFormatting.WHITE + setting.name + " " + ((ModeSetting) setting).modes + TextFormatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof NumberSetting) {
-                        CommandManager.addChatMessage("number: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
+                        CommandManager.addCustomChatMessage("number: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof ColorSetting) {
-                        CommandManager.addChatMessage("color: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
+                        CommandManager.addCustomChatMessage("color: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                         sent = true;
                     }
 
@@ -66,7 +66,7 @@ public class SettingList extends Command {
                         //CommandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");  notiing 0_0
                     }
                     if(!sent) {
-                        CommandManager.addChatMessage("no settings for this module :(");
+                        CommandManager.addCustomChatMessage("no settings for this module :(");
                     }
 
                     moduleFound = true;
@@ -75,8 +75,8 @@ public class SettingList extends Command {
             }
         }
         String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(nothing));
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(uwu));
+        CommandManager.addCustomChatMessage(nothing);
+        CommandManager.addCustomChatMessage(uwu);
 
         if(!moduleFound) {
             CommandManager.addChatMessage("module " + TextFormatting.RED + inputValue + TextFormatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
