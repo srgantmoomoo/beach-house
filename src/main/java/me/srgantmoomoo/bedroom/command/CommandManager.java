@@ -21,13 +21,13 @@ import net.minecraft.text.Text;
 public class CommandManager {
 
     public List<Command> commands;
-    public static String prefix = ",";
+    public String prefix = ",";
 
     public CommandManager() {
         commands = new ArrayList<Command>();
     }
 
-    public static void callCommandReturn(String input) {
+    public void callCommandReturn(String input) {
         String message = input;
 
         if(!message.startsWith(prefix))
@@ -58,15 +58,15 @@ public class CommandManager {
             }
     }
 
-    public static void setCommandPrefix(String pre) {
-        prefix = pre;
+    public void setCommandPrefix(String pre) {
+        this.prefix = pre;
     }
 
     /**
      * send a client side chat message without a prefix to the minecraft chat.
      * @param message
      */
-    public static void addCustomChatMessage(String message) {
+    public void addCustomChatMessage(String message) {
         Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(message));
     }
 
@@ -75,7 +75,7 @@ public class CommandManager {
      * @param message
      */
     @SuppressWarnings("resource")
-    public static void addChatMessage(String message) {
+    public void addChatMessage(String message) {
         String messageWithPre = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + message;
         Text textComponentString = new LiteralText(messageWithPre);
         MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(textComponentString);
@@ -87,7 +87,7 @@ public class CommandManager {
      * @param syntax
      */
     @SuppressWarnings("resource")
-    public static void correctUsageMsg(String name, String syntax) {
+    public void correctUsageMsg(String name, String syntax) {
         String usage = TextFormatting.RED + "correct usage of " + name + " command -> " + TextFormatting.GRAY + prefix + syntax;
         String message = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + usage;
 

@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.hudmodules.TabGui;
 import me.srgantmoomoo.bedroom.api.event.Type;
@@ -20,7 +21,7 @@ public class MixinKeyboard {
     @Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
     private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
         if (key >= 0) {
-            ClickGuiScreen.INSTANCE.onKeyPressed(key);
+            Main.clickGui.onKeyPressed(key);
         }
     }
 

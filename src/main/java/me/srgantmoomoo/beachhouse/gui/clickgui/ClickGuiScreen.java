@@ -12,9 +12,8 @@ import java.util.ArrayList;
 
 // this screen is opened in the ClickGui module.
 public class ClickGuiScreen extends Screen {
-    public static ArrayList<Panel> panels;
+    public ArrayList<Panel> panels;
     private boolean mouseHeld = false;
-    public static ClickGuiScreen INSTANCE;
 
     public ClickGuiScreen() {
         super(new LiteralText("smallppguis"));
@@ -25,10 +24,8 @@ public class ClickGuiScreen extends Screen {
         int panelHeight = 12;
         boolean focused = false;
 
-        INSTANCE = this;
-
         for (Module.Category c : Module.Category.values()) {
-            ClickGuiScreen.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, focused, c));
+            this.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, focused, c));
             panelX += 89;
         }
     }
@@ -112,13 +109,13 @@ public class ClickGuiScreen extends Screen {
         return false;
     }
 
-    public static ArrayList<Panel> getPanels() {
+    public ArrayList<Panel> getPanels() {
         return panels;
     }
 
-    public static Panel getPanelByName(String name) {
+    public Panel getPanelByName(String name) {
         Panel panel = null;
-        for (Panel p : getPanels()) {
+        for (Panel p : this.getPanels()) {
             if (p.title.equalsIgnoreCase(name)) {
                 panel = p;
             }

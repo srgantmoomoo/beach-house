@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
+import me.srgantmoomoo.bedroom.Bedroom;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,8 +24,8 @@ public class MixinClientConnection {
     public void send(Packet<?> packet_1, GenericFutureListener<? extends Future<? super Void>> genericFutureListener_1, CallbackInfo callback) {
         if (packet_1 instanceof ChatMessageC2SPacket) {
             ChatMessageC2SPacket pack = (ChatMessageC2SPacket) packet_1;
-            if (pack.getChatMessage().startsWith(CommandManager.prefix)) {
-                CommandManager.callCommandReturn(pack.getChatMessage());
+            if (pack.getChatMessage().startsWith(Bedroom.commandManager.prefix)) {
+                Bedroom.commandManager.callCommandReturn(pack.getChatMessage());
                 callback.cancel();
             }
         }

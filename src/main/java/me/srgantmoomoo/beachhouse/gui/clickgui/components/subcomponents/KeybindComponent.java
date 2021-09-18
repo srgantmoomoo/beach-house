@@ -25,6 +25,9 @@ public class KeybindComponent extends Component {
 
     @Override
     public void renderComponent(MatrixStack matrix) {
+        //TODO make this less fucking ugly wtf
+        int settingPanelX = 90;
+
         if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
             InGameHud.fill(matrix, parent.parent.getX() - 2, parent.parent.getY() - 12 + offset, parent.parent.getX() - 92, parent.parent.getY() + offset, 0x90000000);
 
@@ -40,7 +43,8 @@ public class KeybindComponent extends Component {
             if (isBinding) {
                 Reference.textRenderer.drawWithShadow(matrix, "Listening" + Formatting.GRAY + " " + "...", parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
             } else {
-                Reference.textRenderer.drawWithShadow(matrix, "Bind" + Formatting.GRAY + " " + GLFW.glfwGetKeyName(this.parent.mod.getKey(), GLFW.glfwGetKeyScancode(this.parent.mod.getKey())), parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
+                String keyName = GLFW.glfwGetKeyName(this.parent.mod.getKey(), GLFW.glfwGetKeyScancode(this.parent.mod.getKey()));
+                Reference.textRenderer.drawWithShadow(matrix, "Bind" + Formatting.GRAY + " " + keyName, parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
             }
         }
     }

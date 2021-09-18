@@ -5,6 +5,7 @@ import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
+import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 
 public class Toggle extends Command {
 
@@ -15,7 +16,7 @@ public class Toggle extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 1) {
-            CommandManager.correctUsageMsg(name, syntax);
+            Bedroom.commandManager.correctUsageMsg(name, syntax);
             return;
         }
 
@@ -25,13 +26,13 @@ public class Toggle extends Command {
             String moudleId = module.getID();
             if(moudleId.equalsIgnoreCase(inputValue)) {
                 module.toggle();
-                CommandManager.addChatMessage(module.name + " " + (module.isEnabled() ? TextFormatting.GREEN + "enabled" + TextFormatting.GRAY + "." : TextFormatting.DARK_RED + "disabled" + TextFormatting.GRAY + "."));
+                Bedroom.commandManager.addChatMessage(module.name + " " + (module.isEnabled() ? TextFormatting.GREEN + "enabled" + TextFormatting.GRAY + "." : TextFormatting.DARK_RED + "disabled" + TextFormatting.GRAY + "."));
                 moduleFound = true;
                 break;
             }
         }
         if(!moduleFound) {
-            CommandManager.addChatMessage("the module, " + TextFormatting.RED + inputValue + TextFormatting.GRAY + ", was not found.");
+            Bedroom.commandManager.addChatMessage("the module, " + TextFormatting.RED + inputValue + TextFormatting.GRAY + ", was not found.");
         }
     }
 }

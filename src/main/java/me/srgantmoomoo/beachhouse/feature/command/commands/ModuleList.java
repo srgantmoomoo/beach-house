@@ -19,54 +19,54 @@ public class ModuleList extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 0) {
-            CommandManager.correctUsageMsg(getName(), getSyntax());
+            Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
         if(mods.isEmpty()) 
         	mods.addAll(Bedroom.moduleManager.getModules());
 
         String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
-        CommandManager.addCustomChatMessage(wuw);
+        Bedroom.commandManager.addCustomChatMessage(wuw);
         String nothing = TextFormatting.AQUA + " ";
-        CommandManager.addCustomChatMessage(nothing);
+        Bedroom.commandManager.addCustomChatMessage(nothing);
 
         for(Module module : mods) {
 
             if(module.getCategory().equals(Module.Category.PLAYER)) {
-                CommandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
                         (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.RENDER)) {
-                CommandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
                         (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.COMBAT)) {
-                CommandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
                         (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.MOVEMENT)) {
-                CommandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
                         (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.MISCELLANEOUS)) {
-                CommandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
                         (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.BEACHHOUSE)) {
-                CommandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
+                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
                         (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
             }
 
         }
 
-        CommandManager.addCustomChatMessage(nothing);
+        Bedroom.commandManager.addCustomChatMessage(nothing);
         String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
-        CommandManager.addCustomChatMessage(uwu);
+        Bedroom.commandManager.addCustomChatMessage(uwu);
 
         mods.sort(Comparator.comparing(Module::getCategory));
     }

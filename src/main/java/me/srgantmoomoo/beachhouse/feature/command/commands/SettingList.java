@@ -20,7 +20,7 @@ public class SettingList extends Command {
     public void onCommand(String[] args, String command) {
 
         if(args.length != 1) {
-            CommandManager.correctUsageMsg(name, syntax);
+            Bedroom.commandManager.correctUsageMsg(name, syntax);
             return;
         }
 
@@ -31,8 +31,8 @@ public class SettingList extends Command {
 
         String nothing = TextFormatting.AQUA + " ";
         String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
-        CommandManager.addCustomChatMessage(wuw);
-        CommandManager.addCustomChatMessage(nothing);
+        Bedroom.commandManager.addCustomChatMessage(wuw);
+        Bedroom.commandManager.addCustomChatMessage(nothing);
         for(Module m : modules) {
             String moduleId = m.getID();
             Boolean sent = false;
@@ -41,30 +41,30 @@ public class SettingList extends Command {
                 for(Setting setting : m.settings) {
 
                     if(setting instanceof BooleanSetting) {
-                        CommandManager.addCustomChatMessage("boolean: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
+                        Bedroom.commandManager.addCustomChatMessage("boolean: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof ModeSetting) {
-                        CommandManager.addCustomChatMessage("mode: " + TextFormatting.WHITE + setting.name + " " + ((ModeSetting) setting).modes + TextFormatting.GRAY + ".");
+                        Bedroom.commandManager.addCustomChatMessage("mode: " + TextFormatting.WHITE + setting.name + " " + ((ModeSetting) setting).modes + TextFormatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof NumberSetting) {
-                        CommandManager.addCustomChatMessage("number: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
+                        Bedroom.commandManager.addCustomChatMessage("number: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof ColorSetting) {
-                        CommandManager.addCustomChatMessage("color: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
+                        Bedroom.commandManager.addCustomChatMessage("color: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof KeybindSetting) {
-                        //CommandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");  notiing 0_0
+                        //Bedroom.commandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");  notiing 0_0
                     }
                     if(!sent) {
-                        CommandManager.addCustomChatMessage("no settings for this module :(");
+                        Bedroom.commandManager.addCustomChatMessage("no settings for this module :(");
                     }
 
                     moduleFound = true;
@@ -73,11 +73,11 @@ public class SettingList extends Command {
             }
         }
         String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
-        CommandManager.addCustomChatMessage(nothing);
-        CommandManager.addCustomChatMessage(uwu);
+        Bedroom.commandManager.addCustomChatMessage(nothing);
+        Bedroom.commandManager.addCustomChatMessage(uwu);
 
         if(!moduleFound) {
-            CommandManager.addChatMessage("module " + TextFormatting.RED + inputValue + TextFormatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
+            Bedroom.commandManager.addChatMessage("module " + TextFormatting.RED + inputValue + TextFormatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
             return;
         }
     }

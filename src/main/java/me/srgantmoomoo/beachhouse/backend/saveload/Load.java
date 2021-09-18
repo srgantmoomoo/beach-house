@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.saveload;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.bedroom.Bedroom;
@@ -71,7 +72,7 @@ public class Load {
                 String newName = name;
                 if(name.equalsIgnoreCase("BEACHHOUSE")) newName = "beach house";
                 boolean opened = Boolean.parseBoolean(open);
-                Panel p = ClickGuiScreen.getPanelByName(newName);
+                Panel p = Main.clickGui.getPanelByName(newName);
                 if (p != null) {
                     p.x = x1;
                     p.y = y1;

@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.feature.command.commands;
 
+import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.command.CommandManager;
@@ -13,12 +14,12 @@ public class Prefix extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 1) {
-            CommandManager.correctUsageMsg(name, syntax);
+            Bedroom.commandManager.correctUsageMsg(name, syntax);
             return;
         }
 
         String key = args[0];
-        CommandManager.setCommandPrefix(key);
-        CommandManager.addChatMessage(String.format(TextFormatting.GREEN + "prefix " + TextFormatting.GRAY + "was set to " + TextFormatting.GREEN + CommandManager.prefix));
+        Bedroom.commandManager.setCommandPrefix(key);
+        Bedroom.commandManager.addChatMessage(String.format(TextFormatting.GREEN + "prefix " + TextFormatting.GRAY + "was set to " + TextFormatting.GREEN + Bedroom.commandManager.prefix));
     }
 }

@@ -3,7 +3,6 @@ package me.srgantmoomoo.beachhouse;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
-import me.srgantmoomoo.beachhouse.backend.Config;
 import me.srgantmoomoo.beachhouse.backend.saveload.Load;
 import me.srgantmoomoo.beachhouse.backend.saveload.Save;
 import me.srgantmoomoo.beachhouse.feature.command.Commands;
@@ -22,25 +21,27 @@ import net.fabricmc.api.ModInitializer;
  * @since 5/16/2021
  */
 
-//TODO font renderer.
-//TODO add a bind command.
-//TODO rainbow enchant so sexi D:
-//TODO add a color setting to setting command.
-//TODO if(settings (opened)) *** focused settings.
-//TODO overlapping panels in general.
 //TODO command prefix config.
 //TODO settings in config.
 //TODO hudeditor in config
-//TODO optimize config code.
+//TODO notepad configs.
+
+//TODO font renderer.
+//TODO rainbow enchant so sexi D:
+//TODO animations.
+
+//TODO add a color setting to setting command.
+//TODO command pages.
+//TODO add a bind command.
+
+//TODO if(settings (opened)) *** focused settings.
+//TODO overlapping panels in general.
 //TODO gui code can be improved on a lot. make single method for rendering with the onwall shit.
 //TODO get number setting to work with onwall.
 //TODO if(clicked out) than setting closes.
 //TODO focusing for the panels.
-//TODO animations.
 //TODO clickgui hover for specific modules.
 
-//TODO command pages.
-//TODO notepad configs.
 public class Main implements ModInitializer {
 
 	public static final String modid = "bh";
@@ -48,7 +49,7 @@ public class Main implements ModInitializer {
 	public static final String nameCondensed = "beach-house";
 	public static final String version = "0.10";
 
-	public static ClickGuiScreen clickGUI;
+	public static ClickGuiScreen clickGui;
 	public static HudManager hudManager;
 	public static Save save;
 	public static Load load;
@@ -85,7 +86,7 @@ public class Main implements ModInitializer {
 		Modules.init();
 		printLog("modules initialized.");
 
-		clickGUI = new ClickGuiScreen();
+		clickGui = new ClickGuiScreen();
 		printLog("click gui initialized.");
 		
 		hudManager = new HudManager();

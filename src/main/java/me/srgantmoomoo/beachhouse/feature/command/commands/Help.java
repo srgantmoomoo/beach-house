@@ -21,7 +21,7 @@ public class Help extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 0) {
-            CommandManager.correctUsageMsg(getName(), getSyntax());
+            Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
 
@@ -34,10 +34,10 @@ public class Help extends Command {
 
     private void helpMessage(String commandName, String commandDesc, String commandSyntax) {
         String starter = LIGHT_PURPLE + commandName + GRAY + " - " + commandDesc;
-        String syntaxMessage = " [" + CommandManager.prefix + commandSyntax + "]";
+        String syntaxMessage = " [" + Bedroom.commandManager.prefix + commandSyntax + "]";
 
-        CommandManager.addCustomChatMessage(starter);
-        CommandManager.addCustomChatMessage(syntaxMessage);
+        Bedroom.commandManager.addCustomChatMessage(starter);
+        Bedroom.commandManager.addCustomChatMessage(syntaxMessage);
     }
 
     private void welcomeMessage() {
@@ -45,9 +45,9 @@ public class Help extends Command {
         String nothing = " ";
         String atClientName = AQUA + "@" + ITALIC + Main.name;
 
-        CommandManager.addCustomChatMessage(welcomeString);
-        CommandManager.addCustomChatMessage(nothing);
-        CommandManager.addCustomChatMessage(atClientName);
+        Bedroom.commandManager.addCustomChatMessage(welcomeString);
+        Bedroom.commandManager.addCustomChatMessage(nothing);
+        Bedroom.commandManager.addCustomChatMessage(atClientName);
 
     }
 
@@ -55,8 +55,8 @@ public class Help extends Command {
         String uwu = GRAY + "" + BOLD + "uwu" + AQUA + " ~";
         String nothing = " ";
 
-        CommandManager.addCustomChatMessage(nothing);
-        CommandManager.addCustomChatMessage(uwu);
+        Bedroom.commandManager.addCustomChatMessage(nothing);
+        Bedroom.commandManager.addCustomChatMessage(uwu);
     }
 
 }

@@ -1,8 +1,10 @@
 package me.srgantmoomoo.beachhouse.backend.saveload;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.bedroom.Bedroom;
+import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
@@ -29,16 +31,18 @@ public class Save {
     public void save() {
         saveModules();
         saveGui();
+        saveNotepad();
+        saveCommandPrefix();
     }
 
     public void saveModules() {
         try {
             File file = new File(MainDirectory, "modules.txt");
-            ArrayList<String> modulesToSave = new ArrayList<>();
+            ArrayList<String> moduleToSave = new ArrayList<>();
 
             for (Module module : Bedroom.moduleManager.getModules()) {
                 if (module.isEnabled() && module.getID() != "clickgui" && module.getID() != "hudeditor") {
-                    modulesToSave.add(module.getName());
+                    moduleToSave.add(module.getName());
                 }
             }
 
@@ -69,7 +73,7 @@ public class Save {
 
             try {
                 PrintWriter printWriter = new PrintWriter(file);
-                for (String string : modulesToSave) {
+                for (String string : moduleToSave) {
                     printWriter.println(string);
                 }
                 printWriter.close();
@@ -82,15 +86,38 @@ public class Save {
     public void saveGui() {
         try {
             File file = new File(MainDirectory, "gui.txt");
-            ArrayList<String> positionsToSave = new ArrayList<>();
+            ArrayList<String> guiToSave = new ArrayList<>();
 
-            for (Panel panel : ClickGuiScreen.panels) {
-                positionsToSave.add(panel.getCategory() + ":" + panel.getX() + ":" + panel.getY() + ":" + panel.isOpen());
+            for (Panel panel : Main.clickGui.panels) {
+                guiToSave.add(panel.getCategory() + ":" + panel.getX() + ":" + panel.getY() + ":" + panel.isOpen());
             }
 
             try {
                 PrintWriter printWriter = new PrintWriter(file);
-                for (String string : positionsToSave) {
+                for (String string : guiToSave) {
+                    printWriter.println(string);
+                }
+                printWriter.close();
+            } catch (FileNotFoundException e) {
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public void saveNotepad() {
+
+    }
+
+    public void saveCommandPrefix() {
+        try {
+            File file = new File(MainDirectory, "prefix.txt");
+            ArrayList<String> prefixToSave = new ArrayList<>();
+
+            prefixToSave.add(Bedroom.commandManager.prefix);
+
+            try {
+                PrintWriter printWriter = new PrintWriter(file);
+                for (String string : prefixToSave) {
                     printWriter.println(string);
                 }
                 printWriter.close();

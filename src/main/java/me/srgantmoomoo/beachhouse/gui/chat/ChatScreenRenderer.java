@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.chat;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.CommandManager;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.ChatScreen;
@@ -16,11 +17,11 @@ public class ChatScreenRenderer {
         if (Reference.minecraft.currentScreen instanceof ChatScreen) {
             IChatScreen chatScreen = (IChatScreen) (ChatScreen) Reference.minecraft.currentScreen;
         
-            if(chatScreen.getText().startsWith(CommandManager.prefix)) {
+            if(chatScreen.getText().startsWith(Bedroom.commandManager.prefix)) {
                 int screenWidth = Reference.window.getScaledWidth();
                 int screenHeight = Reference.window.getScaledHeight();
 
-                if (chatScreen.getText().equals(CommandManager.prefix))
+                if (chatScreen.getText().equals(Bedroom.commandManager.prefix))
                     Reference.textRenderer.drawWithShadow(matrix, "beach house :)", 6, screenHeight - 12, 0xff999999);
 
                 if(me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ChatScreen.INSTANCE.background.isEnabled())
