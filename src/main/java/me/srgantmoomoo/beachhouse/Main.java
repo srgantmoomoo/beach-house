@@ -92,8 +92,9 @@ public class Main implements ModInitializer {
 		notepadManager = new NotepadManager();
 		printLog("big pp notepad manager is initialized.");
 
-		//save = new Save(); LOAD
-		printLog("saves loaded initialized.");
+		save = new Save();
+		//load = new Load();
+		printLog("saves and loads initialized.");
 
 		printLog(Main.name + " has finished initialization.");
 	}

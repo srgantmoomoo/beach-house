@@ -86,7 +86,7 @@ public class Save {
 
     public void saveGuiPositions() {
         try {
-            File file = new File(MainDirectory, "guiPositions.txt");
+            File file = new File(MainDirectory, "gui.txt");
             ArrayList<String> positionsToSave = new ArrayList<>();
 
             for (Panel panel : ClickGuiScreen.panels) {
