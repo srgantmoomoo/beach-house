@@ -26,7 +26,7 @@ public class ClickGui extends Module {
     @Override
     public void onEnable() {
         minecraft.openScreen(new ClickGuiScreen());
-        Main.config.loadGuiPanels();
+        //Main.config.loadClickGuiPositions();
     }
 
     @Override

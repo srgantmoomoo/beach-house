@@ -24,12 +24,28 @@ public class Config {
             MainDirectory.mkdir();
         }
 
-        loadSavedModules();
-        loadKeybinds();
-        loadGuiPanels();
+        loadConfig();
     }
 
-    public void saveLoadedModules() {
+    public void loadConfig() {
+        loadModules();
+        //loadSettings();
+        loadKeybinds();
+        loadClickGuiPositions();
+        //loadNotes();
+    }
+
+    public void saveConfig() {
+        saveModules();
+        //saveKeybinds();
+        saveClickGuiPositions();
+        saveSettings();
+        //saveNotes();
+    }
+
+    // SAVES
+
+    public void saveModules() {
         try {
             File file = new File(MainDirectory, "ToggledModules.txt");
             ArrayList<String> modulesToSave = new ArrayList<>();
@@ -73,7 +89,61 @@ public class Config {
         }
     }
 
-    public void saveBooleans() {
+    public void saveClickGuiPositions() {
+        try {
+            File file = new File(MainDirectory, "GuiPanels.txt");
+            ArrayList<String> panelsToSave = new ArrayList<>();
+
+            for (Panel panel : ClickGuiScreen.panels) {
+                panelsToSave.add(panel.getCategory() + ":" + panel.getX() + ":" + panel.getY() + ":" + panel.isOpen());
+            }
+
+            try {
+                PrintWriter printWriter = new PrintWriter(file);
+                for (String string : panelsToSave) {
+                    printWriter.println(string);
+                }
+                printWriter.close();
+            } catch (FileNotFoundException e) {
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public void saveSettings() {
+        //booleans
+        try {
+            File file = new File(MainDirectory, "BooleanValues.txt");
+            ArrayList<String> booleansToSave = new ArrayList<>();
+            ArrayList<String> numbersToSave = new ArrayList<>();
+
+            for(Setting setting : Bedroom.settingManager.getSettings()) {
+                if(setting instanceof BooleanSetting) {
+                    booleansToSave.add(setting.parent.getName() + ":" + setting.name + ":" + ((BooleanSetting) setting).isEnabled());
+                }
+                /*if(setting instanceof NumberSetting) {
+                    numbersToSave.add(setting );
+                }
+                if(setting instanceof ModeSetting) {
+
+                }
+                /*if(setting instanceof ColorSetting) {
+
+                }*/
+            }
+
+            try {
+                PrintWriter printWriter = new PrintWriter(file);
+                for (String string : booleansToSave) {
+                    printWriter.println(string);
+                }
+                printWriter.close();
+            } catch (FileNotFoundException e) {
+            }
+        } catch (Exception e) {
+        }
+
+        // numbers
         try {
             File file = new File(MainDirectory, "BooleanValues.txt");
             ArrayList<String> booleansToSave = new ArrayList<>();
@@ -94,32 +164,8 @@ public class Config {
             }
         } catch (Exception e) {
         }
-    }
 
-    public void saveNumbers() {
-        try {
-            File file = new File(MainDirectory, "IntegerValues.txt");
-            ArrayList<String> integersToSave = new ArrayList<>();
-
-            for (Setting setting : Bedroom.settingManager.getSettings()) {
-                if (setting instanceof NumberSetting) {
-                    integersToSave.add(setting.parent.getName() + ":" + setting.name + ":" + ((NumberSetting) setting).getValue());
-                }
-            }
-
-            try {
-                PrintWriter printWriter = new PrintWriter(file);
-                for (String string : integersToSave) {
-                    printWriter.println(string);
-                }
-                printWriter.close();
-            } catch (FileNotFoundException e) {
-            }
-        } catch (Exception e) {
-        }
-    }
-
-    public void saveModes() {
+        // modes
         try {
             File file = new File(MainDirectory, "ModeValues.txt");
             ArrayList<String> modesToSave = new ArrayList<>();
@@ -142,28 +188,13 @@ public class Config {
         }
     }
 
-    public void saveGuiPanels() {
-        try {
-            File file = new File(MainDirectory, "GuiPanels.txt");
-            ArrayList<String> panelsToSave = new ArrayList<>();
+    public void saveNotes() {
 
-            for (Panel panel : ClickGuiScreen.panels) {
-                panelsToSave.add(panel.getCategory() + ":" + panel.getX() + ":" + panel.getY() + ":" + panel.isOpen());
-            }
-
-            try {
-                PrintWriter printWriter = new PrintWriter(file);
-                for (String string : panelsToSave) {
-                    printWriter.println(string);
-                }
-                printWriter.close();
-            } catch (FileNotFoundException e) {
-            }
-        } catch (Exception e) {
-        }
     }
 
-    public void loadSavedModules() {
+    // LOADS
+
+    public void loadModules() {
         try {
             File file = new File(MainDirectory, "ToggledModules.txt");
             FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
@@ -212,7 +243,7 @@ public class Config {
         }
     }
 
-    public void loadGuiPanels() {
+    public void loadClickGuiPositions() {
         try {
             File file = new File(MainDirectory, "GuiPanels.txt");
             FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
@@ -243,5 +274,9 @@ public class Config {
             br.close();
         } catch (Exception e) {
         }
+    }
+
+    public void loadNotes() {
+
     }
 }

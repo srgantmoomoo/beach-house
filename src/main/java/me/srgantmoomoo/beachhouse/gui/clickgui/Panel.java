@@ -118,9 +118,9 @@ public class Panel {
     public void setX(int newX) {
         this.x = newX;
 
-        if (Main.config != null) {
+        if (Main.save != null) {
             try {
-                Main.config.saveGuiPanels();
+                Main.save.save();
             } catch (Exception e) {}
         }
     }
@@ -128,9 +128,9 @@ public class Panel {
     public void setY(int newY) {
         this.y = newY;
 
-        if (Main.config != null) {
+        if (Main.save != null) {
             try {
-                Main.config.saveGuiPanels();
+                Main.save.save();
             } catch (Exception e) {}
         }
     }

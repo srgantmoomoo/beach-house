@@ -63,6 +63,10 @@ public class ModuleComponent extends Component {
 
     // using this method to draw longer module names with "..." AND draw module names that are hovered.
     private void drawModuleName(MatrixStack matrix) {
+        /*if(this.mod.getName().length() > 10) {
+            this.mod.getName().
+        }*/
+
         if(this.mod.getID() == "enabledmodules") {
             if(hovered || !this.mod.isEnabled()) {
                 Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);

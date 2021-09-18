@@ -101,9 +101,9 @@ public abstract class Module {
     }
 
     public void enable() {
-        if (Main.config != null) {
+        if (Main.save != null) {
             try {
-                Main.config.saveLoadedModules();
+                Main.save.save();
             } catch (Exception e) {}
         }
 
@@ -112,9 +112,9 @@ public abstract class Module {
     }
 
     public void disable() {
-        if (Main.config != null) {
+        if (Main.save != null) {
             try {
-                Main.config.saveLoadedModules();
+                Main.save.save();
             } catch (Exception e) {}
         }
 
