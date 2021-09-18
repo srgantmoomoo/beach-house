@@ -53,7 +53,7 @@ public class Load {
 
     public void loadGui() {
         try {
-            File file = new File(MainDirectory, "GuiPanels.txt");
+            File file = new File(MainDirectory, "gui.txt");
             FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
             DataInputStream in = new DataInputStream(fstream);
             BufferedReader br = new BufferedReader(new InputStreamReader(in));

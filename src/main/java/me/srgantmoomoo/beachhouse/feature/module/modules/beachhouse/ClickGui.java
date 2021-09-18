@@ -30,6 +30,11 @@ public class ClickGui extends Module {
     }
 
     @Override
+    public void onDisable() {
+        Main.save.saveGui();
+    }
+
+    @Override
     public void onEvent(Event e) {
         if(e instanceof EventTick) {
             if(InputUtil.isKeyPressed(minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_ESCAPE))
