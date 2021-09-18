@@ -4,7 +4,6 @@ import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
@@ -32,7 +31,7 @@ public class Save {
         saveModules();
         saveGui();
         saveNotepad();
-        saveCommandPrefix();
+        savePrefix();
     }
 
     public void saveModules() {
@@ -108,7 +107,7 @@ public class Save {
 
     }
 
-    public void saveCommandPrefix() {
+    public void savePrefix() {
         try {
             File file = new File(MainDirectory, "prefix.txt");
             ArrayList<String> prefixToSave = new ArrayList<>();

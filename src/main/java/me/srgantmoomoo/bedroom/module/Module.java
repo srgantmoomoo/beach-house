@@ -114,7 +114,7 @@ public abstract class Module {
     public void disable() {
         if (Main.save != null) {
             try {
-                Main.save.save();
+                Main.save.saveModules();
             } catch (Exception e) {}
         }
 

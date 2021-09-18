@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 // this screen is opened in the ClickGui module.
 public class ClickGuiScreen extends Screen {
-    public ArrayList<Panel> panels;
+    public static ArrayList<Panel> panels;
     private boolean mouseHeld = false;
 
     public ClickGuiScreen() {
@@ -115,7 +115,7 @@ public class ClickGuiScreen extends Screen {
 
     public Panel getPanelByName(String name) {
         Panel panel = null;
-        for (Panel p : this.getPanels()) {
+        for (Panel p : getPanels()) {
             if (p.title.equalsIgnoreCase(name)) {
                 panel = p;
             }

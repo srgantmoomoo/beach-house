@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
@@ -60,6 +61,12 @@ public class CommandManager {
 
     public void setCommandPrefix(String pre) {
         this.prefix = pre;
+
+        if (Main.save != null) {
+            try {
+                Main.save.savePrefix();
+            } catch (Exception e) {}
+        }
     }
 
     /**
