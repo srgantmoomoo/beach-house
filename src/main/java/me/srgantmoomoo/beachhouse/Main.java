@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
 import me.srgantmoomoo.beachhouse.backend.Config;
+import me.srgantmoomoo.beachhouse.backend.saveload.Load;
 import me.srgantmoomoo.beachhouse.backend.saveload.Save;
 import me.srgantmoomoo.beachhouse.feature.command.Commands;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
@@ -50,6 +51,7 @@ public class Main implements ModInitializer {
 	public static ClickGuiScreen clickGUI;
 	public static HudManager hudManager;
 	public static Save save;
+	public static Load load;
 	public static NotepadManager notepadManager;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
@@ -93,7 +95,7 @@ public class Main implements ModInitializer {
 		printLog("big pp notepad manager is initialized.");
 
 		save = new Save();
-		//load = new Load();
+		load = new Load();
 		printLog("saves and loads initialized.");
 
 		printLog(Main.name + " has finished initialization.");

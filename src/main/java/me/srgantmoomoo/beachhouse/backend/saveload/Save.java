@@ -18,22 +18,17 @@ import java.util.ArrayList;
 
 public class Save {
     public File MainDirectory;
-    private File dir;
-    private File dataFile;
-    ArrayList<String> toSave = new ArrayList<String>();
 
     public Save() {
         MainDirectory = new File(MinecraftClient.getInstance().runDirectory, "beach house");
         if (!MainDirectory.exists()) {
             MainDirectory.mkdir();
         }
-
-        save();
     }
 
     public void save() {
         saveModules();
-        saveGuiPositions();
+        saveGui();
     }
 
     public void saveModules() {
@@ -47,22 +42,22 @@ public class Save {
                 }
             }
 
-            for(Module mod : Bedroom.moduleManager.modules) {
+            /*for(Module mod : Bedroom.moduleManager.modules) {
                 for(Setting setting : mod.settings) {
 
                     if(setting instanceof BooleanSetting) {
                         BooleanSetting bool = (BooleanSetting) setting;
-                        toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + bool.isEnabled());
+                        modulesToSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + bool.isEnabled());
                     }
 
                     if(setting instanceof NumberSetting) {
                         NumberSetting number = (NumberSetting) setting;
-                        toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + number.getValue());
+                        modulesToSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + number.getValue());
                     }
 
                     if(setting instanceof ModeSetting) {
                         ModeSetting mode = (ModeSetting) setting;
-                        toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + mode.getMode());
+                        modulesToSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + mode.getMode());
                     }
 
                     if(setting instanceof ColorSetting) {
@@ -70,7 +65,7 @@ public class Save {
                         //toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + color.toInteger() + ":" + color.getRainbow());
                     }
                 }
-            }
+            }*/
 
             try {
                 PrintWriter printWriter = new PrintWriter(file);
@@ -84,7 +79,7 @@ public class Save {
         }
     }
 
-    public void saveGuiPositions() {
+    public void saveGui() {
         try {
             File file = new File(MainDirectory, "gui.txt");
             ArrayList<String> positionsToSave = new ArrayList<>();
