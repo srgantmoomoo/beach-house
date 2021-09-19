@@ -1,7 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.saveload;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
@@ -25,6 +24,7 @@ public class Load {
     public void load() {
         loadModules();
         loadGui();
+        loadPrefix();
     }
 
     public void loadModules() {
@@ -78,6 +78,27 @@ public class Load {
                     p.y = y1;
                     p.setOpen(opened);
                 }
+            }
+
+            br.close();
+        } catch (Exception e) {
+        }
+    }
+
+    public void loadNotepad() {
+
+    }
+
+    public void loadPrefix() {
+        try {
+            File file = new File(MainDirectory, "prefix.txt");
+            FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                Bedroom.commandManager.setCommandPrefix(line);
             }
 
             br.close();
