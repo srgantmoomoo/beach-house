@@ -3,6 +3,8 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 import java.util.ArrayList;
 
 import me.srgantmoomoo.beachhouse.gui.hud.hudmodules.*;
+import me.srgantmoomoo.bedroom.Bedroom;
+import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -20,6 +22,25 @@ public class HudManager {
 		//hudModules.add(new PotionEffects());
 		hudModules.add(new Coordinates());
 	}
+
+	public HudModule getHudModule(String name) {
+		for (HudModule h : this.hudModules) {
+			if(h.getName().equalsIgnoreCase(name)) {
+				return h;
+			}
+		}
+		return null;
+	}
+
+	public Module getModule(String name) {
+		for (Module m : Bedroom.moduleManager.modules) {
+			if(m.getName().equalsIgnoreCase(name)) {
+				return m;
+			}
+		}
+		return null;
+	}
+
 
 	// this is called in MixinInGameHud.
 	public void renderMods(MatrixStack matrix) {

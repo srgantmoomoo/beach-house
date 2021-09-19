@@ -21,10 +21,8 @@ import net.fabricmc.api.ModInitializer;
  * @since 5/16/2021
  */
 
-//TODO command prefix config.
 //TODO settings in config.
 //TODO hudeditor in config
-//TODO notepad configs.
 
 //TODO font renderer.
 //TODO rainbow enchant so sexi D:

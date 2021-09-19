@@ -2,11 +2,13 @@ package me.srgantmoomoo.beachhouse.backend.saveload;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
+import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.MinecraftClient;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Load {
@@ -24,6 +26,7 @@ public class Load {
     public void load() {
         loadModules();
         loadGui();
+        loadHud();
         loadNotepad();
         loadPrefix();
     }
@@ -68,16 +71,51 @@ public class Load {
                 String x = curLine.split(":")[1];
                 String y = curLine.split(":")[2];
                 String open = curLine.split(":")[3];
+
                 int x1 = Integer.parseInt(x);
                 int y1 = Integer.parseInt(y);
                 String newName = name;
                 if(name.equalsIgnoreCase("BEACHHOUSE")) newName = "beach house";
                 boolean opened = Boolean.parseBoolean(open);
+
                 Panel p = Main.clickGui.getPanelByName(newName);
                 if (p != null) {
                     p.x = x1;
                     p.y = y1;
                     p.setOpen(opened);
+                }
+            }
+
+            br.close();
+        } catch (Exception e) {
+        }
+    }
+
+    public void loadHud() {
+        try {
+            File file = new File(MainDirectory, "hud.txt");
+            FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String curLine = line.trim();
+                String name = curLine.split(":")[0];
+                String x = curLine.split(":")[1];
+                String y = curLine.split(":")[2];
+                String enable = curLine.split(":")[3];
+
+                int x1 = Integer.parseInt(x);
+                int y1 = Integer.parseInt(y);
+                boolean enabled = Boolean.parseBoolean(enable);
+
+                HudModule h = Main.hudManager.getHudModule(name);
+                if(h != null) {
+                    h.x = x1;
+                    h.y = y1;
+                    h.setEnabled(enabled);
                 }
             }
 

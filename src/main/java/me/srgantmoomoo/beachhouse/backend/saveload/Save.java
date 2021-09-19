@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse.backend.saveload;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.feature.notepad.Notepad;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
+import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
@@ -30,6 +31,7 @@ public class Save {
     public void save() {
         saveModules();
         saveGui();
+        saveHud();
         saveNotepad();
         savePrefix();
     }
@@ -48,11 +50,11 @@ public class Save {
     public void saveModules() {
         try {
             File file = new File(MainDirectory, "modules.txt");
-            ArrayList<String> moduleToSave = new ArrayList<>();
+            ArrayList<String> toSave = new ArrayList<>();
 
             for(Module module : Bedroom.moduleManager.getModules()) {
                 if (module.isEnabled() && module.getID() != "clickgui" && module.getID() != "hudeditor") {
-                    moduleToSave.add(module.getName());
+                    toSave.add(module.getName());
                 }
             }
 
@@ -61,17 +63,17 @@ public class Save {
 
                     if(setting instanceof BooleanSetting) {
                         BooleanSetting bool = (BooleanSetting) setting;
-                        modulesToSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + bool.isEnabled());
+                        toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + bool.isEnabled());
                     }
 
                     if(setting instanceof NumberSetting) {
                         NumberSetting number = (NumberSetting) setting;
-                        modulesToSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + number.getValue());
+                        toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + number.getValue());
                     }
 
                     if(setting instanceof ModeSetting) {
                         ModeSetting mode = (ModeSetting) setting;
-                        modulesToSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + mode.getMode());
+                        toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + mode.getMode());
                     }
 
                     if(setting instanceof ColorSetting) {
@@ -81,7 +83,7 @@ public class Save {
                 }
             }*/
 
-            writeFile(moduleToSave, file);
+            writeFile(toSave, file);
         } catch (Exception e) {
         }
     }
@@ -89,13 +91,27 @@ public class Save {
     public void saveGui() {
         try {
             File file = new File(MainDirectory, "gui.txt");
-            ArrayList<String> guiToSave = new ArrayList<>();
+            ArrayList<String> toSave = new ArrayList<>();
 
             for(Panel panel : Main.clickGui.panels) {
-                guiToSave.add(panel.getCategory() + ":" + panel.getX() + ":" + panel.getY() + ":" + panel.isOpen());
+                toSave.add(panel.getCategory() + ":" + panel.getX() + ":" + panel.getY() + ":" + panel.isOpen());
             }
 
-            writeFile(guiToSave, file);
+            writeFile(toSave, file);
+        } catch (Exception e) {
+        }
+    }
+
+    public void saveHud() {
+        try {
+            File file = new File(MainDirectory, "hud.txt");
+            ArrayList<String> toSave = new ArrayList<>();
+
+            for(HudModule hud : Main.hudManager.hudModules) {
+                toSave.add(hud.getName() + ":" + hud.getX() + ":" + hud.getY() + ":" + hud.isHudEnabled());
+            }
+
+            writeFile(toSave, file);
         } catch (Exception e) {
         }
     }
@@ -103,13 +119,13 @@ public class Save {
     public void saveNotepad() {
         try {
             File file = new File(MainDirectory, "notepad.txt");
-            ArrayList<String> notepadToSave = new ArrayList<>();
+            ArrayList<String> toSave = new ArrayList<>();
 
             for(Notepad notepad : Main.notepadManager.getNotes()) {
-                notepadToSave.add(notepad.getName() + ":" + notepad.getMessage());
+                toSave.add(notepad.getName() + ":" + notepad.getMessage());
             }
 
-            writeFile(notepadToSave, file);
+            writeFile(toSave, file);
         } catch (Exception e) {
         }
     }
@@ -117,11 +133,11 @@ public class Save {
     public void savePrefix() {
         try {
             File file = new File(MainDirectory, "prefix.txt");
-            ArrayList<String> prefixToSave = new ArrayList<>();
+            ArrayList<String> toSave = new ArrayList<>();
 
-            prefixToSave.add(Bedroom.commandManager.prefix);
+            toSave.add(Bedroom.commandManager.prefix);
 
-            writeFile(prefixToSave, file);
+            writeFile(toSave, file);
         } catch (Exception e) {
         }
     }

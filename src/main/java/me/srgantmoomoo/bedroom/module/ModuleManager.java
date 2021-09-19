@@ -40,7 +40,7 @@ public class ModuleManager {
     }
 
     public Module getModule(String name) {
-        for (Module m : Bedroom.moduleManager.modules) {
+        for (Module m : this.modules) {
             if(m.getName().equalsIgnoreCase(name)) {
                 return m;
             }

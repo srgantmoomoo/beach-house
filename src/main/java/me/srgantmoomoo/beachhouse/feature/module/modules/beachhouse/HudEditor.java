@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
 import me.srgantmoomoo.bedroom.api.event.Event;
 import me.srgantmoomoo.bedroom.api.event.events.EventTick;
@@ -23,6 +24,11 @@ public class HudEditor extends Module {
     @Override
     public void onEnable() {
         minecraft.openScreen(new HudScreen());
+    }
+
+    @Override
+    public void onDisable() {
+        Main.save.saveHud();
     }
 
     @Override
