@@ -8,7 +8,6 @@ import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.MinecraftClient;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Load {
