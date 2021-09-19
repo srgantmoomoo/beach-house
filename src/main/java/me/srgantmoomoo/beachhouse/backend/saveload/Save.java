@@ -1,7 +1,7 @@
 package me.srgantmoomoo.beachhouse.backend.saveload;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
+import me.srgantmoomoo.beachhouse.feature.notepad.Notepad;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
@@ -22,7 +22,7 @@ public class Save {
 
     public Save() {
         MainDirectory = new File(MinecraftClient.getInstance().runDirectory, "beach house");
-        if (!MainDirectory.exists()) {
+        if(!MainDirectory.exists()) {
             MainDirectory.mkdir();
         }
     }
@@ -34,12 +34,23 @@ public class Save {
         savePrefix();
     }
 
+    private void writeFile(ArrayList<String> toSave, File file) {
+        try {
+            PrintWriter printWriter = new PrintWriter(file);
+            for(String string : toSave) {
+                printWriter.println(string);
+            }
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+        }
+    }
+
     public void saveModules() {
         try {
             File file = new File(MainDirectory, "modules.txt");
             ArrayList<String> moduleToSave = new ArrayList<>();
 
-            for (Module module : Bedroom.moduleManager.getModules()) {
+            for(Module module : Bedroom.moduleManager.getModules()) {
                 if (module.isEnabled() && module.getID() != "clickgui" && module.getID() != "hudeditor") {
                     moduleToSave.add(module.getName());
                 }
@@ -70,14 +81,7 @@ public class Save {
                 }
             }*/
 
-            try {
-                PrintWriter printWriter = new PrintWriter(file);
-                for (String string : moduleToSave) {
-                    printWriter.println(string);
-                }
-                printWriter.close();
-            } catch (FileNotFoundException e) {
-            }
+            writeFile(moduleToSave, file);
         } catch (Exception e) {
         }
     }
@@ -87,24 +91,27 @@ public class Save {
             File file = new File(MainDirectory, "gui.txt");
             ArrayList<String> guiToSave = new ArrayList<>();
 
-            for (Panel panel : Main.clickGui.panels) {
+            for(Panel panel : Main.clickGui.panels) {
                 guiToSave.add(panel.getCategory() + ":" + panel.getX() + ":" + panel.getY() + ":" + panel.isOpen());
             }
 
-            try {
-                PrintWriter printWriter = new PrintWriter(file);
-                for (String string : guiToSave) {
-                    printWriter.println(string);
-                }
-                printWriter.close();
-            } catch (FileNotFoundException e) {
-            }
+            writeFile(guiToSave, file);
         } catch (Exception e) {
         }
     }
 
     public void saveNotepad() {
+        try {
+            File file = new File(MainDirectory, "notepad.txt");
+            ArrayList<String> notepadToSave = new ArrayList<>();
 
+            for(Notepad notepad : Main.notepadManager.getNotes()) {
+                notepadToSave.add(notepad.getName() + ":" + notepad.getMessage());
+            }
+
+            writeFile(notepadToSave, file);
+        } catch (Exception e) {
+        }
     }
 
     public void savePrefix() {
@@ -114,14 +121,7 @@ public class Save {
 
             prefixToSave.add(Bedroom.commandManager.prefix);
 
-            try {
-                PrintWriter printWriter = new PrintWriter(file);
-                for (String string : prefixToSave) {
-                    printWriter.println(string);
-                }
-                printWriter.close();
-            } catch (FileNotFoundException e) {
-            }
+            writeFile(prefixToSave, file);
         } catch (Exception e) {
         }
     }

@@ -24,6 +24,7 @@ public class Load {
     public void load() {
         loadModules();
         loadGui();
+        loadNotepad();
         loadPrefix();
     }
 
@@ -86,7 +87,25 @@ public class Load {
     }
 
     public void loadNotepad() {
+        try {
+            File file = new File(MainDirectory, "notepad.txt");
+            FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String curLine = line.trim();
+                String name = curLine.split(":")[0];
+                String message = curLine.split(":")[1];
+
+                Main.notepadManager.addNote(name, message);
+            }
+
+            br.close();
+        } catch (Exception e) {
+        }
     }
 
     public void loadPrefix() {

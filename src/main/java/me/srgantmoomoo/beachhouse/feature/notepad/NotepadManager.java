@@ -1,5 +1,7 @@
 package me.srgantmoomoo.beachhouse.feature.notepad;
 
+import me.srgantmoomoo.beachhouse.Main;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +21,8 @@ public class NotepadManager {
         return false;
     }
 
-    public List<String> getNotes() {
-        ArrayList<String> notesL = new ArrayList<>();
-        notes.forEach(note -> notesL.add(note.getName()));
-
-        return notesL;
+    public List<Notepad> getNotes() {
+        return notes;
     }
 
     public Notepad getNoteByName(String name) {
@@ -37,10 +36,22 @@ public class NotepadManager {
 
     public void addNote(String name, String msg) {
         notes.add(new Notepad(name, msg));
+
+        if (Main.save != null) {
+            try {
+                Main.save.saveNotepad();
+            } catch (Exception e) {}
+        }
     }
 
     public void removeNote(String name) {
         notes.remove(getNoteByName(name));
+
+        if (Main.save != null) {
+            try {
+                Main.save.saveNotepad();
+            } catch (Exception e) {}
+        }
     }
 
     public void clearNotes() {
