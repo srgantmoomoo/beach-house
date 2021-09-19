@@ -15,10 +15,10 @@ public class PlayerInfo extends HudModule {
         super("player info", "playerinfo", "sucks ur pp for u.", 2, 88, Category.BEACHHOUSE);
     }
 
-    private final Identifier FULL_HEALTH = new Identifier(Main.modid, "full.png");
-    private final Identifier MODERATE_HEALTH = new Identifier(Main.modid, "moderate.png");
-    private final Identifier WARNING_HEALTH = new Identifier(Main.modid, "warning.png");
-    private final Identifier DANGER_HEALTH = new Identifier(Main.modid, "danger.png");
+    private final Identifier FULL_HEALTH = new Identifier(Main.modid, "healthbar/full.png");
+    private final Identifier MODERATE_HEALTH = new Identifier(Main.modid, "healthbar/moderate.png");
+    private final Identifier WARNING_HEALTH = new Identifier(Main.modid, "healthbar/warning.png");
+    private final Identifier DANGER_HEALTH = new Identifier(Main.modid, "healthbar/danger.png");
 
     private void healthBar(MatrixStack matrix) {
         assert minecraft.player != null;
