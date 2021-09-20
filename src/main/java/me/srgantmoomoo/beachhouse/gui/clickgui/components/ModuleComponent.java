@@ -73,7 +73,7 @@ public class ModuleComponent extends Component {
         if(hovered && (ClickGui.INSTANCE.hover.isEnabled()))
             Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
         else
-            Reference.textRenderer.drawWithShadow(matrix, newName, parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+            Reference.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
     }
 
     private final Identifier check = new Identifier(Main.modid, "check.png");
@@ -175,5 +175,13 @@ public class ModuleComponent extends Component {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public boolean onWall() {
+        int secondWidth = Reference.minecraft.getWindow().getScaledWidth() - (parent.getX() + 90);
+        if(secondWidth < 89)
+            return true;
+        else
+            return false;
     }
 }

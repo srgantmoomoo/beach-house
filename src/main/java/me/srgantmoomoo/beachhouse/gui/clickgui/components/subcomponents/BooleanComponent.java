@@ -24,36 +24,49 @@ public class BooleanComponent extends Component {
         this.offset = offset;
     }
 
-    @Override
-    public void renderComponent(MatrixStack matrix) {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            if (this.op.isEnabled()) {
-                InGameHud.fill(matrix, parent.parent.getX() - 2, parent.parent.getY() - 12 + offset, parent.parent.getX() - 92, parent.parent.getY() + offset, 0xff11c1e8);
-            } else {
-                InGameHud.fill(matrix, parent.parent.getX() - 2, parent.parent.getY() - 12 + offset, parent.parent.getX() - 92, parent.parent.getY() + offset, 0x90000000);
-            }
-
-            Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() - 90, (parent.parent.getY() + offset - 10), -1);
+    private int newx() {
+        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            return -2;
         }else {
-            if (this.op.isEnabled()) {
-                InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0xff11c1e8);
-            } else {
-                InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0x90000000);
-            }
+            return 90;
+        }
+    }
 
-            Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
+    private int newy() {
+        return -12;
+    }
+
+    private int newwidth() {
+        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            return -parent.parent.getWidth();
+        }else {
+            return parent.parent.getWidth();
+        }
+    }
+
+    private int newheight() {
+        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            return 0;
+        }else {
+            return 0;
         }
     }
 
     @Override
-    public void updateComponent(int mouseX, int mouseY) {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            this.y = parent.parent.getY() - 12 + this.offset;
-            this.x = parent.parent.getX() - 2;
-        }else {
-            this.y = parent.parent.getY() - 12 + this.offset;
-            this.x = parent.parent.getX() + 90;
+    public void renderComponent(MatrixStack matrix) {
+        if (this.op.isEnabled()) {
+            InGameHud.fill(matrix, parent.parent.getX() + newx(), parent.parent.getY() + newy() + offset, parent.parent.getX() + newx() + newwidth(), parent.parent.getY() + offset, 0xff11c1e8);
+        } else {
+            InGameHud.fill(matrix, parent.parent.getX() + newx(), parent.parent.getY() + newy() + offset, parent.parent.getX() + newx() + newwidth(), parent.parent.getY() + offset, 0x90000000);
         }
+
+        Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + (parent.onWall() ? newx() + newwidth() + 2: newx() + 2), (parent.parent.getY() + offset - 10), -1);
+    }
+
+    @Override
+    public void updateComponent(int mouseX, int mouseY) {
+        this.y = parent.parent.getY() - 12 + this.offset;
+        this.x = parent.parent.getX() + newx();
     }
 
     private boolean mouseHeld = false;
@@ -70,23 +83,15 @@ public class BooleanComponent extends Component {
         }
     }
 
-    public boolean onWall() {
-        int secondWidth = Reference.minecraft.getWindow().getScaledWidth() - (parent.parent.getX() + 90);
-        if(secondWidth < 89)
-            return true;
-        else
-            return false;
-    }
-
     public boolean isMouseOnButton(int x, int y) {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            if (x < this.x && x > this.x - 92 && y > this.y && y < this.y + 12) {
+        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            if (x < this.x && x > this.x + newwidth() && y > this.y && y < this.y + 12) {
                 return true;
             } else {
                 return false;
             }
         }else {
-            if (x > this.x && x < this.x + 90 && y > this.y && y < this.y + 12) {
+            if (x > this.x && x < this.x + newwidth() && y > this.y && y < this.y + 12) {
                 return true;
             } else {
                 return false;

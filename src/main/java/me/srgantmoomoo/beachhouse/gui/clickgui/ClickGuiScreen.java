@@ -93,6 +93,8 @@ public class ClickGuiScreen extends Screen {
         }
     }
 
+    
+
     // called in MixinKeyboard
     public void onKeyPressed(int key) {
         for (Panel panel : panels) {
