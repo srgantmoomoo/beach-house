@@ -47,11 +47,10 @@ public class Notepad extends Command {
             return;
         }
 
-        // possible recovery command... problems; cant grab noteName.
-        /*if(initial.equals("recover")) {
-            Main.notepadManager.addNote(noteName, noteMessageInput);
+        if(args.length == 1) {
+            Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
-        }*/
+        }
 
         // defines the message when a note is written.
         if(args.length >= 3) {

@@ -33,39 +33,32 @@ public class NumberComponent extends Component {
 
     @Override
     public void renderComponent(MatrixStack matrix) {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            InGameHud.fill(matrix, parent.parent.getX() - 2, parent.parent.getY() - 12 + offset, parent.parent.getX() - 92, parent.parent.getY() + offset, 0x90000000);
-            InGameHud.fill(matrix, parent.parent.getX() - 92, parent.parent.getY() - 1 + offset, parent.parent.getX() - 92 + (int) sliderWidth, parent.parent.getY() + offset, 0xff11c1e8);
+        InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
+        InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() - 1 + offset, parent.parent.getX() + parent.newx() + (int) sliderWidth, parent.parent.getY() + offset, 0xff11c1e8);
 
-            Reference.textRenderer.drawWithShadow(matrix, this.set.name + " " + Formatting.GRAY + "<" + this.set.getValue() + ">", parent.parent.getX() - 90, (parent.parent.getY() + offset - 10), -1);
-        }else {
-            InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0x90000000);
-            InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 1 + offset, parent.parent.getX() + 90 + (int) sliderWidth, parent.parent.getY() + offset, 0xff11c1e8);
-
-            Reference.textRenderer.drawWithShadow(matrix, this.set.name + " " + Formatting.GRAY + "<" + this.set.getValue() + ">", parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
-        }
+        Reference.textRenderer.drawWithShadow(matrix, this.set.name + " " + Formatting.GRAY + "<" + this.set.getValue() + ">", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
     }
 
     // using this method so that i dont have to do this in both updateComponent and mouseClicked.
     private void renderOne(int xx, int yy) {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
             this.y = parent.parent.getY() - 12 + this.offset;
-            this.x = parent.parent.getX() - 92;
-            double diff = Math.min(90, Math.max(0, xx - this.x));
+            this.x = parent.parent.getX() + 10;
+            double diff = Math.min(88, Math.max(0, xx - this.x));
             double min = this.set.getMinimum();
             double max = this.set.getMaximum();
-            this.sliderWidth = 90 * (this.set.getValue() - min) / (max - min);
+            this.sliderWidth = 88 * (this.set.getValue() - min) / (max - min);
             if (this.dragging) {
                 if (diff == 0) {
                     this.set.setValue(this.set.getMinimum());
                 } else {
-                    double newValue = roundToPlace(diff / 90 * (max - min) + min, 2);
+                    double newValue = roundToPlace(diff / 88 * (max - min) + min, 2);
                     this.set.setValue(newValue);
                 }
             }
         }else {
             this.y = parent.parent.getY() - 12 + this.offset;
-            this.x = parent.parent.getX() + 90;
+            this.x = parent.parent.getX() + parent.newx();
             double diff = Math.min(88, Math.max(0, xx - this.x));
             double min = this.set.getMinimum();
             double max = this.set.getMaximum();
@@ -114,23 +107,15 @@ public class NumberComponent extends Component {
         this.dragging = false;
     }
 
-    public boolean onWall() {
-        int secondWidth = Reference.minecraft.getWindow().getScaledWidth() - (parent.parent.getX() + 90);
-        if(secondWidth < 89)
-            return true;
-        else
-            return false;
-    }
-
     public boolean isMouseOnButton(int x, int y) {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            if (x < this.x && x > this.x - 92 && y > this.y && y < this.y + 12) {
+        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            if (x < this.x && x > this.x + parent.newwidth() && y > this.y && y < this.y + 12) {
                 return true;
             } else {
                 return false;
             }
         }else {
-            if (x > this.x && x < this.x + 90 && y > this.y && y < this.y + 12) {
+            if (x > this.x && x < this.x + parent.newwidth() && y > this.y && y < this.y + 12) {
                 return true;
             } else {
                 return false;
