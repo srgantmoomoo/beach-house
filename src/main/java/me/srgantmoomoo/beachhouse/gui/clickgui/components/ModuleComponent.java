@@ -63,31 +63,17 @@ public class ModuleComponent extends Component {
 
     // using this method to draw longer module names with "..." AND draw module names that are hovered.
     private void drawModuleName(MatrixStack matrix) {
-        /*if(this.mod.getName().length() > 10) {
-            this.mod.getName().
-        }*/
+        String newName = this.mod.getName();
 
-        if(this.mod.getID() == "enabledmodules") {
-            if(hovered || !this.mod.isEnabled()) {
-                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-            }else
-            Reference.textRenderer.drawWithShadow(matrix, "enabled mo" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-        }else if(this.mod.getID() == "rainbowenchant") {
-            if (hovered || !this.mod.isEnabled()) {
-                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-            } else
-                Reference.textRenderer.drawWithShadow(matrix, "rainbow enc" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-        }else if(this.mod.getID() == "elytrareplace") {
-            if(hovered || !this.mod.isEnabled()) {
-                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-            }else
-                Reference.textRenderer.drawWithShadow(matrix, "elytra rep" + Formatting.GRAY + " ...", parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-        }else
-            // if hovered and hover is enabled, float the module names.
-            if(hovered && (ClickGui.INSTANCE.hover.isEnabled()))
-                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
-            else
-                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+        if(newName.length() > 13) {
+            newName = newName.substring(0, 10) + Formatting.GRAY + " ...";
+        }
+
+        // if hovered and hover is enabled, float the module names.
+        if(hovered && (ClickGui.INSTANCE.hover.isEnabled()))
+            Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
+        else
+            Reference.textRenderer.drawWithShadow(matrix, newName, parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
     }
 
     private final Identifier check = new Identifier(Main.modid, "check.png");
