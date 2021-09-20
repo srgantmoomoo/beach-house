@@ -4,12 +4,11 @@ import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
-import me.srgantmoomoo.bedroom.command.CommandManager;
 
 public class Help extends Command {
 
     public Help() {
-        super("help", "helps u penis.", "help", "h");
+        super("help", "helps u penis.", "help | help 1 | help 2", "h");
     }
 
     TextFormatting LIGHT_PURPLE = TextFormatting.LIGHT_PURPLE;
@@ -20,15 +19,43 @@ public class Help extends Command {
 
     @Override
     public void onCommand(String[] args, String command) {
-        if(args.length != 0) {
+        if(args.length > 1) {
             Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
 
+        if(args.length == 0) {
+            displayPage1();
+            return;
+        }
+
+        String page = args[0];
+        if(page.equals("1")) {
+            displayPage1();
+            return;
+        }
+
+        if(page.equals("2")) {
+            displayPage2();
+            return;
+        }
+
+        Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
+    }
+
+    private void displayPage1() {
         welcomeMessage();
-        Bedroom.commandManager.commands.forEach(c -> {
+        for(Command c : Bedroom.commandManager.commands.subList(0, 6)) {
             helpMessage(c.getName(), c.getDescription(), c.getSyntax());
-        });
+        }
+        goodbyeMessage();
+    }
+
+    private void displayPage2() {
+        welcomeMessage();
+        for(Command c : Bedroom.commandManager.commands.subList(6, 8)) {
+            helpMessage(c.getName(), c.getDescription(), c.getSyntax());
+        }
         goodbyeMessage();
     }
 

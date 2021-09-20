@@ -30,16 +30,13 @@ import net.fabricmc.api.ModInitializer;
 //TODO animations.
 
 //TODO add a color setting to setting command.
-//TODO command pages.
 //TODO add a bind command.
 
 //TODO if(settings (opened)) *** focused settings.
 //TODO overlapping panels in general.
-//TODO gui code can be improved on a lot. make single method for rendering with the onwall shit.
 //TODO get number setting to work with onwall.
 //TODO if(clicked out) than setting closes.
 //TODO focusing for the panels.
-//TODO clickgui hover for specific modules.
 
 public class Main implements ModInitializer {
 

@@ -19,7 +19,7 @@ public class Discord {
         //discordRichPresence.startTimestamp = System.currentTimeMillis() / 1000L;
         discordRichPresence.largeImageKey = "beachhouse";
         discordRichPresence.largeImageText = "ее";
-        //discordRichPresence.state = "im woo!";
+        //discordRichPresence.state = "ее";
         discordRPC.Discord_UpdatePresence(discordRichPresence);
     }
 
