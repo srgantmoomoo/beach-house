@@ -53,7 +53,7 @@ public class Save {
             ArrayList<String> toSave = new ArrayList<>();
 
             for(Module module : Bedroom.moduleManager.getModules()) {
-                if (module.isEnabled() && module.getID() != "clickgui" && module.getID() != "hudeditor") {
+                if (module.isEnabled() && module.getID() != "clickgui" && module.getID() != "hudeditor" && module.getID() != "commandline") {
                     toSave.add(module.getName());
                 }
             }

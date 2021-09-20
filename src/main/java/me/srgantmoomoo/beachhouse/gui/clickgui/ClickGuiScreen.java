@@ -16,7 +16,7 @@ public class ClickGuiScreen extends Screen {
     private boolean mouseHeld = false;
 
     public ClickGuiScreen() {
-        super(new LiteralText("smallppguis"));
+        super(new LiteralText("clickgui"));
         panels = new ArrayList<>();
         int panelX = 10;
         int panelY = 5;

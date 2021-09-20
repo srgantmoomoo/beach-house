@@ -16,6 +16,7 @@ public class Modules {
         Bedroom.addModule(new EnabledModules());
         Bedroom.addModule(new HudEditor());
         Bedroom.addModule(new Watermark());
+        Bedroom.addModule(new CommandLine());
 
         Bedroom.addModule(new AutoArmor());
         Bedroom.addModule(new AutoCrystal());

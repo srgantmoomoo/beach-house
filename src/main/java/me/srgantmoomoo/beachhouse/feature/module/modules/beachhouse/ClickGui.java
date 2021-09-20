@@ -18,7 +18,7 @@ public class ClickGui extends Module {
     public BooleanSetting hover = new BooleanSetting("hover", this, true);
 
     public ClickGui() {
-        super("click gui", "clickgui", "does clicky click clack stuff", GLFW.GLFW_KEY_B, Category.BEACHHOUSE);
+        super("click gui", "clickgui", "does clicky click clack stuff.", GLFW.GLFW_KEY_B, Category.BEACHHOUSE);
         this.addSettings(background, hover, dynamicSide);
         INSTANCE = this;
     }
