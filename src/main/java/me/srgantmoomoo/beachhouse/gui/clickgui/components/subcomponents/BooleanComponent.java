@@ -24,49 +24,21 @@ public class BooleanComponent extends Component {
         this.offset = offset;
     }
 
-    private int newx() {
-        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            return -2;
-        }else {
-            return 90;
-        }
-    }
-
-    private int newy() {
-        return -12;
-    }
-
-    private int newwidth() {
-        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            return -parent.parent.getWidth();
-        }else {
-            return parent.parent.getWidth();
-        }
-    }
-
-    private int newheight() {
-        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            return 0;
-        }else {
-            return 0;
-        }
-    }
-
     @Override
     public void renderComponent(MatrixStack matrix) {
         if (this.op.isEnabled()) {
-            InGameHud.fill(matrix, parent.parent.getX() + newx(), parent.parent.getY() + newy() + offset, parent.parent.getX() + newx() + newwidth(), parent.parent.getY() + offset, 0xff11c1e8);
+            InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0xff11c1e8);
         } else {
-            InGameHud.fill(matrix, parent.parent.getX() + newx(), parent.parent.getY() + newy() + offset, parent.parent.getX() + newx() + newwidth(), parent.parent.getY() + offset, 0x90000000);
+            InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
         }
 
-        Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + (parent.onWall() ? newx() + newwidth() + 2: newx() + 2), (parent.parent.getY() + offset - 10), -1);
+        Reference.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
     }
 
     @Override
     public void updateComponent(int mouseX, int mouseY) {
-        this.y = parent.parent.getY() - 12 + this.offset;
-        this.x = parent.parent.getX() + newx();
+        this.y = parent.parent.getY() + parent.newy() + this.offset;
+        this.x = parent.parent.getX() + parent.newx();
     }
 
     private boolean mouseHeld = false;
@@ -85,13 +57,13 @@ public class BooleanComponent extends Component {
 
     public boolean isMouseOnButton(int x, int y) {
         if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            if (x < this.x && x > this.x + newwidth() && y > this.y && y < this.y + 12) {
+            if (x < this.x && x > this.x + parent.newwidth() && y > this.y && y < this.y + 12) {
                 return true;
             } else {
                 return false;
             }
         }else {
-            if (x > this.x && x < this.x + newwidth() && y > this.y && y < this.y + 12) {
+            if (x > this.x && x < this.x + parent.newwidth() && y > this.y && y < this.y + 12) {
                 return true;
             } else {
                 return false;

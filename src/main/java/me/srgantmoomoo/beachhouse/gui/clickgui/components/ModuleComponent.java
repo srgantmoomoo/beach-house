@@ -184,4 +184,28 @@ public class ModuleComponent extends Component {
         else
             return false;
     }
+
+    public int newx() {
+        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            return -2;
+        }else {
+            return 90;
+        }
+    }
+
+    public int newy() {
+        return -12;
+    }
+
+    public int newwidth() {
+        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            return -parent.getWidth();
+        }else {
+            return parent.getWidth();
+        }
+    }
+
+    public int stringx() {
+        return (onWall() ? newx() + newwidth() + 2: newx() + 2);
+    }
 }
