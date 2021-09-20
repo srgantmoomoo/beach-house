@@ -31,44 +31,24 @@ public class ModeComponent extends Component {
 
     @Override
     public void renderComponent(MatrixStack matrix) {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            InGameHud.fill(matrix, parent.parent.getX() - 2, parent.parent.getY() - 12 + offset, parent.parent.getX() - 92, parent.parent.getY() + offset, 0x90000000);
+        InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
 
-            if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) > 86)
-                toBig = true;
-            else if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
-                toBig = false;
+        if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) > 86)
+            toBig = true;
+        else if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
+            toBig = false;
 
-            if (toBig && !hovered) {
-                Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() - 90, (parent.parent.getY() + offset - 10), -1);
-            } else {
-                Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() - 90, (parent.parent.getY() + offset - 10), -1);
-            }
-        }else {
-            InGameHud.fill(matrix, parent.parent.getX() + 90, parent.parent.getY() - 12 + offset, parent.parent.getX() + 90 + parent.parent.getWidth(), parent.parent.getY() + offset, 0x90000000);
-
-            if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) > 86)
-                toBig = true;
-            else if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
-                toBig = false;
-
-            if (toBig && !hovered) {
-                Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
-            } else {
-                Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() + 92, (parent.parent.getY() + offset - 10), -1);
-            }
+        if (toBig && !hovered) {
+            Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
+        } else {
+            Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
         }
     }
 
     @Override
     public void updateComponent(int mouseX, int mouseY) {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            this.y = parent.parent.getY() - 12 + this.offset;
-            this.x = parent.parent.getX() - 2;
-        }else {
-            this.y = parent.parent.getY() - 12 + this.offset;
-            this.x = parent.parent.getX() + 90;
-        }
+        this.y = parent.parent.getY() + parent.newy() + this.offset;
+        this.x = parent.parent.getX() + parent.newx();
     }
 
     private boolean mouseHeld = false;
@@ -92,23 +72,15 @@ public class ModeComponent extends Component {
             hovered = false;
     }
 
-    public boolean onWall() {
-        int secondWidth = Reference.minecraft.getWindow().getScaledWidth() - (parent.parent.getX() + 90);
-        if(secondWidth < 89)
-            return true;
-        else
-            return false;
-    }
-
     public boolean isMouseOnButton(int x, int y) {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
-            if (x < this.x && x > this.x - 92 && y > this.y && y < this.y + 12) {
+        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+            if (x < this.x && x > this.x + parent.newwidth() && y > this.y && y < this.y + 12) {
                 return true;
             } else {
                 return false;
             }
         }else {
-            if (x > this.x && x < this.x + 90 && y > this.y && y < this.y + 12) {
+            if (x > this.x && x < this.x + parent.newwidth() && y > this.y && y < this.y + 12) {
                 return true;
             } else {
                 return false;
