@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
+import me.srgantmoomoo.beachhouse.backend.Discord;
 import me.srgantmoomoo.beachhouse.backend.saveload.Load;
 import me.srgantmoomoo.beachhouse.backend.saveload.Save;
 import me.srgantmoomoo.beachhouse.feature.command.Commands;
@@ -66,6 +67,7 @@ public class Main implements ModInitializer {
 	public void onInitialize() {
 		Bedroom.init(modid, name, version);
 		beachhouseInit();
+		Discord.startRPC();
 	}
 
 	public void beachhouseInit() {

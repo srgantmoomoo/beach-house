@@ -37,6 +37,9 @@ dependencies {
 
 	modImplementation 'net.earthcomputer.multiconnect:multiconnect-api:1.4.15'
 	include 'net.earthcomputer.multiconnect:multiconnect-api:1.4.15'
+
+	modImplementation "club.minnced:java-discord-rpc:2.0.1"
+	include "club.minnced:java-discord-rpc:2.0.1"
 }
 
 minecraft {

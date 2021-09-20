@@ -5,14 +5,12 @@ import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.BooleanComponent;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.KeybindComponent;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.ModeComponent;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.NumberComponent;
+import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.*;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -42,20 +40,24 @@ public class ModuleComponent extends Component {
         int opY = offset + 12;
 
 
-        if (mod.settings != null) {
-            for (Setting setting : mod.settings) {
-                if (setting instanceof BooleanSetting) {
+        if(mod.settings != null) {
+            for(Setting setting : mod.settings) {
+                if(setting instanceof BooleanSetting) {
                     this.subcomponents.add(new BooleanComponent((BooleanSetting) setting, this, opY));
                     opY += 12;
                 }
-                if (setting instanceof NumberSetting) {
+                if(setting instanceof NumberSetting) {
                     this.subcomponents.add(new NumberComponent((NumberSetting) setting, this, opY));
                     opY += 12;
                 }
-                if (setting instanceof ModeSetting) {
+                if(setting instanceof ModeSetting) {
                     this.subcomponents.add(new ModeComponent((ModeSetting) setting, this, opY));
                     opY += 12;
                 }
+                /*if(setting instanceof ColorSetting) {
+                    this.subcomponents.add(new ColorComponent((ColorSetting) setting, this, opY));
+                    opY += 12;
+                }*/
             }
         }
         this.subcomponents.add(new KeybindComponent(this, opY));
