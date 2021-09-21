@@ -21,5 +21,7 @@ public class CommandLineScreen extends Screen {
         int screenHeight = Reference.window.getScaledHeight();
 
         InGameHud.fill(matrix, 10, 20, screenWidth - 10, screenHeight - 20, 0x90000000);
+
+        Reference.textRenderer.drawWithShadow(matrix, "_", 12, screenHeight - 30, 0xffffffff);
     }
 }
