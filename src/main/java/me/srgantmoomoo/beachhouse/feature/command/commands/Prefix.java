@@ -2,6 +2,7 @@ package me.srgantmoomoo.beachhouse.feature.command.commands;
 
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.Command;
+import net.minecraft.util.Formatting;
 
 public class Prefix extends Command {
 
@@ -18,6 +19,6 @@ public class Prefix extends Command {
 
         String key = args[0];
         Bedroom.commandManager.setCommandPrefix(key);
-        Bedroom.commandManager.addChatMessage(String.format(TextFormatting.GREEN + "prefix " + TextFormatting.GRAY + "was set to " + TextFormatting.GREEN + Bedroom.commandManager.prefix));
+        Bedroom.commandManager.addChatMessage(String.format(Formatting.GREEN + "prefix " + Formatting.GRAY + "was set to " + Formatting.GREEN + Bedroom.commandManager.prefix));
     }
 }

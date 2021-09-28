@@ -6,6 +6,7 @@ import java.util.Comparator;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.module.Module;
+import net.minecraft.util.Formatting;
 
 public class ModuleList extends Command {
 
@@ -23,47 +24,47 @@ public class ModuleList extends Command {
         if(mods.isEmpty()) 
         	mods.addAll(Bedroom.moduleManager.getModules());
 
-        String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
+        String wuw = Formatting.GRAY + "" + Formatting.BOLD + "wuw" + Formatting.AQUA + " ~";
         Bedroom.commandManager.addCustomChatMessage(wuw);
-        String nothing = TextFormatting.AQUA + " ";
+        String nothing = Formatting.AQUA + " ";
         Bedroom.commandManager.addCustomChatMessage(nothing);
 
         for(Module module : mods) {
 
             if(module.getCategory().equals(Module.Category.PLAYER)) {
-                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
-                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+                Bedroom.commandManager.addCustomChatMessage(Formatting.WHITE + module.getCategory().name + ": " + Formatting.GRAY + module.getName() +
+                        (module.isEnabled() ? Formatting.GREEN + " enabled" : Formatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.RENDER)) {
-                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
-                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+                Bedroom.commandManager.addCustomChatMessage(Formatting.WHITE + module.getCategory().name + ": " + Formatting.GRAY + module.getName() +
+                        (module.isEnabled() ? Formatting.GREEN + " enabled" : Formatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.COMBAT)) {
-                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
-                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+                Bedroom.commandManager.addCustomChatMessage(Formatting.WHITE + module.getCategory().name + ": " + Formatting.GRAY + module.getName() +
+                        (module.isEnabled() ? Formatting.GREEN + " enabled" : Formatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.MOVEMENT)) {
-                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
-                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+                Bedroom.commandManager.addCustomChatMessage(Formatting.WHITE + module.getCategory().name + ": " + Formatting.GRAY + module.getName() +
+                        (module.isEnabled() ? Formatting.GREEN + " enabled" : Formatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.MISCELLANEOUS)) {
-                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
-                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+                Bedroom.commandManager.addCustomChatMessage(Formatting.WHITE + module.getCategory().name + ": " + Formatting.GRAY + module.getName() +
+                        (module.isEnabled() ? Formatting.GREEN + " enabled" : Formatting.RED + " disabled"));
             }
 
             if(module.getCategory().equals(Module.Category.BEACHHOUSE)) {
-                Bedroom.commandManager.addCustomChatMessage(TextFormatting.WHITE + module.getCategory().name + ": " + TextFormatting.GRAY + module.getName() +
-                        (module.isEnabled() ? TextFormatting.GREEN + " enabled" : TextFormatting.RED + " disabled"));
+                Bedroom.commandManager.addCustomChatMessage(Formatting.WHITE + module.getCategory().name + ": " + Formatting.GRAY + module.getName() +
+                        (module.isEnabled() ? Formatting.GREEN + " enabled" : Formatting.RED + " disabled"));
             }
 
         }
 
         Bedroom.commandManager.addCustomChatMessage(nothing);
-        String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
+        String uwu = Formatting.GRAY + "" + Formatting.BOLD + "uwu" + Formatting.AQUA + " ~";
         Bedroom.commandManager.addCustomChatMessage(uwu);
 
         mods.sort(Comparator.comparing(Module::getCategory));

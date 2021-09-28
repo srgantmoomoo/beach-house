@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse.feature.command.commands;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.Command;
+import net.minecraft.util.Formatting;
 
 public class Help extends Command {
 
@@ -10,11 +11,11 @@ public class Help extends Command {
         super("help", "helps u penis.", "help | help 1 | help 2", "h");
     }
 
-    TextFormatting LIGHT_PURPLE = TextFormatting.LIGHT_PURPLE;
-    TextFormatting GRAY = TextFormatting.GRAY;
-    TextFormatting AQUA = TextFormatting.AQUA;
-    TextFormatting BOLD = TextFormatting.BOLD;
-    TextFormatting ITALIC = TextFormatting.ITALIC;
+    Formatting LIGHT_PURPLE = Formatting.LIGHT_PURPLE;
+    Formatting GRAY = Formatting.GRAY;
+    Formatting AQUA = Formatting.AQUA;
+    Formatting BOLD = Formatting.BOLD;
+    Formatting ITALIC = Formatting.ITALIC;
 
     @Override
     public void onCommand(String[] args, String command) {

@@ -26,11 +26,11 @@ public class Notepad extends Command {
         if(initial.equals("notes")) {
             if(!Main.notepadManager.notes.isEmpty()) {
 
-                String wuw = TextFormatting.GRAY + "" + TextFormatting.BOLD + "wuw" + TextFormatting.AQUA + " ~";
+                String wuw = Formatting.GRAY + "" + Formatting.BOLD + "wuw" + Formatting.AQUA + " ~";
                 Bedroom.commandManager.addCustomChatMessage(wuw);
-                String nothing = TextFormatting.AQUA + " ";
+                String nothing = Formatting.AQUA + " ";
                 Bedroom.commandManager.addCustomChatMessage(nothing);
-                String notesTitle = TextFormatting.WHITE + "notes" + TextFormatting.GRAY + ":";
+                String notesTitle = Formatting.WHITE + "notes" + Formatting.GRAY + ":";
                 Bedroom.commandManager.addCustomChatMessage(notesTitle);
 
                 for (me.srgantmoomoo.beachhouse.feature.notepad.Notepad note : Main.notepadManager.notes) {
@@ -38,7 +38,7 @@ public class Notepad extends Command {
                 }
 
                 Bedroom.commandManager.addCustomChatMessage(nothing);
-                String uwu = TextFormatting.GRAY + "" + TextFormatting.BOLD + "uwu" + TextFormatting.AQUA + " ~";
+                String uwu = Formatting.GRAY + "" + Formatting.BOLD + "uwu" + Formatting.AQUA + " ~";
                 Bedroom.commandManager.addCustomChatMessage(uwu);
 
             }else Bedroom.commandManager.addChatMessage("u have no notes stupid.");

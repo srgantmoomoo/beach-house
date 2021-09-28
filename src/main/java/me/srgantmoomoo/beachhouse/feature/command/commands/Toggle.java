@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse.feature.command.commands;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.module.Module;
+import net.minecraft.util.Formatting;
 
 public class Toggle extends Command {
 
@@ -23,13 +24,13 @@ public class Toggle extends Command {
             String moudleId = module.getID();
             if(moudleId.equalsIgnoreCase(inputValue)) {
                 module.toggle();
-                Bedroom.commandManager.addChatMessage(module.name + " " + (module.isEnabled() ? TextFormatting.GREEN + "enabled" + TextFormatting.GRAY + "." : TextFormatting.DARK_RED + "disabled" + TextFormatting.GRAY + "."));
+                Bedroom.commandManager.addChatMessage(module.name + " " + (module.isEnabled() ? Formatting.GREEN + "enabled" + Formatting.GRAY + "." : Formatting.DARK_RED + "disabled" + Formatting.GRAY + "."));
                 moduleFound = true;
                 break;
             }
         }
         if(!moduleFound) {
-            Bedroom.commandManager.addChatMessage("the module, " + TextFormatting.RED + inputValue + TextFormatting.GRAY + ", was not found.");
+            Bedroom.commandManager.addChatMessage("the module, " + Formatting.RED + inputValue + Formatting.GRAY + ", was not found.");
         }
     }
 }

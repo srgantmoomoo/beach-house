@@ -2,6 +2,7 @@ package me.srgantmoomoo.bedroom.util;
 
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 
@@ -41,12 +42,12 @@ public class ColorMain extends Module {
         this.disable();
     }
 
-    private static TextFormatting settingToFormatting () {
-        return TextFormatting.AQUA;
+    private static Formatting settingToFormatting () {
+        return Formatting.AQUA;
     }
 
-    public static TextFormatting getEnabledColor() { return settingToFormatting(); }
+    public static Formatting getEnabledColor() { return settingToFormatting(); }
 
-    public static TextFormatting getDisabledColor() { return settingToFormatting(); }
+    public static Formatting getDisabledColor() { return settingToFormatting(); }
 
 }

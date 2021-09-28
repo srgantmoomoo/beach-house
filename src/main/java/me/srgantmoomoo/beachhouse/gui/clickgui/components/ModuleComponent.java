@@ -63,7 +63,7 @@ public class ModuleComponent extends Component {
         this.subcomponents.add(new KeybindComponent(this, opY));
     }
 
-    // using this method to draw longer module names with "..." AND draw module names that are hovered.
+    // using this method to draw module names with "..." AND some other things like hovering.
     private void drawModuleName(MatrixStack matrix) {
         String newName = this.mod.getName();
 
@@ -71,11 +71,20 @@ public class ModuleComponent extends Component {
             newName = newName.substring(0, 10) + Formatting.GRAY + " ...";
         }
 
-        // if hovered and hover is enabled, float the module names.
-        if(hovered && (ClickGui.INSTANCE.hover.isEnabled()))
-            Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
-        else
-            Reference.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+        // if hover is enabled and module is hovered, draw full name hovered.
+        if(ClickGui.INSTANCE.hover.isEnabled()) {
+            if(hovered)
+                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
+            else
+                Reference.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+        }else {
+            // if hover aint enabled and hovered, draw full name.
+            if(hovered)
+                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+            else
+                // if hover aint enabled and not hovered... if module enabled, draw newname, else draw full name unhovered.
+                Reference.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+        }
     }
 
     private final Identifier check = new Identifier(Main.modid, "check.png");
@@ -208,6 +217,10 @@ public class ModuleComponent extends Component {
     }
 
     public int stringx() {
-        return (onWall() ? newx() + newwidth() + 2: newx() + 2);
+        boolean isOnWall = false;
+        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled())
+            isOnWall = true;
+
+        return (isOnWall ? newx() + newwidth() + 2: newx() + 2);
     }
 }

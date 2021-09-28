@@ -14,6 +14,7 @@ import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 /**
  * @author SrgantMooMoo
@@ -47,7 +48,7 @@ public class CommandManager {
                 }
             }
             if(!commandFound) {
-                addChatMessage(TextFormatting.DARK_RED + "command does not exist, use " + TextFormatting.ITALIC + prefix + "help " + TextFormatting.RESET + "" + TextFormatting.DARK_RED + "for help.");
+                addChatMessage(Formatting.DARK_RED + "command does not exist, use " + Formatting.ITALIC + prefix + "help " + Formatting.RESET + "" + Formatting.DARK_RED + "for help.");
             }
         }
     }
@@ -96,7 +97,7 @@ public class CommandManager {
      */
     @SuppressWarnings("resource")
     public void addChatMessage(String message) {
-        String messageWithPre = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + message;
+        String messageWithPre = Formatting.AQUA + "@" + Formatting.ITALIC + Bedroom.modname + Formatting.GRAY + ": " + message;
         Text textComponentString = new LiteralText(messageWithPre);
 
         if(CommandLine.INSTANCE.isInCommandLine)
@@ -112,8 +113,8 @@ public class CommandManager {
      */
     @SuppressWarnings("resource")
     public void correctUsageMsg(String name, String syntax) {
-        String usage = TextFormatting.RED + "correct usage of " + name + " command -> " + TextFormatting.GRAY + prefix + syntax;
-        String message = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + usage;
+        String usage = Formatting.RED + "correct usage of " + name + " command -> " + Formatting.GRAY + prefix + syntax;
+        String message = Formatting.AQUA + "@" + Formatting.ITALIC + Bedroom.modname + Formatting.GRAY + ": " + usage;
         Text textComponentString = new LiteralText(message);
 
         if(CommandLine.INSTANCE.isInCommandLine)
