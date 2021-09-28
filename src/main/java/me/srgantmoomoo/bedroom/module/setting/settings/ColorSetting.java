@@ -1,7 +1,7 @@
 
 package me.srgantmoomoo.bedroom.module.setting.settings;
 
-import me.srgantmoomoo.bedroom.api.util.font.JColor;
+import me.srgantmoomoo.bedroom.util.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 

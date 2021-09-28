@@ -1,10 +1,9 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.hudmodules.TabGui;
-import me.srgantmoomoo.bedroom.api.event.Type;
-import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
+import me.srgantmoomoo.bedroom.event.Type;
+import me.srgantmoomoo.bedroom.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 
 import org.spongepowered.asm.mixin.Mixin;

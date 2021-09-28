@@ -2,7 +2,6 @@ package me.srgantmoomoo.beachhouse.gui.chat;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.command.CommandManager;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.util.math.MatrixStack;

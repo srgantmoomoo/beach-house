@@ -6,8 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.event.Event;
+import me.srgantmoomoo.bedroom.event.Event;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.KeybindSetting;
 import net.minecraft.client.MinecraftClient;

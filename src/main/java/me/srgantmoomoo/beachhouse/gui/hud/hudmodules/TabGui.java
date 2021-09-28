@@ -2,11 +2,10 @@ package me.srgantmoomoo.beachhouse.gui.hud.hudmodules;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.backend.util.Timer;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
+import me.srgantmoomoo.bedroom.event.Event;
+import me.srgantmoomoo.bedroom.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;

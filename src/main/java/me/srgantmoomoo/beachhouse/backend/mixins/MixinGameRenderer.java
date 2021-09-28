@@ -1,7 +1,7 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.backend.events.EventRender3d;
-import me.srgantmoomoo.bedroom.api.event.Type;
+import me.srgantmoomoo.bedroom.event.Type;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import net.minecraft.client.render.Shader;
 import org.jetbrains.annotations.Nullable;
@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GameRenderer.class)
 public class MixinGameRenderer {

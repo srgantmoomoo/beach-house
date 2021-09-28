@@ -9,8 +9,6 @@ import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.CommandLine;
 import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
-import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.util.InputUtil;

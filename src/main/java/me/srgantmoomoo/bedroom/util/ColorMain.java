@@ -1,6 +1,5 @@
-package me.srgantmoomoo.bedroom.api.util;
+package me.srgantmoomoo.bedroom.util;
 
-import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 

@@ -2,7 +2,7 @@ package me.srgantmoomoo.beachhouse.feature.module.modules.render;
 
 import me.srgantmoomoo.beachhouse.backend.events.EventRender3d;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.bedroom.api.event.Event;
+import me.srgantmoomoo.bedroom.event.Event;
 import me.srgantmoomoo.bedroom.module.Module;
 
 public class VibrantShader extends Module {

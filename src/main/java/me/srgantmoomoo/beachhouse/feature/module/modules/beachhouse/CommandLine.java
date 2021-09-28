@@ -1,8 +1,8 @@
 package me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse;
 
 import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
-import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.api.event.events.EventTick;
+import me.srgantmoomoo.bedroom.event.Event;
+import me.srgantmoomoo.bedroom.event.events.EventTick;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;

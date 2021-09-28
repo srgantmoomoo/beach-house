@@ -1,7 +1,7 @@
 package me.srgantmoomoo.beachhouse.feature.module.modules.movement;
 
-import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.api.event.events.EventTick;
+import me.srgantmoomoo.bedroom.event.Event;
+import me.srgantmoomoo.bedroom.event.events.EventTick;
 import org.lwjgl.glfw.GLFW;
 
 import me.srgantmoomoo.bedroom.module.Module;

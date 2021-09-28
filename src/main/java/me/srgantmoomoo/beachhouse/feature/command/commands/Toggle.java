@@ -1,11 +1,8 @@
 package me.srgantmoomoo.beachhouse.feature.command.commands;
 
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
-import me.srgantmoomoo.bedroom.command.CommandManager;
 import me.srgantmoomoo.bedroom.module.Module;
-import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 
 public class Toggle extends Command {
 

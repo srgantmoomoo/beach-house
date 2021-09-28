@@ -2,7 +2,6 @@ package me.srgantmoomoo.beachhouse.feature.command.commands;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
 import me.srgantmoomoo.bedroom.command.Command;
 
 public class Help extends Command {

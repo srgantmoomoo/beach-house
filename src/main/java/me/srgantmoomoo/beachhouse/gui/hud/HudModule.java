@@ -1,6 +1,5 @@
 package me.srgantmoomoo.beachhouse.gui.hud;
 
-import me.srgantmoomoo.bedroom.api.event.Event;
 import net.minecraft.client.util.math.MatrixStack;
 import me.srgantmoomoo.bedroom.module.Module;
 

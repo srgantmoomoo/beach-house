@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.api.event.events.EventKeyPress;
+import me.srgantmoomoo.bedroom.event.Event;
+import me.srgantmoomoo.bedroom.event.events.EventKeyPress;
 import me.srgantmoomoo.bedroom.module.Module.Category;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;

@@ -1,7 +1,7 @@
 
-package me.srgantmoomoo.bedroom.api.event.events;
+package me.srgantmoomoo.bedroom.event.events;
 
-import me.srgantmoomoo.bedroom.api.event.Event;
+import me.srgantmoomoo.bedroom.event.Event;
 
 // posted in MixinKeyboard
 public class EventKeyPress extends Event<EventKeyPress> {

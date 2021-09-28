@@ -5,7 +5,7 @@ import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.HudEditor;
 import me.srgantmoomoo.bedroom.Bedroom;
-import me.srgantmoomoo.bedroom.api.util.font.JColor;
+import me.srgantmoomoo.bedroom.util.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;

@@ -1,8 +1,8 @@
 package me.srgantmoomoo.beachhouse.feature.module.modules.render;
 
 
-import me.srgantmoomoo.bedroom.api.event.Event;
-import me.srgantmoomoo.bedroom.api.event.events.EventTick;
+import me.srgantmoomoo.bedroom.event.Event;
+import me.srgantmoomoo.bedroom.event.events.EventTick;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 
