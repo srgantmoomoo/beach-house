@@ -1,6 +1,8 @@
 package me.srgantmoomoo.beachhouse.feature.command.commands;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.CommandLine;
+import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
 import me.srgantmoomoo.bedroom.command.Command;
 
 public class Clear extends Command {
@@ -11,7 +13,10 @@ public class Clear extends Command {
 
 	@Override
 	public void onCommand(String[] args, String command) {
-		Reference.minecraft.inGameHud.getChatHud().clear(true);
+		if(CommandLine.INSTANCE.isInCommandLine)
+			CommandLineScreen.outputs.clear();
+		else
+			Reference.minecraft.inGameHud.getChatHud().clear(true);
 	}
 
 }

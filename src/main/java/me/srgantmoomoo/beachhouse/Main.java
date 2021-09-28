@@ -8,6 +8,7 @@ import me.srgantmoomoo.beachhouse.backend.saveload.Load;
 import me.srgantmoomoo.beachhouse.backend.saveload.Save;
 import me.srgantmoomoo.beachhouse.feature.command.Commands;
 import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
+import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
 import me.srgantmoomoo.beachhouse.feature.module.Modules;
 import me.srgantmoomoo.beachhouse.feature.notepad.NotepadManager;
@@ -47,6 +48,7 @@ public class Main implements ModInitializer {
 
 	public static ClickGuiScreen clickGui;
 	public static HudManager hudManager;
+	public static CommandLineScreen commandLine;
 	public static Save save;
 	public static Load load;
 	public static NotepadManager notepadManager;
@@ -85,6 +87,9 @@ public class Main implements ModInitializer {
 
 		clickGui = new ClickGuiScreen();
 		printLog("click gui initialized.");
+
+		commandLine = new CommandLineScreen();
+		printLog("command line initialized.");
 		
 		hudManager = new HudManager();
 		printLog("hud editor initialized.");

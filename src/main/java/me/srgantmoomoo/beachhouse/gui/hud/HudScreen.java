@@ -18,6 +18,9 @@ public class HudScreen extends Screen {
 	// this renders the hud module when the screen is opened, it doesn't need any events since its already extending Screen.
 	@Override
 	public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
+		if(HudEditor.INSTANCE.background.is("art"))
+			Reference.art.render(1);
+
 		if(HudEditor.INSTANCE.background.is("blur"))
 			Reference.blur.render(1);
 

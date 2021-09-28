@@ -6,8 +6,11 @@ import java.util.List;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.CommandLine;
+import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.api.util.font.TextFormatting;
+import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.util.InputUtil;
@@ -69,12 +72,24 @@ public class CommandManager {
         }
     }
 
+    public Command getCommand(String name) {
+        for (Command c : this.commands) {
+            if(c.getName().equalsIgnoreCase(name)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
     /**
      * send a client side chat message without a prefix to the minecraft chat.
      * @param message
      */
     public void addCustomChatMessage(String message) {
-        Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(message));
+        if(CommandLine.INSTANCE.isInCommandLine)
+            CommandLineScreen.outputs.add(message);
+        else
+            Reference.minecraft.inGameHud.getChatHud().addMessage(new LiteralText(message));
     }
 
     /**
@@ -85,7 +100,11 @@ public class CommandManager {
     public void addChatMessage(String message) {
         String messageWithPre = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + message;
         Text textComponentString = new LiteralText(messageWithPre);
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(textComponentString);
+
+        if(CommandLine.INSTANCE.isInCommandLine)
+            CommandLineScreen.outputs.add(messageWithPre);
+        else
+           Reference.minecraft.inGameHud.getChatHud().addMessage(textComponentString);
     }
 
     /**
@@ -97,9 +116,12 @@ public class CommandManager {
     public void correctUsageMsg(String name, String syntax) {
         String usage = TextFormatting.RED + "correct usage of " + name + " command -> " + TextFormatting.GRAY + prefix + syntax;
         String message = TextFormatting.AQUA + "@" + TextFormatting.ITALIC + Bedroom.modname + TextFormatting.GRAY + ": " + usage;
-
         Text textComponentString = new LiteralText(message);
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(textComponentString);
+
+        if(CommandLine.INSTANCE.isInCommandLine)
+            CommandLineScreen.outputs.add(message);
+        else
+            Reference.minecraft.inGameHud.getChatHud().addMessage(textComponentString);
     }
 
 }

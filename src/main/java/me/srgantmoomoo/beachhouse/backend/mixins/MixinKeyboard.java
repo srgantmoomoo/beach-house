@@ -17,12 +17,16 @@ import net.minecraft.client.Keyboard;
 
 @Mixin(Keyboard.class)
 public class MixinKeyboard {
-
+    // this first event is for keybinds being read in gui's. the second method doesn't read keys that are pressed when they are pressed in a gui.
     @Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
     private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
+        // for clickgui key listener
         if (key >= 0) {
             Main.clickGui.onKeyPressed(key);
         }
+
+        // for command line key listener
+        Main.commandLine.onKeyPressed(key);
     }
 
     @Inject(method = "onKey", at = @At(value = "INVOKE", target = "net/minecraft/client/util/InputUtil.isKeyPressed(JI)Z", ordinal = 5), cancellable = true)
@@ -36,7 +40,7 @@ public class MixinKeyboard {
         EventKeyPress e = new EventKeyPress(key, scanCode);
         e.setType(Type.PRE);
         ModuleManager.onEvent(e);
-        TabGui.INSTANCE.onKeyPressed(e);
+        TabGui.INSTANCE.onKeyPressed(e); // for tab gui key listener (using instance cause tabgui is a module)
         if (e.isCancelled()) info.cancel();
     }
 }

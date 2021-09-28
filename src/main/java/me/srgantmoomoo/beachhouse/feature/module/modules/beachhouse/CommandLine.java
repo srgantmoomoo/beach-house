@@ -19,10 +19,18 @@ public class CommandLine extends Module {
         //this.addSettings(background, hover, dynamicSide);
         INSTANCE = this;
     }
+    public boolean isInCommandLine = false;
 
     @Override
     public void onEnable() {
         minecraft.openScreen(new CommandLineScreen());
+
+        isInCommandLine = true;
+    }
+
+    @Override
+    public void onDisable() {
+        isInCommandLine = false;
     }
 
     @Override
