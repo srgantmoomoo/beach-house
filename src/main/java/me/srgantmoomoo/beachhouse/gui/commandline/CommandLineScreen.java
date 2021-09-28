@@ -57,11 +57,13 @@ public class CommandLineScreen extends Screen {
 
             String keyPressed = "";
 
-            if (key != GLFW.GLFW_KEY_ESCAPE && key != GLFW.GLFW_KEY_BACKSPACE && key != GLFW.GLFW_KEY_LEFT_SHIFT && key != GLFW.GLFW_KEY_LEFT_ALT
+            if (key != GLFW.GLFW_KEY_ESCAPE && key != GLFW.GLFW_KEY_LEFT_SHIFT && key != GLFW.GLFW_KEY_LEFT_ALT
                     && key != GLFW.GLFW_KEY_LEFT_CONTROL && key != GLFW.GLFW_KEY_LEFT_SUPER) {
                 if (GLFW.glfwGetKey(Reference.window.getHandle(), key) == GLFW.GLFW_PRESS) {
                     // space
-                    if (key == GLFW.GLFW_KEY_SPACE) keyPressed = " ";
+                    if (key == GLFW.GLFW_KEY_SPACE) {
+                        keyPressed = " ";
+                    }
                     // backspace
                     else if (key == GLFW.GLFW_KEY_BACKSPACE) {
                         if (input.length() > 0)
@@ -71,6 +73,7 @@ public class CommandLineScreen extends Screen {
                     else keyPressed = GLFW.glfwGetKeyName(key, GLFW.glfwGetKeyScancode(key));
                 }
             }
+            input += keyPressed;
         }
     }
 
