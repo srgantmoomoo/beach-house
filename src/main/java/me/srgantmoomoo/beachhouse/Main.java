@@ -23,8 +23,6 @@ import net.fabricmc.api.ModInitializer;
  * @since 5/16/2021
  */
 
-//TODO settings in config.
-
 //TODO font renderer.
 //TODO rainbow enchant so sexi D:
 //TODO animations.

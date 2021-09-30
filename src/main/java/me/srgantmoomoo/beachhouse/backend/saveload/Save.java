@@ -132,8 +132,8 @@ public class Save {
             File file = new File(MainDirectory, "notepad.txt");
             ArrayList<String> toSave = new ArrayList<>();
 
-            for(Notepad notepad : Main.notepadManager.getNotes()) {
-                toSave.add(notepad.getName() + ":" + notepad.getMessage());
+            for(Notepad note : Main.notepadManager.getNotes()) {
+                toSave.add(note.getName() + ":" + note.getMessage());
             }
 
             writeFile(toSave, file);
