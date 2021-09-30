@@ -1,5 +1,6 @@
 package me.srgantmoomoo.bedroom.module.setting.settings;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 
@@ -31,6 +32,12 @@ public class NumberSetting extends Setting {
         double precision = 1.0D / this.increment;
         //this.value = value;
         this.value = Math.round(Math.max(this.minimum, Math.min(this.maximum, value)) * precision) / precision;
+
+        if (Main.save != null) {
+            try {
+                Main.save.saveSettings();
+            } catch (Exception e) {}
+        }
     }
 
     public void increment(boolean positive) {

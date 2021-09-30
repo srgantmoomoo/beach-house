@@ -1,5 +1,6 @@
 package me.srgantmoomoo.bedroom.module.setting.settings;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 
@@ -22,6 +23,12 @@ public class KeybindSetting extends Setting {
 
     public void setKeyCode(int code) {
         this.code = code;
+
+        if (Main.save != null) {
+            try {
+                Main.save.saveSettings();
+            } catch (Exception e) {}
+        }
     }
 
 }

@@ -5,6 +5,10 @@ import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
+import me.srgantmoomoo.bedroom.module.setting.Setting;
+import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.MinecraftClient;
 
 import java.io.*;
@@ -24,6 +28,7 @@ public class Load {
 
     public void load() {
         loadModules();
+        loadSettings();
         loadGui();
         loadHud();
         loadNotepad();
@@ -47,6 +52,45 @@ public class Load {
                         m.toggle();
                         System.out.println(m.getName() + "penises");
                     }
+                }
+            }
+
+            br.close();
+        } catch (Exception e) {
+        }
+    }
+
+    public void loadSettings() {
+        try {
+            File file = new File(MainDirectory, "settings.txt");
+            FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String curLine = line.trim();
+                String modname = curLine.split(":")[0];
+                String settingname = curLine.split(":")[1];
+                String value = curLine.split(":")[2];
+
+                Module module = Bedroom.moduleManager.getModule(modname);
+                if(module != null) {
+                    Setting setting = Bedroom.settingManager.getSettingByName(module, settingname);
+                    if (setting instanceof BooleanSetting) {
+                        ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(value));
+                    }
+                    if (setting instanceof NumberSetting) {
+                        ((NumberSetting) setting).setValue(Double.parseDouble(value));
+                    }
+                    if (setting instanceof ModeSetting && ((ModeSetting) setting).modes.toString().contains(value)) { // u have to make sure the mode getting loaded actually still exists or else u will have angry mob of ppl telling u ur config is fucking garbage... but actually yes ur config is fucking garbage because u wrote it when u were fucking monke and didn't know wtf u were doing, like seriously come on now, who the fuck writes a config in a normal fucking txt file, r u fucking stupid??????? like just do it in fucking json u fucking dumb cunt. goated redpilled postman comment.
+                        ((ModeSetting) setting).setMode(value);
+                    }
+                    /*if (setting instanceof ColorSetting) {
+                        ((ColorSetting) setting).fromInteger(Integer.parseInt(args[3]));
+                        ((ColorSetting) setting).setRainbow(Boolean.parseBoolean(args[4]));
+                    }*/
                 }
             }
 

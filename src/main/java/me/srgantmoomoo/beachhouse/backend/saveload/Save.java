@@ -30,6 +30,7 @@ public class Save {
 
     public void save() {
         saveModules();
+        saveSettings();
         saveGui();
         saveHud();
         saveNotepad();
@@ -58,30 +59,40 @@ public class Save {
                 }
             }
 
-            /*for(Module mod : Bedroom.moduleManager.modules) {
+            writeFile(toSave, file);
+        } catch (Exception e) {
+        }
+    }
+
+    public void saveSettings() {
+        try {
+            File file = new File(MainDirectory, "settings.txt");
+            ArrayList<String> toSave = new ArrayList<>();
+
+            for(Module mod : Bedroom.moduleManager.modules) {
                 for(Setting setting : mod.settings) {
 
                     if(setting instanceof BooleanSetting) {
                         BooleanSetting bool = (BooleanSetting) setting;
-                        toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + bool.isEnabled());
+                        toSave.add(setting.parent.getName() + ":" + setting.name + ":" + bool.isEnabled());
                     }
 
                     if(setting instanceof NumberSetting) {
                         NumberSetting number = (NumberSetting) setting;
-                        toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + number.getValue());
+                        toSave.add(setting.parent.getName() + ":" + setting.name + ":" + number.getValue());
                     }
 
                     if(setting instanceof ModeSetting) {
                         ModeSetting mode = (ModeSetting) setting;
-                        toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + mode.getMode());
+                        toSave.add(setting.parent.getName() + ":" + setting.name + ":" + mode.getMode());
                     }
 
                     if(setting instanceof ColorSetting) {
                         ColorSetting color = (ColorSetting) setting;
-                        //toSave.add("SET:" + mod.getName() + ":" + setting.name + ":" + color.toInteger() + ":" + color.getRainbow());
+                        //toSave.add(setting.parent.getName() + ":" + setting.name + ":" + color.toInteger() + ":" + color.getRainbow());
                     }
                 }
-            }*/
+            }
 
             writeFile(toSave, file);
         } catch (Exception e) {
