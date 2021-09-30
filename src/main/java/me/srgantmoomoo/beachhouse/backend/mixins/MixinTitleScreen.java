@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
@@ -22,5 +23,7 @@ public class MixinTitleScreen extends Screen {
         int height = Reference.minecraft.getWindow().getScaledHeight();
 
         drawStringWithShadow(matrix, this.textRenderer, "beach house is loaded !", width - 120, height - 20, 0xfff868fB );
+
+        Main.load.loadHud();
     }
 }

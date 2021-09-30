@@ -24,7 +24,6 @@ import net.fabricmc.api.ModInitializer;
  */
 
 //TODO settings in config.
-//TODO hudeditor in config
 
 //TODO font renderer.
 //TODO rainbow enchant so sexi D:

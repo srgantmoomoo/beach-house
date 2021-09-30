@@ -52,4 +52,12 @@ public class HudModule extends Module {
 		return 50;
 	}
 
+	public void setX(int x) {
+		drag.setXPos(x);
+	}
+
+	public void setY(int y) {
+		drag.setYPos(y);
+	}
+
 }

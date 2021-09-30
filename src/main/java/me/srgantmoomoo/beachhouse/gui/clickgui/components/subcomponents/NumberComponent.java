@@ -41,7 +41,7 @@ public class NumberComponent extends Component {
 
     // using this method so that i dont have to do this in both updateComponent and mouseClicked.
     private void renderOne(int xx, int yy) {
-        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+        if(parent.onWall() && ClickGui.INSTANCE.interactWithWall.isEnabled()) {
             this.y = parent.parent.getY() - 12 + this.offset;
             this.x = parent.parent.getX() + 10;
             double diff = Math.min(88, Math.max(0, xx - this.x));
@@ -108,7 +108,7 @@ public class NumberComponent extends Component {
     }
 
     public boolean isMouseOnButton(int x, int y) {
-        if(parent.onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+        if(parent.onWall() && ClickGui.INSTANCE.interactWithWall.isEnabled()) {
             if (x < this.x && x > this.x + parent.newwidth() && y > this.y && y < this.y + 12) {
                 return true;
             } else {

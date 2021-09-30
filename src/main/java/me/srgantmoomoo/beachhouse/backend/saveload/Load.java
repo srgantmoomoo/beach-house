@@ -112,9 +112,9 @@ public class Load {
 
                 HudModule h = Main.hudManager.getHudModule(name);
                 if(h != null) {
-                    h.x = x1;
-                    h.y = y1;
-                    h.setEnabled(enabled);
+                    h.setX(x1);
+                    h.setY(y1);
+                    h.hudEnabled = enabled;
                 }
             }
 

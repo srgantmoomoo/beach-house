@@ -10,7 +10,6 @@ import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
-import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -197,7 +196,7 @@ public class ModuleComponent extends Component {
     }
 
     public int newx() {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+        if(onWall() && ClickGui.INSTANCE.interactWithWall.isEnabled()) {
             return -2;
         }else {
             return 90;
@@ -209,7 +208,7 @@ public class ModuleComponent extends Component {
     }
 
     public int newwidth() {
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled()) {
+        if(onWall() && ClickGui.INSTANCE.interactWithWall.isEnabled()) {
             return -parent.getWidth();
         }else {
             return parent.getWidth();
@@ -218,7 +217,7 @@ public class ModuleComponent extends Component {
 
     public int stringx() {
         boolean isOnWall = false;
-        if(onWall() && ClickGui.INSTANCE.dynamicSide.isEnabled())
+        if(onWall() && ClickGui.INSTANCE.interactWithWall.isEnabled())
             isOnWall = true;
 
         return (isOnWall ? newx() + newwidth() + 2: newx() + 2);
