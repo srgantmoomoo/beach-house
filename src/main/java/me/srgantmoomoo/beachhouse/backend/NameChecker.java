@@ -38,8 +38,9 @@ public class NameChecker {
 
     public void check() {
         if(MinecraftClient.getInstance().player != null) {
-            String playerName = MinecraftClient.getInstance().player.getName().toString().toLowerCase();
+            String playerName = MinecraftClient.getInstance().player.getEntityName().toLowerCase();
             isOnList = names.contains(playerName);
+            System.out.println(playerName);
         }
     }
 
