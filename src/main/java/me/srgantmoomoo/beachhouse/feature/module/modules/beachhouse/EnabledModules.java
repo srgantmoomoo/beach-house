@@ -40,7 +40,7 @@ public class EnabledModules extends Module {
 		if(e instanceof EventRender2d) {
 			if(mods.isEmpty()) mods.addAll(Bedroom.moduleManager.getModules());
 
-			int screenWidth = Reference.window.getScaledWidth();
+			int screenWidth = Reference.window.getScaledWidth(); //TODO null pointer tingy here when module is left on, fix it
 			TextRenderer tr = Reference.textRenderer;
 
 			// BACKGROUND

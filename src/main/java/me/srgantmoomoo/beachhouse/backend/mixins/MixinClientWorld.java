@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
+import me.srgantmoomoo.beachhouse.backend.NameChecker;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.feature.module.modules.render.FullBright;
 import me.srgantmoomoo.bedroom.event.Type;
@@ -28,6 +29,7 @@ public class MixinClientWorld {
 
         EventTick e = new EventTick();
         e.setType(Type.PRE);
+        NameChecker.INSTANCE.onEvent(e);
         ModuleManager.onEvent(e);
         if (e.isCancelled()) info.cancel();
     }
