@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.backend.mixins.rendercancel;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import me.srgantmoomoo.beachhouse.feature.module.modules.render.RenderCancel;
 import me.srgantmoomoo.bedroom.Bedroom;
 import net.minecraft.client.render.BackgroundRenderer;
@@ -14,8 +15,10 @@ public final class MixinBackgroundRenderer {
 
     @Inject(method = "applyFog", at = @At("TAIL"), cancellable = true)
     private static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.fog.isEnabled())
-            info.cancel();
+        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.fog.isEnabled()) {
+            RenderSystem.setShaderFogStart(998);
+            RenderSystem.setShaderFogEnd(999);
+        }
     }
 
 }

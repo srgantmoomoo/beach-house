@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinFireworksSparkParticle {
 
     @Inject(method = "buildGeometry", at = @At("HEAD"), cancellable = true)
-    private void buildExplosionGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta, CallbackInfo info) {
+    private void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta, CallbackInfo info) {
         if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.fireworks.isEnabled())
             info.cancel();
     }

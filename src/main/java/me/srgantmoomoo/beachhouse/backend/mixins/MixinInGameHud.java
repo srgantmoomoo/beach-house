@@ -3,8 +3,10 @@ package me.srgantmoomoo.beachhouse.backend.mixins;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.events.EventRender2d;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.feature.module.modules.render.RenderCancel;
 import me.srgantmoomoo.beachhouse.gui.chat.ChatScreenRenderer;
 import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
+import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.event.Type;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,6 +34,12 @@ public class MixinInGameHud {
 		e.setType(Type.PRE);
 		ModuleManager.onEvent(e);
 		if (e.isCancelled()) info.cancel();
+	}
+
+	@Inject(method = "renderPortalOverlay", at = @At("HEAD"), cancellable = true)
+	private void renderPortalOverlay(float f, CallbackInfo info) {
+		if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.portalOverlay.isEnabled())
+			info.cancel();
 	}
 
 }

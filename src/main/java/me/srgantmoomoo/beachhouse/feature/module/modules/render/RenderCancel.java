@@ -8,25 +8,35 @@ public class RenderCancel extends Module {
     public static RenderCancel INSTANCE;
 
     public BooleanSetting fog = new BooleanSetting("fog", this, false); //TODO no work???
-    public BooleanSetting weather = new BooleanSetting("weather", this, false); //TODO
+    public BooleanSetting weather = new BooleanSetting("weather", this, false);
     public BooleanSetting skyLightUpdates = new BooleanSetting("skyLightUpdates", this, false);
-    public BooleanSetting enchantingTables = new BooleanSetting("enchantingTables", this, false);
-    public BooleanSetting signText = new BooleanSetting("signText", this, false); //TODO
+    public BooleanSetting enchantTables = new BooleanSetting("enchantTables", this, false);
+    public BooleanSetting signText = new BooleanSetting("signText", this, false);
     public BooleanSetting fireworks = new BooleanSetting("fireworks", this, false);
-    public BooleanSetting hurtCam = new BooleanSetting("hurtCam", this, false); //TODO
+
+    public BooleanSetting hurtCam = new BooleanSetting("hurtCam", this, false);
+    public BooleanSetting portalOverlay = new BooleanSetting("portalOverlay", this, false);
+    public BooleanSetting fireOverlay = new BooleanSetting("fireOverlay", this, false);
+    public BooleanSetting waterOverlay = new BooleanSetting("waterOverlay", this, false);
     public BooleanSetting armor = new BooleanSetting("armor", this, false);
 
     public RenderCancel() {
         super("render cancel", "rendercancel", "cancel certain render events.", 0, Category.RENDER);
         INSTANCE = this;
-        this.addSettings(fog, weather, skyLightUpdates, enchantingTables, fireworks, hurtCam, armor);
+        this.addSettings(fog, weather, skyLightUpdates, enchantTables, signText, fireworks, hurtCam, portalOverlay, armor);
     }
 
     // fog is in MixinBackgroundRenderer.
-    // armor is in MixinArmorFeatureRenderer.
-    // fireworks is in MixinFireworksSparkParticle.
+    // weather is in MixinWorldRenderer.
     // skyLightUpdates is in MixinChunkSkyLightProvider.
     // enchantingTables is in MixinEnchantingTableBlockEntityRenderer.
+    // signText is in MixinSignBlockEntityRenderer.
+    // fireworks is in MixinFireworksSparkParticle.
+
+    // hurtcam is in MixinGameRenderer.
+    // portalOverlay is in MixinInGameHud
+    // fire and water overlay are in MixinInGameOverlayRenderer
+    // armor is in MixinArmorFeatureRenderer.
 
     @Override
     public void onEnable() {

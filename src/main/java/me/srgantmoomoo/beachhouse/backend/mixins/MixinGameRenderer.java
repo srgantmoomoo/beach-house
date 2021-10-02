@@ -1,6 +1,8 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.backend.events.EventRender3d;
+import me.srgantmoomoo.beachhouse.feature.module.modules.render.RenderCancel;
+import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.event.Type;
 import me.srgantmoomoo.bedroom.module.ModuleManager;
 import net.minecraft.client.render.Shader;
@@ -33,5 +35,11 @@ public class MixinGameRenderer {
         ModuleManager.onEvent(e);
         if (e.isCancelled()) info.cancel();
 
+    }
+
+    @Inject(method = "bobViewWhenHurt", at = @At("HEAD"), cancellable = true)
+    private void bobViewWhenHurt(MatrixStack matrixStack, float f, CallbackInfo info) {
+        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.hurtCam.isEnabled())
+            info.cancel();
     }
 }

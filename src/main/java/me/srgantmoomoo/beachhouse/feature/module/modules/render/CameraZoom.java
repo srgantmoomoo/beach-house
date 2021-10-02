@@ -7,7 +7,7 @@ public class CameraZoom extends Module {
     public NumberSetting scale = new NumberSetting("scale", this, 2, 1, 10, 1);
 
     public CameraZoom() {
-        super("zoom", "zoom", "zooms ur camera.", 0, Category.RENDER);
+        super("camera zoom", "camerazoom", "zooms ur camera.", 0, Category.RENDER);
         this.addSettings(scale);
     }
     public double originalFov;

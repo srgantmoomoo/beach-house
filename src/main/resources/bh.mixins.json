@@ -18,7 +18,10 @@
     "rendercancel.MixinArmorFeatureRenderer",
     "rendercancel.MixinFireworksSparkParticle",
     "rendercancel.MixinChunkSkyLightProvider",
-    "rendercancel.MixinEnchantingTableBlockEntityRenderer"
+    "rendercancel.MixinEnchantingTableBlockEntityRenderer",
+    "rendercancel.MixinSignBlockEntityRenderer",
+    "rendercancel.MixinWorldRenderer",
+    "rendercancel.MixinInGameOverlayRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
