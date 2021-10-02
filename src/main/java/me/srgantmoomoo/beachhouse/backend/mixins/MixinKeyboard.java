@@ -16,9 +16,9 @@ import net.minecraft.client.Keyboard;
 
 @Mixin(Keyboard.class)
 public class MixinKeyboard {
-    // this first event is for keybinds being read in gui's. the second method doesn't read keys that are pressed when they are pressed in a gui.
+    // this first event is for keybinds being read in gui's. the second method doesn't read keys that are pressed when they are pressed in a gui. .... although i am now questioning this and am currently very confused ngl.
     @Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
-    private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
+    private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo info) {
         // for clickgui key listener
         if (key >= 0) {
             Main.clickGui.onKeyPressed(key);
