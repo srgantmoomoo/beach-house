@@ -61,12 +61,14 @@ public class Modules {
 
         Bedroom.addModule(new BlockHighlight());
         Bedroom.addModule(new CameraZoom());
-        Bedroom.addModule(new Esp());
+        Bedroom.addModule(new EntityEsp());
+        //Bedroom.addModule(new Esp());
         Bedroom.addModule(new FullBright());
         Bedroom.addModule(new Nametags());
         Bedroom.addModule(new RainbowEnchant());
         Bedroom.addModule(new RenderCancel());
         Bedroom.addModule(new ShulkerPeek());
+        Bedroom.addModule(new StorageEsp());
         Bedroom.addModule(new Tracers());
         Bedroom.addModule(new VibrantShader());
         Bedroom.addModule(new Xray());

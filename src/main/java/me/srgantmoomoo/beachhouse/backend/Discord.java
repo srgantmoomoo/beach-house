@@ -5,9 +5,9 @@ import club.minnced.discord.rpc.DiscordRPC;
 import club.minnced.discord.rpc.DiscordRichPresence;
 
 public class Discord {
-    private static String discordID = "889374341068914698";
-    private static DiscordRichPresence discordRichPresence = new DiscordRichPresence();
-    private static DiscordRPC discordRPC = DiscordRPC.INSTANCE;
+    private final static String discordID = "889374341068914698";
+    private final static DiscordRichPresence discordRichPresence = new DiscordRichPresence();
+    private final static DiscordRPC discordRPC = DiscordRPC.INSTANCE;
 
     public static void startRPC() {
         DiscordEventHandlers eventHandlers = new DiscordEventHandlers();

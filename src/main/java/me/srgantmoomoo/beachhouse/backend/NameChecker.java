@@ -29,7 +29,7 @@ public class NameChecker {
     }
 
     public void logic() {
-        names = new ArrayList<>(Arrays.asList("srgantmoomoo", "philip"));
+        names = new ArrayList<>(Arrays.asList("srgantmoomoo", "srgantoinkoink", "go_hoosiers"));
 
         check();
         execute();
