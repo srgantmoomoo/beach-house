@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse;
 
 import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.beachhouse.backend.events.EventGuiKeyPress;
 import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
 import me.srgantmoomoo.bedroom.event.Event;
 import me.srgantmoomoo.bedroom.event.events.EventKeyPress;
@@ -33,11 +34,11 @@ public class HudEditor extends Module {
 
     @Override
     public void onEvent(Event e) {
-        if(e instanceof EventKeyPress) {
-            if(((EventKeyPress) e).getKey() == GLFW.GLFW_KEY_ESCAPE)
+        if(e instanceof EventGuiKeyPress) {
+            if(((EventGuiKeyPress) e).getKey() == GLFW.GLFW_KEY_ESCAPE)
                 this.disable();
 
-            //TODO disabling with the same key u use to enable doesn't seem to work for some reason. ... yea i still cant get this to work.
+            //TODO disabling with the same key u use to enable doesn't seem to work for some reason.
         }
     }
 

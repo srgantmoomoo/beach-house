@@ -17,7 +17,7 @@ public class MixinTitleScreen extends Screen {
     }
 
     @Inject(at = @At("RETURN"), method = "render")
-    public void render(MatrixStack matrix, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    public void render(MatrixStack matrix, int mouseX, int mouseY, float delta, CallbackInfo info) {
         int width = Reference.minecraft.getWindow().getScaledWidth();
         int height = Reference.minecraft.getWindow().getScaledHeight();
 

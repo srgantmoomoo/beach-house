@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.backend.mixins;
 
 import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.beachhouse.backend.events.EventGuiKeyPress;
 import me.srgantmoomoo.beachhouse.gui.hud.hudmodules.TabGui;
 import me.srgantmoomoo.bedroom.event.Type;
 import me.srgantmoomoo.bedroom.event.events.EventKeyPress;
@@ -16,9 +17,9 @@ import net.minecraft.client.Keyboard;
 
 @Mixin(Keyboard.class)
 public class MixinKeyboard {
-    // this first event is for keybinds being read in gui's. the second method doesn't read keys that are pressed when they are pressed in a gui. .... although i am now questioning this and am currently very confused ngl.
+    // this first event is for keybinds being read in gui's. the second method doesn't read keys that are pressed when they are pressed in a gui.
     @Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
-    private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo info) {
+    private void onKey(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo info) {
         // for clickgui key listener
         if (key >= 0) {
             Main.clickGui.onKeyPressed(key);
@@ -26,10 +27,15 @@ public class MixinKeyboard {
 
         // for command line key listener
         Main.commandLine.onKeyPressed(key);
+
+        EventGuiKeyPress e = new EventGuiKeyPress(key, scanCode);
+        e.setType(Type.PRE);
+        ModuleManager.onEvent(e);
+        if (e.isCancelled()) info.cancel();
     }
 
     @Inject(method = "onKey", at = @At(value = "INVOKE", target = "net/minecraft/client/util/InputUtil.isKeyPressed(JI)Z", ordinal = 5), cancellable = true)
-    private void onKeyEvent_1(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo info) {
+    private void onKey_1(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo info) {
         // calls openChatScreen method which checks if the prefix is pressed for commands.
         Bedroom.commandManager.openChatScreen();
 

@@ -13,7 +13,12 @@
     "MixinKeyboard",
     "MixinMinecraftClient",
     "MixinChatScreen",
-    "MixinTitleScreen"
+    "MixinTitleScreen",
+    "rendercancel.MixinBackgroundRenderer",
+    "rendercancel.MixinArmorFeatureRenderer",
+    "rendercancel.MixinFireworksSparkParticle",
+    "rendercancel.MixinChunkSkyLightProvider",
+    "rendercancel.MixinEnchantingTableBlockEntityRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

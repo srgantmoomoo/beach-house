@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse;
 
+import me.srgantmoomoo.beachhouse.backend.events.EventGuiKeyPress;
 import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
 import me.srgantmoomoo.bedroom.event.Event;
 import me.srgantmoomoo.bedroom.event.events.EventTick;
@@ -35,8 +36,8 @@ public class CommandLine extends Module {
 
     @Override
     public void onEvent(Event e) {
-        if(e instanceof EventTick) {
-            if(InputUtil.isKeyPressed(minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_ESCAPE))
+        if(e instanceof EventGuiKeyPress) {
+            if(((EventGuiKeyPress) e).getKey() == GLFW.GLFW_KEY_ESCAPE)
                 this.disable();
         }
     }
