@@ -19,9 +19,8 @@ public class MixinBlockCollisionSpliterator {
 
     @Redirect(method = "offerBlockShape", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getCollisionShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;"))
     private VoxelShape calculatePushVelocity_getCollisionShape(BlockState blockState, BlockView world, BlockPos pos, ShapeContext context) {
-        VoxelShape shape = blockState.getCollisionShape(world, pos, context);
 
-        EventBlockShape e = new EventBlockShape((BlockState) blockState, pos, shape);
+        EventBlockShape e = new EventBlockShape((BlockState) blockState, pos, blockState.getCollisionShape(world, pos, context));
         e.setType(Type.PRE);
         ModuleManager.onEvent(e);
         if(e.isCancelled()) return VoxelShapes.empty();
