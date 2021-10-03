@@ -14,7 +14,7 @@ public class Jesus extends Module {
 	public BooleanSetting velocity = new BooleanSetting("velocity", this, true);
 	
 	public Jesus() {
-		super("jesus", "jesus", "godd", 0, Category.PLAYER);
+		super("jesus", "jesus", "godd.", 0, Category.PLAYER);
 		this.addSettings(velocity);
 	}
 

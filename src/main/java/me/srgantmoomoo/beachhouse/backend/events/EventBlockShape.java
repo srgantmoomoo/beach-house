@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 
+// called in MixinBlockCollisionSpliterator
 public class EventBlockShape extends Event<EventBlockShape> {
     private BlockState state;
     private BlockPos pos;

@@ -3,7 +3,6 @@ package me.srgantmoomoo.bedroom.event.events;
 import me.srgantmoomoo.bedroom.event.Event;
 import net.minecraft.network.Packet;
 
-//TODO make this event useable wit an eventProcessor or smthn
 @SuppressWarnings("rawtypes")
 public class EventPacket extends Event<EventPacket> {
 
@@ -19,7 +18,6 @@ public class EventPacket extends Event<EventPacket> {
     }
 
     public static class Receive extends EventPacket {
-
         public Receive(Packet packet) {
             super(packet);
         }

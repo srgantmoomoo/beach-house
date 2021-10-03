@@ -34,7 +34,6 @@ public class MixinGameRenderer {
         e.setType(Type.PRE);
         ModuleManager.onEvent(e);
         if (e.isCancelled()) info.cancel();
-
     }
 
     @Inject(method = "bobViewWhenHurt", at = @At("HEAD"), cancellable = true)

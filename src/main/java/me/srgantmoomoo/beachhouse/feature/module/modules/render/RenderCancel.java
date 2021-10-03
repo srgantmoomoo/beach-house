@@ -38,14 +38,4 @@ public class RenderCancel extends Module {
     // fire and water overlay are in MixinInGameOverlayRenderer
     // armor is in MixinArmorFeatureRenderer.
 
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onEvent(Event e) {
-
-    }
-
 }
