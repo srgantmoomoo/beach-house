@@ -23,7 +23,7 @@ public class RenderCancel extends Module {
     public RenderCancel() {
         super("render cancel", "rendercancel", "cancel certain render events.", 0, Category.RENDER);
         INSTANCE = this;
-        this.addSettings(fog, weather, skyLightUpdates, enchantTables, signText, fireworks, hurtCam, portalOverlay, armor);
+        this.addSettings(fog, weather, skyLightUpdates, enchantTables, signText, fireworks, hurtCam, fireOverlay, waterOverlay, portalOverlay, armor);
     }
 
     // fog is in MixinBackgroundRenderer.
