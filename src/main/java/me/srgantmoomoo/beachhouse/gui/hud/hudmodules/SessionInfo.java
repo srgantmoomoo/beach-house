@@ -11,6 +11,31 @@ public class SessionInfo extends HudModule {
         super("session info", "sessioninfo", "see ur sesh info.", 70, 16, Category.BEACHHOUSE);
     }
 
+    @Override
+    public void draw(MatrixStack matrix) {
+        drawFinale(matrix);
+
+        super.draw(matrix);
+    }
+
+    @Override
+    public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
+        Main.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), hudEnabled ? 0xff00ff00 : 0xffffffff);
+        drawFinale(matrix);
+
+        super.drawDraggable(matrix, mouseX, mouseY);
+    }
+
+    @Override
+    public int getWidth() {
+        return 92;
+    }
+
+    @Override
+    public int getHeight() {
+        return 70;
+    }
+
     private void drawFinale(MatrixStack matrix) {
         assert minecraft.player != null;
         assert minecraft.world != null;
@@ -23,16 +48,26 @@ public class SessionInfo extends HudModule {
 
         minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "time played" + Formatting.WHITE + " : " + minecraft.player.age, getX(), getY() + 30, 0xffffffff);
 
-        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "player speed" + Formatting.WHITE + " : " + minecraft.player.getSpeed(), getX(), getY() + 40, 0xffffffff);
+        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "player speed" + Formatting.WHITE + " : " + minecraft.player.getMovementSpeed(), getX(), getY() + 40, 0xffffffff);
 
-        // time - minecraft.world.getLunarTime()
-        //minecraft.world.isRaining()
+        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "server" + Formatting.WHITE + " : " + minecraft.world.getServer() + " " + minecraft.player.getServerBrand(), getX(), getY() + 50, 0xffffffff);
 
-        //playername
-        //weather
-        //time
-        //time played
-        //speed
+        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "chunk pos" + Formatting.WHITE + " : " + minecraft.player.getChunkPos(), getX(), getY() + 60, 0xffffffff);
+
+    }
+
+}
+    // time - minecraft.world.getLunarTime()
+    //minecraft.world.isRaining()
+
+    //playername
+    //weather
+    //time
+    //time played
+    //speed
+    //ping
+    //fps
+    //tps
 
         /*
         minecraft.world.getBiome()
@@ -60,31 +95,3 @@ public class SessionInfo extends HudModule {
         minecraft.player.deathTime --
         minecraft.player.getServer() + " : " + minecraft.player.getServerBrand()
          */
-
-    }
-
-    @Override
-    public void draw(MatrixStack matrix) {
-        drawFinale(matrix);
-
-        super.draw(matrix);
-    }
-
-    @Override
-    public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
-        Main.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), hudEnabled ? 0xff00ff00 : 0xffffffff);
-        drawFinale(matrix);
-
-        super.drawDraggable(matrix, mouseX, mouseY);
-    }
-
-    @Override
-    public int getWidth() {
-        return 92;
-    }
-
-    @Override
-    public int getHeight() {
-        return 50;
-    }
-}
