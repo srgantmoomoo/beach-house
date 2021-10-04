@@ -36,6 +36,11 @@ import net.fabricmc.api.ModInitializer;
 //TODO if(clicked out) than setting closes.
 //TODO focusing for the panels.
 
+//TODO finish session info hud module.
+//TODO add player model and other hud modules.
+
+//TODO notifications.
+
 public class Main implements ModInitializer {
 
 	public static final String modid = "bh";

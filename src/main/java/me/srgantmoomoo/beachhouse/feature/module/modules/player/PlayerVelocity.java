@@ -29,7 +29,7 @@ public class PlayerVelocity extends Module {
 
             if (e instanceof EventPacket.Send) {
                 if (((EventPacket) e).getPacket() instanceof EntityVelocityUpdateS2CPacket p) {
-                    if (minecraft.player == null && minecraft.world == null)
+                    if (minecraft.player == null || minecraft.world == null)
                         return;
 
                     if (p.getId() == minecraft.player.getId()) {
