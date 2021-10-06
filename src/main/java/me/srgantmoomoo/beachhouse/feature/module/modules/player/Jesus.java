@@ -11,11 +11,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShapes;
 
 public class Jesus extends Module {
-	public BooleanSetting velocity = new BooleanSetting("velocity", this, true);
+	public BooleanSetting floatInWater = new BooleanSetting("floatInWater", this, true);
+	public BooleanSetting antiFallDamage = new BooleanSetting("antiFallDamage", this, true);
 	
 	public Jesus() {
 		super("jesus", "jesus", "godd.", 0, Category.PLAYER);
-		this.addSettings(velocity);
+		this.addSettings(floatInWater, antiFallDamage);
 	}
 
 	@Override
@@ -23,6 +24,9 @@ public class Jesus extends Module {
 
 		if(e instanceof EventBlockShape) {
 			if(minecraft.player == null || minecraft.world == null)
+				return;
+
+			if(antiFallDamage.isEnabled() && minecraft.player.fallDistance > 3f)
 				return;
 
 			if (isBlockFluid(((EventBlockShape) e).getPos())
@@ -37,23 +41,21 @@ public class Jesus extends Module {
 			if(minecraft.player == null || minecraft.world == null)
 				return;
 
-			if(velocity.isEnabled()) {
-				Entity entity = minecraft.player;
-
-				if (entity.isSneaking() || entity.fallDistance > 3f)
+			if(floatInWater.isEnabled()) {
+				if (minecraft.player.isSneaking())
 					return;
 
-				if(isBlockFluid(new BlockPos(entity.getPos().add(0, 0.3, 0))))
-					entity.setVelocity(entity.getVelocity().getX(), 0.08, entity.getVelocity().getZ());
+				if(isBlockFluid(new BlockPos(minecraft.player.getPos().add(0, 0.3, 0))))
+					minecraft.player.setVelocity(minecraft.player.getVelocity().getX(), 0.08, minecraft.player.getVelocity().getZ());
 
-				else if(isBlockFluid(new BlockPos(entity.getPos().add(0, 0.1, 0))))
-					entity.setVelocity(entity.getVelocity().getX(), 0.05, entity.getVelocity().getZ());
+				else if(isBlockFluid(new BlockPos(minecraft.player.getPos().add(0, 0.1, 0))))
+					minecraft.player.setVelocity(minecraft.player.getVelocity().getX(), 0.05, minecraft.player.getVelocity().getZ());
 
-				else if (isBlockFluid(new BlockPos(entity.getPos().add(0, 0.05, 0))))
-					entity.setVelocity(entity.getVelocity().getX(), 0.01, entity.getVelocity().getZ());
+				else if (isBlockFluid(new BlockPos(minecraft.player.getPos().add(0, 0.05, 0))))
+					minecraft.player.setVelocity(minecraft.player.getVelocity().getX(), 0.01, minecraft.player.getVelocity().getZ());
 
-				else if (isBlockFluid(entity.getBlockPos()))
-					entity.setVelocity(entity.getVelocity().getX(), 0.01, entity.getVelocity().getZ());
+				else if (isBlockFluid(minecraft.player.getBlockPos()))
+					minecraft.player.setVelocity(minecraft.player.getVelocity().getX(), 0.01, minecraft.player.getVelocity().getZ());
 			}
 		}
 	}

@@ -28,7 +28,6 @@ public class Modules {
         Bedroom.addModule(new Surround());
         Bedroom.addModule(new SwingAura());
 
-        Bedroom.addModule(new AntiNick());
         Bedroom.addModule(new DeathCoords());
         Bedroom.addModule(new PacketCancel());
         Bedroom.addModule(new SoftJoin());

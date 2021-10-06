@@ -41,7 +41,7 @@ public class SessionInfo extends HudModule {
         assert minecraft.world != null;
         minecraft.textRenderer.drawWithShadow(matrix, "hello", getX(), getY(), 0xff11c1e8);
 
-        minecraft.textRenderer.drawWithShadow(matrix, minecraft.world.isRaining() ? Formatting.GRAY + "weather" + Formatting.WHITE + " : rainy"
+        minecraft.textRenderer.drawWithShadow(matrix, minecraft.world.isRaining() ? Formatting.GRAY + "weather" + Formatting.WHITE + " : meatballs"
                 : Formatting.GRAY + "weather" + Formatting.WHITE + " : sunny with a chance of meatballs.", getX(), getY() + 10, 0xffffffff);
 
         minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "game time" + Formatting.WHITE + " : " + minecraft.world.getTimeOfDay(), getX(), getY() + 20, 0xffffffff);
@@ -50,14 +50,14 @@ public class SessionInfo extends HudModule {
 
         minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "player speed" + Formatting.WHITE + " : " + minecraft.player.getMovementSpeed(), getX(), getY() + 40, 0xffffffff);
 
-        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "server" + Formatting.WHITE + " : " + minecraft.world.getServer() + " " + minecraft.player.getServerBrand(), getX(), getY() + 50, 0xffffffff);
+        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "server" + Formatting.WHITE + " : " + minecraft.player.getServerBrand(), getX(), getY() + 50, 0xffffffff);
 
         minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "chunk pos" + Formatting.WHITE + " : " + minecraft.player.getChunkPos(), getX(), getY() + 60, 0xffffffff);
 
     }
 
 }
-    // time - minecraft.world.getLunarTime()
+    //time - minecraft.world.getLunarTime()
     //minecraft.world.isRaining()
 
     //playername

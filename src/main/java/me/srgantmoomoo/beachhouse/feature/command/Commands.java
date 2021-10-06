@@ -13,5 +13,6 @@ public class Commands {
         Bedroom.addCommand(new SettingList());
         Bedroom.addCommand(new Clear());
         Bedroom.addCommand(new Notepad());
+        Bedroom.addCommand(new AntiNick());
     }
 }

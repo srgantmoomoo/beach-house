@@ -40,6 +40,8 @@ import net.fabricmc.api.ModInitializer;
 //TODO add player model and other hud modules.
 
 //TODO notifications.
+//TODO radar hud module.
+//TODO ADA graph.
 
 public class Main implements ModInitializer {
 
