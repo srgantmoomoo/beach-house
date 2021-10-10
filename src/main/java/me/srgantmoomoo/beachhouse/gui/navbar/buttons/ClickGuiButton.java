@@ -2,7 +2,6 @@ package me.srgantmoomoo.beachhouse.gui.navbar.buttons;
 
 import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
 import me.srgantmoomoo.beachhouse.gui.navbar.Button;
-import me.srgantmoomoo.bedroom.command.Command;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
@@ -14,11 +13,10 @@ public class ClickGuiButton extends Button {
     int addy;
 
     public ClickGuiButton() {
-        x = 420;
+        x = 460;
         y = 1;
-        addx = 8;
-        addy = 8;
-
+        addx = 43;
+        addy = 12;
     }
 
     @Override
@@ -31,7 +29,7 @@ public class ClickGuiButton extends Button {
     public void mouseClicked(int mouseX, int mouseY) {
         if(isMouseOnButton(mouseX, mouseY)) {
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
-                minecraft.openScreen(new CommandLineScreen());
+                minecraft.openScreen(new ClickGuiScreen());
             }
         }
     }

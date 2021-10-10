@@ -9,16 +9,8 @@ public class Button {
 
     public void drawButton(MatrixStack matrix) {}
 
-    public void updateComponent(int mouseX, int mouseY) {}
-
     public void mouseClicked(int mouseX, int mouseY) {}
 
     public void mouseReleased(int mouseX, int mouseY) {}
-
-    public void keyTyped(int key) {}
-
-    public void closeAllSub() {}
-
-    public void setOff(final int newOff) {}
 
 }
