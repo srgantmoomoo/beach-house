@@ -7,7 +7,7 @@ public class Button {
 
     protected MinecraftClient minecraft = MinecraftClient.getInstance();
 
-    public void renderComponent(MatrixStack matrix) {}
+    public void drawButton(MatrixStack matrix) {}
 
     public void updateComponent(int mouseX, int mouseY) {}
 

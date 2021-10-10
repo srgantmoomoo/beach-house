@@ -2,6 +2,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
+import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 public class ClickGuiScreen extends Screen {
     public static ArrayList<Panel> panels;
     private boolean mouseHeld = false;
+
+    public NavBar navBar = new NavBar();
 
     public ClickGuiScreen() {
         super(new LiteralText("clickgui"));
@@ -32,27 +35,28 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        if (ClickGui.INSTANCE.background.is("blur"))
+        if(ClickGui.INSTANCE.background.is("blur"))
             Reference.blur.render(1);
 
-        if (ClickGui.INSTANCE.background.is("art"))
+        if(ClickGui.INSTANCE.background.is("art"))
             Reference.art.render(1);
 
-        if (ClickGui.INSTANCE.background.is("dim"))
+        if(ClickGui.INSTANCE.background.is("dim"))
             this.renderBackground(matrix);
 
-        for (Panel p : panels) {
+        for(Panel p : panels) {
             p.updatePosition(mouseX, mouseY);
             p.drawScreen(matrix, mouseX, mouseY, delta);
 
-            for (Button comp : p.getComponents()) {
+            for(Button comp : p.getComponents()) {
                 comp.updateComponent(mouseX, mouseY);
             }
         }
 
+        // MOUSE
         // mouse clicked
-        for (Panel p : panels) {
-            if (p.isWithinHeader(mouseX, mouseY)) {
+        for(Panel p : panels) {
+            if(p.isWithinHeader(mouseX, mouseY)) {
                 p.focused = true;
                 Panel.globalBoolean = true;
                 if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
@@ -65,14 +69,14 @@ public class ClickGuiScreen extends Screen {
                 Panel.globalBoolean = false;
             }
 
-            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld) {
+            if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld) {
                 mouseHeld = true;
                 p.setOpen(!p.isOpen());
-            } else if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
+            }else if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE) {
                 mouseHeld = false;
             }
 
-            if (p.isOpen() && !p.getComponents().isEmpty()) {
+            if(p.isOpen() && !p.getComponents().isEmpty()) {
                 for (Button button : p.getComponents()) {
                     button.mouseClicked(mouseX, mouseY);
                 }
@@ -80,20 +84,25 @@ public class ClickGuiScreen extends Screen {
         }
 
         // mouse released
-        for (Panel p : panels) {
-            if (p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE) {
+        for(Panel p : panels) {
+            if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE) {
                 p.setDragging(false);
             }
 
-            if (p.isOpen() && !p.getComponents().isEmpty()) {
-                for (Button button : p.getComponents()) {
+            if(p.isOpen() && !p.getComponents().isEmpty()) {
+                for(Button button : p.getComponents()) {
                     button.mouseReleased(mouseX, mouseY);
                 }
             }
         }
-    }
 
-    
+        // NAVBAR
+        navBar.draw(matrix, mouseX, mouseY, delta);
+        for(me.srgantmoomoo.beachhouse.gui.navbar.Button button : navBar.buttons) {
+            button.mouseClicked(mouseX, mouseY);
+            button.mouseReleased(mouseX, mouseY);
+        }
+    }
 
     // called in MixinKeyboard
     public void onKeyPressed(int key) {

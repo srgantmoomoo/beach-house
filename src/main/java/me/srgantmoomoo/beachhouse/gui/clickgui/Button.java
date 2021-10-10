@@ -17,5 +17,4 @@ public class Button {
     public void keyTyped(int key) {}
 
     public void closeAllSub() {}
-
 }
