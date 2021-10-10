@@ -22,7 +22,7 @@ public class ClickGuiScreen extends Screen {
         super(new LiteralText("clickgui"));
         panels = new ArrayList<>();
         int panelX = 10;
-        int panelY = 5;
+        int panelY = 15;
         int panelWidth = 88;
         int panelHeight = 12;
         boolean focused = false;

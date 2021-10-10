@@ -1,6 +1,8 @@
 package me.srgantmoomoo.beachhouse.gui.commandline;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.CommandLine;
+import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.Command;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -17,6 +19,7 @@ import java.util.List;
 
 // this screen is opened in the CommandLine module.
 public class CommandLineScreen extends Screen {
+    public NavBar navBar = new NavBar();
 
     public CommandLineScreen() {
         super(new LiteralText("commandline"));
@@ -27,7 +30,14 @@ public class CommandLineScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        Reference.art.render(1);
+        if(CommandLine.INSTANCE.background.is("art"))
+            Reference.art.render(1);
+
+        if(CommandLine.INSTANCE.background.is("blur"))
+            Reference.blur.render(1);
+
+        if(CommandLine.INSTANCE.background.is("dim"))
+            this.renderBackground(matrix);
 
         int screenWidth = Reference.window.getScaledWidth();
         int screenHeight = Reference.window.getScaledHeight();
@@ -45,6 +55,13 @@ public class CommandLineScreen extends Screen {
         Collections.reverse(outputs);
 
         Reference.textRenderer.drawWithShadow(matrix, inputLine(), 12, screenHeight - 30, 0xffffffff);
+
+        // NAVBAR
+        navBar.draw(matrix, mouseX, mouseY, delta);
+        for(me.srgantmoomoo.beachhouse.gui.navbar.Button button : navBar.buttons) {
+            button.mouseClicked(mouseX, mouseY);
+            button.mouseReleased(mouseX, mouseY);
+        }
     }
 
     // called in MixinKeyboard

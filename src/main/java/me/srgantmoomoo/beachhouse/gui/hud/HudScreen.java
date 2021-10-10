@@ -3,12 +3,14 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.HudEditor;
+import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 
 // this screen is opened in the HudEditor module.
 public class HudScreen extends Screen {
+	public NavBar navBar = new NavBar();
 
 	// bigppgui
 	public HudScreen() {
@@ -32,5 +34,12 @@ public class HudScreen extends Screen {
 		}
 
 		super.render(matrix, mouseX, mouseY, delta);
+
+		// NAVBAR
+		navBar.draw(matrix, mouseX, mouseY, delta);
+		for(me.srgantmoomoo.beachhouse.gui.navbar.Button button : navBar.buttons) {
+			button.mouseClicked(mouseX, mouseY);
+			button.mouseReleased(mouseX, mouseY);
+		}
 	}
 }

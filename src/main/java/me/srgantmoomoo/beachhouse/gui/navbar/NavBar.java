@@ -1,6 +1,8 @@
 package me.srgantmoomoo.beachhouse.gui.navbar;
 
 import me.srgantmoomoo.beachhouse.gui.navbar.buttons.ClickGuiButton;
+import me.srgantmoomoo.beachhouse.gui.navbar.buttons.CommandLineButton;
+import me.srgantmoomoo.beachhouse.gui.navbar.buttons.HudEditorButton;
 import net.minecraft.client.util.math.MatrixStack;
 
 import java.util.ArrayList;
@@ -14,6 +16,10 @@ public class NavBar {
 
         ClickGuiButton clickGuiButton = new ClickGuiButton();
         buttons.add(clickGuiButton);
+        CommandLineButton commandLineButton = new CommandLineButton();
+        buttons.add(commandLineButton);
+        HudEditorButton hudEditorButton = new HudEditorButton();
+        buttons.add(hudEditorButton);
 
         INSTANCE = this;
     }
