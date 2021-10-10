@@ -70,20 +70,13 @@ public class ModuleButton extends Button {
             newName = newName.substring(0, 10) + Formatting.GRAY + " ...";
         }
 
-        // if hover is enabled and module is hovered, draw full name hovered.
-        if(ClickGui.INSTANCE.hover.isEnabled()) {
-            if(hovered)
+        if(hovered) {
+            if (ClickGui.INSTANCE.hover.isEnabled())
                 Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
             else
-                Reference.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-        }else {
-            // if hover aint enabled and hovered, draw full name.
-            if(hovered)
                 Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-            else
-                // if hover aint enabled and not hovered... if module enabled, draw newname, else draw full name unhovered.
-                Reference.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-        }
+        }else
+            Reference.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
     }
 
     private final Identifier check = new Identifier(Main.modid, "check.png");
