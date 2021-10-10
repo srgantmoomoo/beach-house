@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.navbar.buttons;
 
+import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
 import me.srgantmoomoo.beachhouse.gui.navbar.Button;
 import net.minecraft.client.gui.hud.InGameHud;
