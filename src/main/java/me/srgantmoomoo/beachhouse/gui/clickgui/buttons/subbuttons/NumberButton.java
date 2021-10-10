@@ -1,6 +1,5 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
 
-import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
@@ -36,7 +35,7 @@ public class NumberButton extends Button {
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() - 1 + offset, parent.parent.getX() + parent.newx() + (int) sliderWidth, parent.parent.getY() + offset, 0xff11c1e8);
 
-        Reference.textRenderer.drawWithShadow(matrix, this.set.name + " " + Formatting.GRAY + "<" + this.set.getValue() + ">", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
+        minecraft.textRenderer.drawWithShadow(matrix, this.set.name + " " + Formatting.GRAY + "<" + this.set.getValue() + ">", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
     }
 
     // using this method so that i dont have to do this in both updateComponent and mouseClicked.
@@ -93,7 +92,7 @@ public class NumberButton extends Button {
     public void mouseClicked(int mouseX, int mouseY) {
         if (this.isMouseOnButton(mouseX, mouseY)) {
             if(this.parent.isOpen()) {
-                if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+                if (GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                     this.dragging = true;
 
                     renderOne(mouseX, mouseY);

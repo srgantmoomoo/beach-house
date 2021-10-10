@@ -1,9 +1,10 @@
-package me.srgantmoomoo.beachhouse.gui.clickgui;
+package me.srgantmoomoo.beachhouse.gui.navbar;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 
 public class Button {
+
     protected MinecraftClient minecraft = MinecraftClient.getInstance();
 
     public void renderComponent(MatrixStack matrix) {}
@@ -17,5 +18,7 @@ public class Button {
     public void keyTyped(int key) {}
 
     public void closeAllSub() {}
+
+    public void setOff(final int newOff) {}
 
 }

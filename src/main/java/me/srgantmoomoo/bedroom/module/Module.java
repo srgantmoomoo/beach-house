@@ -18,7 +18,7 @@ import net.minecraft.client.MinecraftClient;
 
 public abstract class Module {
 
-    public static final MinecraftClient minecraft = MinecraftClient.getInstance();
+    protected final MinecraftClient minecraft = MinecraftClient.getInstance();
 
     public String name, ID, description;
     public KeybindSetting keyCode = new KeybindSetting(0);

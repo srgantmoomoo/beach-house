@@ -2,7 +2,6 @@ package me.srgantmoomoo.beachhouse.gui.clickgui.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons.*;
@@ -72,11 +71,11 @@ public class ModuleButton extends Button {
 
         if(hovered) {
             if (ClickGui.INSTANCE.hover.isEnabled())
-                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
+                minecraft.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
             else
-                Reference.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+                minecraft.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
         }else
-            Reference.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+            minecraft.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
     }
 
     private final Identifier check = new Identifier(Main.modid, "check.png");
@@ -124,13 +123,13 @@ public class ModuleButton extends Button {
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
         if(isMouseOnButton(mouseX, mouseY)) {
-            if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+            if (GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                 mouseHeld = true;
                 this.mod.toggle();
-            } else if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE && mouseHeld)
+            } else if (GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE && mouseHeld)
                 mouseHeld = false;
 
-            if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld2) {
+            if (GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld2) {
                 mouseHeld2 = true;
                 if (!this.isOpen()) {
                     // if i want settings to close across all panels i would use this.
@@ -142,7 +141,7 @@ public class ModuleButton extends Button {
                 } else {
                     this.setOpen(false);
                 }
-            } else if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE && mouseHeld2)
+            } else if (GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE && mouseHeld2)
                 mouseHeld2 = false;
         }
         for (Button comp : this.subcomponents) {
@@ -181,7 +180,7 @@ public class ModuleButton extends Button {
     }
 
     public boolean onWall() {
-        int secondWidth = Reference.minecraft.getWindow().getScaledWidth() - (parent.getX() + 90);
+        int secondWidth = minecraft.getWindow().getScaledWidth() - (parent.getX() + 90);
         if(secondWidth < 89)
             return true;
         else

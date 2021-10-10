@@ -1,6 +1,5 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
 
-import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
@@ -29,10 +28,10 @@ public class KeybindButton extends Button {
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
 
         if (isBinding) {
-            Reference.textRenderer.drawWithShadow(matrix, "Listening" + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
+            minecraft.textRenderer.drawWithShadow(matrix, "Listening" + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
         } else {
             String keyName = GLFW.glfwGetKeyName(this.parent.mod.getKey(), GLFW.glfwGetKeyScancode(this.parent.mod.getKey()));
-            Reference.textRenderer.drawWithShadow(matrix, "Bind" + Formatting.GRAY + " " + keyName, parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
+            minecraft.textRenderer.drawWithShadow(matrix, "Bind" + Formatting.GRAY + " " + keyName, parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
         }
     }
 
@@ -47,10 +46,10 @@ public class KeybindButton extends Button {
     public void mouseClicked(int mouseX, int mouseY) {
         if (this.parent.isOpen()) {
             if(isMouseOnButton(mouseX, mouseY)) {
-                if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                if (GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                     mouseHeld = true;
                     this.isBinding = !this.isBinding;
-                } else if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
+                } else if (GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
                     mouseHeld = false;
             }
         }
@@ -59,13 +58,13 @@ public class KeybindButton extends Button {
     @Override
     public void keyTyped(int key) {
         if (this.isBinding) {
-            if(GLFW.glfwGetKey(Reference.window.getHandle(), GLFW.GLFW_KEY_BACKSPACE) == GLFW.GLFW_PRESS) {
+            if(GLFW.glfwGetKey(minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_BACKSPACE) == GLFW.GLFW_PRESS) {
                 this.parent.mod.setKey(0);
                 this.isBinding = false;
-            }else if(GLFW.glfwGetKey(Reference.window.getHandle(), GLFW.GLFW_KEY_DELETE) == GLFW.GLFW_PRESS) {
+            }else if(GLFW.glfwGetKey(minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_DELETE) == GLFW.GLFW_PRESS) {
                 this.parent.mod.setKey(0);
                 this.isBinding = false;
-            }else if(GLFW.glfwGetKey(Reference.window.getHandle(), GLFW.GLFW_KEY_ESCAPE) == GLFW.GLFW_PRESS) {
+            }else if(GLFW.glfwGetKey(minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_ESCAPE) == GLFW.GLFW_PRESS) {
                 this.isBinding = false;
             }else {
                 this.parent.mod.setKey(key);

@@ -1,6 +1,5 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
 
-import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
@@ -33,15 +32,15 @@ public class ModeButton extends Button {
     public void renderComponent(MatrixStack matrix) {
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
 
-        if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) > 86)
+        if (minecraft.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) > 86)
             toBig = true;
-        else if (Reference.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
+        else if (minecraft.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
             toBig = false;
 
         if (toBig && !hovered) {
-            Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
+            minecraft.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
         } else {
-            Reference.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
+            minecraft.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
         }
     }
 
@@ -57,7 +56,7 @@ public class ModeButton extends Button {
         if (this.isMouseOnButton(mouseX, mouseY)) {
             hovered = true;
             if(this.parent.isOpen()) {
-                if(GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                     mouseHeld = true;
                     final int maxIndex = this.op.modes.size() - 1;
                     this.modeIndex++;
@@ -65,7 +64,7 @@ public class ModeButton extends Button {
                         this.modeIndex = 0;
                     }
                     this.op.setMode(this.op.modes.get(this.modeIndex));
-                }else if(GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
+                }else if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
                     mouseHeld = false;
             }
         }else
