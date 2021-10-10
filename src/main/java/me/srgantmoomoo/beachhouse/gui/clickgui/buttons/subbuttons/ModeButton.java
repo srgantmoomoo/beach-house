@@ -1,8 +1,8 @@
-package me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents;
+package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleComponent;
+import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
+import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -10,15 +10,15 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
 
-public class ModeComponent extends Component {
+public class ModeButton extends Button {
     private ModeSetting op;
-    private ModuleComponent parent;
+    private ModuleButton parent;
     private int offset;
     private int x;
     private int y;
     private int modeIndex;
 
-    public ModeComponent(ModeSetting op, ModuleComponent parent, int offset) {
+    public ModeButton(ModeSetting op, ModuleButton parent, int offset) {
         this.op = op;
         this.parent = parent;
         this.x = parent.parent.getX() + parent.parent.getWidth();

@@ -1,7 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleComponent;
+import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.MinecraftClient;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Panel {
     protected MinecraftClient mc = MinecraftClient.getInstance();
 
-    public ArrayList<Component> components;
+    public ArrayList<Button> buttons;
     public String title;
     public int x;
     public int y;
@@ -30,7 +30,7 @@ public class Panel {
     public static boolean globalBoolean = false;
 
     public Panel(String title, int x, int y, int width, int height, boolean focused, Module.Category cat) {
-        this.components = new ArrayList<>();
+        this.buttons = new ArrayList<>();
         this.title = title;
         this.x = x;
         this.y = y;
@@ -46,8 +46,8 @@ public class Panel {
 
         for (Module mod : Bedroom.moduleManager.getModules()) {
             if (mod.getCategory() == cat) {
-                ModuleComponent modButton = new ModuleComponent(mod, this, tY);
-                this.components.add(modButton);
+                ModuleButton modButton = new ModuleButton(mod, this, tY);
+                this.buttons.add(modButton);
                 tY += 12;
             }
         }
@@ -58,9 +58,9 @@ public class Panel {
 
         Reference.textRenderer.drawWithShadow(matrix, title, x + 2, y + height / 2 - Reference.textRenderer.fontHeight / 2, -1);
 
-        if (this.open && !this.components.isEmpty()) {
-            for (Component component : components) {
-                component.renderComponent(matrix);
+        if (this.open && !this.buttons.isEmpty()) {
+            for (Button button : buttons) {
+                button.renderComponent(matrix);
             }
         }
     }
@@ -81,13 +81,13 @@ public class Panel {
     }
 
     public void closeAllSettings() {
-        for (Component component : components) {
-            component.closeAllSub();
+        for (Button button : buttons) {
+            button.closeAllSub();
         }
     }
 
-    public ArrayList<Component> getComponents() {
-        return components;
+    public ArrayList<Button> getComponents() {
+        return buttons;
     }
 
     public int getWidth() {

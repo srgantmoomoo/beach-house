@@ -53,7 +53,6 @@ public class Modules {
         Bedroom.addModule(new FreeCam());
         Bedroom.addModule(new Jesus());
         Bedroom.addModule(new LiquidPlace());
-        Bedroom.addModule(new NoCollide());
         Bedroom.addModule(new PlayerVelocity());
         Bedroom.addModule(new NoFall());
         Bedroom.addModule(new Stealer());

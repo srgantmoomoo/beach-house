@@ -1,22 +1,22 @@
-package me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents;
+package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
-import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleComponent;
+import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
+import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
 
-public class ColorComponent extends Component {
+public class ColorButton extends Button {
     private ColorSetting op;
-    private ModuleComponent parent;
+    private ModuleButton parent;
     private int offset;
     private int x;
     private int y;
 
-    public ColorComponent(ColorSetting op, ModuleComponent parent, int offset) {
+    public ColorButton(ColorSetting op, ModuleButton parent, int offset) {
         this.op = op;
         this.parent = parent;
         this.x = parent.parent.getX() + parent.parent.getWidth();

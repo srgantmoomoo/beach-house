@@ -6,7 +6,6 @@ import me.srgantmoomoo.bedroom.event.events.EventTick;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import net.minecraft.block.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShapes;
 

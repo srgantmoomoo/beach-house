@@ -1,8 +1,8 @@
-package me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents;
+package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.ModuleComponent;
+import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
+import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -13,16 +13,16 @@ import org.lwjgl.glfw.GLFW;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class NumberComponent extends Component {
+public class NumberButton extends Button {
     private NumberSetting set;
-    private ModuleComponent parent;
+    private ModuleButton parent;
     private int offset;
     private int x;
     private int y;
     private boolean dragging;
     private double sliderWidth;
 
-    public NumberComponent(NumberSetting value, ModuleComponent button, int offset) {
+    public NumberButton(NumberSetting value, ModuleButton button, int offset) {
         this.dragging = false;
         this.set = value;
         this.parent = button;

@@ -1,11 +1,11 @@
-package me.srgantmoomoo.beachhouse.gui.clickgui.components;
+package me.srgantmoomoo.beachhouse.gui.clickgui.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.gui.clickgui.Component;
+import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
-import me.srgantmoomoo.beachhouse.gui.clickgui.components.subcomponents.*;
+import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons.*;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
@@ -20,8 +20,8 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 
-public class ModuleComponent extends Component {
-    private ArrayList<Component> subcomponents;
+public class ModuleButton extends Button {
+    private ArrayList<Button> subcomponents;
     public Module mod;
     public Panel parent;
     public int offset;
@@ -30,7 +30,7 @@ public class ModuleComponent extends Component {
     int mousexx;
     int mouseyy;
 
-    public ModuleComponent(Module mod, Panel parent, int offset) {
+    public ModuleButton(Module mod, Panel parent, int offset) {
         this.mod = mod;
         this.parent = parent;
         this.offset = offset;
@@ -42,15 +42,15 @@ public class ModuleComponent extends Component {
         if(mod.settings != null) {
             for(Setting setting : mod.settings) {
                 if(setting instanceof BooleanSetting) {
-                    this.subcomponents.add(new BooleanComponent((BooleanSetting) setting, this, opY));
+                    this.subcomponents.add(new BooleanButton((BooleanSetting) setting, this, opY));
                     opY += 12;
                 }
                 if(setting instanceof NumberSetting) {
-                    this.subcomponents.add(new NumberComponent((NumberSetting) setting, this, opY));
+                    this.subcomponents.add(new NumberButton((NumberSetting) setting, this, opY));
                     opY += 12;
                 }
                 if(setting instanceof ModeSetting) {
-                    this.subcomponents.add(new ModeComponent((ModeSetting) setting, this, opY));
+                    this.subcomponents.add(new ModeButton((ModeSetting) setting, this, opY));
                     opY += 12;
                 }
                 /*if(setting instanceof ColorSetting) {
@@ -59,7 +59,7 @@ public class ModuleComponent extends Component {
                 }*/
             }
         }
-        this.subcomponents.add(new KeybindComponent(this, opY));
+        this.subcomponents.add(new KeybindButton(this, opY));
     }
 
     // using this method to draw module names with "..." AND some other things like hovering.
@@ -101,7 +101,7 @@ public class ModuleComponent extends Component {
         }
 
         if (this.open && !this.subcomponents.isEmpty()) {
-            for (Component comp : this.subcomponents) {
+            for (Button comp : this.subcomponents) {
                 comp.renderComponent(matrix);
             }
         }
@@ -120,7 +120,7 @@ public class ModuleComponent extends Component {
         mouseyy = mouseY - 5;
 
         if (!this.subcomponents.isEmpty()) {
-            for (Component comp : this.subcomponents) {
+            for (Button comp : this.subcomponents) {
                 comp.updateComponent(mouseX, mouseY);
             }
         }
@@ -152,21 +152,21 @@ public class ModuleComponent extends Component {
             } else if (GLFW.glfwGetMouseButton(Reference.window.getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE && mouseHeld2)
                 mouseHeld2 = false;
         }
-        for (Component comp : this.subcomponents) {
+        for (Button comp : this.subcomponents) {
             comp.mouseClicked(mouseX, mouseY);
         }
     }
 
     @Override
     public void keyTyped(int key) {
-        for (Component comp : this.subcomponents) {
+        for (Button comp : this.subcomponents) {
             comp.keyTyped(key);
         }
     }
 
     @Override
     public void mouseReleased(int mouseX, int mouseY) {
-        for (Component comp : this.subcomponents) {
+        for (Button comp : this.subcomponents) {
             comp.mouseReleased(mouseX, mouseY);
         }
     }

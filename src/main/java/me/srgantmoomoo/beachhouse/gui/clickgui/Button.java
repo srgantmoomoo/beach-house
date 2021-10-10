@@ -3,7 +3,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class Component {
+public class Button {
     protected MinecraftClient mc = MinecraftClient.getInstance();
 
     public void renderComponent(MatrixStack matrix) {}

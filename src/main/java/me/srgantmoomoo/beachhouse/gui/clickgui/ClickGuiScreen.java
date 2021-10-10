@@ -45,7 +45,7 @@ public class ClickGuiScreen extends Screen {
             p.updatePosition(mouseX, mouseY);
             p.drawScreen(matrix, mouseX, mouseY, delta);
 
-            for (Component comp : p.getComponents()) {
+            for (Button comp : p.getComponents()) {
                 comp.updateComponent(mouseX, mouseY);
             }
         }
@@ -73,8 +73,8 @@ public class ClickGuiScreen extends Screen {
             }
 
             if (p.isOpen() && !p.getComponents().isEmpty()) {
-                for (Component component : p.getComponents()) {
-                    component.mouseClicked(mouseX, mouseY);
+                for (Button button : p.getComponents()) {
+                    button.mouseClicked(mouseX, mouseY);
                 }
             }
         }
@@ -86,8 +86,8 @@ public class ClickGuiScreen extends Screen {
             }
 
             if (p.isOpen() && !p.getComponents().isEmpty()) {
-                for (Component component : p.getComponents()) {
-                    component.mouseReleased(mouseX, mouseY);
+                for (Button button : p.getComponents()) {
+                    button.mouseReleased(mouseX, mouseY);
                 }
             }
         }
@@ -99,8 +99,8 @@ public class ClickGuiScreen extends Screen {
     public void onKeyPressed(int key) {
         for (Panel panel : panels) {
             if (panel.isOpen() && !panel.getComponents().isEmpty() && GLFW.glfwGetKey(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_KEY_ESCAPE) != GLFW.GLFW_PRESS) {
-                for (Component component : panel.getComponents()) {
-                    component.keyTyped(key);
+                for (Button button : panel.getComponents()) {
+                    button.keyTyped(key);
                 }
             }
         }
