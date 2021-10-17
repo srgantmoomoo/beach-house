@@ -49,7 +49,7 @@ public class PlayerInfo extends HudModule {
         InGameHud.fill(matrix, getX(), getY(), getX() + 106, getY() + 44, 0x90000000); //0x60EB78DF
 
         assert minecraft.player != null;
-        minecraft.textRenderer.drawWithShadow(matrix, minecraft.player.getName(), getX() + getWidth() - 54, getY() + 32, 0xffffffff);
+        minecraft.textRenderer.drawWithShadow(matrix, minecraft.player.getName(), (getX() + getWidth()) - (minecraft.textRenderer.getWidth(minecraft.player.getName()) + 2), getY() + 32, 0xffffffff);
 
         healthString(matrix);
         healthBar(matrix);
