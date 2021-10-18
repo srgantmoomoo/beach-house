@@ -42,14 +42,14 @@ public class PlayerInfo extends HudModule {
 
     @Override
     public int getHeight() {
-        return 44;
+        return 46;
     }
 
     private void drawFinale(MatrixStack matrix) {
-        InGameHud.fill(matrix, getX(), getY(), getX() + 106, getY() + 44, 0x90000000); //0x60EB78DF
+        InGameHud.fill(matrix, getX(), getY(), getX() + getWidth(), getY() + getHeight(), 0x90000000); //0x60EB78DF
 
         assert minecraft.player != null;
-        minecraft.textRenderer.drawWithShadow(matrix, minecraft.player.getName(), (getX() + getWidth()) - (minecraft.textRenderer.getWidth(minecraft.player.getName()) + 2), getY() + 32, 0xffffffff);
+        minecraft.textRenderer.drawWithShadow(matrix, minecraft.player.getName(), (getX() + getWidth()) - (minecraft.textRenderer.getWidth(minecraft.player.getName()) + 2), getY() + 34, 0xffffffff);
 
         healthString(matrix);
         healthBar(matrix);
@@ -57,8 +57,8 @@ public class PlayerInfo extends HudModule {
         // mainhand and offhand items
         int x = 1;
         for (ItemStack itemStack : minecraft.player.getItemsHand()) {
-            minecraft.getItemRenderer().renderGuiItemIcon(itemStack, getX() + 1 + x, getY() + 26);
-            minecraft.getItemRenderer().renderGuiItemOverlay(minecraft.textRenderer, itemStack, getX() + 1 + x, getY() + 26);
+            minecraft.getItemRenderer().renderGuiItemIcon(itemStack, getX() + 1 + x, getY() + 28);
+            minecraft.getItemRenderer().renderGuiItemOverlay(minecraft.textRenderer, itemStack, getX() + 1 + x, getY() + 28);
             x += 20;
             //mc.getItemRenderer().renderGuiItemIcon(itemStack.split(1), 0 ,0);
         }
@@ -66,16 +66,11 @@ public class PlayerInfo extends HudModule {
         // armor items
         int x1 = 1;
         for (ItemStack itemStack : minecraft.player.getArmorItems()) {
-            minecraft.getItemRenderer().renderGuiItemIcon(itemStack, getX() + getWidth() - 19 + x1, getY() + 2);
-            minecraft.getItemRenderer().renderGuiItemOverlay(minecraft.textRenderer, itemStack, getX() + getWidth() - 19 + x1, getY() + 2);
+            minecraft.getItemRenderer().renderGuiItemIcon(itemStack, getX() + getWidth() - 19 + x1, getY() + 4);
+            minecraft.getItemRenderer().renderGuiItemOverlay(minecraft.textRenderer, itemStack, getX() + getWidth() - 19 + x1, getY() + 4);
             x1 += -18;
         }
 
-    }
-
-    private void drawBar(MatrixStack matrix, Identifier identifier) {
-        RenderSystem.setShaderTexture(0, identifier);
-        InGameHud.drawTexture(matrix, getX() + 8, getY() + 2, 22, 22, 0, 0, 22, 22, 22, 22);
     }
 
     private void healthBar(MatrixStack matrix) {
@@ -97,28 +92,33 @@ public class PlayerInfo extends HudModule {
         }
     }
 
-    private void drawString(MatrixStack matrix, int x, int color) {
-        assert minecraft.player != null;
-        String playerHealth = String.valueOf((int) minecraft.player.getHealth());
-        minecraft.textRenderer.drawWithShadow(matrix, playerHealth, getX() + x, getY() + 10, color);
+    private void drawBar(MatrixStack matrix, Identifier identifier) {
+        RenderSystem.setShaderTexture(0, identifier);
+        InGameHud.drawTexture(matrix, getX() + 8, getY() + 4, 22, 22, 0, 0, 22, 22, 22, 22);
     }
 
     private void healthString(MatrixStack matrix) {
         assert minecraft.player != null;
+        String playerHealth = String.valueOf((int) minecraft.player.getHealth());
+
         if(minecraft.player.getHealth() == 20) {
-            drawString(matrix, 14, 0xff00ff00);
+            int x = 14;
+            minecraft.textRenderer.drawWithShadow(matrix, playerHealth, getX() + x, getY() + 12, 0xff00ff00);
         }
 
         if(minecraft.player.getHealth() < 20 && minecraft.player.getHealth() >= 10) {
-            drawString(matrix, 14, 0xffffffff);
+            int x = 14;
+            minecraft.textRenderer.drawWithShadow(matrix, playerHealth, getX() + x, getY() + 12, 0xffffffff);
         }
 
         if(minecraft.player.getHealth() < 10 && minecraft.player.getHealth() > 5) {
-            drawString(matrix, 17, 0xffffa500);
+            int x = 17;
+            minecraft.textRenderer.drawWithShadow(matrix, playerHealth, getX() + x, getY() + 12, 0xffffa500);
         }
 
         if(minecraft.player.getHealth() <= 5) {
-            drawString(matrix, 17, 0xffff0000);
+            int x = 17;
+            minecraft.textRenderer.drawWithShadow(matrix, playerHealth, getX() + x, getY() + 12, 0xffff0000);
         }
     }
 
