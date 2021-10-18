@@ -25,6 +25,7 @@ public class CommandLineScreen extends Screen {
         super(new LiteralText("commandline"));
     }
 
+    public boolean commandFound;
     public static String input = "";
     public static List<String> outputs = new ArrayList<>();
 
@@ -68,6 +69,9 @@ public class CommandLineScreen extends Screen {
         if(Reference.minecraft.currentScreen instanceof CommandLineScreen) {
             if(key == GLFW.GLFW_KEY_ENTER) {
                 resetInputLine();
+                if (!commandFound) {
+                    outputs.add(Formatting.RED + "no russian. no russian.");
+                }
                 return;
             }
 
@@ -97,7 +101,8 @@ public class CommandLineScreen extends Screen {
         if(input.isEmpty())
             return Formatting.GRAY + "ily tommy.";
 
-        if (Reference.textRenderer.getWidth(Formatting.WHITE + input) < this.width) return input;
+        if (Reference.textRenderer.getWidth(Formatting.WHITE + input) < this.width)
+            return input;
         else resetInputLine();
 
         return "";
@@ -105,7 +110,7 @@ public class CommandLineScreen extends Screen {
 
     private void executeCommand(String input) {
         if (input.split(" ").length > 0) {
-            boolean commandFound = false;
+            commandFound = false;
             String commandName = input.split(" ")[0];
             for (Command c : Bedroom.commandManager.commands) {
                 if (c.aliases.contains(commandName) || c.name.equalsIgnoreCase(commandName)) {
@@ -113,9 +118,6 @@ public class CommandLineScreen extends Screen {
                     commandFound = true;
                     break;
                 }
-            }
-            if (!commandFound) {
-                outputs.add(Formatting.RED + "no russian. no russian.");
             }
         }
     }

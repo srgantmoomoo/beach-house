@@ -44,6 +44,7 @@ import net.fabricmc.api.ModInitializer;
 //TODO ADA graph.
 
 //TODO figuerw out why that doesn't work (commands line & camera zoom).
+//TODO scrolling in command line and top down option.
 //TODO get settings in the hud.
 //TODO bedroom.
 //TODO xray.
