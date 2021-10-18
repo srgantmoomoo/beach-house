@@ -11,6 +11,4 @@ public class Button {
 
     public void mouseClicked(int mouseX, int mouseY) {}
 
-    public void mouseReleased(int mouseX, int mouseY) {}
-
 }

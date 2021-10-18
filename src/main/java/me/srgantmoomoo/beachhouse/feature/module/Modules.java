@@ -60,7 +60,6 @@ public class Modules {
         Bedroom.addModule(new BlockHighlight());
         Bedroom.addModule(new CameraZoom());
         Bedroom.addModule(new EntityEsp());
-        //Bedroom.addModule(new Esp());
         Bedroom.addModule(new FullBright());
         Bedroom.addModule(new Nametags());
         Bedroom.addModule(new RainbowEnchant());

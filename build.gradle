@@ -32,14 +32,19 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	// for using shaders
 	modImplementation "io.github.ladysnake:satin:${satin_version}"
 	include "io.github.ladysnake:satin:${satin_version}"
 
+	// multiconnect implementation
 	modImplementation 'net.earthcomputer.multiconnect:multiconnect-api:1.4.15'
 	include 'net.earthcomputer.multiconnect:multiconnect-api:1.4.15'
 
+	// discord rpc
 	modImplementation "club.minnced:java-discord-rpc:2.0.1"
 	include "club.minnced:java-discord-rpc:2.0.1"
+
+	//implementation "com.github.beach-house-development:bedroom:4-pre26" // this is currently the only version that actually build successfully
 }
 
 minecraft {

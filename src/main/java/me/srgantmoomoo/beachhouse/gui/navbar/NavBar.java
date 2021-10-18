@@ -15,10 +15,11 @@ public class NavBar {
         this.buttons = new ArrayList<>();
 
         ClickGuiButton clickGuiButton = new ClickGuiButton();
-        buttons.add(clickGuiButton);
         CommandLineButton commandLineButton = new CommandLineButton();
-        buttons.add(commandLineButton);
         HudEditorButton hudEditorButton = new HudEditorButton();
+
+        buttons.add(clickGuiButton);
+        buttons.add(commandLineButton);
         buttons.add(hudEditorButton);
 
         INSTANCE = this;

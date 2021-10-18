@@ -60,7 +60,6 @@ public class CommandLineScreen extends Screen {
         navBar.draw(matrix, mouseX, mouseY, delta);
         for(me.srgantmoomoo.beachhouse.gui.navbar.Button button : navBar.buttons) {
             button.mouseClicked(mouseX, mouseY);
-            button.mouseReleased(mouseX, mouseY);
         }
     }
 
@@ -75,7 +74,7 @@ public class CommandLineScreen extends Screen {
             String keyPressed = "";
 
             if (key != GLFW.GLFW_KEY_ESCAPE && key != GLFW.GLFW_KEY_LEFT_SHIFT && key != GLFW.GLFW_KEY_LEFT_ALT
-                    && key != GLFW.GLFW_KEY_LEFT_CONTROL && key != GLFW.GLFW_KEY_LEFT_SUPER) {
+                    && key != GLFW.GLFW_KEY_LEFT_CONTROL && key != GLFW.GLFW_KEY_LEFT_SUPER && key != GLFW.GLFW_KEY_RIGHT_SHIFT && key != GLFW.GLFW_KEY_INSERT) {
                 if (GLFW.glfwGetKey(Reference.window.getHandle(), key) == GLFW.GLFW_PRESS) {
                     // space
                     if (key == GLFW.GLFW_KEY_SPACE) {
@@ -96,7 +95,7 @@ public class CommandLineScreen extends Screen {
 
     public String inputLine() {
         if(input.isEmpty())
-            return Formatting.GRAY + "ily tommy";
+            return Formatting.GRAY + "ily tommy.";
 
         if (Reference.textRenderer.getWidth(Formatting.WHITE + input) < this.width) return input;
         else resetInputLine();
@@ -116,7 +115,7 @@ public class CommandLineScreen extends Screen {
                 }
             }
             if (!commandFound) {
-                //outputs.add(Formatting.RED + "no russian");
+                outputs.add(Formatting.RED + "no russian. no russian.");
             }
         }
     }

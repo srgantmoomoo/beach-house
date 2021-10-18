@@ -25,7 +25,6 @@ public class TabGui extends HudModule {
 
     public int currentTab;
     public boolean expanded;
-    public boolean Tab;
 
     private final Identifier check = new Identifier(Main.modid, "check.png");
     public void drawFinale(MatrixStack matrix) {
@@ -57,8 +56,6 @@ public class TabGui extends HudModule {
             count++;
         }
 
-        // for expanded, i often use getX() + getWidth() and than plus an extra 1 to whatever number i would originally use for the x value, this gets the true x value of the expanded list...
-        // ... since getX() would just return the x value of the normal tab.
         if (expanded) {
             Category category = Module.Category.values()[currentTab];
             List<Module> modules = Bedroom.moduleManager.getModulesByCategory(category);
@@ -66,23 +63,31 @@ public class TabGui extends HudModule {
             if (modules.size() == 0)
                 return;
 
-            // backgound.
-            InGameHud.fill(matrix, getX() + getWidth() + 1, getY(), getX() + getWidth() + 90, getY() + 2 + modules.size() * 12, backgroundColor);
+            int settingsListX = getX() + getWidth() + 1;
+
+            // background
+            InGameHud.fill(matrix, settingsListX, getY(), getX() + getWidth() + 90, getY() + 2 + modules.size() * 12, backgroundColor);
 
             // selector
-            tr.draw(matrix, "-", getX() + getWidth() + 91, getY() + 2 + category.moduleIndex * 12 + 1, primaryColor);
+            tr.draw(matrix, "<", settingsListX + 90, getY() + 2 + category.moduleIndex * 12 + 1, primaryColor);
 
-            // draw the module
-            count = 0;
-            for (Module m : modules) {
-                tr.drawWithShadow(matrix, m.name, getX() + getWidth() + 3, getY() + 3 + count * 12, -1);
-                if (m.isEnabled()) {
-                    RenderSystem.setShaderTexture(0, check);
-                    InGameHud.drawTexture(matrix,  getX() + getWidth() + 90 - 12, getY() + 1 + count * 12, 10, 10, 0, 0, 10, 10, 10, 10);
-                }
-                count++;
-            }
+            // module names
+            drawModuleName(matrix, modules, tr, settingsListX);
         }
+    }
+
+    // draw the module name (with ... if too long & enabled) and checkmark if enabled. //TODO make some sorta focused boolean or smthn so i can draw ...'s.
+    private void drawModuleName(MatrixStack matrix, List<Module> modulesList, TextRenderer textRenderer, int x) {
+        int count = 0;
+        for (Module m : modulesList) {
+            textRenderer.drawWithShadow(matrix, m.name, getX() + getWidth() + 3, getY() + 3 + count * 12, -1);
+            if (m.isEnabled()) {
+                RenderSystem.setShaderTexture(0, check);
+                InGameHud.drawTexture(matrix,  getX() + getWidth() + 90 - 12, getY() + 1 + count * 12, 10, 10, 0, 0, 10, 10, 10, 10);
+            }
+            count++;
+        }
+        // if currenttab == something dot get indexOf(m)
     }
 
     // called in MixinKeyboard.

@@ -24,7 +24,7 @@ import net.fabricmc.api.ModInitializer;
  */
 
 //TODO font renderer.
-//TODO rainbow enchant so sexi D:
+//TODO rainbow enchant so sexi D:.
 //TODO animations.
 
 //TODO add a color setting to setting command.
@@ -42,6 +42,12 @@ import net.fabricmc.api.ModInitializer;
 //TODO notifications.
 //TODO radar hud module.
 //TODO ADA graph.
+
+//TODO figuerw out why that doesn't work (commands line & camera zoom).
+//TODO get settings in the hud.
+//TODO bedroom.
+//TODO xray.
+//TODO resets.
 
 public class Main implements ModInitializer {
 
