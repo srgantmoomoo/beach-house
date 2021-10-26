@@ -2,8 +2,9 @@ package me.srgantmoomoo.beachhouse.gui.options;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
-import me.srgantmoomoo.beachhouse.gui.options.buttons.GuiButton;
-import me.srgantmoomoo.beachhouse.gui.options.buttons.HudButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.gui.GuiButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.hud.HudButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.utilities.UtilitiesButton;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
@@ -21,9 +22,11 @@ public class OptionsScreen extends Screen {
 
         GuiButton guiButton = new GuiButton();
         HudButton hudButton = new HudButton();
+        UtilitiesButton utilitiesButton = new UtilitiesButton();
 
         buttons.add(guiButton);
         buttons.add(hudButton);
+        buttons.add(utilitiesButton);
     }
 
     @Override
@@ -35,12 +38,18 @@ public class OptionsScreen extends Screen {
 
         fill(matrix, 300, 92, screenWidth - 300, screenHeight - 80, 0x90000000);
 
+        //TODO this code is disgusting, fix it.
         if(GuiButton.selected) {
             fill(matrix, 300, 80 + 12, 300 + 1, 80 + 12 + 1, 0xfff868fB);
             fill(matrix, 300 + 20 + 1, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fB);
         }else if(HudButton.selected) {
             fill(matrix, 300, 80 + 12, 300 + 1 + 20 + 1, 80 + 12 + 1, 0xfff868fB);
-            fill(matrix, 300 + 1 + 20 + 24, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fB);
+            fill(matrix, 300 + 1 + 20 + 1 + 23, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fB);
+        }else if(UtilitiesButton.selected) {
+            int xOld =  300 + 1 + 20 + 1;
+            int xNew = xOld + 23 + 1; // +23 is the length of hudbutton, +1 to cover the distance between to two buttons....   really should clean up this code but im monkeying it rn.
+            fill(matrix, 300, 80 + 12, xNew, 80 + 12 + 1, 0xfff868fB);
+            fill(matrix, xNew + 40, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fB);
         }else
             fill(matrix, 300, 80 + 2 + 12, screenWidth - 300, 80 + 2 + 12 + 1, 0xfff868fB);
 

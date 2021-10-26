@@ -1,28 +1,30 @@
-package me.srgantmoomoo.beachhouse.gui.options.buttons;
+package me.srgantmoomoo.beachhouse.gui.options.buttons.utilities;
 
 import me.srgantmoomoo.beachhouse.gui.options.Button;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.gui.GuiButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.hud.HudButton;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
 
-public class ToolsButton extends Button {
+public class UtilitiesButton extends Button {
     int x;
     int y;
     int addx;
     int addy;
     public static boolean selected = false;
 
-    public ToolsButton() {
-        x = 300 + 2;
-        y = 80 + 2;
-        addx = 20;
+    public UtilitiesButton() {
+        x = 300 + 22 + 23 + 1;
+        y = 80;
+        addx = 40;
         addy = 12;
     }
 
     @Override
     public void drawButton(MatrixStack matrix) {
-        InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x60000000);
-        minecraft.textRenderer.drawWithShadow(matrix, "tools", x + 3, y  + 2, 0xffffffff);
+        InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x90000000);
+        minecraft.textRenderer.drawWithShadow(matrix, "utilities", x + 3, y  + 2, 0xffffffff);
     }
 
     @Override
@@ -30,6 +32,8 @@ public class ToolsButton extends Button {
         if(isMouseOnButton(mouseX, mouseY)) {
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                 selected = true;
+                GuiButton.selected = false;
+                HudButton.selected = false;
             }
         }
     }

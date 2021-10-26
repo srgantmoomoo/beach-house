@@ -1,6 +1,8 @@
-package me.srgantmoomoo.beachhouse.gui.options.buttons;
+package me.srgantmoomoo.beachhouse.gui.options.buttons.hud;
 
 import me.srgantmoomoo.beachhouse.gui.options.Button;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.gui.GuiButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.utilities.UtilitiesButton;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
@@ -31,6 +33,7 @@ public class HudButton extends Button {
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                 selected = true;
                 GuiButton.selected = false;
+                UtilitiesButton.selected = false;
             }
         }
     }
