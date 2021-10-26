@@ -17,6 +17,8 @@ public class Modules {
         Bedroom.addModule(new ClickGui());
         Bedroom.addModule(new HudEditor());
         Bedroom.addModule(new CommandLine());
+        Bedroom.addModule(new Options());
+        // discord rpc
 
         Bedroom.addModule(new AutoArmor());
         Bedroom.addModule(new AutoCrystal());

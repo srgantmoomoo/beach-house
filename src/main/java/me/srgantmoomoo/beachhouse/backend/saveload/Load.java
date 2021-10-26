@@ -7,6 +7,7 @@ import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.KeybindSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.MinecraftClient;
@@ -91,6 +92,9 @@ public class Load {
                         ((ColorSetting) setting).fromInteger(Integer.parseInt(args[3]));
                         ((ColorSetting) setting).setRainbow(Boolean.parseBoolean(args[4]));
                     }*/
+                    if (setting instanceof KeybindSetting) {
+                        ((KeybindSetting) setting).setKeyCode(Integer.parseInt(value));
+                    }
                 }
             }
 

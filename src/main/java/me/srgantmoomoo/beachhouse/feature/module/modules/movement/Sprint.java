@@ -9,7 +9,7 @@ import me.srgantmoomoo.bedroom.module.Module;
 public class Sprint extends Module {
 	
 	public Sprint() {
-		super("sprint", "sprint", "sprinttt.", GLFW.GLFW_KEY_G, Category.MOVEMENT);
+		super("sprint", "sprint", "sprinttt.", 0, Category.MOVEMENT);
 	}
 	
 	@SuppressWarnings("rawtypes")

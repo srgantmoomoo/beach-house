@@ -33,7 +33,7 @@ public class Woohoo extends HudModule {
 
 	@Override
 	public int getWidth() {
-		return 38;
+		return 37;
 	}
 
 	@Override

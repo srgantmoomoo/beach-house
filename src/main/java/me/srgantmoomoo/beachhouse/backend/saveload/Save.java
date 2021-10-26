@@ -7,10 +7,7 @@ import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
-import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
-import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
-import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
-import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.*;
 import net.minecraft.client.MinecraftClient;
 
 import java.io.File;
@@ -54,7 +51,7 @@ public class Save {
             ArrayList<String> toSave = new ArrayList<>();
 
             for(Module module : Bedroom.moduleManager.getModules()) {
-                if (module.isEnabled() && module.getID() != "clickgui" && module.getID() != "hudeditor" && module.getID() != "commandline") {
+                if (module.isEnabled() && !module.getID().equals("clickgui") && !module.getID().equals("hudeditor") && !module.getID().equals("commandline") && !module.getID().equals("options")) {
                     toSave.add(module.getName());
                 }
             }
@@ -90,6 +87,11 @@ public class Save {
                     if(setting instanceof ColorSetting) {
                         ColorSetting color = (ColorSetting) setting;
                         //toSave.add(setting.parent.getName() + ":" + setting.name + ":" + color.toInteger() + ":" + color.getRainbow());
+                    }
+
+                    if(setting instanceof KeybindSetting) {
+                        KeybindSetting keybind = (KeybindSetting) setting;
+                        toSave.add(setting.parent.getName() + ":" + setting.name + ":" + keybind.getKeyCode());
                     }
                 }
             }

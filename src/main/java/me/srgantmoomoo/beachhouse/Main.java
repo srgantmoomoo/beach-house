@@ -49,6 +49,11 @@ import net.fabricmc.api.ModInitializer;
 //TODO bedroom.
 //TODO xray.
 //TODO resets.
+//TODO binds in config.
+
+//TODO website
+//TODO discord rpc
+//TODO settings panel
 
 public class Main implements ModInitializer {
 

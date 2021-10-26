@@ -3,6 +3,8 @@ package me.srgantmoomoo.beachhouse.gui.hud.hudmodules;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 
 public class PotionEffects extends HudModule {
 
@@ -12,7 +14,6 @@ public class PotionEffects extends HudModule {
 
     private void drawFinale(MatrixStack matrix) {
         assert minecraft.player != null;
-        minecraft.textRenderer.drawWithShadow(matrix, minecraft.player.getStatusEffects() + "", getX(), getY(), 0xffffffff);
     }
 
     @Override
@@ -25,6 +26,16 @@ public class PotionEffects extends HudModule {
     @Override
     public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
         Main.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), hudEnabled ? 0xff00ff00 : 0xffffffff);
+
+        if(minecraft.player == null)
+            return;
+
+        for (StatusEffectInstance statusEffectInstance : minecraft.player.getStatusEffects()) {
+            StatusEffect statusEffect = statusEffectInstance.getEffectType();
+        }
+
+        minecraft.textRenderer.drawWithShadow(matrix, "potion example 0:00", getX(), getY(), 0xffffffff);
+
         drawFinale(matrix);
 
         super.drawDraggable(matrix, mouseX, mouseY);
@@ -32,11 +43,17 @@ public class PotionEffects extends HudModule {
 
     @Override
     public int getWidth() {
-        return 30;
+        if(minecraft.player != null) {
+            int width = minecraft.textRenderer.getWidth("potion example 0:00") + 1;
+
+            return width;
+        }
+
+        return 70;
     }
 
     @Override
     public int getHeight() {
-        return 30;
+        return 10;
     }
 }

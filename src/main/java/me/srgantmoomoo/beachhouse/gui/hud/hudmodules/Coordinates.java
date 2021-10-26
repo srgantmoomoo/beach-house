@@ -41,12 +41,12 @@ public class Coordinates extends HudModule {
             int width = minecraft.textRenderer.getWidth(
                     "(x)" + (int) minecraft.player.getX() + " "
                     + "(y)" + (int) minecraft.player.getY() + " "
-                    + "(z)" + (int) minecraft.player.getZ());
+                    + "(z)" + (int) minecraft.player.getZ()) + 2;
 
             return width;
         }
 
-        return 60;
+        return 90;
     }
 
     @Override
