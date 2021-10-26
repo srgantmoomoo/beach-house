@@ -13,15 +13,15 @@ public class GuiButton extends Button {
     public static boolean selected = false;
 
     public GuiButton() {
-        x = 300 + 2;
-        y = 80 + 2;
+        x = 300 + 1;
+        y = 80;
         addx = 20;
         addy = 12;
     }
 
     @Override
     public void drawButton(MatrixStack matrix) {
-        InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x60000000);
+        InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x90000000);
         minecraft.textRenderer.drawWithShadow(matrix, "gui", x + 3, y  + 2, 0xffffffff);
     }
 

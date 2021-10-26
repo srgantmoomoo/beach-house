@@ -13,15 +13,15 @@ public class HudButton extends Button {
     public static boolean selected = false;
 
     public HudButton() {
-        x = 300 + 24;
-        y = 80 + 2;
+        x = 300 + 22;
+        y = 80;
         addx = 23;
         addy = 12;
     }
 
     @Override
     public void drawButton(MatrixStack matrix) {
-        InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x60000000);
+        InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x90000000);
         minecraft.textRenderer.drawWithShadow(matrix, "hud", x + 3, y  + 2, 0xffffffff);
     }
 

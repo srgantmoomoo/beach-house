@@ -33,14 +33,14 @@ public class OptionsScreen extends Screen {
         int screenWidth = Reference.window.getScaledWidth();
         int screenHeight = Reference.window.getScaledHeight();
 
-        fill(matrix, 300, 80, screenWidth - 300, screenHeight - 80, 0x90000000);
+        fill(matrix, 300, 92, screenWidth - 300, screenHeight - 80, 0x90000000);
 
         if(GuiButton.selected) {
-            fill(matrix, 300, 80 + 2 + 12, 300 + 2, 80 + 2 + 12 + 1, 0xfff868fB);
-            fill(matrix, 300 + 22, 80 + 2 + 12, screenWidth - 300, 80 + 2 + 12 + 1, 0xfff868fB);
+            fill(matrix, 300, 80 + 12, 300 + 1, 80 + 12 + 1, 0xfff868fB);
+            fill(matrix, 300 + 20 + 1, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fB);
         }else if(HudButton.selected) {
-            fill(matrix, 300, 80 + 2 + 12, 300 + 24, 80 + 2 + 12 + 1, 0xfff868fB);
-            fill(matrix, 300 + 24 + 23, 80 + 2 + 12, screenWidth - 300, 80 + 2 + 12 + 1, 0xfff868fB);
+            fill(matrix, 300, 80 + 12, 300 + 1 + 20 + 1, 80 + 12 + 1, 0xfff868fB);
+            fill(matrix, 300 + 1 + 20 + 24, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fB);
         }else
             fill(matrix, 300, 80 + 2 + 12, screenWidth - 300, 80 + 2 + 12 + 1, 0xfff868fB);
 
