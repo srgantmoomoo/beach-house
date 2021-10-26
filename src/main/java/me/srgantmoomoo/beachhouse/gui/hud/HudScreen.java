@@ -37,8 +37,6 @@ public class HudScreen extends Screen {
 
 		// NAVBAR
 		navBar.draw(matrix, mouseX, mouseY, delta);
-		for(me.srgantmoomoo.beachhouse.gui.navbar.Button button : navBar.buttons) {
-			button.mouseClicked(mouseX, mouseY);
-		}
+		navBar.mouseClicked(mouseX, mouseY);
 	}
 }

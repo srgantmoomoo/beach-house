@@ -31,4 +31,10 @@ public class NavBar {
         }
     }
 
+    public void mouseClicked(int mouseX, int mouseY) {
+        for(me.srgantmoomoo.beachhouse.gui.navbar.Button button : buttons) {
+            button.mouseClicked(mouseX, mouseY);
+        }
+    }
+
 }
