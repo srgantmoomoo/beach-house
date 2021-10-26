@@ -10,29 +10,26 @@ public class GuiButton extends Button {
     int y;
     int addx;
     int addy;
-    boolean clicked = false;
+    public static boolean selected = false;
 
     public GuiButton() {
-        x = 80 + 2;
-        y = 60 + 2;
-        addx = 44;
+        x = 300 + 2;
+        y = 80 + 2;
+        addx = 24;
         addy = 12;
     }
 
     @Override
     public void drawButton(MatrixStack matrix) {
-        InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x90000000);
-        minecraft.textRenderer.drawWithShadow(matrix, "gui >", x + 2, y  + 2, 0xffffffff);
-
-        if(clicked)
-            minecraft.textRenderer.drawWithShadow(matrix, "hey", x + addx + 30, y, 0xffffffff);
+        InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x60000000);
+        minecraft.textRenderer.drawWithShadow(matrix, "gui", x + 2, y  + 2, 0xffffffff);
     }
 
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
         if(isMouseOnButton(mouseX, mouseY)) {
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
-                clicked = true;
+                selected = true;
             }
         }
     }

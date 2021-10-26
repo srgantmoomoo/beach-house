@@ -29,7 +29,13 @@ public class OptionsScreen extends Screen {
         int screenWidth = Reference.window.getScaledWidth();
         int screenHeight = Reference.window.getScaledHeight();
 
-        InGameHud.fill(matrix, 200, 60, screenWidth - 200, screenHeight - 60, 0x90000000);
+        fill(matrix, 300, 80, screenWidth - 300, screenHeight - 80, 0x90000000);
+
+        if(GuiButton.selected) {
+            fill(matrix, 300, 80 + 2 + 12, 300 + 2, 80 + 2 + 12 + 1, 0xff11c1e8);
+            fill(matrix, 300 + 24 + 2, 80 + 2 + 12, screenWidth - 300, 80 + 2 + 12 + 1, 0xff11c1e8);
+        }else
+            fill(matrix, 300, 80 + 2 + 12, screenWidth - 300, 80 + 2 + 12 + 1, 0xff11c1e8);
 
         // call methods
         draw(matrix, mouseX, mouseY, delta);
