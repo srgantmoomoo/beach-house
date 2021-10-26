@@ -51,9 +51,9 @@ import net.fabricmc.api.ModInitializer;
 //TODO resets.
 //TODO binds in config.
 
-//TODO website
-//TODO discord rpc
-//TODO settings panel
+//TODO website.
+//TODO discord rpc.
+//TODO redo watermark style1 to fit new logo/
 
 public class Main implements ModInitializer {
 

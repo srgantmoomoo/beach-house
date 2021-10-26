@@ -14,7 +14,7 @@ public class ClickGuiButton extends Button {
     int addy;
 
     public ClickGuiButton() {
-        x = 460;
+        x = 432;
         y = 1;
         addx = 44;
         addy = 12;
@@ -32,8 +32,9 @@ public class ClickGuiButton extends Button {
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                 minecraft.openScreen(new ClickGuiScreen());
                 Bedroom.moduleManager.getModule("click gui").setEnabled(true);
-                Bedroom.moduleManager.getModule("command line").setEnabled(false);
                 Bedroom.moduleManager.getModule("hud editor").setEnabled(false);
+                Bedroom.moduleManager.getModule("command line").setEnabled(false);
+                Bedroom.moduleManager.getModule("options").setEnabled(false);
             }
         }
     }

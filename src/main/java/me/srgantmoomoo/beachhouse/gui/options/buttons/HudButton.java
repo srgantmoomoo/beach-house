@@ -5,24 +5,24 @@ import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
 
-public class GuiButton extends Button {
+public class HudButton extends Button {
     int x;
     int y;
     int addx;
     int addy;
     public static boolean selected = false;
 
-    public GuiButton() {
-        x = 300 + 2;
+    public HudButton() {
+        x = 300 + 24;
         y = 80 + 2;
-        addx = 20;
+        addx = 23;
         addy = 12;
     }
 
     @Override
     public void drawButton(MatrixStack matrix) {
         InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x60000000);
-        minecraft.textRenderer.drawWithShadow(matrix, "gui", x + 3, y  + 2, 0xffffffff);
+        minecraft.textRenderer.drawWithShadow(matrix, "hud", x + 3, y  + 2, 0xffffffff);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class GuiButton extends Button {
         if(isMouseOnButton(mouseX, mouseY)) {
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                 selected = true;
-                HudButton.selected = false;
+                GuiButton.selected = false;
             }
         }
     }

@@ -1,6 +1,5 @@
 package me.srgantmoomoo.beachhouse.gui.navbar.buttons;
 
-import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
 import me.srgantmoomoo.beachhouse.gui.navbar.Button;
 import me.srgantmoomoo.bedroom.Bedroom;
@@ -15,7 +14,7 @@ public class HudEditorButton extends Button {
     int addy;
 
     public HudEditorButton() {
-        x = 506;
+        x = 375;
         y = 1;
         addx = 55;
         addy = 12;
@@ -33,9 +32,9 @@ public class HudEditorButton extends Button {
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
                 minecraft.openScreen(new HudScreen());
                 Bedroom.moduleManager.getModule("hud editor").setEnabled(true);
-                Bedroom.moduleManager.getModule("command line").setEnabled(false);
                 Bedroom.moduleManager.getModule("click gui").setEnabled(false);
-
+                Bedroom.moduleManager.getModule("command line").setEnabled(false);
+                Bedroom.moduleManager.getModule("options").setEnabled(false);
             }
         }
     }
