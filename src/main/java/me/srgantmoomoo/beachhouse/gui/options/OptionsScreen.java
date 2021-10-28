@@ -51,7 +51,7 @@ public class OptionsScreen extends Screen {
             fill(matrix, 300, 80 + 12, xNew, 80 + 12 + 1, 0xfff868fB);
             fill(matrix, xNew + 40, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fB);
         }else
-            fill(matrix, 300, 80 + 2 + 12, screenWidth - 300, 80 + 2 + 12 + 1, 0xfff868fB);
+            fill(matrix, 300, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fB);
 
         // call methods for drawing and clicking
         for(Button button : buttons) {
