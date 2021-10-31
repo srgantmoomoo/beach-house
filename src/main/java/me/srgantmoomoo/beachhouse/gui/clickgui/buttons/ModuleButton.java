@@ -37,7 +37,6 @@ public class ModuleButton extends Button {
         this.open = false;
         int opY = offset + 12;
 
-
         if(mod.settings != null) {
             for(Setting setting : mod.settings) {
                 if(setting instanceof BooleanSetting) {

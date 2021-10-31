@@ -19,6 +19,7 @@ public class UtilitiesButton extends Button {
         addy = 12;
     }
 
+    // discord rpc and stuff.
     @Override
     public void drawButton(MatrixStack matrix) {
         InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x90000000);

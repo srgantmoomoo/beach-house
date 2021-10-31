@@ -19,6 +19,7 @@ public class ModuleButtons extends Button {
         this.mod = mod;
     }
 
+    // if module instanceof hudmodule;
     @Override
     public void drawButton(MatrixStack matrix) {
         minecraft.textRenderer.drawWithShadow(matrix, mod.getName(), x, y + offset, 0xffffffff);
