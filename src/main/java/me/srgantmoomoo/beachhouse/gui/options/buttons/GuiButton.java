@@ -1,11 +1,13 @@
-package me.srgantmoomoo.beachhouse.gui.options.buttons.gui;
+package me.srgantmoomoo.beachhouse.gui.options.buttons;
 
 import me.srgantmoomoo.beachhouse.gui.Button;
-import me.srgantmoomoo.beachhouse.gui.options.buttons.hud.HudButton;
-import me.srgantmoomoo.beachhouse.gui.options.buttons.utilities.UtilitiesButton;
+import me.srgantmoomoo.beachhouse.gui.options.ModuleButtons;
+import me.srgantmoomoo.bedroom.Bedroom;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
+
+import java.util.ArrayList;
 
 public class GuiButton extends Button {
     int x;
@@ -13,18 +15,35 @@ public class GuiButton extends Button {
     int addx;
     int addy;
     public static boolean selected = false;
+    public ArrayList<Button> buttons;
 
     public GuiButton() {
         x = 300 + 1;
         y = 80;
         addx = 20;
         addy = 12;
+        this.buttons = new ArrayList<>();
+
+        ModuleButtons button1 = new ModuleButtons(Bedroom.moduleManager.getModuleByID("clickgui"), 0);
+        this.buttons.add(button1);
+
+        ModuleButtons button2 = new ModuleButtons(Bedroom.moduleManager.getModuleByID("commandline"), 12);
+        this.buttons.add(button2);
+
+        ModuleButtons button3 = new ModuleButtons(Bedroom.moduleManager.getModuleByID("options"), 24);
+        this.buttons.add(button3);
     }
 
     @Override
     public void drawButton(MatrixStack matrix) {
         InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x90000000);
         minecraft.textRenderer.drawWithShadow(matrix, "gui", x + 3, y  + 2, 0xffffffff);
+
+        if(selected) {
+            for (Button button : buttons) {
+                button.drawButton(matrix);
+            }
+        }
     }
 
     @Override
@@ -34,6 +53,12 @@ public class GuiButton extends Button {
                 selected = true;
                 HudButton.selected = false;
                 UtilitiesButton.selected = false;
+            }
+        }
+
+        if(selected) {
+            for (Button button : buttons) {
+                button.mouseClicked(mouseX, mouseY);
             }
         }
     }

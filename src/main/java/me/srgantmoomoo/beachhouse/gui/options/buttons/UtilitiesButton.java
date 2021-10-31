@@ -1,8 +1,6 @@
-package me.srgantmoomoo.beachhouse.gui.options.buttons.utilities;
+package me.srgantmoomoo.beachhouse.gui.options.buttons;
 
 import me.srgantmoomoo.beachhouse.gui.Button;
-import me.srgantmoomoo.beachhouse.gui.options.buttons.gui.GuiButton;
-import me.srgantmoomoo.beachhouse.gui.options.buttons.hud.HudButton;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
