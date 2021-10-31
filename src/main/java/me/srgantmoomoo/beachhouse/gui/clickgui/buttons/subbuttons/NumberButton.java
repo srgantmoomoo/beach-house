@@ -1,6 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
 
-import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
@@ -31,7 +31,7 @@ public class NumberButton extends Button {
     }
 
     @Override
-    public void renderComponent(MatrixStack matrix) {
+    public void drawButton(MatrixStack matrix) {
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() - 1 + offset, parent.parent.getX() + parent.newx() + (int) sliderWidth, parent.parent.getY() + offset, 0xff11c1e8);
 
@@ -74,7 +74,7 @@ public class NumberButton extends Button {
     }
 
     @Override
-    public void updateComponent(int mouseX, int mouseY) {
+    public void updateButton(int mouseX, int mouseY) {
         renderOne(mouseX, mouseY);
     }
 

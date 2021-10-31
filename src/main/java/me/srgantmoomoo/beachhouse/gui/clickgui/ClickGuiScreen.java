@@ -2,6 +2,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.gui.screen.Screen;
@@ -49,7 +50,7 @@ public class ClickGuiScreen extends Screen {
             p.drawScreen(matrix, mouseX, mouseY, delta);
 
             for(Button comp : p.getComponents()) {
-                comp.updateComponent(mouseX, mouseY);
+                comp.updateButton(mouseX, mouseY);
             }
         }
 

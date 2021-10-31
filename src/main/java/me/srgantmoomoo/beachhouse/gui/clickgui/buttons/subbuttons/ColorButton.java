@@ -1,7 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
 
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
-import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -24,14 +24,14 @@ public class ColorButton extends Button {
     }
 
     @Override
-    public void renderComponent(MatrixStack matrix) {
+    public void drawButton(MatrixStack matrix) {
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
 
         minecraft.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
     }
 
     @Override
-    public void updateComponent(int mouseX, int mouseY) {
+    public void updateButton(int mouseX, int mouseY) {
         this.y = parent.parent.getY() + parent.newy() + this.offset;
         this.x = parent.parent.getX() + parent.newx();
     }

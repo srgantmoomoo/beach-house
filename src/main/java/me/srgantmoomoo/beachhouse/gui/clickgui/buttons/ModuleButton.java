@@ -2,7 +2,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.srgantmoomoo.beachhouse.Main;
-import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons.*;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
@@ -80,7 +80,7 @@ public class ModuleButton extends Button {
 
     private final Identifier check = new Identifier(Main.modid, "check.png");
     @Override
-    public void renderComponent(MatrixStack matrix) {
+    public void drawButton(MatrixStack matrix) {
 
         // module name and background
         InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
@@ -94,7 +94,7 @@ public class ModuleButton extends Button {
 
         if (this.open && !this.subcomponents.isEmpty()) {
             for (Button comp : this.subcomponents) {
-                comp.renderComponent(matrix);
+                comp.drawButton(matrix);
             }
         }
     }
@@ -105,7 +105,7 @@ public class ModuleButton extends Button {
     }
 
     @Override
-    public void updateComponent(int mouseX, int mouseY) {
+    public void updateButton(int mouseX, int mouseY) {
         this.hovered = this.isMouseOnButton(mouseX, mouseY);
 
         mousexx = mouseX + 10;
@@ -113,7 +113,7 @@ public class ModuleButton extends Button {
 
         if (!this.subcomponents.isEmpty()) {
             for (Button comp : this.subcomponents) {
-                comp.updateComponent(mouseX, mouseY);
+                comp.updateButton(mouseX, mouseY);
             }
         }
     }

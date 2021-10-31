@@ -1,6 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.options.buttons.gui;
 
-import me.srgantmoomoo.beachhouse.gui.options.Button;
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.hud.HudButton;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.utilities.UtilitiesButton;
 import net.minecraft.client.gui.hud.InGameHud;

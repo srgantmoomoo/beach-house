@@ -1,7 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.navbar.buttons;
 
-import me.srgantmoomoo.beachhouse.gui.hud.HudScreen;
-import me.srgantmoomoo.beachhouse.gui.navbar.Button;
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.options.OptionsScreen;
 import me.srgantmoomoo.bedroom.Bedroom;
 import net.minecraft.client.gui.hud.InGameHud;

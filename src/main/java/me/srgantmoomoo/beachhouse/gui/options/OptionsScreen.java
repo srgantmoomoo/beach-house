@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.options;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.gui.GuiButton;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.hud.HudButton;

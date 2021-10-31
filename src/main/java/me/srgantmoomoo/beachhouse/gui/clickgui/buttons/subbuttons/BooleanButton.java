@@ -1,6 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
 
-import me.srgantmoomoo.beachhouse.gui.clickgui.Button;
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
@@ -24,7 +24,7 @@ public class BooleanButton extends Button {
     }
 
     @Override
-    public void renderComponent(MatrixStack matrix) {
+    public void drawButton(MatrixStack matrix) {
         if (this.op.isEnabled()) {
             InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0xff11c1e8);
         } else {
@@ -35,7 +35,7 @@ public class BooleanButton extends Button {
     }
 
     @Override
-    public void updateComponent(int mouseX, int mouseY) {
+    public void updateButton(int mouseX, int mouseY) {
         this.y = parent.parent.getY() + parent.newy() + this.offset;
         this.x = parent.parent.getX() + parent.newx();
     }

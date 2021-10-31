@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.clickgui;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.module.Module;
@@ -60,7 +61,7 @@ public class Panel {
 
         if (this.open && !this.buttons.isEmpty()) {
             for (Button button : buttons) {
-                button.renderComponent(matrix);
+                button.drawButton(matrix);
             }
         }
     }

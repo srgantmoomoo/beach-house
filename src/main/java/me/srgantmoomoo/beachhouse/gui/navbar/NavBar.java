@@ -1,5 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.navbar;
 
+import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.navbar.buttons.ClickGuiButton;
 import me.srgantmoomoo.beachhouse.gui.navbar.buttons.CommandLineButton;
 import me.srgantmoomoo.beachhouse.gui.navbar.buttons.HudEditorButton;
@@ -35,7 +36,7 @@ public class NavBar {
     }
 
     public void mouseClicked(int mouseX, int mouseY) {
-        for(me.srgantmoomoo.beachhouse.gui.navbar.Button button : buttons) {
+        for(Button button : buttons) {
             button.mouseClicked(mouseX, mouseY);
         }
     }
