@@ -12,8 +12,8 @@ public class ModuleButtons extends Button {
     public int offset;
 
     public ModuleButtons(Module mod, int offset) {
-        this.x = 300 + 2;
-        this.y = 96;
+        this.x = 300 + 4;
+        this.y = 100;
         this.offset = offset;
 
         this.mod = mod;
@@ -35,7 +35,7 @@ public class ModuleButtons extends Button {
     }
 
     public boolean isMouseOnButton(int xx, int yy) {
-        if (xx > x && xx < x + minecraft.textRenderer.getWidth(mod.getName()) && yy > y && yy < y + minecraft.textRenderer.fontHeight) {
+        if (xx > x && xx < x + minecraft.textRenderer.getWidth(mod.getName()) && yy > y + offset && yy < y + offset + minecraft.textRenderer.fontHeight) {
             return true;
         } else {
             return false;

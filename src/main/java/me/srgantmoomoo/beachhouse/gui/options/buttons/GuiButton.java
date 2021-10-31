@@ -27,10 +27,10 @@ public class GuiButton extends Button {
         ModuleButtons button1 = new ModuleButtons(Bedroom.moduleManager.getModuleByID("clickgui"), 0);
         this.buttons.add(button1);
 
-        ModuleButtons button2 = new ModuleButtons(Bedroom.moduleManager.getModuleByID("commandline"), 12);
+        ModuleButtons button2 = new ModuleButtons(Bedroom.moduleManager.getModuleByID("commandline"), 20);
         this.buttons.add(button2);
 
-        ModuleButtons button3 = new ModuleButtons(Bedroom.moduleManager.getModuleByID("options"), 24);
+        ModuleButtons button3 = new ModuleButtons(Bedroom.moduleManager.getModuleByID("options"), 40);
         this.buttons.add(button3);
     }
 
