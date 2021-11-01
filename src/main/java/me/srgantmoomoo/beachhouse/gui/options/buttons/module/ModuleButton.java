@@ -27,15 +27,18 @@ public class ModuleButton extends Button {
         //InGameHud.fill(matrix, );
     }
 
+    private boolean mouseHeld = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
         if(isMouseOnButton(mouseX, mouseY)) {
-            if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+            if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                mouseHeld = true;
                 if(mod instanceof HudModule)
                     ((HudModule) mod).hudEnabled = !((HudModule) mod).hudEnabled;
                 else
                     mod.toggle();
-            }
+            }else if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE && mouseHeld)
+                mouseHeld = false;
         }
     }
 
@@ -46,10 +49,10 @@ public class ModuleButton extends Button {
             else
                 return false;
         else
-        if(mod.isEnabled())
-            return true;
-        else
-            return false;
+            if(mod.isEnabled())
+                return true;
+            else
+                return false;
     }
 
     public boolean isMouseOnButton(int xx, int yy) {
