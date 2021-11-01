@@ -1,17 +1,17 @@
-package me.srgantmoomoo.beachhouse.gui.options;
+package me.srgantmoomoo.beachhouse.gui.options.buttons.module;
 
 import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.bedroom.module.Module;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
 
-public class ModuleButtons extends Button {
+public class ModuleButton extends Button {
     public Module mod;
     public int x;
     public int y;
     public int offset;
 
-    public ModuleButtons(Module mod, int offset) {
+    public ModuleButton(Module mod, int offset) {
         this.x = 300 + 4;
         this.y = 100;
         this.offset = offset;
