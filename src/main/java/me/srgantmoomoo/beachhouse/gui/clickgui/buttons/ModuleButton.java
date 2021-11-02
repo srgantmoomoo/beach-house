@@ -80,7 +80,6 @@ public class ModuleButton extends Button {
     private final Identifier check = new Identifier(Main.modid, "check.png");
     @Override
     public void drawButton(MatrixStack matrix) {
-
         // module name and background
         InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
         drawModuleName(matrix);

@@ -1,6 +1,5 @@
 package me.srgantmoomoo.beachhouse.feature.module;
 
-import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.*;
 import me.srgantmoomoo.beachhouse.feature.module.modules.combat.*;
 import me.srgantmoomoo.beachhouse.feature.module.modules.miscellaneous.*;
@@ -11,6 +10,7 @@ import me.srgantmoomoo.bedroom.Bedroom;
 
 public class Modules {
     public static void init() {
+        // beach house
         Bedroom.addModule(new ChatScreen());
         Bedroom.addModule(new EnabledModules());
         Bedroom.addModule(new Watermark());
@@ -18,8 +18,9 @@ public class Modules {
         Bedroom.addModule(new HudEditor());
         Bedroom.addModule(new CommandLine());
         Bedroom.addModule(new Options());
-        // discord rpc
+        Bedroom.addModule(new DiscordRpc());
 
+        // pvp
         Bedroom.addModule(new AutoArmor());
         Bedroom.addModule(new AutoCrystal());
         Bedroom.addModule(new Criticals());
@@ -30,11 +31,15 @@ public class Modules {
         Bedroom.addModule(new Surround());
         Bedroom.addModule(new SwingAura());
 
+        // misc
+        Bedroom.addModule(new ChatSpammer());
         Bedroom.addModule(new DeathCoords());
+        Bedroom.addModule(new Nuker());
         Bedroom.addModule(new PacketCancel());
         Bedroom.addModule(new SoftJoin());
         Bedroom.addModule(new Timer());
 
+        // movement
         Bedroom.addModule(new AutoWalk());
         Bedroom.addModule(new ElytraFly());
         Bedroom.addModule(new Fly());
@@ -47,6 +52,7 @@ public class Modules {
         Bedroom.addModule(new Step());
         Bedroom.addModule(new Strafe());
 
+        // player
         Bedroom.addModule(new AntiHunger());
         Bedroom.addModule(new AutoLog());
         Bedroom.addModule(new AutoTotem());
@@ -55,10 +61,11 @@ public class Modules {
         Bedroom.addModule(new FreeCam());
         Bedroom.addModule(new Jesus());
         Bedroom.addModule(new LiquidPlace());
-        Bedroom.addModule(new PlayerVelocity());
         Bedroom.addModule(new NoFall());
+        Bedroom.addModule(new PlayerVelocity());
         Bedroom.addModule(new Stealer());
 
+        // render
         Bedroom.addModule(new BlockHighlight());
         Bedroom.addModule(new CameraZoom());
         Bedroom.addModule(new EntityEsp());

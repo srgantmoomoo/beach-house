@@ -29,7 +29,8 @@ public class ClickGuiScreen extends Screen {
         boolean focused = false;
 
         for (Module.Category c : Module.Category.values()) {
-            this.panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, focused, c));
+            if(c != Module.Category.BEACHHOUSE)
+                panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, focused, c));
             panelX += 89;
         }
     }
@@ -39,8 +40,10 @@ public class ClickGuiScreen extends Screen {
         if(ClickGui.INSTANCE.background.is("blur"))
             Reference.blur.render(1);
 
-        if(ClickGui.INSTANCE.background.is("art"))
+        if(ClickGui.INSTANCE.background.is("art")) {
             Reference.art.render(1);
+            Reference.blur.render(1);
+        }
 
         if(ClickGui.INSTANCE.background.is("dim"))
             this.renderBackground(matrix);

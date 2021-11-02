@@ -68,7 +68,7 @@ public class CommandLineScreen extends Screen {
             if(key == GLFW.GLFW_KEY_ENTER) {
                 resetInputLine();
                 if (!commandFound) {
-                    outputs.add(Formatting.RED + "no russian. no russian.");
+                    //outputs.add(Formatting.RED + "no russian. no russian.");
                 }
                 return;
             }
