@@ -53,7 +53,8 @@ public class OptionsScreen extends Screen {
         int screenHeight = Reference.window.getScaledHeight();
 
         fill(matrix, 300, 92, screenWidth - 300, screenHeight - 80, 0x90000000);
-        fill(matrix, 300, 92, screenWidth - 300 - 220, screenHeight - 80, 0x90000000);
+        fill(matrix, screenWidth - 300 - 230, 92, screenWidth - 300, screenHeight - 80, 0x70000000);
+        //fill(matrix, 300, 92, screenWidth - 300 - 220, screenHeight - 80, 0x90000000);
 
         //TODO this code is disgusting, fix it.
         if(GuiButton.selected) {

@@ -44,23 +44,13 @@ public class ModuleButton extends Button {
 
     public boolean modIsEnabled() {
         if(mod instanceof HudModule)
-            if(((HudModule) mod).hudEnabled)
-                return true;
-            else
-                return false;
+            return ((HudModule) mod).hudEnabled;
         else
-            if(mod.isEnabled())
-                return true;
-            else
-                return false;
+            return mod.isEnabled();
     }
 
     public boolean isMouseOnButton(int xx, int yy) {
-        if (xx > x && xx < x + minecraft.textRenderer.getWidth(mod.getName()) && yy > y + offset && yy < y + offset + minecraft.textRenderer.fontHeight) {
-            return true;
-        } else {
-            return false;
-        }
+        return xx > x && xx < x + minecraft.textRenderer.getWidth(mod.getName()) && yy > y + offset && yy < y + offset + minecraft.textRenderer.fontHeight;
     }
 
 }

@@ -162,11 +162,7 @@ public class ModuleButton extends Button {
     }
 
     public boolean isMouseOnButton(int x, int y) {
-        if (x > parent.getX() && x < parent.getX() + 88 && y > this.parent.getY() + this.offset && y < this.parent.getY() + 12 + this.offset) {
-            return true;
-        } else {
-            return false;
-        }
+        return x > parent.getX() && x < parent.getX() + 88 && y > this.parent.getY() + this.offset && y < this.parent.getY() + 12 + this.offset;
     }
 
     public boolean isOpen() {
