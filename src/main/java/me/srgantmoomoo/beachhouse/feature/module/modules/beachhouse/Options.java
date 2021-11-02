@@ -11,7 +11,7 @@ import org.lwjgl.glfw.GLFW;
 public class Options extends Module {
     public static Options INSTANCE;
 
-    public ModeSetting background = new ModeSetting("background", this, "art", "blur", "art", "dim", "none");
+    public ModeSetting background = new ModeSetting("background", this, "beach", "beach", "blur", "art", "dim", "none");
     public BooleanSetting interactWithWall = new BooleanSetting("interactWithWall", this, true);
     public BooleanSetting hover = new BooleanSetting("hover", this, true);
 

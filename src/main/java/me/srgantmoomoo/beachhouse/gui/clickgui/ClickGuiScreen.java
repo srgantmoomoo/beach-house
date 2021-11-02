@@ -37,13 +37,16 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        if(ClickGui.INSTANCE.background.is("blur"))
-            Reference.blur.render(1);
-
-        if(ClickGui.INSTANCE.background.is("art")) {
+        if(ClickGui.INSTANCE.background.is("beach")) {
             Reference.art.render(1);
             Reference.blur.render(1);
         }
+
+        if(ClickGui.INSTANCE.background.is("blur"))
+            Reference.blur.render(1);
+
+        if(ClickGui.INSTANCE.background.is("art"))
+            Reference.art.render(1);
 
         if(ClickGui.INSTANCE.background.is("dim"))
             this.renderBackground(matrix);

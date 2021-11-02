@@ -2,6 +2,7 @@ package me.srgantmoomoo.beachhouse.gui.hud;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.HudEditor;
 import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
 import net.minecraft.client.gui.screen.Screen;
@@ -20,6 +21,11 @@ public class HudScreen extends Screen {
 	// this renders the hud module when the screen is opened, it doesn't need any events since its already extending Screen.
 	@Override
 	public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
+		if(HudEditor.INSTANCE.background.is("beach")) {
+			Reference.art.render(1);
+			Reference.blur.render(1);
+		}
+
 		if(HudEditor.INSTANCE.background.is("art"))
 			Reference.art.render(1);
 

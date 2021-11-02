@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.commandline;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.CommandLine;
 import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
 import me.srgantmoomoo.bedroom.Bedroom;
@@ -31,6 +32,11 @@ public class CommandLineScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
+        if(CommandLine.INSTANCE.background.is("beach")) {
+            Reference.art.render(1);
+            Reference.blur.render(1);
+        }
+
         if(CommandLine.INSTANCE.background.is("art"))
             Reference.art.render(1);
 

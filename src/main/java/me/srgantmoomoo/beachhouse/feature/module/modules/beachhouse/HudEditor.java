@@ -13,7 +13,7 @@ import org.lwjgl.glfw.GLFW;
 public class HudEditor extends Module {
     public static HudEditor INSTANCE;
 
-    public ModeSetting background = new ModeSetting("background", this, "art", "art", "blur", "dim", "none");
+    public ModeSetting background = new ModeSetting("background", this, "beach", "beach", "art", "blur", "dim", "none");
 
     public HudEditor() {
         super("hud editor", "hudeditor", "edit ur hud an stuff.", GLFW.GLFW_KEY_V, Category.BEACHHOUSE);

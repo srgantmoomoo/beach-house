@@ -1,6 +1,9 @@
 package me.srgantmoomoo.beachhouse.gui.options;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.HudEditor;
+import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.Options;
 import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.GuiButton;
@@ -32,7 +35,19 @@ public class OptionsScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        Reference.blur.render(1);
+        if(Options.INSTANCE.background.is("beach")) {
+            Reference.art.render(1);
+            Reference.blur.render(1);
+        }
+
+        if(Options.INSTANCE.background.is("art"))
+            Reference.art.render(1);
+
+        if(Options.INSTANCE.background.is("blur"))
+            Reference.blur.render(1);
+
+        if(Options.INSTANCE.background.is("dim"))
+            this.renderBackground(matrix);
 
         int screenWidth = Reference.window.getScaledWidth();
         int screenHeight = Reference.window.getScaledHeight();
