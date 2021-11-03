@@ -57,13 +57,8 @@ public class ModeButton extends Button {
             hovered = true;
             if(this.parent.isOpen()) {
                 if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
+                    op.cycle();
                     mouseHeld = true;
-                    final int maxIndex = this.op.modes.size() - 1;
-                    this.modeIndex++;
-                    if (this.modeIndex > maxIndex) {
-                        this.modeIndex = 0;
-                    }
-                    this.op.setMode(this.op.modes.get(this.modeIndex));
                 }else if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
                     mouseHeld = false;
             }

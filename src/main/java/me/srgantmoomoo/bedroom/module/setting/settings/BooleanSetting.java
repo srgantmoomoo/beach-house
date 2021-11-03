@@ -33,6 +33,6 @@ public class BooleanSetting extends Setting {
     }
 
     public void toggle() {
-        this.enabled = !this.enabled;
+        setEnabled(!enabled);
     }
 }
