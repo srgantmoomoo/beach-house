@@ -57,7 +57,7 @@ import net.fabricmc.api.ModInitializer;
 
 public class Main implements ModInitializer {
 
-	public static final String modid = "bh";
+	public static final String modid = "beachhouse";
 	public static final String name = "beach house";
 	public static final String nameCondensed = "beach-house";
 	public static final boolean checkNames = false;

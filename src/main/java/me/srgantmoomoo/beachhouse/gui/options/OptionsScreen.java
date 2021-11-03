@@ -1,8 +1,6 @@
 package me.srgantmoomoo.beachhouse.gui.options;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
-import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.HudEditor;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.Options;
 import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
@@ -53,7 +51,7 @@ public class OptionsScreen extends Screen {
         int screenHeight = Reference.window.getScaledHeight();
 
         fill(matrix, 300, 92, screenWidth - 300, screenHeight - 80, 0x90000000);
-        fill(matrix, screenWidth - 300 - 230, 92, screenWidth - 300, screenHeight - 80, 0x70000000);
+        fill(matrix, screenWidth - 300 - 230, 92, screenWidth - 300, screenHeight - 80, 0x80000000);
         //fill(matrix, 300, 92, screenWidth - 300 - 220, screenHeight - 80, 0x90000000);
 
         //TODO this code is disgusting, fix it.

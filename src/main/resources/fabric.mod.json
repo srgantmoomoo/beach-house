@@ -1,31 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "bh",
+  "id": "beachhouse",
   "version": "0",
 
   "name": "beach house",
-  "description": "beach house is a latest version fabric client.",
+  "description": "beach house, a latest version Minecraft client developed in Fabric, aimed towards anarchy utility.",
   "authors": [
     "SrgantMooMoo"
   ],
+
   "contact": {
     "homepage": "https://get-on-top-of.me",
     "sources": "https://github.com/beach-house-development"
   },
 
   "license": "GNU General Public License v3.0",
-  "icon": "assets/bh/icon.png",
+  "icon": "assets/beachhouse/icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "me.srgantmoomoo.beachhouse.Main"
     ]
   },
-  "mixins": [
-    "bh.mixins.json"
-  ],
 
+  "mixins": [
+    "beachhouse.mixins.json"
+  ],
   "accessWidener" : "beachhouse.aw",
 
   "depends": {
@@ -33,6 +34,7 @@
     "fabric": "*",
     "minecraft": "1.17.x"
   },
+
   "suggests": {
     "another-mod": "*"
   }
