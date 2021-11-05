@@ -18,7 +18,7 @@ public class BooleanButton extends Button {
         this.parent = parent;
         this.offset = offset;
         this.x = 300 + 134;
-        this.y = parent.y - 12 + offset;
+        this.y = 100 + offset;
     }
 
     @Override

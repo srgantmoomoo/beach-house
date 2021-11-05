@@ -25,24 +25,13 @@ public class ModuleButton extends Button {
 
     public ModuleButton(Module mod, int offset) {
         this.x = 300 + 4;
-        this.y = 100 + offset;
+        this.y = 100;
         this.offset = offset;
         this.open = false;
-        int opY = offset + 12;
+        int opY = 0;
 
         this.mod = mod;
         this.settingButtons = new ArrayList<>();
-
-        if(mod instanceof HudModule) {
-            if(((HudModule) mod).settings != null) {
-                for(Setting setting : ((HudModule) mod).settings) {
-                    if(setting instanceof BooleanSetting) {
-                        this.settingButtons.add(new BooleanButton((BooleanSetting) setting, this, opY));
-                        opY += 12;
-                    }
-                }
-            }
-        }else
 
         if(mod.settings != null) {
             for(Setting setting : mod.settings) {
@@ -71,9 +60,9 @@ public class ModuleButton extends Button {
     private final Identifier check = new Identifier(Main.modid, "setting.png");
     @Override
     public void drawButton(MatrixStack matrix) {
-        minecraft.textRenderer.drawWithShadow(matrix, mod.getName(), x, y, modIsEnabled() ? 0xff11c1e8 : 0xffffffff);
+        minecraft.textRenderer.drawWithShadow(matrix, mod.getName(), x, y + offset, modIsEnabled() ? 0xff11c1e8 : 0xffffffff);
         RenderSystem.setShaderTexture(0, check);
-        InGameHud.drawTexture(matrix,  x + minecraft.textRenderer.getWidth(mod.getName()) + 2, (y), 10, 10, 0, 0, 10, 10, 10, 10);
+        InGameHud.drawTexture(matrix,  x + minecraft.textRenderer.getWidth(mod.getName()) + 2, (y + offset), 10, 10, 0, 0, 10, 10, 10, 10);
 
         if (this.open && !this.settingButtons.isEmpty()) {
             for (Button comp : this.settingButtons) {
@@ -118,7 +107,7 @@ public class ModuleButton extends Button {
     }
 
     public boolean isMouseOnButton(int xx, int yy) {
-        return xx > x && xx < x + minecraft.textRenderer.getWidth(mod.getName()) && yy > y && yy < y + minecraft.textRenderer.fontHeight;
+        return xx > x && xx < x + minecraft.textRenderer.getWidth(mod.getName()) && yy > y + offset && yy < y + offset + minecraft.textRenderer.fontHeight;
     }
 
 }
