@@ -1,9 +1,13 @@
 package me.srgantmoomoo.beachhouse.gui.options.buttons.module;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.Button;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.module.Module;
+import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class ModuleButton extends Button {
@@ -20,10 +24,12 @@ public class ModuleButton extends Button {
         this.mod = mod;
     }
 
-    // if module instanceof hudmodule;
+    private final Identifier check = new Identifier(Main.modid, "setting.png");
     @Override
     public void drawButton(MatrixStack matrix) {
         minecraft.textRenderer.drawWithShadow(matrix, mod.getName(), x, y + offset, modIsEnabled() ? 0xff11c1e8 : 0xffffffff);
+        RenderSystem.setShaderTexture(0, check);
+        InGameHud.drawTexture(matrix,  x + minecraft.textRenderer.getWidth(mod.getName()) + 2, (y + offset), 10, 10, 0, 0, 10, 10, 10, 10);
         //InGameHud.fill(matrix, );
     }
 
