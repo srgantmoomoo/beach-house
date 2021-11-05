@@ -81,6 +81,13 @@ public class ModuleButton extends Button {
     private final Identifier check = new Identifier(Main.modid, "check.png");
     @Override
     public void drawButton(MatrixStack matrix) {
+        /*if(open) {
+            parent.setFocused();
+        }else {
+            parent.focused = false;
+            ClickGuiScreen.globalFocus = false;
+        }*/
+
         // module name and background
         InGameHud.fill(matrix, parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 12 + offset, 0x90000000);
         drawModuleName(matrix);
@@ -121,7 +128,7 @@ public class ModuleButton extends Button {
     private boolean mouseHeld2 = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
-        if(ClickGuiScreen.globalFocus)
+        if(!parent.focused)
             return;
 
         if(isMouseOnButton(mouseX, mouseY)) {
@@ -135,10 +142,8 @@ public class ModuleButton extends Button {
                 mouseHeld2 = true;
                 if(!this.isOpen()) {
                     // if i want settings to close across all panels i would use this.
-                    /*ClickGuiScreen.getPanels().forEach(p -> {
-                        p.closeAllSettings();
-                    });*/
-                    parent.closeAllSettings();
+                    ClickGuiScreen.panels.forEach(Panel::closeAllSettings);
+                    //parent.closeAllSettings();
                     this.setOpen(true);
                 }else {
                     this.setOpen(false);
@@ -146,6 +151,7 @@ public class ModuleButton extends Button {
             }else if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE && mouseHeld2)
                 mouseHeld2 = false;
         }
+
         for(Button comp : this.subcomponents) {
             comp.mouseClicked(mouseX, mouseY);
         }
