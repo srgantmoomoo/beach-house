@@ -28,9 +28,7 @@ public class Panel {
     public boolean focused;
     public Module.Category cat;
 
-    public static boolean globalBoolean = false;
-
-    public Panel(String title, int x, int y, int width, int height, boolean focused, Module.Category cat) {
+    public Panel(String title, int x, int y, int width, int height, Module.Category cat) {
         this.buttons = new ArrayList<>();
         this.title = title;
         this.x = x;
@@ -89,6 +87,11 @@ public class Panel {
 
     public ArrayList<Button> getComponents() {
         return buttons;
+    }
+
+    public void setFocused() {
+        this.focused = true;
+        ClickGuiScreen.globalFocus = true;
     }
 
     public int getWidth() {

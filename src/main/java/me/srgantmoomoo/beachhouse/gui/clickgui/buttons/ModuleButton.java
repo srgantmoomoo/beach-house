@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse.gui.clickgui.buttons;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.Button;
+import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons.*;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
@@ -120,6 +121,9 @@ public class ModuleButton extends Button {
     private boolean mouseHeld2 = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
+        if(ClickGuiScreen.globalFocus)
+            return;
+
         if(isMouseOnButton(mouseX, mouseY)) {
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
                 mouseHeld = true;

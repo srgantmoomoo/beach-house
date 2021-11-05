@@ -18,6 +18,7 @@ public class ClickGuiScreen extends Screen {
     private boolean mouseHeld = false;
 
     public NavBar navBar = new NavBar();
+    public static boolean globalFocus = false;
 
     public ClickGuiScreen() {
         super(new LiteralText("clickgui"));
@@ -26,11 +27,10 @@ public class ClickGuiScreen extends Screen {
         int panelY = 15;
         int panelWidth = 88;
         int panelHeight = 12;
-        boolean focused = false;
 
         for (Module.Category c : Module.Category.values()) {
             if(c != Module.Category.BEACHHOUSE)
-                panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, focused, c));
+                panels.add(new Panel(c.name, panelX, panelY, panelWidth, panelHeight, c));
             panelX += 89;
         }
     }
@@ -64,16 +64,22 @@ public class ClickGuiScreen extends Screen {
         // mouse clicked
         for(Panel p : panels) {
             if(p.isWithinHeader(mouseX, mouseY)) {
-                p.focused = true;
-                Panel.globalBoolean = true;
                 if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
-                    p.setDragging(true);
-                    p.dragX = mouseX - p.getX();
-                    p.dragY = mouseY - p.getY();
+                    if(p.focused) {
+                        p.setDragging(true);
+                        p.dragX = mouseX - p.getX();
+                        p.dragY = mouseY - p.getY();
+                    }
+                    if(!globalFocus) {
+                        p.setFocused();
+                    }
                 }
-            }else {
-                p.focused = false;
-                Panel.globalBoolean = false;
+                if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE) {
+                    if(p.focused) {
+                        p.focused = false;
+                        globalFocus = false;
+                    }
+                }
             }
 
             if(p.isWithinHeader(mouseX, mouseY) && GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld) {
