@@ -56,6 +56,8 @@ import net.fabricmc.api.ModInitializer;
 //TODO command line stuff.
 //TODO scrolling in command line and top down option.
 
+//TODO seaweed fucks with jesus module.
+
 public class Main implements ModInitializer {
 
 	public static final String modid = "beachhouse";
@@ -92,10 +94,10 @@ public class Main implements ModInitializer {
 	public void beachhouseInit() {
 		Font[] fonts;
 		fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
-		for (int i = 0; i < fonts.length; i++) {
-			System.out.print(fonts[i].getFontName() + " : ");
-			System.out.print(fonts[i].getFamily() + " : ");
-			System.out.print(fonts[i].getName());
+		for (Font font : fonts) {
+			System.out.print(font.getFontName() + " : ");
+			System.out.print(font.getFamily() + " : ");
+			System.out.print(font.getName());
 			System.out.println();
 		}
 
