@@ -2,6 +2,7 @@ package me.srgantmoomoo.beachhouse.backend.saveload;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.feature.notepad.Notepad;
+import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
 import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.Bedroom;
@@ -41,7 +42,7 @@ public class Save {
                 printWriter.println(string);
             }
             printWriter.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException ignored) {
         }
     }
 
@@ -57,7 +58,7 @@ public class Save {
             }
 
             writeFile(toSave, file);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -69,35 +70,31 @@ public class Save {
             for(Module mod : Bedroom.moduleManager.modules) {
                 for(Setting setting : mod.settings) {
 
-                    if(setting instanceof BooleanSetting) {
-                        BooleanSetting bool = (BooleanSetting) setting;
+                    if(setting instanceof BooleanSetting bool) {
                         toSave.add(setting.parent.getName() + ":" + setting.name + ":" + bool.isEnabled());
+                        System.out.println("moo moo cow");
                     }
 
-                    if(setting instanceof NumberSetting) {
-                        NumberSetting number = (NumberSetting) setting;
+                    if(setting instanceof NumberSetting number) {
                         toSave.add(setting.parent.getName() + ":" + setting.name + ":" + number.getValue());
                     }
 
-                    if(setting instanceof ModeSetting) {
-                        ModeSetting mode = (ModeSetting) setting;
+                    if(setting instanceof ModeSetting mode) {
                         toSave.add(setting.parent.getName() + ":" + setting.name + ":" + mode.getMode());
                     }
 
                     if(setting instanceof ColorSetting) {
-                        ColorSetting color = (ColorSetting) setting;
                         //toSave.add(setting.parent.getName() + ":" + setting.name + ":" + color.toInteger() + ":" + color.getRainbow());
                     }
 
-                    if(setting instanceof KeybindSetting) {
-                        KeybindSetting keybind = (KeybindSetting) setting;
+                    if(setting instanceof KeybindSetting keybind) {
                         toSave.add(setting.parent.getName() + ":" + setting.name + ":" + keybind.getKeyCode());
                     }
                 }
             }
 
             writeFile(toSave, file);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -106,12 +103,12 @@ public class Save {
             File file = new File(MainDirectory, "gui.txt");
             ArrayList<String> toSave = new ArrayList<>();
 
-            for(Panel panel : Main.clickGui.panels) {
+            for(Panel panel : ClickGuiScreen.panels) {
                 toSave.add(panel.getCategory() + ":" + panel.getX() + ":" + panel.getY() + ":" + panel.isOpen());
             }
 
             writeFile(toSave, file);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -125,7 +122,7 @@ public class Save {
             }
 
             writeFile(toSave, file);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -139,7 +136,7 @@ public class Save {
             }
 
             writeFile(toSave, file);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -151,7 +148,7 @@ public class Save {
             toSave.add(Bedroom.commandManager.prefix);
 
             writeFile(toSave, file);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 

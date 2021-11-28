@@ -121,7 +121,7 @@ public class ModuleButton extends Button {
     private boolean mouseHeld2 = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
-        if(!parent.focused)
+        if(ClickGuiScreen.globalFocus)
             return;
 
         if(isMouseOnButton(mouseX, mouseY)) {
@@ -178,10 +178,7 @@ public class ModuleButton extends Button {
 
     public boolean onWall() {
         int secondWidth = minecraft.getWindow().getScaledWidth() - (parent.getX() + 90);
-        if(secondWidth < 89)
-            return true;
-        else
-            return false;
+        return secondWidth < 89;
     }
 
     public int newx() {
@@ -205,9 +202,7 @@ public class ModuleButton extends Button {
     }
 
     public int stringx() {
-        boolean isOnWall = false;
-        if(onWall() && ClickGui.INSTANCE.interactWithWall.isEnabled())
-            isOnWall = true;
+        boolean isOnWall = onWall() && ClickGui.INSTANCE.interactWithWall.isEnabled();
 
         return (isOnWall ? newx() + newwidth() + 2: newx() + 2);
     }
