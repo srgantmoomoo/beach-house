@@ -65,7 +65,7 @@ public class ModuleButton extends Button {
     private void drawModuleName(MatrixStack matrix) {
         String newName = this.mod.getName();
 
-        if(newName.length() > 13) {
+        if(newName.length() > 12) {
             newName = newName.substring(0, 10) + Formatting.GRAY + " ...";
         }
 

@@ -65,14 +65,14 @@ public class ClickGuiScreen extends Screen {
         for(Panel p : panels) {
             if(p.isWithinHeader(mouseX, mouseY)) {
                 if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
-                    if(!globalFocus)
-                        p.setFocused();
+                    //if(!globalFocus)
+                        //p.setFocused();
 
-                    if(p.focused) {
+                    //if(p.focused) {
                         p.setDragging(true);
                         p.dragX = mouseX - p.getX();
                         p.dragY = mouseY - p.getY();
-                    }
+                    //}
                 }
                 if (GLFW.glfwGetMouseButton(Reference.minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE) {
                     if(p.focused) {
