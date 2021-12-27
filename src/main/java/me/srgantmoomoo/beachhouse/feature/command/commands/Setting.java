@@ -4,8 +4,10 @@ import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.Command;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
+import me.srgantmoomoo.bedroom.util.font.JColor;
 import net.minecraft.util.Formatting;
 
 public class Setting extends Command {
@@ -68,6 +70,20 @@ public class Setting extends Command {
                 ((ModeSetting) setting).setMode(settingValueInput);
                 Bedroom.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + settingValueInput + GRAY + ".");
             }else Bedroom.commandManager.addChatMessage("the mode " + RED + settingValueInput + GRAY + " does not exist for the module " + WHITE + module.name + GRAY + ". sorry :'(");
+        }
+
+        if(setting instanceof ColorSetting) {
+            try {
+                int valR = Integer.parseInt(settingValueInput.substring(0, 3));
+                int valG = Integer.parseInt(settingValueInput.substring(3, 6));
+                int valB = Integer.parseInt(settingValueInput.substring(6, 9));
+                int valA = Integer.parseInt(settingValueInput.substring(9, 12));
+
+                ((ColorSetting) setting).setValue(false, new JColor(valR, valG, valB, valA));
+                Bedroom.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was poo pooed.");
+            } catch (Exception invalid) {
+                Bedroom.commandManager.addChatMessage("color value " + RED + settingValueInput + GRAY + " is invalid.");
+            }
         }
     }
 }
