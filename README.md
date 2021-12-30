@@ -14,4 +14,4 @@ beach house is a [bedroom](https://github.com/moomooooo/bedroom) based client an
 
 beach house integrates [baritone](https://github.com/cabaletta/baritone) for pathfinding and automation, and [multiconnect](https://github.com/Earthcomputer/multiconnect) to connect to mutliple minecraft versions.
 
-beach house is developed in [Fabric](https://fabricmc.net) for [Minecraft](www.minecraft.net).
+beach house is developed in [Fabric](https://fabricmc.net) for [Minecraft](https://www.minecraft.net).
