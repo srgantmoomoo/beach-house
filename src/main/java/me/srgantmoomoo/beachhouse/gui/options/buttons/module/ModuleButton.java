@@ -3,11 +3,17 @@ package me.srgantmoomoo.beachhouse.gui.options.buttons.module;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.Button;
+import me.srgantmoomoo.beachhouse.gui.clickgui.ClickGuiScreen;
+import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
-import me.srgantmoomoo.beachhouse.gui.options.buttons.module.setting.BooleanButton;
+import me.srgantmoomoo.beachhouse.gui.options.OptionsScreen;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.GuiButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.module.settingbuttons.BooleanButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.module.settingbuttons.NumberButton;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
@@ -18,7 +24,7 @@ import java.util.ArrayList;
 public class ModuleButton extends Button {
     private ArrayList<Button> settingButtons;
     public Module mod;
-    private boolean open;
+    public boolean open;
     public int x;
     public int y;
     public int offset;
@@ -39,11 +45,11 @@ public class ModuleButton extends Button {
                     this.settingButtons.add(new BooleanButton((BooleanSetting) setting, this, opY));
                     opY += 12;
                 }
-                /*if(setting instanceof NumberSetting) {
-                    this.subcomponents.add(new NumberButton((NumberSetting) setting, this, opY));
+                if(setting instanceof NumberSetting) {
+                    this.settingButtons.add(new NumberButton((NumberSetting) setting, this, opY));
                     opY += 12;
                 }
-                if(setting instanceof ModeSetting) {
+                /*if(setting instanceof ModeSetting) {
                     this.subcomponents.add(new ModeButton((ModeSetting) setting, this, opY));
                     opY += 12;
                 }
@@ -89,6 +95,7 @@ public class ModuleButton extends Button {
             // opening/closing settings
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld2) {
                 mouseHeld2 = true;
+                // close all buttons.
                 open = !open;
             }else if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE && mouseHeld2)
                 mouseHeld2 = false;

@@ -5,6 +5,7 @@ import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import me.srgantmoomoo.bedroom.util.font.JColor;
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -12,10 +13,11 @@ public class Watermark extends HudModule {
 	public ModeSetting style = new ModeSetting("style", this, "beachhouse", "beachhouse", "bh");
 	public BooleanSetting version = new BooleanSetting("version", this, false);
 	public ColorSetting watermarkColor = new ColorSetting("color", this, new JColor(248, 104, 251, 255));
+	public NumberSetting numberOfDicks = new NumberSetting("numerOfDicks", this, 1, 0, 10, 1);
 
 	public Watermark() {
 		super("watermark", "watermark", "does watermark stuff", 2, 2, Category.BEACHHOUSE);
-		this.addSettings(style, version, watermarkColor);
+		this.addSettings(style, version, watermarkColor, numberOfDicks);
 		hudEnabled = true;
 	}
 

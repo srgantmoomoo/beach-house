@@ -14,21 +14,21 @@ import net.minecraft.text.LiteralText;
 import java.util.ArrayList;
 
 public class OptionsScreen extends Screen {
-    public ArrayList<Button> buttons;
+    public ArrayList<Button> panels;
     public NavBar navBar = new NavBar();
 
     public OptionsScreen() {
         super(new LiteralText("options"));
 
-        this.buttons = new ArrayList<>();
+        this.panels = new ArrayList<>();
 
         GuiButton guiButton = new GuiButton();
         HudButton hudButton = new HudButton();
         UtilitiesButton utilitiesButton = new UtilitiesButton();
 
-        buttons.add(guiButton);
-        buttons.add(hudButton);
-        buttons.add(utilitiesButton);
+        panels.add(guiButton);
+        panels.add(hudButton);
+        panels.add(utilitiesButton);
     }
 
     @Override
@@ -70,11 +70,11 @@ public class OptionsScreen extends Screen {
             fill(matrix, 300, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fb);
 
         // call methods for drawing and clicking
-        for(Button button : buttons) {
+        for(Button button : panels) {
             button.drawButton(matrix);
         }
 
-        for(Button button : buttons) {
+        for(Button button : panels) {
             button.mouseClicked(mouseX, mouseY);
         }
 

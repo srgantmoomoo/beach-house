@@ -40,6 +40,7 @@ public class EntityEsp extends Module {
         super("entity esp", "entityesp", "allows you to see certain entities.", 0, Category.RENDER);
         this.addSettings(self, player, hostile, passive, item, backColor, outlineColor, range);
     }
+    //TODO range and order.
 
     private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
     private HashMap<Entity, Vec3d> footPos = Maps.newHashMap();

@@ -62,23 +62,6 @@ public class ModuleButton extends Button {
         this.subcomponents.add(new KeybindButton(this, opY));
     }
 
-    // using this method to draw module names with "..." AND some other things like hovering.
-    private void drawModuleName(MatrixStack matrix) {
-        String newName = this.mod.getName();
-
-        if(newName.length() > 12) {
-            newName = newName.substring(0, 10) + Formatting.GRAY + " ...";
-        }
-
-        if(hovered) {
-            if (ClickGui.INSTANCE.hover.isEnabled())
-                minecraft.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
-            else
-                minecraft.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-        }else
-            minecraft.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
-    }
-
     private final Identifier check = new Identifier(Main.modid, "check.png");
     @Override
     public void drawButton(MatrixStack matrix) {
@@ -163,6 +146,23 @@ public class ModuleButton extends Button {
         for (Button comp : this.subcomponents) {
             comp.mouseReleased(mouseX, mouseY);
         }
+    }
+
+    // using this method to draw module names with "..." AND some other things like hovering.
+    private void drawModuleName(MatrixStack matrix) {
+        String newName = this.mod.getName();
+
+        if(newName.length() > 12) {
+            newName = newName.substring(0, 10) + Formatting.GRAY + " ...";
+        }
+
+        if(hovered) {
+            if (ClickGui.INSTANCE.hover.isEnabled())
+                minecraft.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 2, (parent.getY() + offset + 1), 0xffffffff);
+            else
+                minecraft.textRenderer.drawWithShadow(matrix, this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
+        }else
+            minecraft.textRenderer.drawWithShadow(matrix, this.mod.isEnabled() ? newName : this.mod.getName(), parent.getX() + 3, (parent.getY() + offset + 2), 0xffffffff);
     }
 
     public boolean isMouseOnButton(int x, int y) {

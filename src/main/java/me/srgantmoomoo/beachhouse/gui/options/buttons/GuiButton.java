@@ -64,11 +64,7 @@ public class GuiButton extends Button {
     }
 
     public boolean isMouseOnButton(int xx, int yy) {
-        if (xx > x && xx < x + addx && yy > y && yy < y + addy) {
-            return true;
-        } else {
-            return false;
-        }
+        return xx > x && xx < x + addx && yy > y && yy < y + addy;
     }
 
 }
