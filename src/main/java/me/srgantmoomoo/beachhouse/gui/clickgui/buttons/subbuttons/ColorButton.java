@@ -35,13 +35,14 @@ public class ColorButton extends Button {
         JColor colorRGB = op.getValue();
 
         if(!isTyping) {
-            if(!hovered)
-                minecraft.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
-            else
+            if(!hovered) {
+                minecraft.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + parent.stringx(), parent.parent.getY() + offset - 10, -1);
+                InGameHud.fill(matrix, parent.parent.getX() + parent.newx() + parent.newwidth() - 10, parent.parent.getY() + offset - 9, parent.parent.getX() + parent.newx() + parent.newwidth() - 4, parent.parent.getY() + offset - 3, colorRGB.getRGB());
+            }else
                 minecraft.textRenderer.drawWithShadow(matrix, "" + Formatting.GRAY + colorRGB.getRed() + " " + colorRGB.getGreen() + " " + colorRGB.getBlue() + " " + colorRGB.getAlpha(), parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
         }else {
             if(input.equals(""))
-                minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + "rrr ggg bbb aaa...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
+                minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + "rrr ggg bbb aaa ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
             else
                 minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
         }

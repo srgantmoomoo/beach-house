@@ -26,9 +26,9 @@ public class KeybindButton extends Button {
     public void drawButton(MatrixStack matrix) {
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
 
-        if (isBinding) {
+        if(isBinding) {
             minecraft.textRenderer.drawWithShadow(matrix, "Listening" + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
-        } else {
+        }else {
             String keyName = GLFW.glfwGetKeyName(this.parent.mod.getKey(), GLFW.glfwGetKeyScancode(this.parent.mod.getKey()));
             minecraft.textRenderer.drawWithShadow(matrix, "Bind" + Formatting.GRAY + " " + keyName, parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
         }
