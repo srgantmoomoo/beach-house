@@ -55,7 +55,8 @@ public class ColorButton extends Button {
     }
 
     private boolean mouseHeld = false;
-
+    private boolean mouseHeld2 = false;
+    private boolean rainbow = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
         if(isMouseOnButton(mouseX, mouseY)) {
@@ -66,6 +67,14 @@ public class ColorButton extends Button {
                 input = "";
             }else if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_RELEASE)
                 mouseHeld = false;
+
+            if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS && !mouseHeld2) {
+                rainbow = !rainbow;
+                op.setValue(rainbow, op.getValue());
+
+                mouseHeld2 = true;
+            }else if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_RELEASE)
+                mouseHeld2 = false;
         }else {
             hovered = false;
             isTyping = false;
