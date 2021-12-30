@@ -15,6 +15,7 @@ public class Watermark extends HudModule {
 
 	public Watermark() {
 		super("watermark", "watermark", "does watermark stuff", 2, 2, Category.BEACHHOUSE);
+		this.addSettings(style, version, watermarkColor);
 		hudEnabled = true;
 	}
 
