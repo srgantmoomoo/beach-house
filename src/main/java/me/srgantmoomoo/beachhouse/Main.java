@@ -27,7 +27,6 @@ import net.fabricmc.api.ModInitializer;
 //TODO rainbow enchant so sexi D:.
 //TODO animations.
 
-//TODO add a color setting to setting command.
 //TODO add a bind command.
 
 //TODO if(settings (opened)) *** focused settings.
@@ -43,7 +42,7 @@ import net.fabricmc.api.ModInitializer;
 //TODO radar hud module.
 //TODO ADA graph.
 
-//TODO figuerw out why that doesn't work (commands line & camera zoom).
+//TODO command line error msg. camera zoom module.
 //TODO bedroom.
 //TODO xray.
 //TODO resets.
@@ -51,7 +50,6 @@ import net.fabricmc.api.ModInitializer;
 
 //TODO website.
 //TODO discord rpc.
-//TODO redo watermark style1 to fit new logo.
 
 //TODO command line stuff.
 //TODO scrolling in command line and top down option.

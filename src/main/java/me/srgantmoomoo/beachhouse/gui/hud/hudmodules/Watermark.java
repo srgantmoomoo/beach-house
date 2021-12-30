@@ -13,7 +13,7 @@ public class Watermark extends HudModule {
 	public ModeSetting style = new ModeSetting("style", this, "beachhouse", "beachhouse", "bh");
 	public BooleanSetting version = new BooleanSetting("version", this, false);
 	public ColorSetting watermarkColor = new ColorSetting("color", this, new JColor(248, 104, 251, 255));
-	public NumberSetting numberOfDicks = new NumberSetting("numerOfDicks", this, 1, 0, 10, 1);
+	public NumberSetting numberOfDicks = new NumberSetting("numberOfDicks", this, 1, 0, 10, 1); // temporary obviously... using it for options screen settings testing.
 
 	public Watermark() {
 		super("watermark", "watermark", "does watermark stuff", 2, 2, Category.BEACHHOUSE);
