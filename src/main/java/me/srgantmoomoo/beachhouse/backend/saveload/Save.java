@@ -68,27 +68,27 @@ public class Save {
             ArrayList<String> toSave = new ArrayList<>();
 
             for(Module mod : Bedroom.moduleManager.modules) {
+                //toSave.add(mod.getName() + ":" + "keybind" + ":" + mod.getKey());
                 for(Setting setting : mod.settings) {
 
                     if(setting instanceof BooleanSetting bool) {
-                        toSave.add(setting.parent.getName() + ":" + setting.name + ":" + bool.isEnabled());
-                        System.out.println("moo moo cow");
+                        toSave.add(mod.getName() + ":" + setting.name + ":" + bool.isEnabled());
                     }
 
                     if(setting instanceof NumberSetting number) {
-                        toSave.add(setting.parent.getName() + ":" + setting.name + ":" + number.getValue());
+                        toSave.add(mod.getName() + ":" + setting.name + ":" + number.getValue());
                     }
 
                     if(setting instanceof ModeSetting mode) {
-                        toSave.add(setting.parent.getName() + ":" + setting.name + ":" + mode.getMode());
+                        toSave.add(mod.getName() + ":" + setting.name + ":" + mode.getMode());
                     }
 
-                    if(setting instanceof ColorSetting) {
+                    if(setting instanceof ColorSetting color) {
                         //toSave.add(setting.parent.getName() + ":" + setting.name + ":" + color.toInteger() + ":" + color.getRainbow());
                     }
 
                     if(setting instanceof KeybindSetting keybind) {
-                        toSave.add(setting.parent.getName() + ":" + setting.name + ":" + keybind.getKeyCode());
+                        toSave.add(mod.getName() + ":" + setting.name + ":" + mod.getKey());
                     }
                 }
             }

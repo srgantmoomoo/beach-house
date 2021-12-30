@@ -78,23 +78,27 @@ public class Load {
 
                 Module module = Bedroom.moduleManager.getModule(modname);
                 if(module != null) {
-                    Setting setting = Bedroom.settingManager.getSettingByName(module, settingname);
-                    if (setting instanceof BooleanSetting) {
-                        ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(value));
-                    }
-                    if (setting instanceof NumberSetting) {
-                        ((NumberSetting) setting).setValue(Double.parseDouble(value));
-                    }
-                    if (setting instanceof ModeSetting && ((ModeSetting) setting).modes.toString().contains(value)) { // u have to make sure the mode getting loaded actually still exists or else u will have angry mob of ppl telling u ur config is fucking garbage... but actually yes ur config is fucking garbage because u wrote it when u were fucking monke and didn't know wtf u were doing, like seriously come on now, who the fuck writes a config in a normal fucking txt file, r u fucking stupid??????? like just do it in fucking json u fucking dumb cunt. goated redpilled postman comment.
-                        ((ModeSetting) setting).setMode(value);
-                    }
+                    if (settingname != "KeyBind") {
+                        Setting setting = Bedroom.settingManager.getSettingByName(module, settingname);
+                        if (setting instanceof BooleanSetting) {
+                            ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(value));
+                        }
+                        if (setting instanceof NumberSetting) {
+                            ((NumberSetting) setting).setValue(Double.parseDouble(value));
+                        }
+                        if (setting instanceof ModeSetting && ((ModeSetting) setting).modes.toString().contains(value)) { // u have to make sure the mode getting loaded actually still exists or else u will have angry mob of ppl telling u ur config is fucking garbage... but actually yes ur config is fucking garbage because u wrote it when u were fucking monke and didn't know wtf u were doing, like seriously come on now, who the fuck writes a config in a normal fucking txt file, r u fucking stupid??????? like just do it in fucking json u fucking dumb cunt. goated redpilled postman comment.
+                            ((ModeSetting) setting).setMode(value);
+                        }
                     /*if (setting instanceof ColorSetting) {
-                        ((ColorSetting) setting).fromInteger(Integer.parseInt(args[3]));
+                    (   (ColorSetting) setting).fromInteger(Integer.parseInt(args[3]));
                         ((ColorSetting) setting).setRainbow(Boolean.parseBoolean(args[4]));
                     }*/
-                    if (setting instanceof KeybindSetting) {
-                        ((KeybindSetting) setting).setKeyCode(Integer.parseInt(value));
-                    }
+                        if (setting instanceof KeybindSetting) {
+                            ((KeybindSetting) setting).setKeyCode(Integer.parseInt(value));
+                            System.out.println("monkes love chocolate.");
+                        }
+                    }else
+                        module.setKey(Integer.parseInt(value));
                 }
             }
 
