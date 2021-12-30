@@ -73,7 +73,7 @@ public class CommandLineScreen extends Screen {
         if(Reference.minecraft.currentScreen instanceof CommandLineScreen) {
             if(key == GLFW.GLFW_KEY_ENTER) {
                 resetInputLine();
-                if (!commandFound) {
+                if(!commandFound) {
                     //outputs.add(Formatting.RED + "no russian. no russian.");
                 }
                 return;
