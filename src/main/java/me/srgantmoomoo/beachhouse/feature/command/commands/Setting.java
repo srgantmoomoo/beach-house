@@ -74,15 +74,15 @@ public class Setting extends Command {
 
         if(setting instanceof ColorSetting) {
             try {
-                int valR = Integer.parseInt(settingValueInput.substring(0, 3));
-                int valG = Integer.parseInt(settingValueInput.substring(3, 6));
-                int valB = Integer.parseInt(settingValueInput.substring(6, 9));
-                int valA = Integer.parseInt(settingValueInput.substring(9, 12));
+                int valA = Integer.parseInt(settingValueInput.substring(0, 3));
+                int valR = Integer.parseInt(settingValueInput.substring(3, 6));
+                int valG = Integer.parseInt(settingValueInput.substring(6, 9));
+                int valB = Integer.parseInt(settingValueInput.substring(9, 12));
 
                 ((ColorSetting) setting).setValue(false, new JColor(valR, valG, valB, valA));
                 Bedroom.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was poo pooed.");
             } catch (Exception invalid) {
-                Bedroom.commandManager.addChatMessage("color value " + RED + settingValueInput + GRAY + " is invalid.");
+                Bedroom.commandManager.addChatMessage("color value " + RED + settingValueInput + GRAY + " is invalid. colors are processed in AAARRRGGGBBB format.");
             }
         }
     }

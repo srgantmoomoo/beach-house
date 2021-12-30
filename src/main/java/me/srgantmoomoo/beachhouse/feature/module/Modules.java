@@ -13,7 +13,6 @@ public class Modules {
         // beach house
         Bedroom.addModule(new ChatScreen());
         Bedroom.addModule(new EnabledModules());
-        Bedroom.addModule(new Watermark());
         Bedroom.addModule(new ClickGui());
         Bedroom.addModule(new HudEditor());
         Bedroom.addModule(new CommandLine());

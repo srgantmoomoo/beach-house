@@ -2,9 +2,16 @@ package me.srgantmoomoo.beachhouse.gui.hud.hudmodules;
 
 import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
+import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
+import me.srgantmoomoo.bedroom.util.font.JColor;
 import net.minecraft.client.util.math.MatrixStack;
 
 public class Watermark extends HudModule {
+	public ModeSetting style = new ModeSetting("style", this, "beachhouse", "beachhouse", "bh");
+	public BooleanSetting version = new BooleanSetting("version", this, false);
+	public ColorSetting watermarkColor = new ColorSetting("color", this, new JColor(248, 104, 251, 255));
 
 	public Watermark() {
 		super("watermark", "watermark", "does watermark stuff", 2, 2, Category.BEACHHOUSE);
@@ -12,16 +19,18 @@ public class Watermark extends HudModule {
 	}
 
 	private void drawFinale(MatrixStack matrix) {
-		if(me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.Watermark.INSTANCE.style.is("style1")) {
-			minecraft.textRenderer.drawWithShadow(matrix, "{                 }", getX(), getY(), 0xfff868fb);
-			minecraft.textRenderer.drawWithShadow(matrix, "beach house", getX() + 6, getY(), 0xffe6ab17);
-			minecraft.textRenderer.drawWithShadow(matrix, Main.version, getX() + 80, getY(), 0xff11c1e8);
-		}
-		if(me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.Watermark.INSTANCE.style.is("style2")) {
-			minecraft.textRenderer.drawWithShadow(matrix, "beach house", getX(), getY(), 0xfff868fB);
-		}
-		if(me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.Watermark.INSTANCE.style.is("style3")) {
-			// draw beach house logo image  (small & big)
+		JColor watermarkColorRGB = watermarkColor.getValue();
+
+		if(style.is("beachhouse")) {
+			if(!version.isEnabled())
+				minecraft.textRenderer.drawWithShadow(matrix, "beach house", getX(), getY(), watermarkColorRGB.getRGB());
+			else
+				minecraft.textRenderer.drawWithShadow(matrix, "beach house" + " " + Main.version, getX(), getY(), watermarkColorRGB.getRGB());
+		}else if(style.is("bh")) {
+			if(!version.isEnabled())
+				minecraft.textRenderer.drawWithShadow(matrix, "bh", getX(), getY(), watermarkColorRGB.getRGB());
+			else
+				minecraft.textRenderer.drawWithShadow(matrix, "bh" + " " + Main.version, getX(), getY(), watermarkColorRGB.getRGB());
 		}
 	}
 
