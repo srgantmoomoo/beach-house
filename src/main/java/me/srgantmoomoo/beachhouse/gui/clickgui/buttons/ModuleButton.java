@@ -10,6 +10,7 @@ import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -52,10 +53,10 @@ public class ModuleButton extends Button {
                     this.subcomponents.add(new ModeButton((ModeSetting) setting, this, opY));
                     opY += 12;
                 }
-                /*if(setting instanceof ColorSetting) {
-                    this.subcomponents.add(new ColorComponent((ColorSetting) setting, this, opY));
+                if(setting instanceof ColorSetting) {
+                    this.subcomponents.add(new ColorButton((ColorSetting) setting, this, opY));
                     opY += 12;
-                }*/
+                }
             }
         }
         this.subcomponents.add(new KeybindButton(this, opY));

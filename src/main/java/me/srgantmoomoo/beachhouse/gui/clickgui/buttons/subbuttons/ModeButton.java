@@ -25,19 +25,19 @@ public class ModeButton extends Button {
         this.offset = offset;
         this.modeIndex = 0;
     }
-    public boolean toBig = false;
-    public boolean hovered = false;
+    private boolean tooBig = false;
+    private boolean hovered = false;
 
     @Override
     public void drawButton(MatrixStack matrix) {
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
 
         if (minecraft.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) > 86)
-            toBig = true;
+            tooBig = true;
         else if (minecraft.textRenderer.getWidth(this.op.name + " " + Formatting.GRAY + this.op.getMode()) <= 86)
-            toBig = false;
+            tooBig = false;
 
-        if (toBig && !hovered) {
+        if (tooBig && !hovered) {
             minecraft.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + "...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
         } else {
             minecraft.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + this.op.getMode(), parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);

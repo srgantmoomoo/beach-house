@@ -9,7 +9,6 @@ import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
 
 public class KeybindButton extends Button {
-    private boolean isBinding;
     private ModuleButton parent;
     private int offset;
     private int x;
@@ -21,10 +20,10 @@ public class KeybindButton extends Button {
         this.y = parent.parent.getY() + parent.offset;
         this.offset = offset;
     }
+    private boolean isBinding;
 
     @Override
     public void drawButton(MatrixStack matrix) {
-        //TODO make this less fucking ugly wtf
         InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
 
         if (isBinding) {
