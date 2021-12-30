@@ -27,9 +27,8 @@ public class EntityEsp extends Module {
     public BooleanSetting player = new BooleanSetting("player", this, true);
     public BooleanSetting hostile = new BooleanSetting("hostile", this, true);
     public BooleanSetting passive = new BooleanSetting("passive", this, true);
-    //public BooleanSetting storage = new BooleanSetting("storage", this, true);
     public BooleanSetting item = new BooleanSetting("item", this, true);
-    //public BooleanSetting hole = new BooleanSetting("hole", this, false);
+    //public BooleanSetting hole = new BooleanSetting("hole", this, false); *** not adding these to entity esp... probably some other module.
     //public BooleanSetting voidEsp = new BooleanSetting("void", this, false);
     //public BooleanSetting crystal = new BooleanSetting("crystal", this, false);
     public ColorSetting backColor = new ColorSetting("backColor", this, new JColor(0, 0, 0, 0));
@@ -40,7 +39,6 @@ public class EntityEsp extends Module {
         super("entity esp", "entityesp", "allows you to see certain entities.", 0, Category.RENDER);
         this.addSettings(self, player, hostile, passive, item, backColor, outlineColor, range);
     }
-    //TODO range and order.
 
     private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
     private HashMap<Entity, Vec3d> footPos = Maps.newHashMap();
@@ -48,7 +46,7 @@ public class EntityEsp extends Module {
     @SuppressWarnings("rawtypes")
     @Override
     public void onEvent(Event e) {
-        if (e instanceof EventRender3d) {
+        if(e instanceof EventRender3d) {
             headPos.clear();
             footPos.clear();
             for (Entity entity : minecraft.world.getEntities()) {
@@ -57,7 +55,7 @@ public class EntityEsp extends Module {
                     footPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, -0.2f, ((EventRender3d) e).partialTicks, ((EventRender3d) e).matrix));
                 }
             }
-        } else if (e instanceof EventRender2d) {
+        } else if(e instanceof EventRender2d) {
 
             headPos.keySet().forEach(entity -> {
                 Vec3d top = headPos.get(entity);
@@ -96,6 +94,9 @@ public class EntityEsp extends Module {
     }
 
     public boolean isValid(Entity entity) {
+        if(minecraft.player.distanceTo(entity) > range.getValue())
+            return false;
+
         if (entity == null)
             return false;
         if (entity instanceof ItemEntity)
