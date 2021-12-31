@@ -13,7 +13,7 @@ import net.minecraft.util.Formatting;
 public class Setting extends Command {
 
     public Setting() {
-        super("setting", "allows you to change settings of modules.", "setting <module> <setting> <value>", "s");
+        super("setting", "allows you to change settings of modules.", "setting <module> <setting> <value>", "set");
     }
 
     Formatting GREEN = Formatting.GREEN;
@@ -80,7 +80,7 @@ public class Setting extends Command {
                 int valA = Integer.parseInt(settingValueInput.substring(9, 12));
 
                 ((ColorSetting) setting).setValue(false, new JColor(valR, valG, valB, valA));
-                Bedroom.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was poo pooed.");
+                Bedroom.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was colorizeddddd woo.");
             } catch (Exception invalid) {
                 Bedroom.commandManager.addChatMessage("color value " + RED + settingValueInput + GRAY + " is invalid. colors are processed in RRRGGGBBBAAA format.");
             }

@@ -9,10 +9,14 @@ import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import me.srgantmoomoo.beachhouse.gui.options.OptionsScreen;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.GuiButton;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.module.settingbuttons.BooleanButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.module.settingbuttons.ColorButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.module.settingbuttons.ModeButton;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.module.settingbuttons.NumberButton;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
 import me.srgantmoomoo.bedroom.module.setting.settings.BooleanSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.srgantmoomoo.bedroom.module.setting.settings.NumberSetting;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -49,15 +53,14 @@ public class ModuleButton extends Button {
                     this.settingButtons.add(new NumberButton((NumberSetting) setting, this, opY));
                     opY += 12;
                 }
-                /*if(setting instanceof ModeSetting) {
-                    this.subcomponents.add(new ModeButton((ModeSetting) setting, this, opY));
+                if(setting instanceof ModeSetting) {
+                    this.settingButtons.add(new ModeButton((ModeSetting) setting, this, opY));
                     opY += 12;
                 }
                 if(setting instanceof ColorSetting) {
-                    this.subcomponents.add(new ColorComponent((ColorSetting) setting, this, opY));
+                    this.settingButtons.add(new ColorButton((ColorSetting) setting, this, opY));
                     opY += 12;
                 }
-                */
             }
         }
         //this.subcomponents.add(new KeybindButton(this, opY));

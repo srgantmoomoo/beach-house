@@ -1,10 +1,10 @@
-package me.srgantmoomoo.beachhouse.gui.clickgui.buttons.subbuttons;
+package me.srgantmoomoo.beachhouse.gui.options.buttons.module.settingbuttons;
 
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
-import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ClickGui;
 import me.srgantmoomoo.beachhouse.gui.Button;
-import me.srgantmoomoo.beachhouse.gui.clickgui.buttons.ModuleButton;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.module.ModuleButton;
 import me.srgantmoomoo.bedroom.module.setting.settings.ColorSetting;
+import me.srgantmoomoo.bedroom.module.setting.settings.ModeSetting;
 import me.srgantmoomoo.bedroom.util.font.JColor;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -14,16 +14,16 @@ import org.lwjgl.glfw.GLFW;
 public class ColorButton extends Button {
     private ColorSetting op;
     private ModuleButton parent;
-    private int offset;
     private int x;
     private int y;
+    private int offset;
 
     public ColorButton(ColorSetting op, ModuleButton parent, int offset) {
         this.op = op;
         this.parent = parent;
-        this.x = parent.parent.getX() + parent.parent.getWidth();
-        this.y = parent.parent.getY() + parent.offset;
         this.offset = offset;
+        this.x = 300 + 134;
+        this.y = 100 + offset;
     }
     private boolean hovered = false;
     private boolean isTyping = false;
@@ -31,27 +31,17 @@ public class ColorButton extends Button {
 
     @Override
     public void drawButton(MatrixStack matrix) {
-        InGameHud.fill(matrix, parent.parent.getX() + parent.newx(), parent.parent.getY() + parent.newy() + offset, parent.parent.getX() + parent.newx() + parent.newwidth(), parent.parent.getY() + offset, 0x90000000);
         JColor colorRGB = op.getValue();
 
         if(!isTyping) {
-            if(!hovered) {
-                minecraft.textRenderer.drawWithShadow(matrix, this.op.name, parent.parent.getX() + parent.stringx(), parent.parent.getY() + offset - 10, -1);
-                InGameHud.fill(matrix, parent.parent.getX() + parent.newx() + parent.newwidth() - 10, parent.parent.getY() + offset - 9, parent.parent.getX() + parent.newx() + parent.newwidth() - 4, parent.parent.getY() + offset - 3, colorRGB.getRGB());
-            }else
-                minecraft.textRenderer.drawWithShadow(matrix, "" + Formatting.GRAY + colorRGB.getRed() + " " + colorRGB.getGreen() + " " + colorRGB.getBlue() + " " + colorRGB.getAlpha(), parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
+            InGameHud.fill(matrix, x, y + 1, x + 6, y + 7, colorRGB.getRGB());
+            minecraft.textRenderer.drawWithShadow(matrix, this.op.name + " " + Formatting.GRAY + colorRGB.getRed() + " " + colorRGB.getGreen() + " " + colorRGB.getBlue() + " " + colorRGB.getAlpha(), x + 9, y, 0xffffffff);
         }else {
             if(input.equals(""))
-                minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + "rrr ggg bbb aaa ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
+                minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "rrr ggg bbb aaa ...", x + 9, y, 0xffffffff);
             else
-                minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
+                minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + " ...", x + 9, y, 0Xff11c1e8);
         }
-    }
-
-    @Override
-    public void updateButton(int mouseX, int mouseY) {
-        this.y = parent.parent.getY() + parent.newy() + this.offset;
-        this.x = parent.parent.getX() + parent.newx();
     }
 
     private boolean mouseHeld = false;
@@ -59,6 +49,9 @@ public class ColorButton extends Button {
     private boolean rainbow = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
+        if(!parent.open)
+            return;
+
         if(isMouseOnButton(mouseX, mouseY)) {
             hovered = true;
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {
@@ -81,14 +74,11 @@ public class ColorButton extends Button {
         }
     }
 
-    //TODO enter value when max is typed
-    // split by space // or just substring using format 000
-    // set to 0 if less than 0
-    // set to 255 if greater than 255
-
-    // help me
     @Override
     public void keyTyped(int key) {
+        if(!parent.open)
+            return;
+
         if(isTyping) {
             if (key == GLFW.GLFW_KEY_ENTER && !input.equals("")) {
                 int valR = Integer.parseInt(input.substring(0, 3));
@@ -103,9 +93,7 @@ public class ColorButton extends Button {
                 }
                 input = "";
                 return;
-            }/*else if(!inputIsValid()) {
-                op.setValue(false, new JColor(255, 0, 0, 255));
-            }*/
+            }
 
             String keyPressed = "";
 
@@ -129,26 +117,8 @@ public class ColorButton extends Button {
         }
     }
 
-    /*public boolean inputIsValid() {
-        if(input.length() != 14)
-            return false;
-
-        int valR = Integer.parseInt(input.substring(0, 3));
-        int valG = Integer.parseInt(input.substring(4, 7));
-        int valB = Integer.parseInt(input.substring(8, 11));
-        int valA = Integer.parseInt(input.substring(12, 15));
-
-        if(valR <= 255 && valG <= 255 && valB <= 255 && valA <= 255)
-            return true;
-        else
-            return false;
-    }*/
-
-    public boolean isMouseOnButton(int x, int y) {
-        if (parent.onWall() && ClickGui.INSTANCE.interactWithWall.isEnabled()) {
-            return x < this.x && x > this.x + parent.newwidth() && y > this.y && y < this.y + 12;
-        } else {
-            return x > this.x && x < this.x + parent.newwidth() && y > this.y && y < this.y + 12;
-        }
+    public boolean isMouseOnButton(int xx, int yy) {
+        return xx > x && xx < x + minecraft.textRenderer.getWidth(op.name) && yy > y  && yy < y + minecraft.textRenderer.fontHeight;
     }
+
 }

@@ -29,7 +29,7 @@ public class UuidChecker {
     }
 
     public void logic() {
-        uuids = new ArrayList<>(Arrays.asList("62cf9cdc-2cbd-44b1-bb6f-754b48ede1d0", "6cabf93b-bd71-46bc-bf99-33dd3d26a6d3", "3daf3d9d-629f-49f9-bc19-a86e0b6f125b"));
+        uuids = new ArrayList<>(Arrays.asList("62cf9cdc-2cbd-44b1-bb6f-754b48ede1d0", "6cabf93b-bd71-46bc-bf99-33dd3d26a6d3", "3daf3d9d-629f-49f9-bc19-a86e0b6f125b", "9fba770d-e8d6-4db9-9583-e5ec5ddc4f7a"));
 
         check();
         execute();

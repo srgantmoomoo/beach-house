@@ -56,18 +56,18 @@ public class OptionsScreen extends Screen {
 
         //TODO this code is disgusting, fix it.
         if(GuiButton.selected) {
-            fill(matrix, 300, 80 + 12, 300 + 1, 80 + 12 + 1, 0xfff868fb);
-            fill(matrix, 300 + 20 + 1, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fb);
+            fill(matrix, 300, 80 + 12, 300 + 1, 80 + 12 + 1, 0xffe6ab17);
+            fill(matrix, 300 + 20 + 1, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xffe6ab17);
         }else if(HudButton.selected) {
-            fill(matrix, 300, 80 + 12, 300 + 1 + 20 + 1, 80 + 12 + 1, 0xfff868fb);
-            fill(matrix, 300 + 1 + 20 + 1 + 23, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fb);
+            fill(matrix, 300, 80 + 12, 300 + 1 + 20 + 1, 80 + 12 + 1, 0xffe6ab17);
+            fill(matrix, 300 + 1 + 20 + 1 + 23, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xffe6ab17);
         }else if(UtilitiesButton.selected) {
             int xOld =  300 + 1 + 20 + 1;
             int xNew = xOld + 23 + 1; // +23 is the length of hudbutton, +1 to cover the distance between to two buttons....   really should clean up this code but im monkeying it rn.
-            fill(matrix, 300, 80 + 12, xNew, 80 + 12 + 1, 0xfff868fb);
-            fill(matrix, xNew + 40, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fb);
+            fill(matrix, 300, 80 + 12, xNew, 80 + 12 + 1, 0xffe6ab17);
+            fill(matrix, xNew + 40, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xffe6ab17);
         }else
-            fill(matrix, 300, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xfff868fb);
+            fill(matrix, 300, 80 + 12, screenWidth - 300, 80 + 12 + 1, 0xffe6ab17);
 
         // call methods for drawing and clicking
         for(Button button : panels) {

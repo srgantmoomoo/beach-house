@@ -56,6 +56,8 @@ import net.fabricmc.api.ModInitializer;
 
 //TODO seaweed fucks with jesus module.
 
+//TODO timer.
+
 public class Main implements ModInitializer {
 
 	public static final String modid = "beachhouse";
