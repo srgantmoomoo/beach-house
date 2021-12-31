@@ -61,7 +61,7 @@ public class Main implements ModInitializer {
 	public static final String modid = "beachhouse";
 	public static final String name = "beach house";
 	public static final String nameCondensed = "beach-house";
-	public static final boolean checkUuids = true;
+	public static final boolean checkUuids = false;
 	public static final String version = "0.11";
 
 	public static ClickGuiScreen clickGui;
