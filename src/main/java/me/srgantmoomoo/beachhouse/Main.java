@@ -54,8 +54,6 @@ import net.fabricmc.api.ModInitializer;
 //TODO command line stuff.
 //TODO scrolling in command line and top down option.
 
-//TODO fix settings config cause it wont fucking work for some god damnr eason wtf.
-
 //TODO seaweed fucks with jesus module.
 
 public class Main implements ModInitializer {
