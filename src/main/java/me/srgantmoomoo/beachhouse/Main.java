@@ -3,7 +3,7 @@ package me.srgantmoomoo.beachhouse;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
-import me.srgantmoomoo.beachhouse.backend.NameChecker;
+import me.srgantmoomoo.beachhouse.backend.UuidChecker;
 import me.srgantmoomoo.beachhouse.backend.saveload.Load;
 import me.srgantmoomoo.beachhouse.backend.saveload.Save;
 import me.srgantmoomoo.beachhouse.feature.command.Commands;
@@ -63,7 +63,7 @@ public class Main implements ModInitializer {
 	public static final String modid = "beachhouse";
 	public static final String name = "beach house";
 	public static final String nameCondensed = "beach-house";
-	public static final boolean checkNames = false;
+	public static final boolean checkUuids = true;
 	public static final String version = "0.11";
 
 	public static ClickGuiScreen clickGui;
@@ -72,7 +72,7 @@ public class Main implements ModInitializer {
 	public static Save save;
 	public static Load load;
 	public static NotepadManager notepadManager;
-	public static NameChecker nameChecker;
+	public static UuidChecker nameChecker;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
 
@@ -88,7 +88,7 @@ public class Main implements ModInitializer {
 		Bedroom.init(modid, name, version);
 		beachhouseInit();
 		//Discord.startRPC(); //TODO fix this
-		nameChecker = new NameChecker();
+		nameChecker = new UuidChecker();
 	}
 
 	public void beachhouseInit() {

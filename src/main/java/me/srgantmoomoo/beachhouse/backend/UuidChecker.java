@@ -8,13 +8,13 @@ import net.minecraft.client.MinecraftClient;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class NameChecker {
-    public static NameChecker INSTANCE;
-    private ArrayList<String> names;
+public class UuidChecker {
+    public static UuidChecker INSTANCE;
+    private ArrayList<String> uuids;
     private boolean isOnList = false;
     private boolean ran = false;
 
-    public NameChecker() {
+    public UuidChecker() {
         INSTANCE = this;
     }
 
@@ -22,14 +22,14 @@ public class NameChecker {
     public void onEvent(Event e) {
         if(e instanceof EventTick) {
             if(!ran) {
-                if(Main.checkNames)
+                if(Main.checkUuids)
                     logic();
             }
         }
     }
 
     public void logic() {
-        names = new ArrayList<>(Arrays.asList("srgantmoomoo", "srgantoinkoink", "go_hoosiers", "kfcreampie"));
+        uuids = new ArrayList<>(Arrays.asList("62cf9cdc-2cbd-44b1-bb6f-754b48ede1d0", "6cabf93b-bd71-46bc-bf99-33dd3d26a6d3", "3daf3d9d-629f-49f9-bc19-a86e0b6f125b"));
 
         check();
         execute();
@@ -38,9 +38,9 @@ public class NameChecker {
 
     public void check() {
         if(MinecraftClient.getInstance().player != null) {
-            String playerName = MinecraftClient.getInstance().player.getEntityName().toLowerCase();
-            isOnList = names.contains(playerName);
-            System.out.println(playerName);
+            String playerUUID = MinecraftClient.getInstance().player.getUuidAsString();
+            isOnList = uuids.contains(playerUUID);
+            System.out.println(playerUUID);
         }
     }
 
