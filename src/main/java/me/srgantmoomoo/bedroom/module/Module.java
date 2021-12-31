@@ -80,6 +80,12 @@ public abstract class Module {
 
     public void setKey(int key) {
         this.keyCode.code = key;
+
+        if(Main.save != null) {
+            try {
+                Main.save.saveSettings();
+            } catch (Exception e) {}
+        }
     }
 
     public void toggle() {

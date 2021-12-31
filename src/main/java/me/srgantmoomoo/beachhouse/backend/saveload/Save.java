@@ -68,7 +68,6 @@ public class Save {
             ArrayList<String> toSave = new ArrayList<>();
 
             for(Module mod : Bedroom.moduleManager.modules) {
-                //toSave.add(mod.getName() + ":" + "keybind" + ":" + mod.getKey());
                 for(Setting setting : mod.settings) {
 
                     if(setting instanceof BooleanSetting bool) {
@@ -84,7 +83,7 @@ public class Save {
                     }
 
                     if(setting instanceof ColorSetting color) {
-                        //toSave.add(setting.parent.getName() + ":" + setting.name + ":" + color.toInteger() + ":" + color.getRainbow());
+                        toSave.add(setting.parent.getName() + ":" + setting.name + ":" + color.toInteger() + ":" + color.getRainbow());
                     }
 
                     if(setting instanceof KeybindSetting keybind) {

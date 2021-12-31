@@ -1,6 +1,7 @@
 
 package me.srgantmoomoo.bedroom.module.setting.settings;
 
+import me.srgantmoomoo.beachhouse.Main;
 import me.srgantmoomoo.bedroom.util.font.JColor;
 import me.srgantmoomoo.bedroom.module.Module;
 import me.srgantmoomoo.bedroom.module.setting.Setting;
@@ -28,10 +29,23 @@ public class ColorSetting extends Setting {
         return new JColor(color.getRed(), color.getBlue(), color.getGreen(), alpha);
     }
 
+    public boolean getRainbow() {
+        return this.rainbow;
+    }
+
+    public void setRainbow(boolean rainbow) {
+        this.rainbow = rainbow;
+    }
 
     public void setValue (boolean rainbow, final JColor value) {
         this.rainbow = rainbow;
         this.value = value;
+
+        if(Main.save != null) {
+            try {
+                Main.save.saveSettings();
+            } catch (Exception e) {}
+        }
     }
 
     public long toInteger() {
