@@ -8,17 +8,11 @@ import net.minecraft.util.Formatting;
 //TODO add to help comm.
 // add timer
 public class Clock extends Command {
+    Timer timer = new Timer();
 
     public Clock() {
         super("clock", "does clock things.", "clock | clock start | clock get | clock timer <time>", "clk");
     }
-
-    Formatting LIGHT_PURPLE = Formatting.LIGHT_PURPLE;
-    Formatting GRAY = Formatting.GRAY;
-    Formatting AQUA = Formatting.AQUA;
-    Formatting BOLD = Formatting.BOLD;
-    Formatting ITALIC = Formatting.ITALIC;
-    Timer timer = new Timer();
 
     @Override
     public void onCommand(String[] args, String command) {
@@ -26,14 +20,13 @@ public class Clock extends Command {
             Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
-
         String comm = args[0];
 
         if(comm.equals("start")) {
             timer.reset();
             timer.update();
         }else if(comm.equals("get")) {
-            Bedroom.commandManager.addChatMessage("current timer is at " + Math.round(timer.getPassed() / 1000));
+            Bedroom.commandManager.addChatMessage("current timer is at " + Formatting.WHITE + Math.round(timer.getPassed() / 1000) + Formatting.GRAY +  ".");
         }else
             Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
     }

@@ -12,12 +12,10 @@ public class Options extends Module {
     public static Options INSTANCE;
 
     public ModeSetting background = new ModeSetting("background", this, "beach", "beach", "blur", "art", "dim", "none");
-    public BooleanSetting interactWithWall = new BooleanSetting("interactWithWall", this, true);
-    public BooleanSetting hover = new BooleanSetting("hover", this, true);
 
     public Options() {
         super("options", "options", "do options stuff with client n stuff.", GLFW.GLFW_KEY_N, Category.BEACHHOUSE);
-        this.addSettings(background, hover, interactWithWall);
+        this.addSettings(background);
         INSTANCE = this;
     }
 

@@ -31,13 +31,13 @@ public class EntityEsp extends Module {
     //public BooleanSetting hole = new BooleanSetting("hole", this, false); *** not adding these to entity esp... probably some other module.
     //public BooleanSetting voidEsp = new BooleanSetting("void", this, false);
     //public BooleanSetting crystal = new BooleanSetting("crystal", this, false);
-    public ColorSetting backColor = new ColorSetting("backColor", this, new JColor(0, 0, 0, 0));
+    public ColorSetting highlightColor = new ColorSetting("highlightColor", this, new JColor(0, 0, 0, 0));
     public ColorSetting outlineColor = new ColorSetting("outlineColor", this, new JColor(0, 255, 0, 255));
-    public NumberSetting range = new NumberSetting("range", this, 1, 0, 100, 1);
+    public NumberSetting range = new NumberSetting("range", this, 36, 0, 100, 1);
 
     public EntityEsp() {
         super("entity esp", "entityesp", "allows you to see certain entities.", 0, Category.RENDER);
-        this.addSettings(self, player, hostile, passive, item, backColor, outlineColor, range);
+        this.addSettings(self, player, hostile, passive, item, highlightColor, outlineColor, range);
     }
 
     private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
@@ -56,7 +56,6 @@ public class EntityEsp extends Module {
                 }
             }
         } else if(e instanceof EventRender2d) {
-
             headPos.keySet().forEach(entity -> {
                 Vec3d top = headPos.get(entity);
                 Vec3d bottom = footPos.get(entity);
@@ -88,7 +87,7 @@ public class EntityEsp extends Module {
     }
 
     public void drawBox(MatrixStack matrixStack, float x, float y, float x2, float y2) {
-        JColor back = backColor.getValue();
+        JColor back = highlightColor.getValue();
         JColor outline = outlineColor.getValue();
         Render2DHelper.INSTANCE.fillAndBorder(matrixStack, x, y, x2, y2, outline.getRGB(), back.getRGB(), 1f);
     }

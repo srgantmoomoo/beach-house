@@ -53,7 +53,7 @@ public class Help extends Command {
 
     private void displayPage2() {
         welcomeMessage();
-        for(Command c : Bedroom.commandManager.commands.subList(6, 8)) {
+        for(Command c : Bedroom.commandManager.commands.subList(6, 11)) {
             helpMessage(c.getName(), c.getDescription(), c.getSyntax());
         }
         goodbyeMessage();

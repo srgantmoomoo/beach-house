@@ -89,6 +89,9 @@ public class ColorButton extends Button {
     // help me
     @Override
     public void keyTyped(int key) {
+        if(!parent.isOpen())
+            return;
+
         if(isTyping) {
             if (key == GLFW.GLFW_KEY_ENTER && !input.equals("")) {
                 int valR = Integer.parseInt(input.substring(0, 3));
