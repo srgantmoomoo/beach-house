@@ -59,6 +59,9 @@ public class ColorButton extends Button {
     private boolean rainbow = false;
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
+        if(!parent.isOpen())
+            return;
+
         if(isMouseOnButton(mouseX, mouseY)) {
             hovered = true;
             if(GLFW.glfwGetMouseButton(minecraft.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && !mouseHeld) {

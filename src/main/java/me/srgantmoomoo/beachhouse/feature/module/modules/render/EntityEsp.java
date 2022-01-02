@@ -33,7 +33,7 @@ public class EntityEsp extends Module {
     //public BooleanSetting crystal = new BooleanSetting("crystal", this, false);
     public ColorSetting highlightColor = new ColorSetting("highlightColor", this, new JColor(0, 0, 0, 0));
     public ColorSetting outlineColor = new ColorSetting("outlineColor", this, new JColor(0, 255, 0, 255));
-    public NumberSetting range = new NumberSetting("range", this, 36, 0, 100, 1);
+    public NumberSetting range = new NumberSetting("range", this, 36, 0, 500, 1);
 
     public EntityEsp() {
         super("entity esp", "entityesp", "allows you to see certain entities.", 0, Category.RENDER);
@@ -55,7 +55,7 @@ public class EntityEsp extends Module {
                     footPos.put(entity, Render2DHelper.INSTANCE.getPos(entity, -0.2f, ((EventRender3d) e).partialTicks, ((EventRender3d) e).matrix));
                 }
             }
-        } else if(e instanceof EventRender2d) {
+        }else if(e instanceof EventRender2d) {
             headPos.keySet().forEach(entity -> {
                 Vec3d top = headPos.get(entity);
                 Vec3d bottom = footPos.get(entity);
@@ -112,5 +112,4 @@ public class EntityEsp extends Module {
             return hostile.isEnabled();
         return false;
     }
-
 }
