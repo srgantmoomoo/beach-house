@@ -19,7 +19,7 @@ public class CheckModules extends Command {
             return;
         }
 
-        Bedroom.commandManager.addChatMessage("jesus, player velocity, sprint, entity esp, full bright, render cancel, and vibrant shader.");
+        Bedroom.commandManager.addChatMessage("jesus, player velocity, sprint, entity esp, full bright, render cancel, vibrant shader, and fly.");
     }
 
 }

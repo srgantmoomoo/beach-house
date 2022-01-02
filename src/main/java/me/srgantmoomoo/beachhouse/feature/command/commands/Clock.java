@@ -25,6 +25,7 @@ public class Clock extends Command {
         if(comm.equals("start")) {
             timer.reset();
             timer.update();
+            Bedroom.commandManager.addChatMessage("started a new clock.");
         }else if(comm.equals("get")) {
             Bedroom.commandManager.addChatMessage("current timer is at " + Formatting.WHITE + Math.round(timer.getPassed() / 1000) + Formatting.GRAY +  ".");
         }else
