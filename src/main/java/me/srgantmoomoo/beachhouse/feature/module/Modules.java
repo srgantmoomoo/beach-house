@@ -31,6 +31,7 @@ public class Modules {
         Bedroom.addModule(new SwingAura());
 
         // misc
+        Bedroom.addModule(new AutoLog());
         Bedroom.addModule(new ChatSpammer());
         Bedroom.addModule(new DeathCoords());
         Bedroom.addModule(new Nuker());
@@ -53,10 +54,10 @@ public class Modules {
 
         // player
         Bedroom.addModule(new AntiHunger());
-        Bedroom.addModule(new AutoLog());
         Bedroom.addModule(new AutoTotem());
         Bedroom.addModule(new ElytraReplace());
         Bedroom.addModule(new FakePlayer());
+        Bedroom.addModule(new FastPlace());
         Bedroom.addModule(new FreeCam());
         Bedroom.addModule(new Jesus());
         Bedroom.addModule(new LiquidPlace());

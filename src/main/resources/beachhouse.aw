@@ -2,6 +2,9 @@ accessWidener v1 named
 
 accessible    class    net/minecraft/client/particle/FireworksSparkParticle$Explosion
 accessible    field    net/minecraft/client/gui/screen/ChatScreen    chatField    Lnet/minecraft/client/gui/widget/TextFieldWidget
+accessible    field    net/minecraft/client/MinecraftClient    itemUseCooldown    I
+accessible    field    net/minecraft/network/packet/c2s/play/PlayerMoveC2SPacket    onGround    Z
+mutable    field    net/minecraft/network/packet/c2s/play/PlayerMoveC2SPacket    onGround    Z
 
 # for player velocity module
 accessible    field    net/minecraft/network/packet/s2c/play/EntityVelocityUpdateS2CPacket    velocityX    I

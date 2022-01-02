@@ -24,29 +24,24 @@ public class PlayerVelocity extends Module {
 
     @Override
     public void onEvent(Event e) {
-
         if(knockBack.isEnabled()) {
-
-            if (e instanceof EventPacket.Send) {
-                if (((EventPacket) e).getPacket() instanceof EntityVelocityUpdateS2CPacket p) {
+            if(e instanceof EventPacket.Send) {
+                if(((EventPacket) e).getPacket() instanceof EntityVelocityUpdateS2CPacket p) {
                     if (minecraft.player == null || minecraft.world == null)
                         return;
 
-                    if (p.getId() == minecraft.player.getId()) {
+                    if(p.getId() == minecraft.player.getId()) {
                         p.velocityX = (int) knockBackPercent.getValue(); //TODO this doesn't really work... math has to be done but im to lazy to do it rn and have to go do something else.
                         p.velocityY = (int) knockBackPercent.getValue();
                         p.velocityZ = (int) knockBackPercent.getValue();
                     }
 
-                } else if (((EventPacket.Send) e).getPacket() instanceof ExplosionS2CPacket p_1) {
+                }else if(((EventPacket.Send) e).getPacket() instanceof ExplosionS2CPacket p_1) {
                     p_1.playerVelocityX = (int) knockBackPercent.getValue();
                     p_1.playerVelocityY = (int) knockBackPercent.getValue();
                     p_1.playerVelocityZ = (int) knockBackPercent.getValue();
                 }
             }
-
         }
-
     }
-
 }
