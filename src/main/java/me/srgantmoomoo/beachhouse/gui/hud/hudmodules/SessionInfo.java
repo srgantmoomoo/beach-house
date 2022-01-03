@@ -1,6 +1,7 @@
 package me.srgantmoomoo.beachhouse.gui.hud.hudmodules;
 
 import me.srgantmoomoo.beachhouse.Main;
+import me.srgantmoomoo.beachhouse.backend.util.Timer;
 import me.srgantmoomoo.beachhouse.gui.hud.HudModule;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Formatting;
@@ -10,6 +11,7 @@ public class SessionInfo extends HudModule {
     public SessionInfo() {
         super("session info", "sessioninfo", "see ur sesh info.", 70, 16, Category.BEACHHOUSE);
     }
+    Timer timer = new Timer();
 
     @Override
     public void draw(MatrixStack matrix) {
@@ -39,6 +41,9 @@ public class SessionInfo extends HudModule {
     private void drawFinale(MatrixStack matrix) {
         assert minecraft.player != null;
         assert minecraft.world != null;
+        timer.reset();
+        timer.update();
+
         minecraft.textRenderer.drawWithShadow(matrix, "hello", getX(), getY(), 0xff11c1e8);
 
         minecraft.textRenderer.drawWithShadow(matrix, minecraft.world.isRaining() ? Formatting.GRAY + "weather" + Formatting.WHITE + " : meatballs"
@@ -46,14 +51,18 @@ public class SessionInfo extends HudModule {
 
         minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "game time" + Formatting.WHITE + " : " + minecraft.world.getTimeOfDay(), getX(), getY() + 20, 0xffffffff);
 
-        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "time played" + Formatting.WHITE + " : " + minecraft.player.age, getX(), getY() + 30, 0xffffffff);
+        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "time played" + Formatting.WHITE + " : " + timePlayed(), getX(), getY() + 30, 0xffffffff);
 
         minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "player speed" + Formatting.WHITE + " : " + minecraft.player.getMovementSpeed(), getX(), getY() + 40, 0xffffffff);
 
         minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "server" + Formatting.WHITE + " : " + minecraft.player.getServerBrand(), getX(), getY() + 50, 0xffffffff);
 
-        minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "chunk pos" + Formatting.WHITE + " : " + minecraft.player.getChunkPos(), getX(), getY() + 60, 0xffffffff);
+    }
 
+    private String timePlayed() {
+        String finalTime = "" + (timer.getCurrentMS() / 1000);
+
+        return finalTime;
     }
 
 }
