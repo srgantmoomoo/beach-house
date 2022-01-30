@@ -28,6 +28,9 @@ public class MixinKeyboard {
         // for command line key listener
         Main.commandLine.onKeyPressed(key);
 
+        // for options screen key listener
+        Main.options.onKeyPressed(key);
+
         EventGuiKeyPress e = new EventGuiKeyPress(key, scanCode);
         e.setType(Type.PRE);
         ModuleManager.onEvent(e);

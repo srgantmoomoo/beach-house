@@ -17,19 +17,22 @@ public class SettingList extends Command {
 
     @Override
     public void onCommand(String[] args, String command) {
+        String inputValue = args[0];
 
         if(args.length != 1) {
             Bedroom.commandManager.correctUsageMsg(name, syntax);
             return;
         }
 
-        String inputValue = args[0];
-        boolean moduleFound = false;
+        if(Bedroom.moduleManager.getModuleByID(inputValue) == null) {
+            Bedroom.commandManager.addChatMessage("module " + Formatting.RED + inputValue + Formatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
+            return;
+        }
 
         List<Module> modules = Bedroom.moduleManager.getModules();
-
         String nothing = Formatting.AQUA + " ";
         String wuw = Formatting.GRAY + "" + Formatting.BOLD + "wuw" + Formatting.AQUA + " ~";
+
         Bedroom.commandManager.addCustomChatMessage(wuw);
         Bedroom.commandManager.addCustomChatMessage(nothing);
         for(Module m : modules) {
@@ -63,10 +66,8 @@ public class SettingList extends Command {
                         //Bedroom.commandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");  notiing 0_0
                     }
                     if(!sent) {
-                        Bedroom.commandManager.addCustomChatMessage("no settings for this module :(");
+                        Bedroom.commandManager.addCustomChatMessage("no settings for this module :("); //TODO this wont be needed when keybinds r added... so add keybinds. im just to lazy to do it rn.
                     }
-
-                    moduleFound = true;
                 }
                 sent = false;
             }
@@ -74,10 +75,5 @@ public class SettingList extends Command {
         String uwu = Formatting.GRAY + "" + Formatting.BOLD + "uwu" + Formatting.AQUA + " ~";
         Bedroom.commandManager.addCustomChatMessage(nothing);
         Bedroom.commandManager.addCustomChatMessage(uwu);
-
-        if(!moduleFound) {
-            Bedroom.commandManager.addChatMessage("module " + Formatting.RED + inputValue + Formatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
-            return;
-        }
     }
 }

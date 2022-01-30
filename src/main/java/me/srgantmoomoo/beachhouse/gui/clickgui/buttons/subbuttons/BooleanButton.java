@@ -56,17 +56,9 @@ public class BooleanButton extends Button {
 
     public boolean isMouseOnButton(int x, int y) {
         if(parent.onWall() && ClickGui.INSTANCE.interactWithWall.isEnabled()) {
-            if (x < this.x && x > this.x + parent.newwidth() && y > this.y && y < this.y + 12) {
-                return true;
-            } else {
-                return false;
-            }
+            return x < this.x && x > this.x + parent.newwidth() && y > this.y && y < this.y + 12;
         }else {
-            if (x > this.x && x < this.x + parent.newwidth() && y > this.y && y < this.y + 12) {
-                return true;
-            } else {
-                return false;
-            }
+            return x > this.x && x < this.x + parent.newwidth() && y > this.y && y < this.y + 12;
         }
     }
 }

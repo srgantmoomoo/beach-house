@@ -17,6 +17,7 @@ public class Commands {
         Bedroom.addCommand(new Clock());
         Bedroom.addCommand(new Clear());
         Bedroom.addCommand(new DoomHud());
+        Bedroom.addCommand(new Vanish());
         //Bedroom.addCommand(new AntiNick());
         //x and y lock
         // move packet cancel to here.

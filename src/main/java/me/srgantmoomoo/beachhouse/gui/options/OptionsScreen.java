@@ -3,6 +3,7 @@ package me.srgantmoomoo.beachhouse.gui.options;
 import me.srgantmoomoo.beachhouse.backend.util.Reference;
 import me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.Options;
 import me.srgantmoomoo.beachhouse.gui.Button;
+import me.srgantmoomoo.beachhouse.gui.clickgui.Panel;
 import me.srgantmoomoo.beachhouse.gui.navbar.NavBar;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.GuiButton;
 import me.srgantmoomoo.beachhouse.gui.options.buttons.HudButton;
@@ -10,6 +11,7 @@ import me.srgantmoomoo.beachhouse.gui.options.buttons.UtilitiesButton;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 
@@ -81,6 +83,13 @@ public class OptionsScreen extends Screen {
         // NAVBAR
         navBar.draw(matrix, mouseX, mouseY, delta);
         navBar.mouseClicked(mouseX, mouseY);
+    }
+
+    // called in MixinKeyboard
+    public void onKeyPressed(int key) {
+        for (Button button : panels) {
+            button.keyTyped(key);
+        }
     }
 
 }

@@ -1,9 +1,7 @@
 package me.srgantmoomoo.beachhouse.feature.command.commands;
 
-import me.srgantmoomoo.beachhouse.backend.util.Timer;
 import me.srgantmoomoo.bedroom.Bedroom;
 import me.srgantmoomoo.bedroom.command.Command;
-import net.minecraft.util.Formatting;
 
 // i got this idea from kfc lol :)
 public class DoomHud extends Command {
@@ -17,6 +15,9 @@ public class DoomHud extends Command {
         if(args.length > 1) {
             Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
+        }
+        if (args.length == 0) {
+
         }
 
         if(args.length == 1) {

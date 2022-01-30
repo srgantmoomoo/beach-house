@@ -12,6 +12,7 @@ import me.srgantmoomoo.beachhouse.gui.commandline.CommandLineScreen;
 import me.srgantmoomoo.beachhouse.gui.hud.HudManager;
 import me.srgantmoomoo.beachhouse.feature.module.Modules;
 import me.srgantmoomoo.beachhouse.feature.notepad.NotepadManager;
+import me.srgantmoomoo.beachhouse.gui.options.OptionsScreen;
 import me.srgantmoomoo.bedroom.Bedroom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,7 +47,6 @@ import net.fabricmc.api.ModInitializer;
 //TODO bedroom.
 //TODO xray.
 //TODO resets.
-//TODO binds in config.
 
 //TODO website.
 //TODO discord rpc.
@@ -55,8 +55,6 @@ import net.fabricmc.api.ModInitializer;
 //TODO scrolling in command line and top down option.
 
 //TODO seaweed fucks with jesus module.
-
-//TODO timer.
 
 public class Main implements ModInitializer {
 
@@ -69,9 +67,10 @@ public class Main implements ModInitializer {
 	public static ClickGuiScreen clickGui;
 	public static HudManager hudManager;
 	public static CommandLineScreen commandLine;
+	public static OptionsScreen options;
+	public static NotepadManager notepadManager;
 	public static Save save;
 	public static Load load;
-	public static NotepadManager notepadManager;
 	public static UuidChecker nameChecker;
 
 	public static final Logger LOGGER = LogManager.getLogger("beach house");
@@ -110,11 +109,14 @@ public class Main implements ModInitializer {
 		clickGui = new ClickGuiScreen();
 		printLog("click gui initialized.");
 
-		commandLine = new CommandLineScreen();
-		printLog("command line initialized.");
-		
 		hudManager = new HudManager();
 		printLog("hud editor initialized.");
+
+		commandLine = new CommandLineScreen();
+		printLog("command line initialized.");
+
+		options = new OptionsScreen();
+		printLog("options screen initialized");
 
 		notepadManager = new NotepadManager();
 		printLog("big pp notepad manager is initialized.");
