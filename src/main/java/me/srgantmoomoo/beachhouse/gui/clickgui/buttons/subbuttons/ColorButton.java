@@ -42,9 +42,13 @@ public class ColorButton extends Button {
                 minecraft.textRenderer.drawWithShadow(matrix, "" + Formatting.GRAY + colorRGB.getRed() + " " + colorRGB.getGreen() + " " + colorRGB.getBlue() + " " + colorRGB.getAlpha(), parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), -1);
         }else {
             if(input.equals(""))
-                minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + "rrr ggg bbb aaa ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
-            else
+                minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "rrr ggg bbb aaa ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
+            else {
+                if(input.length() == 15) {
+                    minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
+                }
                 minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
+            }
         }
     }
 
@@ -95,23 +99,33 @@ public class ColorButton extends Button {
         if(!parent.isOpen())
             return;
 
+        // enter
         if(isTyping) {
-            if (key == GLFW.GLFW_KEY_ENTER && !input.equals("")) {
-                int valR = Integer.parseInt(input.substring(0, 3));
-                int valG = Integer.parseInt(input.substring(4, 7));
-                int valB = Integer.parseInt(input.substring(8, 11));
-                int valA = Integer.parseInt(input.substring(12, 15));
+            if (key == GLFW.GLFW_KEY_ENTER) {
+                if(input.length() == 15) {
+                    int valR = Integer.parseInt(input.substring(0, 3));
+                    int valG = Integer.parseInt(input.substring(4, 7));
+                    int valB = Integer.parseInt(input.substring(8, 11));
+                    int valA = Integer.parseInt(input.substring(12, 15));
 
-                try {
-                    op.setValue(false, new JColor(valR, valG, valB, valA));
-                }catch (Exception invalid) {
-                    op.setValue(false, new JColor(255, 0, 0, 255));
+                    if(!(valR <= 255))
+                        op.setValue(false, new JColor(255, 0, 0, 255));
+                    if(!(valG <= 255))
+                        op.setValue(false, new JColor(255, 0, 0, 255));
+                    if(!(valB <= 255))
+                        op.setValue(false, new JColor(255, 0, 0, 255));
+                    if(!(valA <= 255))
+                        op.setValue(false, new JColor(255, 0, 0, 255));
+
+                    try {
+                        op.setValue(false, new JColor(valR, valG, valB, valA));
+                    } catch (Exception invalid) {
+                        op.setValue(false, new JColor(255, 0, 0, 255));
+                    }
+                    input = "";
+                    return;
                 }
-                input = "";
-                return;
-            }/*else if(!inputIsValid()) {
-                op.setValue(false, new JColor(255, 0, 0, 255));
-            }*/
+            }
 
             String keyPressed = "";
 
