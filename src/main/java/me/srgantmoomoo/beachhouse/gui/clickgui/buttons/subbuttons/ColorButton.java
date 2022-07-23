@@ -45,9 +45,8 @@ public class ColorButton extends Button {
                 minecraft.textRenderer.drawWithShadow(matrix, Formatting.GRAY + "rrr ggg bbb aaa ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
             else {
                 if(input.length() == 15) {
-                    minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
-                }
-                minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
+                    minecraft.textRenderer.drawWithShadow(matrix, input, parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
+                }else minecraft.textRenderer.drawWithShadow(matrix, input + Formatting.GRAY + " ...", parent.parent.getX() + parent.stringx(), (parent.parent.getY() + offset - 10), 0Xff11c1e8);
             }
         }
     }

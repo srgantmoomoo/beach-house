@@ -21,6 +21,6 @@ public class MixinTitleScreen extends Screen {
         int width = Reference.minecraft.getWindow().getScaledWidth();
         int height = Reference.minecraft.getWindow().getScaledHeight();
 
-        drawStringWithShadow(matrix, this.textRenderer, "beach house is loaded!", width - 120, height - 20, 0xfff868fB);
+        drawStringWithShadow(matrix, this.textRenderer, "beach house is loaded!", width - 116, height - 20, 0xfff868fB);
     }
 }
