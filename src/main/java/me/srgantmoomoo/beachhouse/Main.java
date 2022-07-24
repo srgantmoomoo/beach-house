@@ -60,8 +60,6 @@ import net.fabricmc.api.ModInitializer;
 //TODO seaweed fucks with jesus module.
 
 public class Main implements ModInitializer {
-	public static final Logger log = LogManager.getLogger("beach house");
-
 	public final String modid = "beachhouse";
 	public final String name = "beach house";
 	public final String version = "0.11";
@@ -75,6 +73,8 @@ public class Main implements ModInitializer {
 	public Save save;
 	public Load load;
 	public UuidChecker nameChecker;
+
+	public static final Logger log = LogManager.getLogger("beach house");
 
 	public final Object syncronize = new Object();
 	public void printLog(String text) {
