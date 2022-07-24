@@ -108,7 +108,7 @@ public class EnabledModules extends HudModule {
 
     @Override
     public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
-        Main.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), this.hudEnabled ? 0xff00ff00 : 0xffffffff);
+        Main.INSTANCE.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), this.hudEnabled ? 0xff00ff00 : 0xffffffff);
         drawFinale(matrix);
 
         super.drawDraggable(matrix, mouseX, mouseY);

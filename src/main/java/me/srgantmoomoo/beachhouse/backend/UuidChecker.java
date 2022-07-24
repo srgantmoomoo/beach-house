@@ -22,7 +22,7 @@ public class UuidChecker {
     public void onEvent(Event e) {
         if(e instanceof EventTick) {
             if(!ran) {
-                if(Main.checkUuids)
+                if(Main.INSTANCE.checkUuids)
                     logic();
             }
         }

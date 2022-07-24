@@ -48,23 +48,24 @@ public class SettingList extends Command {
                     }
 
                     if(setting instanceof ModeSetting) {
-                        Bedroom.commandManager.addCustomChatMessage("mode: " + Formatting.WHITE + setting.name + " " + ((ModeSetting) setting).modes + Formatting.GRAY + ".");
+                        Bedroom.commandManager.addCustomChatMessage("mode: " + Formatting.WHITE + setting.name + " " + ((ModeSetting) setting).getMode() + " " + ((ModeSetting) setting).modes + Formatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof NumberSetting) {
-                        Bedroom.commandManager.addCustomChatMessage("number: " + Formatting.WHITE + setting.name + Formatting.GRAY + ".");
+                        Bedroom.commandManager.addCustomChatMessage("number: " + Formatting.WHITE + setting.name + " " +  ((NumberSetting) setting).getValue() + Formatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof ColorSetting) {
-                        Bedroom.commandManager.addCustomChatMessage("color: " + Formatting.WHITE + setting.name + Formatting.GRAY + ".");
+                        Bedroom.commandManager.addCustomChatMessage("color: " + Formatting.WHITE + setting.name + " " + ((ColorSetting) setting).getColor() + Formatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof KeybindSetting) {
-                        //Bedroom.commandManager.addChatMessage("keybind: " + TextFormatting.WHITE + setting.name + TextFormatting.GRAY + ".");  notiing 0_0
+                        Bedroom.commandManager.addCustomChatMessage("keybind: " + Formatting.WHITE + setting.name + Formatting.GRAY + ".");
                     }
+
                     if(!sent) {
                         Bedroom.commandManager.addCustomChatMessage("no settings for this module :("); //TODO this wont be needed when keybinds r added... so add keybinds. im just to lazy to do it rn.
                     }

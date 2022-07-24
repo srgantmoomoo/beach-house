@@ -25,7 +25,7 @@ public class MixinInGameHud {
 
 		// renders hud modules when not in the hud screen.
 		if(!(Reference.minecraft.currentScreen instanceof HudScreen))
-			Main.hudManager.renderMods(matrixStack);
+			Main.INSTANCE.hudManager.renderMods(matrixStack);
 
 		// renders the chat outline for commands.
 		ChatScreenRenderer.renderChatBox(matrixStack);

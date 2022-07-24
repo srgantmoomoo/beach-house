@@ -24,12 +24,12 @@ public class HudEditor extends Module {
     @Override
     public void onEnable() {
         minecraft.openScreen(new HudScreen());
-        Main.load.loadHud();
+        Main.INSTANCE.load.loadHud();
     }
 
     @Override
     public void onDisable() {
-        Main.save.saveHud();
+        Main.INSTANCE.save.saveHud();
     }
 
     @Override

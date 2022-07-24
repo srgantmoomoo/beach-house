@@ -28,12 +28,12 @@ public class Watermark extends HudModule {
 			if(!version.isEnabled())
 				minecraft.textRenderer.drawWithShadow(matrix, "beach house", getX(), getY(), watermarkColorRGB.getRGB());
 			else
-				minecraft.textRenderer.drawWithShadow(matrix, "beach house" + " " + Main.version, getX(), getY(), watermarkColorRGB.getRGB());
+				minecraft.textRenderer.drawWithShadow(matrix, "beach house" + " " + Main.INSTANCE.version, getX(), getY(), watermarkColorRGB.getRGB());
 		}else if(style.is("bh")) {
 			if(!version.isEnabled())
 				minecraft.textRenderer.drawWithShadow(matrix, "bh", getX(), getY(), watermarkColorRGB.getRGB());
 			else
-				minecraft.textRenderer.drawWithShadow(matrix, "bh" + " " + Main.version, getX(), getY(), watermarkColorRGB.getRGB());
+				minecraft.textRenderer.drawWithShadow(matrix, "bh" + " " + Main.INSTANCE.version, getX(), getY(), watermarkColorRGB.getRGB());
 		}
 	}
 
@@ -46,7 +46,7 @@ public class Watermark extends HudModule {
 
 	@Override
 	public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
-		Main.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), hudEnabled ? 0xff00ff00 : 0xffffffff);
+		Main.INSTANCE.hudManager.drawBox(matrix, getX(), getY(), getWidth(), getHeight(), hudEnabled ? 0xff00ff00 : 0xffffffff);
 		drawFinale(matrix);
 
 		super.drawDraggable(matrix, mouseX, mouseY);

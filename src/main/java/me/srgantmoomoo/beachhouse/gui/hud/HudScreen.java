@@ -35,7 +35,7 @@ public class HudScreen extends Screen {
 		if(HudEditor.INSTANCE.background.is("dim"))
 			this.renderBackground(matrix);
 
-		for(HudModule m : Main.hudManager.hudModules) {
+		for(HudModule m : Main.INSTANCE.hudManager.hudModules) {
 			m.drawDraggable(matrix, mouseX, mouseY);
 		}
 

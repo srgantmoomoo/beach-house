@@ -24,7 +24,7 @@ public class Notepad extends Command {
         String initial = args[0];
 
         if(initial.equals("notes")) {
-            if(!Main.notepadManager.notes.isEmpty()) {
+            if(!Main.INSTANCE.notepadManager.notes.isEmpty()) {
 
                 String wuw = Formatting.GRAY + "" + Formatting.BOLD + "wuw" + Formatting.AQUA + " ~";
                 Bedroom.commandManager.addCustomChatMessage(wuw);
@@ -33,7 +33,7 @@ public class Notepad extends Command {
                 String notesTitle = Formatting.WHITE + "notes" + Formatting.GRAY + ":";
                 Bedroom.commandManager.addCustomChatMessage(notesTitle);
 
-                for (me.srgantmoomoo.beachhouse.feature.notepad.Notepad note : Main.notepadManager.notes) {
+                for (me.srgantmoomoo.beachhouse.feature.notepad.Notepad note : Main.INSTANCE.notepadManager.notes) {
                     Bedroom.commandManager.addCustomChatMessage(Formatting.WHITE + note.getName());
                 }
 
@@ -70,9 +70,9 @@ public class Notepad extends Command {
         switch (action) {
             case "write":
 
-                if (!Main.notepadManager.isNote(noteName)) {
+                if (!Main.INSTANCE.notepadManager.isNote(noteName)) {
 
-                    Main.notepadManager.addNote(noteName, noteMessageInput);
+                    Main.INSTANCE.notepadManager.addNote(noteName, noteMessageInput);
                     Bedroom.commandManager.addChatMessage(Formatting.GREEN + "wrote" + Formatting.GRAY + " new note, " + Formatting.WHITE + noteName + Formatting.GRAY + ", to the notepad.");
 
                 } else
@@ -82,9 +82,9 @@ public class Notepad extends Command {
                 break;
             case "erase":
 
-                if (Main.notepadManager.isNote(noteName)) {
+                if (Main.INSTANCE.notepadManager.isNote(noteName)) {
 
-                    Main.notepadManager.removeNote(noteName);
+                    Main.INSTANCE.notepadManager.removeNote(noteName);
                     Bedroom.commandManager.addChatMessage(Formatting.RED + "erased" + Formatting.GRAY + " note, " + Formatting.WHITE + noteName + Formatting.GRAY + ", from the notepad :(");
 
                 } else
@@ -94,9 +94,9 @@ public class Notepad extends Command {
                 break;
             case "read":
 
-                if (Main.notepadManager.isNote(noteName)) {
+                if (Main.INSTANCE.notepadManager.isNote(noteName)) {
 
-                    me.srgantmoomoo.beachhouse.feature.notepad.Notepad note1 = Main.notepadManager.getNoteByName(noteName);
+                    me.srgantmoomoo.beachhouse.feature.notepad.Notepad note1 = Main.INSTANCE.notepadManager.getNoteByName(noteName);
                     Bedroom.commandManager.addChatMessage(Formatting.WHITE + note1.getName() + Formatting.GRAY + note1.getMessage());
 
                 } else

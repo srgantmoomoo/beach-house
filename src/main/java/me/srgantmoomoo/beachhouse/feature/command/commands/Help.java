@@ -68,9 +68,9 @@ public class Help extends Command {
     }
 
     private void welcomeMessage() {
-        String welcomeString = GRAY + "" + BOLD + Main.name + " " + Main.version + "!";
+        String welcomeString = GRAY + "" + BOLD + Main.INSTANCE.name + " " + Main.INSTANCE.version + "!";
         String nothing = " ";
-        String atClientName = AQUA + "@" + ITALIC + Main.name;
+        String atClientName = AQUA + "@" + ITALIC + Main.INSTANCE.name;
 
         Bedroom.commandManager.addCustomChatMessage(welcomeString);
         Bedroom.commandManager.addCustomChatMessage(nothing);

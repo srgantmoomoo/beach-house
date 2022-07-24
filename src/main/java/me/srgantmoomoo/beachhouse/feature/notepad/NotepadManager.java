@@ -37,9 +37,9 @@ public class NotepadManager {
     public void addNote(String name, String msg) {
         notes.add(new Notepad(name, msg));
 
-        if (Main.save != null) {
+        if (Main.INSTANCE.save != null) {
             try {
-                Main.save.saveNotepad();
+                Main.INSTANCE.save.saveNotepad();
             } catch (Exception e) {}
         }
     }
@@ -47,9 +47,9 @@ public class NotepadManager {
     public void removeNote(String name) {
         notes.remove(getNoteByName(name));
 
-        if (Main.save != null) {
+        if (Main.INSTANCE.save != null) {
             try {
-                Main.save.saveNotepad();
+                Main.INSTANCE.save.saveNotepad();
             } catch (Exception e) {}
         }
     }

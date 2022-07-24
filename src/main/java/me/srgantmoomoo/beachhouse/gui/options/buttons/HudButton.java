@@ -26,7 +26,7 @@ public class HudButton extends Button {
         this.buttons = new ArrayList<>();
 
         int offset = 0;
-        for (HudModule hudMod : Main.hudManager.hudModules) {
+        for (HudModule hudMod : Main.INSTANCE.hudManager.hudModules) {
                 ModuleButton hudModButton = new ModuleButton(hudMod, offset);
                 this.buttons.add(hudModButton);
             offset += 20;

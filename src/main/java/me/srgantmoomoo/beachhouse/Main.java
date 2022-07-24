@@ -61,48 +61,52 @@ import net.fabricmc.api.ModInitializer;
 //TODO seaweed fucks with jesus module.
 
 public class Main implements ModInitializer {
+	public static final Logger log = LogManager.getLogger("beach house");
 
-	public static final String modid = "beachhouse";
-	public static final String name = "beach house";
-	public static final String nameCondensed = "beach-house";
-	public static final boolean checkUuids = false;
-	public static final String version = "0.11";
+	public final String modid = "beachhouse";
+	public final String name = "beach house";
+	public final String version = "0.11";
+	public final boolean checkUuids = false;
 
-	public static ClickGuiScreen clickGui;
-	public static HudManager hudManager;
-	public static CommandLineScreen commandLine;
-	public static OptionsScreen options;
-	public static NotepadManager notepadManager;
-	public static Save save;
-	public static Load load;
-	public static UuidChecker nameChecker;
-
-	public static final Logger LOGGER = LogManager.getLogger("beach house");
+	public NotepadManager notepadManager;
+	public HudManager hudManager;
+	public ClickGuiScreen clickGuiScreen;
+	public CommandLineScreen commandLineScreen;
+	public OptionsScreen optionsScreen;
+	public Save save;
+	public Load load;
+	public UuidChecker nameChecker;
 
 	public final Object syncronize = new Object();
 	public void printLog(String text) {
 		synchronized (syncronize) {
-			LOGGER.info(text);
+			log.info(text);
 		}
+	}
+
+	public static Main INSTANCE;
+	public Main() {
+		INSTANCE = this;
 	}
 
 	@Override
 	public void onInitialize() {
 		Bedroom.init(modid, name, version);
 		beachhouseInit();
+
 		//Discord.startRPC(); //TODO fix this
 		nameChecker = new UuidChecker();
 	}
 
 	public void beachhouseInit() {
-		Font[] fonts;
+		/*Font[] fonts;
 		fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
 		for (Font font : fonts) {
 			System.out.print(font.getFontName() + " : ");
 			System.out.print(font.getFamily() + " : ");
 			System.out.print(font.getName());
 			System.out.println();
-		}
+		}*/
 
 		Commands.init();
 		printLog("commands initialized.");
@@ -110,25 +114,25 @@ public class Main implements ModInitializer {
 		Modules.init();
 		printLog("modules initialized.");
 
-		clickGui = new ClickGuiScreen();
-		printLog("click gui initialized.");
+		notepadManager = new NotepadManager();
+		printLog("big pp notepad manager is initialized.");
 
 		hudManager = new HudManager();
 		printLog("hud editor initialized.");
 
-		commandLine = new CommandLineScreen();
+		clickGuiScreen = new ClickGuiScreen();
+		printLog("click gui initialized.");
+
+		commandLineScreen = new CommandLineScreen();
 		printLog("command line initialized.");
 
-		options = new OptionsScreen();
+		optionsScreen = new OptionsScreen();
 		printLog("options screen initialized");
-
-		notepadManager = new NotepadManager();
-		printLog("big pp notepad manager is initialized.");
 
 		save = new Save();
 		load = new Load();
 		printLog("saves and loads initialized.");
 
-		printLog(Main.name + " has finished initialization.");
+		printLog(name + " has finished initialization.");
 	}
 }

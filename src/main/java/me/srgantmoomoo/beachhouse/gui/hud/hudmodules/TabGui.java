@@ -26,7 +26,7 @@ public class TabGui extends HudModule {
     public int currentTab;
     public boolean expanded;
 
-    private final Identifier check = new Identifier(Main.modid, "check.png");
+    private final Identifier check = new Identifier(Main.INSTANCE.modid, "check.png");
     public void drawFinale(MatrixStack matrix) {
         TextRenderer tr = minecraft.textRenderer;
 
@@ -156,7 +156,7 @@ public class TabGui extends HudModule {
     @Override
     public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
         drawFinale(matrix);
-        Main.hudManager.drawIndicator(matrix, getX(), getY(), this.hudEnabled ? 0xff00ff00 : 0xffffffff);
+        Main.INSTANCE.hudManager.drawIndicator(matrix, getX(), getY(), this.hudEnabled ? 0xff00ff00 : 0xffffffff);
 
         super.drawDraggable(matrix, mouseX, mouseY);
     }

@@ -33,9 +33,9 @@ public class NumberSetting extends Setting {
         //this.value = value;
         this.value = Math.round(Math.max(this.minimum, Math.min(this.maximum, value)) * precision) / precision;
 
-        if (Main.save != null) {
+        if (Main.INSTANCE.save != null) {
             try {
-                Main.save.saveSettings();
+                Main.INSTANCE.save.saveSettings();
             } catch (Exception e) {}
         }
     }

@@ -15,10 +15,10 @@ public class PlayerInfo extends HudModule {
         super("player info", "playerinfo", "sucks ur pp for u.", 2, 88, Category.BEACHHOUSE);
     }
 
-    private final Identifier FULL_HEALTH = new Identifier(Main.modid, "healthbar/full.png");
-    private final Identifier MODERATE_HEALTH = new Identifier(Main.modid, "healthbar/moderate.png");
-    private final Identifier WARNING_HEALTH = new Identifier(Main.modid, "healthbar/warning.png");
-    private final Identifier DANGER_HEALTH = new Identifier(Main.modid, "healthbar/danger.png");
+    private final Identifier FULL_HEALTH = new Identifier(Main.INSTANCE.modid, "healthbar/full.png");
+    private final Identifier MODERATE_HEALTH = new Identifier(Main.INSTANCE.modid, "healthbar/moderate.png");
+    private final Identifier WARNING_HEALTH = new Identifier(Main.INSTANCE.modid, "healthbar/warning.png");
+    private final Identifier DANGER_HEALTH = new Identifier(Main.INSTANCE.modid, "healthbar/danger.png");
 
     @Override
     public void draw(MatrixStack matrix) {
@@ -30,7 +30,7 @@ public class PlayerInfo extends HudModule {
     @Override
     public void drawDraggable(MatrixStack matrix, int mouseX, int mouseY) {
         drawFinale(matrix);
-        Main.hudManager.drawIndicator(matrix, getX(), getY(), hudEnabled ? 0xff00ff00 : 0xffffffff);
+        Main.INSTANCE.hudManager.drawIndicator(matrix, getX(), getY(), hudEnabled ? 0xff00ff00 : 0xffffffff);
 
         super.drawDraggable(matrix, mouseX, mouseY);
     }

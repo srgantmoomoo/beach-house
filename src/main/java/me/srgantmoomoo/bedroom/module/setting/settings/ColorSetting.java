@@ -41,9 +41,9 @@ public class ColorSetting extends Setting {
         this.rainbow = rainbow;
         this.value = value;
 
-        if(Main.save != null) {
+        if(Main.INSTANCE.save != null) {
             try {
-                Main.save.saveSettings();
+                Main.INSTANCE.save.saveSettings();
             } catch (Exception e) {}
         }
     }

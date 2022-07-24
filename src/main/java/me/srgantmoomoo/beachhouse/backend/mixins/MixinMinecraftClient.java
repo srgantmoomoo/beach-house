@@ -15,6 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public final class MixinMinecraftClient {
     @Inject(method = "getWindowTitle", at = @At("RETURN"), cancellable = true)
     public void getWindowTitle(CallbackInfoReturnable<String> info) {
-        info.setReturnValue(Main.name + " " + Main.version);
+        info.setReturnValue(Main.INSTANCE.name + " " + Main.INSTANCE.version);
     }
 }

@@ -62,7 +62,7 @@ public class ModuleButton extends Button {
         this.subcomponents.add(new KeybindButton(this, opY));
     }
 
-    private final Identifier check = new Identifier(Main.modid, "check.png");
+    private final Identifier check = new Identifier(Main.INSTANCE.modid, "check.png");
     @Override
     public void drawButton(MatrixStack matrix) {
         // module name and background

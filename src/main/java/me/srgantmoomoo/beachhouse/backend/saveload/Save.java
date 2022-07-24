@@ -116,7 +116,7 @@ public class Save {
             File file = new File(MainDirectory, "hud.txt");
             ArrayList<String> toSave = new ArrayList<>();
 
-            for(HudModule hud : Main.hudManager.hudModules) {
+            for(HudModule hud : Main.INSTANCE.hudManager.hudModules) {
                 toSave.add(hud.getName() + ":" + hud.getX() + ":" + hud.getY() + ":" + hud.isHudEnabled());
             }
 
@@ -130,7 +130,7 @@ public class Save {
             File file = new File(MainDirectory, "notepad.txt");
             ArrayList<String> toSave = new ArrayList<>();
 
-            for(Notepad note : Main.notepadManager.getNotes()) {
+            for(Notepad note : Main.INSTANCE.notepadManager.getNotes()) {
                 toSave.add(note.getName() + ":" + note.getMessage());
             }
 

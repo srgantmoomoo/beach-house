@@ -22,14 +22,14 @@ public class MixinKeyboard {
     private void onKey(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo info) {
         // for clickgui key listener
         if (key >= 0) {
-            Main.clickGui.onKeyPressed(key);
+            Main.INSTANCE.clickGuiScreen.onKeyPressed(key);
         }
 
         // for command line key listener
-        Main.commandLine.onKeyPressed(key);
+        Main.INSTANCE.commandLineScreen.onKeyPressed(key);
 
         // for options screen key listener
-        Main.options.onKeyPressed(key);
+        Main.INSTANCE.optionsScreen.onKeyPressed(key);
 
         EventGuiKeyPress e = new EventGuiKeyPress(key, scanCode);
         e.setType(Type.PRE);

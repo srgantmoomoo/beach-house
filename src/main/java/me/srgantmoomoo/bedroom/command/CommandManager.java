@@ -64,9 +64,9 @@ public class CommandManager {
     public void setCommandPrefix(String pre) {
         this.prefix = pre;
 
-        if (Main.save != null) {
+        if (Main.INSTANCE.save != null) {
             try {
-                Main.save.savePrefix();
+                Main.INSTANCE.save.savePrefix();
             } catch (Exception e) {}
         }
     }

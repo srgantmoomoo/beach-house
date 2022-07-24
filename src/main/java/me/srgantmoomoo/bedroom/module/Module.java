@@ -81,9 +81,9 @@ public abstract class Module {
     public void setKey(int key) {
         this.keyCode.code = key;
 
-        if(Main.save != null) {
+        if(Main.INSTANCE.save != null) {
             try {
-                Main.save.saveSettings();
+                Main.INSTANCE.save.saveSettings();
             } catch (Exception e) {}
         }
     }
@@ -111,9 +111,9 @@ public abstract class Module {
     }
 
     public void enable() {
-        if (Main.save != null) {
+        if (Main.INSTANCE.save != null) {
             try {
-                Main.save.saveModules();
+                Main.INSTANCE.save.saveModules();
             } catch (Exception e) {}
         }
 
@@ -122,9 +122,9 @@ public abstract class Module {
     }
 
     public void disable() {
-        if (Main.save != null) {
+        if (Main.INSTANCE.save != null) {
             try {
-                Main.save.saveModules();
+                Main.INSTANCE.save.saveModules();
             } catch (Exception e) {}
         }
 

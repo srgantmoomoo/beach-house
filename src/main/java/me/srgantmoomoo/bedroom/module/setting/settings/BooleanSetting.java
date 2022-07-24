@@ -25,9 +25,9 @@ public class BooleanSetting extends Setting {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
 
-        if(Main.save != null) {
+        if(Main.INSTANCE.save != null) {
             try {
-                Main.save.saveSettings();
+                Main.INSTANCE.save.saveSettings();
             } catch (Exception e) {}
         }
     }

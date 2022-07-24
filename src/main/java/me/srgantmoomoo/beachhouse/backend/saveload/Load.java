@@ -129,7 +129,7 @@ public class Load {
                 if(name.equalsIgnoreCase("BEACHHOUSE")) newName = "beach house";
                 boolean opened = Boolean.parseBoolean(open);
 
-                Panel p = Main.clickGui.getPanelByName(newName);
+                Panel p = Main.INSTANCE.clickGuiScreen.getPanelByName(newName);
                 if (p != null) {
                     p.x = x1;
                     p.y = y1;
@@ -162,7 +162,7 @@ public class Load {
                 int y1 = Integer.parseInt(y);
                 boolean enabled = Boolean.parseBoolean(enable);
 
-                HudModule h = Main.hudManager.getHudModule(name);
+                HudModule h = Main.INSTANCE.hudManager.getHudModule(name);
                 if(h != null) {
                     h.setX(x1);
                     h.setY(y1);
@@ -189,7 +189,7 @@ public class Load {
                 String name = curLine.split(":")[0];
                 String message = curLine.split(":")[1];
 
-                Main.notepadManager.addNote(name, message);
+                Main.INSTANCE.notepadManager.addNote(name, message);
             }
 
             br.close();

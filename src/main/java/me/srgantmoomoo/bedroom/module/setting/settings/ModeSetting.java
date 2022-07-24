@@ -32,9 +32,9 @@ public class ModeSetting extends Setting {
     public void setMode(String mode) {
         this.index = this.modes.indexOf(mode);
 
-        if (Main.save != null) {
+        if (Main.INSTANCE.save != null) {
             try {
-                Main.save.saveSettings();
+                Main.INSTANCE.save.saveSettings();
             } catch (Exception e) {}
         }
     }
@@ -50,9 +50,9 @@ public class ModeSetting extends Setting {
             this.index = 0;
         }
 
-        if (Main.save != null) {
+        if (Main.INSTANCE.save != null) {
             try {
-                Main.save.saveModules();
+                Main.INSTANCE.save.saveModules();
             } catch (Exception e) {}
         }
     }

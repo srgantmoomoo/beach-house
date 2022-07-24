@@ -24,9 +24,9 @@ public class KeybindSetting extends Setting {
     public void setKeyCode(int code) {
         this.code = code;
 
-        if (Main.save != null) {
+        if (Main.INSTANCE.save != null) {
             try {
-                Main.save.saveSettings();
+                Main.INSTANCE.save.saveSettings();
             } catch (Exception e) {}
         }
     }
