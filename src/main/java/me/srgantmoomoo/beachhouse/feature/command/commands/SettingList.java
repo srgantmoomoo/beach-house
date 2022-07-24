@@ -17,12 +17,12 @@ public class SettingList extends Command {
 
     @Override
     public void onCommand(String[] args, String command) {
-        String inputValue = args[0];
-
         if(args.length != 1) {
             Bedroom.commandManager.correctUsageMsg(name, syntax);
             return;
         }
+
+        String inputValue = args[0];
 
         if(Bedroom.moduleManager.getModuleByID(inputValue) == null) {
             Bedroom.commandManager.addChatMessage("module " + Formatting.RED + inputValue + Formatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
