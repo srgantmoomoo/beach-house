@@ -1,9 +1,13 @@
 package me.srgantmoomoo.beachhouse.gui.options.buttons;
 
 import me.srgantmoomoo.beachhouse.gui.Button;
+import me.srgantmoomoo.beachhouse.gui.options.buttons.module.ModuleButton;
+import me.srgantmoomoo.bedroom.Bedroom;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.glfw.GLFW;
+
+import java.util.ArrayList;
 
 public class UtilitiesButton extends Button {
     int x;
@@ -11,12 +15,18 @@ public class UtilitiesButton extends Button {
     int addx;
     int addy;
     public static boolean selected = false;
+    public ArrayList<Button> buttons;
 
     public UtilitiesButton() {
         x = 300 + 22 + 23 + 1;
         y = 80;
         addx = 40;
         addy = 12;
+
+        this.buttons = new ArrayList<>();
+
+        ModuleButton button1 = new ModuleButton(Bedroom.moduleManager.getModuleByID("discordrpc"), 0);
+        this.buttons.add(button1);
     }
 
     // discord rpc and stuff.
@@ -24,6 +34,12 @@ public class UtilitiesButton extends Button {
     public void drawButton(MatrixStack matrix) {
         InGameHud.fill(matrix, x, y, x + addx, y + addy, 0x90000000);
         minecraft.textRenderer.drawWithShadow(matrix, "utilities", x + 3, y  + 2, 0xffffffff);
+
+        if(selected) {
+            for (Button button : buttons) {
+                button.drawButton(matrix);
+            }
+        }
     }
 
     @Override
@@ -35,15 +51,15 @@ public class UtilitiesButton extends Button {
                 HudButton.selected = false;
             }
         }
-    }
 
-    public boolean isMouseOnButton(int xx, int yy) {
-        if (xx > x && xx < x + addx && yy > y && yy < y + addy) {
-            return true;
-        } else {
-            return false;
+        if(selected) {
+            for (Button button : buttons) {
+                button.mouseClicked(mouseX, mouseY);
+            }
         }
     }
 
+    public boolean isMouseOnButton(int xx, int yy) {
+        return xx > x && xx < x + addx && yy > y && yy < y + addy;
+    }
 }
-
