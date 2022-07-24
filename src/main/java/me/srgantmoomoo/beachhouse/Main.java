@@ -26,7 +26,6 @@ import net.fabricmc.api.ModInitializer;
 
 //TODO fix color button & options menu in general.
 //TODO arraylist in hud modules.
-//TODO ,sl causes crash.
 
 //TODO font renderer.
 //TODO rainbow enchant so sexi D:.
