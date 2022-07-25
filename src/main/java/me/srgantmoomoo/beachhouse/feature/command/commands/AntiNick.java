@@ -19,7 +19,7 @@ public class AntiNick extends Command {
     public void onCommand(String[] args, String command) {
         String serverPlayers = Arrays.toString(Reference.minecraft.player.getServer().getPlayerNames()) + "";
 
-        Bedroom.commandManager.addCustomChatMessage(serverPlayers + " biggy");
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(serverPlayers + " biggy");
 
         //();
         //execute();

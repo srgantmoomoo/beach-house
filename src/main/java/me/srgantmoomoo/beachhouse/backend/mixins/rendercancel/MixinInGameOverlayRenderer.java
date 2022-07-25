@@ -14,13 +14,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinInGameOverlayRenderer {
     @Inject(method = "renderFireOverlay", at = @At("HEAD"), cancellable = true)
     private static void onRenderFireOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.fireOverlay.isEnabled())
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.fireOverlay.isEnabled())
             info.cancel();
     }
 
     @Inject(method = "renderUnderwaterOverlay", at = @At("HEAD"), cancellable = true)
     private static void onRenderUnderwaterOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.waterOverlay.isEnabled())
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.waterOverlay.isEnabled())
             info.cancel();
     }
 }

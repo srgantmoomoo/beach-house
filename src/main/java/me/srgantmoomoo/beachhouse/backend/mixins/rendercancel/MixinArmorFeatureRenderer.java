@@ -18,7 +18,7 @@ public class MixinArmorFeatureRenderer<T extends LivingEntity, M extends BipedEn
 
     @Inject(method = "renderArmor", at = @At("HEAD"), cancellable = true)
     private void renderArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T livingEntity, EquipmentSlot equipmentSlot, int i, A bipedEntityModel, CallbackInfo info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.armor.isEnabled())
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.armor.isEnabled())
             info.cancel();
     }
 

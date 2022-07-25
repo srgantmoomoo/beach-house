@@ -33,7 +33,7 @@ public class HudManager {
 	}
 
 	public Module getModule(String name) {
-		for (Module m : Bedroom.moduleManager.modules) {
+		for (Module m : Bedroom.INSTANCE.moduleManager.modules) {
 			if(m.getName().equalsIgnoreCase(name)) {
 				return m;
 			}

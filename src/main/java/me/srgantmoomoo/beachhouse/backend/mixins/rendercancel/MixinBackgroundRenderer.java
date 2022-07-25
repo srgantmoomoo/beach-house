@@ -15,7 +15,7 @@ public final class MixinBackgroundRenderer {
 
     @Inject(method = "applyFog", at = @At("TAIL"), cancellable = true)
     private static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.fog.isEnabled()) {
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.fog.isEnabled()) {
             RenderSystem.setShaderFogStart(998);
             RenderSystem.setShaderFogEnd(999);
         }

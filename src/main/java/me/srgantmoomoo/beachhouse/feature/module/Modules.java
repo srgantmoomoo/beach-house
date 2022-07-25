@@ -11,73 +11,73 @@ import me.srgantmoomoo.bedroom.Bedroom;
 public class Modules {
     public static void init() {
         // beach house
-        Bedroom.addModule(new ChatScreen());
-        Bedroom.addModule(new EnabledModules());
-        Bedroom.addModule(new ClickGui());
-        Bedroom.addModule(new HudEditor());
-        Bedroom.addModule(new CommandLine());
-        Bedroom.addModule(new Options());
-        Bedroom.addModule(new DiscordRpc());
+        Bedroom.INSTANCE.addModule(new ChatScreen());
+        Bedroom.INSTANCE.addModule(new EnabledModules());
+        Bedroom.INSTANCE.addModule(new ClickGui());
+        Bedroom.INSTANCE.addModule(new HudEditor());
+        Bedroom.INSTANCE.addModule(new CommandLine());
+        Bedroom.INSTANCE.addModule(new Options());
+        Bedroom.INSTANCE.addModule(new DiscordRpc());
 
         // pvp
-        Bedroom.addModule(new AutoArmor());
-        Bedroom.addModule(new AutoCrystal());
-        Bedroom.addModule(new Criticals());
-        Bedroom.addModule(new FootExp());
-        Bedroom.addModule(new HoleFiller());
-        Bedroom.addModule(new HoleTp());
-        Bedroom.addModule(new HotbarRefill());
-        Bedroom.addModule(new Surround());
-        Bedroom.addModule(new SwingAura());
+        Bedroom.INSTANCE.addModule(new AutoArmor());
+        Bedroom.INSTANCE.addModule(new AutoCrystal());
+        Bedroom.INSTANCE.addModule(new Criticals());
+        Bedroom.INSTANCE.addModule(new FootExp());
+        Bedroom.INSTANCE.addModule(new HoleFiller());
+        Bedroom.INSTANCE.addModule(new HoleTp());
+        Bedroom.INSTANCE.addModule(new HotbarRefill());
+        Bedroom.INSTANCE.addModule(new Surround());
+        Bedroom.INSTANCE.addModule(new SwingAura());
 
         // misc
-        Bedroom.addModule(new AutoLog());
-        Bedroom.addModule(new ChatSpammer());
-        Bedroom.addModule(new DeathCoords());
-        Bedroom.addModule(new Nuker());
-        Bedroom.addModule(new PacketCancel());
-        Bedroom.addModule(new SoftJoin());
-        Bedroom.addModule(new Timer());
+        Bedroom.INSTANCE.addModule(new AutoLog());
+        Bedroom.INSTANCE.addModule(new ChatSpammer());
+        Bedroom.INSTANCE.addModule(new DeathCoords());
+        Bedroom.INSTANCE.addModule(new Nuker());
+        Bedroom.INSTANCE.addModule(new PacketCancel());
+        Bedroom.INSTANCE.addModule(new SoftJoin());
+        Bedroom.INSTANCE.addModule(new Timer());
 
         // movement
-        Bedroom.addModule(new AutoWalk());
-        Bedroom.addModule(new ElytraFly());
-        Bedroom.addModule(new Fly());
-        Bedroom.addModule(new GuiMove());
-        Bedroom.addModule(new LockOnBlock());
-        Bedroom.addModule(new NoSlow());
-        Bedroom.addModule(new Scaffold());
-        Bedroom.addModule(new Speed());
-        Bedroom.addModule(new Sprint());
-        Bedroom.addModule(new Step());
-        Bedroom.addModule(new Strafe());
+        Bedroom.INSTANCE.addModule(new AutoWalk());
+        Bedroom.INSTANCE.addModule(new ElytraFly());
+        Bedroom.INSTANCE.addModule(new Fly());
+        Bedroom.INSTANCE.addModule(new GuiMove());
+        Bedroom.INSTANCE.addModule(new LockOnBlock());
+        Bedroom.INSTANCE.addModule(new NoSlow());
+        Bedroom.INSTANCE.addModule(new Scaffold());
+        Bedroom.INSTANCE.addModule(new Speed());
+        Bedroom.INSTANCE.addModule(new Sprint());
+        Bedroom.INSTANCE.addModule(new Step());
+        Bedroom.INSTANCE.addModule(new Strafe());
 
         // player
-        Bedroom.addModule(new AntiHunger());
-        Bedroom.addModule(new AutoTotem());
-        Bedroom.addModule(new ElytraReplace());
-        Bedroom.addModule(new FakePlayer());
-        Bedroom.addModule(new FastPlace());
-        Bedroom.addModule(new FreeCam());
-        Bedroom.addModule(new Jesus());
-        Bedroom.addModule(new LiquidPlace());
-        Bedroom.addModule(new NoFall());
-        Bedroom.addModule(new PlayerVelocity());
-        Bedroom.addModule(new Stealer());
+        Bedroom.INSTANCE.addModule(new AntiHunger());
+        Bedroom.INSTANCE.addModule(new AutoTotem());
+        Bedroom.INSTANCE.addModule(new ElytraReplace());
+        Bedroom.INSTANCE.addModule(new FakePlayer());
+        Bedroom.INSTANCE.addModule(new FastPlace());
+        Bedroom.INSTANCE.addModule(new FreeCam());
+        Bedroom.INSTANCE.addModule(new Jesus());
+        Bedroom.INSTANCE.addModule(new LiquidPlace());
+        Bedroom.INSTANCE.addModule(new NoFall());
+        Bedroom.INSTANCE.addModule(new PlayerVelocity());
+        Bedroom.INSTANCE.addModule(new Stealer());
 
         // render
-        Bedroom.addModule(new BlockHighlight());
-        Bedroom.addModule(new CameraZoom());
-        Bedroom.addModule(new EntityEsp());
-        Bedroom.addModule(new FullBright());
-        Bedroom.addModule(new Nametags());
-        Bedroom.addModule(new RainbowEnchant());
-        Bedroom.addModule(new RenderCancel());
-        Bedroom.addModule(new ShulkerPeek());
-        Bedroom.addModule(new StorageEsp());
-        Bedroom.addModule(new Tracers());
-        Bedroom.addModule(new VibrantShader());
-        Bedroom.addModule(new Xray());
+        Bedroom.INSTANCE.addModule(new BlockHighlight());
+        Bedroom.INSTANCE.addModule(new CameraZoom());
+        Bedroom.INSTANCE.addModule(new EntityEsp());
+        Bedroom.INSTANCE.addModule(new FullBright());
+        Bedroom.INSTANCE.addModule(new Nametags());
+        Bedroom.INSTANCE.addModule(new RainbowEnchant());
+        Bedroom.INSTANCE.addModule(new RenderCancel());
+        Bedroom.INSTANCE.addModule(new ShulkerPeek());
+        Bedroom.INSTANCE.addModule(new StorageEsp());
+        Bedroom.INSTANCE.addModule(new Tracers());
+        Bedroom.INSTANCE.addModule(new VibrantShader());
+        Bedroom.INSTANCE.addModule(new Xray());
         // crystalesp
         // entityesp - player, mobs, items.
         // storage esp

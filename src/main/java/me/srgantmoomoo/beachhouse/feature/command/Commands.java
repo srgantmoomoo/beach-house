@@ -6,18 +6,18 @@ import me.srgantmoomoo.bedroom.Bedroom;
 public class Commands {
     public static void init() {
         // these are ordered in the way that they appear through the help command.
-        Bedroom.addCommand(new Help());
-        Bedroom.addCommand(new Prefix());
-        Bedroom.addCommand(new Toggle());
-        Bedroom.addCommand(new ModuleList());
-        Bedroom.addCommand(new Setting());
-        Bedroom.addCommand(new SettingList());
-        Bedroom.addCommand(new Notepad());
-        Bedroom.addCommand(new CheckModules());
-        Bedroom.addCommand(new Clock());
-        Bedroom.addCommand(new Clear());
-        Bedroom.addCommand(new DoomHud());
-        Bedroom.addCommand(new Vanish());
+        Bedroom.INSTANCE.addCommand(new Help());
+        Bedroom.INSTANCE.addCommand(new Prefix());
+        Bedroom.INSTANCE.addCommand(new Toggle());
+        Bedroom.INSTANCE.addCommand(new ModuleList());
+        Bedroom.INSTANCE.addCommand(new Setting());
+        Bedroom.INSTANCE.addCommand(new SettingList());
+        Bedroom.INSTANCE.addCommand(new Notepad());
+        Bedroom.INSTANCE.addCommand(new CheckModules());
+        Bedroom.INSTANCE.addCommand(new Clock());
+        Bedroom.INSTANCE.addCommand(new Clear());
+        Bedroom.INSTANCE.addCommand(new DoomHud());
+        Bedroom.INSTANCE.addCommand(new Vanish());
         //Bedroom.addCommand(new AntiNick());
         //x and y lock
         // move packet cancel to here.

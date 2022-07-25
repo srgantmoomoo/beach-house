@@ -15,7 +15,7 @@ public class MixinFireworksSparkParticle {
 
     @Inject(method = "buildGeometry", at = @At("HEAD"), cancellable = true)
     private void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta, CallbackInfo info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.fireworks.isEnabled())
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.fireworks.isEnabled())
             info.cancel();
     }
 

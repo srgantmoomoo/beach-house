@@ -16,11 +16,11 @@ public class ChatScreenRenderer {
         if (Reference.minecraft.currentScreen instanceof ChatScreen) {
             IChatScreen chatScreen = (IChatScreen) (ChatScreen) Reference.minecraft.currentScreen;
         
-            if(chatScreen.getText().startsWith(Bedroom.commandManager.prefix)) {
+            if(chatScreen.getText().startsWith(Bedroom.INSTANCE.commandManager.prefix)) {
                 int screenWidth = Reference.window.getScaledWidth();
                 int screenHeight = Reference.window.getScaledHeight();
 
-                if (chatScreen.getText().equals(Bedroom.commandManager.prefix))
+                if (chatScreen.getText().equals(Bedroom.INSTANCE.commandManager.prefix))
                     Reference.textRenderer.drawWithShadow(matrix, "beach house :)", 6, screenHeight - 12, 0xff999999);
 
                 if(me.srgantmoomoo.beachhouse.feature.module.modules.beachhouse.ChatScreen.INSTANCE.background.isEnabled())

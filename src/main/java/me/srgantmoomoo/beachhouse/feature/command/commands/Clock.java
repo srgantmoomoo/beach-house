@@ -17,7 +17,7 @@ public class Clock extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 1) {
-            Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
+            Bedroom.INSTANCE.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
         String comm = args[0];
@@ -25,10 +25,10 @@ public class Clock extends Command {
         if(comm.equals("start")) {
             timer.reset();
             timer.update();
-            Bedroom.commandManager.addChatMessage("started a new clock.");
+            Bedroom.INSTANCE.commandManager.addChatMessage("started a new clock.");
         }else if(comm.equals("get")) {
-            Bedroom.commandManager.addChatMessage("current timer is at " + Formatting.WHITE + Math.round(timer.getPassed() / 1000) + Formatting.GRAY +  ".");
+            Bedroom.INSTANCE.commandManager.addChatMessage("current timer is at " + Formatting.WHITE + Math.round(timer.getPassed() / 1000) + Formatting.GRAY +  ".");
         }else
-            Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
+            Bedroom.INSTANCE.commandManager.correctUsageMsg(getName(), getSyntax());
     }
 }

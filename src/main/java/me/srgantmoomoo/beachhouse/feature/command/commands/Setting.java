@@ -24,31 +24,31 @@ public class Setting extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 3) {
-            Bedroom.commandManager.correctUsageMsg(name, syntax);
+            Bedroom.INSTANCE.commandManager.correctUsageMsg(name, syntax);
             return;
         }
 
         String moduleInput = args[0];
         String settingNameInput = args[1];
         String settingValueInput = args[2];
-        Module module = Bedroom.moduleManager.getModuleByID(moduleInput);
-        me.srgantmoomoo.bedroom.module.setting.Setting setting = Bedroom.settingManager.getSettingByName(module, settingNameInput);
+        Module module = Bedroom.INSTANCE.moduleManager.getModuleByID(moduleInput);
+        me.srgantmoomoo.bedroom.module.setting.Setting setting = Bedroom.INSTANCE.settingManager.getSettingByName(module, settingNameInput);
 
         if(module == null) {
-            Bedroom.commandManager.addChatMessage("the module " + RED + moduleInput + GRAY + " does not exist dumfuck.");
+            Bedroom.INSTANCE.commandManager.addChatMessage("the module " + RED + moduleInput + GRAY + " does not exist dumfuck.");
             return;
         }
 
         if(setting == null) {
-            Bedroom.commandManager.addChatMessage("the setting " + RED + settingNameInput + GRAY + " does not exist for the module " + WHITE + moduleInput + GRAY + ".");
+            Bedroom.INSTANCE.commandManager.addChatMessage("the setting " + RED + settingNameInput + GRAY + " does not exist for the module " + WHITE + moduleInput + GRAY + ".");
             return;
         }
 
         if(setting instanceof BooleanSetting) {
             if(settingValueInput.equalsIgnoreCase("true") || settingValueInput.equalsIgnoreCase("false")) {
                 ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(settingValueInput));
-                Bedroom.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (settingValueInput.equalsIgnoreCase("true") ? GREEN + settingValueInput + GRAY + "." : RED + settingValueInput + GRAY + "."));
-            }else Bedroom.commandManager.addChatMessage("boolean value must be either " + GREEN + "true " + GRAY + "or " + RED + "false" + GRAY + ".");
+                Bedroom.INSTANCE.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + (settingValueInput.equalsIgnoreCase("true") ? GREEN + settingValueInput + GRAY + "." : RED + settingValueInput + GRAY + "."));
+            }else Bedroom.INSTANCE.commandManager.addChatMessage("boolean value must be either " + GREEN + "true " + GRAY + "or " + RED + "false" + GRAY + ".");
         }
 
         if(setting instanceof NumberSetting) {
@@ -59,17 +59,17 @@ public class Setting extends Command {
                 else if(val < ((NumberSetting) setting).getMinimum()) val = ((NumberSetting) setting).getMinimum();
 
                 ((NumberSetting) setting).setValue(val);
-                Bedroom.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + val + GRAY + ".");
+                Bedroom.INSTANCE.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + val + GRAY + ".");
             } catch (NumberFormatException invalid) {
-                Bedroom.commandManager.addChatMessage("number value " + RED + settingValueInput + GRAY + " is invalid.");
+                Bedroom.INSTANCE.commandManager.addChatMessage("number value " + RED + settingValueInput + GRAY + " is invalid.");
             }
         }
 
         if(setting instanceof ModeSetting) {
             if(((ModeSetting) setting).modes.contains(settingValueInput)) {
                 ((ModeSetting) setting).setMode(settingValueInput);
-                Bedroom.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + settingValueInput + GRAY + ".");
-            }else Bedroom.commandManager.addChatMessage("the mode " + RED + settingValueInput + GRAY + " does not exist for the module " + WHITE + module.name + GRAY + ". sorry :'(");
+                Bedroom.INSTANCE.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was set to " + GREEN + settingValueInput + GRAY + ".");
+            }else Bedroom.INSTANCE.commandManager.addChatMessage("the mode " + RED + settingValueInput + GRAY + " does not exist for the module " + WHITE + module.name + GRAY + ". sorry :'(");
         }
 
         if(setting instanceof ColorSetting) {
@@ -80,9 +80,9 @@ public class Setting extends Command {
                 int valA = Integer.parseInt(settingValueInput.substring(9, 12));
 
                 ((ColorSetting) setting).setValue(false, new JColor(valR, valG, valB, valA));
-                Bedroom.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was colorizeddddd woo.");
+                Bedroom.INSTANCE.commandManager.addChatMessage("" + WHITE + setting.name + GRAY + " of " + WHITE + module.name + GRAY + " was colorizeddddd woo.");
             } catch (Exception invalid) {
-                Bedroom.commandManager.addChatMessage("color value " + RED + settingValueInput + GRAY + " is invalid. colors are processed in RRRGGGBBBAAA format.");
+                Bedroom.INSTANCE.commandManager.addChatMessage("color value " + RED + settingValueInput + GRAY + " is invalid. colors are processed in RRRGGGBBBAAA format.");
             }
         }
     }

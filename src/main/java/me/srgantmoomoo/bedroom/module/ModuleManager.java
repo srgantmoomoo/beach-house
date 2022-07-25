@@ -26,7 +26,7 @@ public class ModuleManager {
 
     @SuppressWarnings("rawtypes")
 	public static void onEvent(Event e) {
-        for(Module m : Bedroom.moduleManager.modules) {
+        for(Module m : Bedroom.INSTANCE.moduleManager.modules) {
             if(!m.isEnabled())
                 continue;
 
@@ -50,7 +50,7 @@ public class ModuleManager {
 
 
     public Module getModuleByID(String moduleID) {
-        for(Module m : Bedroom.moduleManager.modules) {
+        for(Module m : Bedroom.INSTANCE.moduleManager.modules) {
             if(m.getID().equalsIgnoreCase(moduleID)) {
                 return m;
             }
@@ -65,7 +65,7 @@ public class ModuleManager {
     public List<Module> getEnabledModules() {
     	List<Module> modules = new ArrayList<Module>();
     	
-    	for(Module m : Bedroom.moduleManager.modules) {
+    	for(Module m : Bedroom.INSTANCE.moduleManager.modules) {
     		if(m.isEnabled())
     			modules.add(m);
     	} return modules;
@@ -74,7 +74,7 @@ public class ModuleManager {
     public List<Module> getModulesByCategory(Category c) {
         List<Module> modules = new ArrayList<Module>();
 
-        for(Module m : Bedroom.moduleManager.modules) {
+        for(Module m : Bedroom.INSTANCE.moduleManager.modules) {
             if(m.getCategory() == c)
                 modules.add(m);
         } return modules;

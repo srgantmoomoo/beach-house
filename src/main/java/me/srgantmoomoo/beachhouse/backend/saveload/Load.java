@@ -42,7 +42,7 @@ public class Load {
 
             String line;
             while ((line = br.readLine()) != null) {
-                Iterator var6 = Bedroom.moduleManager.getModules().iterator();
+                Iterator var6 = Bedroom.INSTANCE.moduleManager.getModules().iterator();
 
                 while (var6.hasNext()) {
                     Module m = (Module) var6.next();
@@ -73,10 +73,10 @@ public class Load {
                 String settingname = curLine.split(":")[1];
                 String value = curLine.split(":")[2];
 
-                Module module = Bedroom.moduleManager.getModule(modname);
+                Module module = Bedroom.INSTANCE.moduleManager.getModule(modname);
                 if(module != null) {
                     if (!settingname.equals("KeyBind")) {
-                        Setting setting = Bedroom.settingManager.getSettingByName(module, settingname);
+                        Setting setting = Bedroom.INSTANCE.settingManager.getSettingByName(module, settingname);
                         if (setting instanceof BooleanSetting) {
                             ((BooleanSetting) setting).setEnabled(Boolean.parseBoolean(value));
                         }
@@ -206,7 +206,7 @@ public class Load {
 
             String line;
             while ((line = br.readLine()) != null) {
-                Bedroom.commandManager.setCommandPrefix(line);
+                Bedroom.INSTANCE.commandManager.setCommandPrefix(line);
             }
 
             br.close();

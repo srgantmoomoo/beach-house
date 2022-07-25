@@ -13,7 +13,7 @@ public class MixinChunkSkyLightProvider {
 
     @Inject(at = @At("HEAD"), method = "recalculateLevel", cancellable = true)
     private void recalculateLevel(long long_1, long long_2, int int_1, CallbackInfoReturnable<Integer> info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.skyLightUpdates.isEnabled()) {
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.skyLightUpdates.isEnabled()) {
             info.setReturnValue(15);
             info.cancel();
         }

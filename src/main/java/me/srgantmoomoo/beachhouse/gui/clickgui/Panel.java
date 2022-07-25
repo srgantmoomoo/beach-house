@@ -43,7 +43,7 @@ public class Panel {
         this.cat = cat;
         int tY = this.height;
 
-        for (Module mod : Bedroom.moduleManager.getModules()) {
+        for (Module mod : Bedroom.INSTANCE.moduleManager.getModules()) {
             if (mod.getCategory() == cat) {
                 ModuleButton modButton = new ModuleButton(mod, this, tY);
                 this.buttons.add(modButton);

@@ -40,7 +40,7 @@ public class CommandManager {
         if(message.split(" ").length > 0) {
             boolean commandFound = false;
             String commandName = message.split(" ")[0];
-            for(Command c : Bedroom.commandManager.commands) {
+            for(Command c : Bedroom.INSTANCE.commandManager.commands) {
                 if(c.aliases.contains(commandName) || c.name.equalsIgnoreCase(commandName)) {
                     c.onCommand(Arrays.copyOfRange(message.split(" "), 1, message.split(" ").length), message);
                     commandFound = true;
@@ -97,7 +97,7 @@ public class CommandManager {
      */
     @SuppressWarnings("resource")
     public void addChatMessage(String message) {
-        String messageWithPre = Formatting.AQUA + "@" + Formatting.ITALIC + Bedroom.modname + Formatting.GRAY + ": " + message;
+        String messageWithPre = Formatting.AQUA + "@" + Formatting.ITALIC + Bedroom.INSTANCE.modname + Formatting.GRAY + ": " + message;
         Text textComponentString = new LiteralText(messageWithPre);
 
         if(CommandLine.INSTANCE.isInCommandLine)
@@ -114,7 +114,7 @@ public class CommandManager {
     @SuppressWarnings("resource")
     public void correctUsageMsg(String name, String syntax) {
         String usage = Formatting.RED + "correct usage of " + name + " command -> " + Formatting.GRAY + prefix + syntax;
-        String message = Formatting.AQUA + "@" + Formatting.ITALIC + Bedroom.modname + Formatting.GRAY + ": " + usage;
+        String message = Formatting.AQUA + "@" + Formatting.ITALIC + Bedroom.INSTANCE.modname + Formatting.GRAY + ": " + usage;
         Text textComponentString = new LiteralText(message);
 
         if(CommandLine.INSTANCE.isInCommandLine)

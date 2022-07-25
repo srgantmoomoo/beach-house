@@ -84,13 +84,14 @@ public class Main implements ModInitializer {
 	}
 
 	public static Main INSTANCE;
+
 	public Main() {
 		INSTANCE = this;
 	}
 
 	@Override
 	public void onInitialize() {
-		Bedroom.init(modid, name, version);
+		Bedroom.INSTANCE.init(modid, name, version);
 		beachhouseInit();
 
 		//Discord.startRPC(); //TODO fix this

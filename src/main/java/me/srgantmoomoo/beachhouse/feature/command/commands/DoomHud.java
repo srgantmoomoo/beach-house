@@ -13,7 +13,7 @@ public class DoomHud extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length > 1) {
-            Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
+            Bedroom.INSTANCE.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
         if (args.length == 0) {
@@ -24,7 +24,7 @@ public class DoomHud extends Command {
             if(args[0].equals("mc")) {
                 //display doomhud mc
             }else
-                Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
+                Bedroom.INSTANCE.commandManager.correctUsageMsg(getName(), getSyntax());
         }else {
             //display doomhud
         }

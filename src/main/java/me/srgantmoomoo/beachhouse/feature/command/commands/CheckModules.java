@@ -15,10 +15,10 @@ public class CheckModules extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length > 0) {
-            Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
+            Bedroom.INSTANCE.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
 
-        Bedroom.commandManager.addChatMessage("jesus, player velocity, sprint, entity esp, full bright, render cancel, vibrant shader, fly, fast place, anti hunger, and packet cancel.");
+        Bedroom.INSTANCE.commandManager.addChatMessage("jesus, player velocity, sprint, entity esp, full bright, render cancel, vibrant shader, fly, fast place, anti hunger, and packet cancel.");
     }
 }

@@ -18,23 +18,23 @@ public class SettingList extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length != 1) {
-            Bedroom.commandManager.correctUsageMsg(name, syntax);
+            Bedroom.INSTANCE.commandManager.correctUsageMsg(name, syntax);
             return;
         }
 
         String inputValue = args[0];
 
-        if(Bedroom.moduleManager.getModuleByID(inputValue) == null) {
-            Bedroom.commandManager.addChatMessage("module " + Formatting.RED + inputValue + Formatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
+        if(Bedroom.INSTANCE.moduleManager.getModuleByID(inputValue) == null) {
+            Bedroom.INSTANCE.commandManager.addChatMessage("module " + Formatting.RED + inputValue + Formatting.GRAY + " doesnt fucking exist ahhh fuck owwww motherfucker owwuuuch.");
             return;
         }
 
-        List<Module> modules = Bedroom.moduleManager.getModules();
+        List<Module> modules = Bedroom.INSTANCE.moduleManager.getModules();
         String nothing = Formatting.AQUA + " ";
         String wuw = Formatting.GRAY + "" + Formatting.BOLD + "wuw" + Formatting.AQUA + " ~";
 
-        Bedroom.commandManager.addCustomChatMessage(wuw);
-        Bedroom.commandManager.addCustomChatMessage(nothing);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(wuw);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(nothing);
         for(Module m : modules) {
             String moduleId = m.getID();
             Boolean sent = false;
@@ -43,38 +43,38 @@ public class SettingList extends Command {
                 for(Setting setting : m.settings) {
 
                     if(setting instanceof BooleanSetting) {
-                        Bedroom.commandManager.addCustomChatMessage("boolean: " + Formatting.WHITE + setting.name + Formatting.GRAY + ".");
+                        Bedroom.INSTANCE.commandManager.addCustomChatMessage("boolean: " + Formatting.WHITE + setting.name + Formatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof ModeSetting) {
-                        Bedroom.commandManager.addCustomChatMessage("mode: " + Formatting.WHITE + setting.name + " " + ((ModeSetting) setting).getMode() + " " + ((ModeSetting) setting).modes + Formatting.GRAY + ".");
+                        Bedroom.INSTANCE.commandManager.addCustomChatMessage("mode: " + Formatting.WHITE + setting.name + " " + ((ModeSetting) setting).getMode() + " " + ((ModeSetting) setting).modes + Formatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof NumberSetting) {
-                        Bedroom.commandManager.addCustomChatMessage("number: " + Formatting.WHITE + setting.name + " " +  ((NumberSetting) setting).getValue() + Formatting.GRAY + ".");
+                        Bedroom.INSTANCE.commandManager.addCustomChatMessage("number: " + Formatting.WHITE + setting.name + " " +  ((NumberSetting) setting).getValue() + Formatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof ColorSetting) {
-                        Bedroom.commandManager.addCustomChatMessage("color: " + Formatting.WHITE + setting.name + " " + ((ColorSetting) setting).getColor() + Formatting.GRAY + ".");
+                        Bedroom.INSTANCE.commandManager.addCustomChatMessage("color: " + Formatting.WHITE + setting.name + " " + ((ColorSetting) setting).getColor() + Formatting.GRAY + ".");
                         sent = true;
                     }
 
                     if(setting instanceof KeybindSetting) {
-                        Bedroom.commandManager.addCustomChatMessage("keybind: " + Formatting.WHITE + setting.name + Formatting.GRAY + ".");
+                        Bedroom.INSTANCE.commandManager.addCustomChatMessage("keybind: " + Formatting.WHITE + setting.name + Formatting.GRAY + ".");
                     }
 
                     if(!sent) {
-                        Bedroom.commandManager.addCustomChatMessage("no settings for this module :("); //TODO this wont be needed when keybinds r added... so add keybinds. im just to lazy to do it rn.
+                        Bedroom.INSTANCE.commandManager.addCustomChatMessage("no settings for this module :("); //TODO this wont be needed when keybinds r added... so add keybinds. im just to lazy to do it rn.
                     }
                 }
                 sent = false;
             }
         }
         String uwu = Formatting.GRAY + "" + Formatting.BOLD + "uwu" + Formatting.AQUA + " ~";
-        Bedroom.commandManager.addCustomChatMessage(nothing);
-        Bedroom.commandManager.addCustomChatMessage(uwu);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(nothing);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(uwu);
     }
 }

@@ -116,7 +116,7 @@ public class CommandLineScreen extends Screen {
         if (input.split(" ").length > 0) {
             commandFound = false;
             String commandName = input.split(" ")[0];
-            for (Command c : Bedroom.commandManager.commands) {
+            for (Command c : Bedroom.INSTANCE.commandManager.commands) {
                 if (c.aliases.contains(commandName) || c.name.equalsIgnoreCase(commandName)) {
                     c.onCommand(Arrays.copyOfRange(input.split(" "), 1, input.split(" ").length), input);
                     commandFound = true;

@@ -11,13 +11,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinWorldRenderer {
     @Inject(method = "renderWeather", at = @At("HEAD"), cancellable = true)
     private void renderWeather(LightmapTextureManager manager, float f, double d, double e, double g, CallbackInfo info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.weather.isEnabled())
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.weather.isEnabled())
             info.cancel();
     }
 
     @Inject(method = "tickRainSplashing", at = @At("HEAD"), cancellable = true)
     public void tickRainSplashing(Camera camera, CallbackInfo info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.weather.isEnabled())
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.weather.isEnabled())
             info.cancel();
     }
 

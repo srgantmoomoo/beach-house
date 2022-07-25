@@ -38,7 +38,7 @@ public class MixinInGameHud {
 
 	@Inject(method = "renderPortalOverlay", at = @At("HEAD"), cancellable = true)
 	private void renderPortalOverlay(float f, CallbackInfo info) {
-		if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.portalOverlay.isEnabled())
+		if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.portalOverlay.isEnabled())
 			info.cancel();
 	}
 

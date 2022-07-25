@@ -24,13 +24,13 @@ public class GuiButton extends Button {
         addy = 12;
         this.buttons = new ArrayList<>();
 
-        ModuleButton button1 = new ModuleButton(Bedroom.moduleManager.getModuleByID("clickgui"), 0);
+        ModuleButton button1 = new ModuleButton(Bedroom.INSTANCE.moduleManager.getModuleByID("clickgui"), 0);
         this.buttons.add(button1);
 
-        ModuleButton button2 = new ModuleButton(Bedroom.moduleManager.getModuleByID("commandline"), 20);
+        ModuleButton button2 = new ModuleButton(Bedroom.INSTANCE.moduleManager.getModuleByID("commandline"), 20);
         this.buttons.add(button2);
 
-        ModuleButton button3 = new ModuleButton(Bedroom.moduleManager.getModuleByID("options"), 40);
+        ModuleButton button3 = new ModuleButton(Bedroom.INSTANCE.moduleManager.getModuleByID("options"), 40);
         this.buttons.add(button3);
     }
 

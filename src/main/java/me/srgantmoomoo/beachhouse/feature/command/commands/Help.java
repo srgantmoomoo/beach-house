@@ -20,7 +20,7 @@ public class Help extends Command {
     @Override
     public void onCommand(String[] args, String command) {
         if(args.length > 1) {
-            Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
+            Bedroom.INSTANCE.commandManager.correctUsageMsg(getName(), getSyntax());
             return;
         }
 
@@ -40,12 +40,12 @@ public class Help extends Command {
             return;
         }
 
-        Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
+        Bedroom.INSTANCE.commandManager.correctUsageMsg(getName(), getSyntax());
     }
 
     private void displayPage1() {
         welcomeMessage();
-        for(Command c : Bedroom.commandManager.commands.subList(0, 6)) {
+        for(Command c : Bedroom.INSTANCE.commandManager.commands.subList(0, 6)) {
             helpMessage(c.getName(), c.getDescription(), c.getSyntax());
         }
         goodbyeMessage();
@@ -53,7 +53,7 @@ public class Help extends Command {
 
     private void displayPage2() {
         welcomeMessage();
-        for(Command c : Bedroom.commandManager.commands.subList(6, 11)) {
+        for(Command c : Bedroom.INSTANCE.commandManager.commands.subList(6, 11)) {
             helpMessage(c.getName(), c.getDescription(), c.getSyntax());
         }
         goodbyeMessage();
@@ -61,10 +61,10 @@ public class Help extends Command {
 
     private void helpMessage(String commandName, String commandDesc, String commandSyntax) {
         String starter = LIGHT_PURPLE + commandName + GRAY + " - " + commandDesc;
-        String syntaxMessage = " [" + Bedroom.commandManager.prefix + commandSyntax + "]";
+        String syntaxMessage = " [" + Bedroom.INSTANCE.commandManager.prefix + commandSyntax + "]";
 
-        Bedroom.commandManager.addCustomChatMessage(starter);
-        Bedroom.commandManager.addCustomChatMessage(syntaxMessage);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(starter);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(syntaxMessage);
     }
 
     private void welcomeMessage() {
@@ -72,9 +72,9 @@ public class Help extends Command {
         String nothing = " ";
         String atClientName = AQUA + "@" + ITALIC + Main.INSTANCE.name;
 
-        Bedroom.commandManager.addCustomChatMessage(welcomeString);
-        Bedroom.commandManager.addCustomChatMessage(nothing);
-        Bedroom.commandManager.addCustomChatMessage(atClientName);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(welcomeString);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(nothing);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(atClientName);
 
     }
 
@@ -82,8 +82,8 @@ public class Help extends Command {
         String uwu = GRAY + "" + BOLD + "uwu" + AQUA + " ~";
         String nothing = " ";
 
-        Bedroom.commandManager.addCustomChatMessage(nothing);
-        Bedroom.commandManager.addCustomChatMessage(uwu);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(nothing);
+        Bedroom.INSTANCE.commandManager.addCustomChatMessage(uwu);
     }
 
 }

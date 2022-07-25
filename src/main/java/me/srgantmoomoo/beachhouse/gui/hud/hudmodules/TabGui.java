@@ -58,7 +58,7 @@ public class TabGui extends HudModule {
 
         if (expanded) {
             Category category = Module.Category.values()[currentTab];
-            List<Module> modules = Bedroom.moduleManager.getModulesByCategory(category);
+            List<Module> modules = Bedroom.INSTANCE.moduleManager.getModulesByCategory(category);
 
             if (modules.size() == 0)
                 return;
@@ -97,7 +97,7 @@ public class TabGui extends HudModule {
                 int code = ((EventKeyPress) e).getKey();
 
                 Category category = Module.Category.values()[currentTab];
-                List<Module> modules = Bedroom.moduleManager.getModulesByCategory(category);
+                List<Module> modules = Bedroom.INSTANCE.moduleManager.getModulesByCategory(category);
 
                 if (code == GLFW.GLFW_KEY_UP) {
                     if (expanded) {

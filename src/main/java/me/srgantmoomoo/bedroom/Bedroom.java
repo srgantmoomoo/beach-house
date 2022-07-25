@@ -15,15 +15,14 @@ import me.srgantmoomoo.bedroom.module.setting.SettingManager;
  */
 
 public final class Bedroom {
-    public static Bedroom INSTANCE;
 
-    public Bedroom() {
-        INSTANCE = this;
-    }
+    public String modid;
+    public String modname;
+    public String modversion;
 
-    public static ModuleManager moduleManager;
-    public static SettingManager settingManager;
-    public static CommandManager commandManager;
+    public ModuleManager moduleManager;
+    public SettingManager settingManager;
+    public CommandManager commandManager;
 
     public static final Logger LOGGER = LogManager.getLogger("bedroom");
 
@@ -34,25 +33,13 @@ public final class Bedroom {
         }
     }
 
-    public static void addModule(Module module) {
-        moduleManager.modules.add(module);
+    public static Bedroom INSTANCE;
+
+    public Bedroom() {
+        INSTANCE = this;
     }
 
-    public static void addCommand(Command command) {
-        commandManager.commands.add(command);
-    }
-
-    public static String modid;
-    public static String modname;
-    public static String modversion;
-
-    public static void setVariables(String id, String name, String version) {
-        modid = id;
-        modname = name;
-        modversion = version;
-    }
-
-    public static void init(String id, String name, String version) {
+    public void init(String id, String name, String version) {
         printLog("welcome to bedroom!");
         printLog("\n" +
                 " __                     __                                       \n" +
@@ -62,7 +49,9 @@ public final class Bedroom {
                 " |  \\__/ || \\__.,| \\__/  |  | |    | \\__. || \\__. | | | | | | |  \n" +
                 "[__;.__.'  '.__.' '.__.;__][___]    '.__.'  '.__.' [___||__||__] \n");
 
-        setVariables(id, name, version);
+        modid = id;
+        modname = name;
+        modversion = version;
         printLog("variables initialized.");
 
         commandManager = new CommandManager();
@@ -73,6 +62,14 @@ public final class Bedroom {
 
         settingManager = new SettingManager();
         printLog("setting system initialized.");
+    }
+
+    public void addModule(Module module) {
+        moduleManager.modules.add(module);
+    }
+
+    public void addCommand(Command command) {
+        commandManager.commands.add(command);
     }
 
 }

@@ -51,7 +51,7 @@ public class Save {
             File file = new File(MainDirectory, "modules.txt");
             ArrayList<String> toSave = new ArrayList<>();
 
-            for(Module module : Bedroom.moduleManager.getModules()) {
+            for(Module module : Bedroom.INSTANCE.moduleManager.getModules()) {
                 if (module.isEnabled() && !module.getID().equals("clickgui") && !module.getID().equals("hudeditor") && !module.getID().equals("commandline") && !module.getID().equals("options")) {
                     toSave.add(module.getName());
                 }
@@ -67,7 +67,7 @@ public class Save {
             File file = new File(MainDirectory, "settings.txt");
             ArrayList<String> toSave = new ArrayList<>();
 
-            for(Module mod : Bedroom.moduleManager.modules) {
+            for(Module mod : Bedroom.INSTANCE.moduleManager.modules) {
                 for(Setting setting : mod.settings) {
 
                     if(setting instanceof BooleanSetting bool) {
@@ -144,7 +144,7 @@ public class Save {
             File file = new File(MainDirectory, "prefix.txt");
             ArrayList<String> toSave = new ArrayList<>();
 
-            toSave.add(Bedroom.commandManager.prefix);
+            toSave.add(Bedroom.INSTANCE.commandManager.prefix);
 
             writeFile(toSave, file);
         } catch (Exception ignored) {

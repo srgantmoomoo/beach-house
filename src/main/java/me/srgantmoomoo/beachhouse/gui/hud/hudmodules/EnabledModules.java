@@ -26,7 +26,7 @@ public class EnabledModules extends HudModule {
     }
 
     public void drawFinale(MatrixStack matrix) {
-        if(mods.isEmpty()) mods.addAll(Bedroom.moduleManager.getModules());
+        if(mods.isEmpty()) mods.addAll(Bedroom.INSTANCE.moduleManager.getModules());
 
         int screenWidth = Reference.window.getScaledWidth();
         TextRenderer tr = Reference.textRenderer;

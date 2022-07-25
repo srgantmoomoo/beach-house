@@ -45,8 +45,8 @@ public class MixinClientConnection {
     public void send_1(Packet<?> packet_1, GenericFutureListener<? extends Future<? super Void>> genericFutureListener_1, CallbackInfo info) {
         if (packet_1 instanceof ChatMessageC2SPacket) {
             ChatMessageC2SPacket pack = (ChatMessageC2SPacket) packet_1;
-            if (pack.getChatMessage().startsWith(Bedroom.commandManager.prefix)) {
-                Bedroom.commandManager.callCommandReturn(pack.getChatMessage());
+            if (pack.getChatMessage().startsWith(Bedroom.INSTANCE.commandManager.prefix)) {
+                Bedroom.INSTANCE.commandManager.callCommandReturn(pack.getChatMessage());
                 info.cancel();
             }
         }

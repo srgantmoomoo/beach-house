@@ -15,7 +15,7 @@ public class Clear extends Command {
 	@Override
 	public void onCommand(String[] args, String command) {
 		if(args.length > 0) {
-			Bedroom.commandManager.correctUsageMsg(getName(), getSyntax());
+			Bedroom.INSTANCE.commandManager.correctUsageMsg(getName(), getSyntax());
 			return;
 		}
 

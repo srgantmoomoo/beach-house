@@ -38,7 +38,7 @@ public class MixinGameRenderer {
 
     @Inject(method = "bobViewWhenHurt", at = @At("HEAD"), cancellable = true)
     private void bobViewWhenHurt(MatrixStack matrixStack, float f, CallbackInfo info) {
-        if(Bedroom.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.hurtCam.isEnabled())
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("render cancel") && RenderCancel.INSTANCE.hurtCam.isEnabled())
             info.cancel();
     }
 }

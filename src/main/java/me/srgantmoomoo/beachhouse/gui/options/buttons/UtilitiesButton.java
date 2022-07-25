@@ -25,7 +25,7 @@ public class UtilitiesButton extends Button {
 
         this.buttons = new ArrayList<>();
 
-        ModuleButton button1 = new ModuleButton(Bedroom.moduleManager.getModuleByID("discordrpc"), 0);
+        ModuleButton button1 = new ModuleButton(Bedroom.INSTANCE.moduleManager.getModuleByID("discordrpc"), 0);
         this.buttons.add(button1);
     }
 

@@ -19,7 +19,7 @@ public abstract class MixinFluidState {
 
     @Inject(method = "getVelocity", at = @At("HEAD"), cancellable = true)
     public void getVelocity(BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3d> infoReturnable) {
-        if(Bedroom.moduleManager.isModuleEnabled("player velocity") && PlayerVelocity.INSTANCE.noPush.isEnabled())
+        if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("player velocity") && PlayerVelocity.INSTANCE.noPush.isEnabled())
             infoReturnable.setReturnValue(Vec3d.ZERO);
     }
 }

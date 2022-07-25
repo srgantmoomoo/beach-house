@@ -18,7 +18,7 @@ public class MixinEntity {
     @Redirect(method = "pushAwayFrom", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;addVelocity(DDD)V"))
     private void pushAwayFrom_addVelocity(Entity entity, double deltaX, double deltaY, double deltaZ) {
         if (entity == MinecraftClient.getInstance().player) {
-            if(Bedroom.moduleManager.isModuleEnabled("player velocity") && PlayerVelocity.INSTANCE.noPush.isEnabled())
+            if(Bedroom.INSTANCE.moduleManager.isModuleEnabled("player velocity") && PlayerVelocity.INSTANCE.noPush.isEnabled())
                 addVelocity(0, 0, 0);
         }
     }
