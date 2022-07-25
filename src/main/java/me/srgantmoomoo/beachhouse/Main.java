@@ -65,6 +65,7 @@ public class Main implements ModInitializer {
 	public final String version = "0.11";
 	public final boolean checkUuids = false;
 
+	public Bedroom bedroom;
 	public NotepadManager notepadManager;
 	public HudManager hudManager;
 	public ClickGuiScreen clickGuiScreen;
@@ -91,6 +92,7 @@ public class Main implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		bedroom = new Bedroom();
 		Bedroom.INSTANCE.init(modid, name, version);
 		beachhouseInit();
 
