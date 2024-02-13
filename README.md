@@ -1,3 +1,6 @@
+## archived
+beach houes and its parent bedroom are now archived. the only work i am continuing for now in the community will be on postman and its many iterations. go listen to the inspiration for this clients name :)
+
 # beach house
 This is a latest version fabric client for minecraft. This is a private client, however, older versions will be publicized and open sourced [here](https://github.com/beach-house-development/beach-house-public) for anyone to see.
 <br>
